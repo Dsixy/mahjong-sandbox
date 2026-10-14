@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "games": 1000,
+  "seed_start": 0,
+  "seed_end": 999,
+  "commands": 239351,
+  "wins": 74,
+  "end_reasons": {
+    "wall_exhausted": 1000
+  },
+  "event_counts": {
+    "round_started": 1000,
+    "dealt": 4000,
+    "exchange_selected": 2668,
+    "exchange_completed": 667,
+    "missing_suits_declared": 1000,
+    "discard": 58451,
+    "draw": 55000,
+    "peng": 2579,
+    "payment": 1164,
+    "round_ended": 1000,
+    "win": 74,
+    "kong_confirmed": 178,
+    "kong_proposed": 86
+  },
+  "verified_replays": 40,
+  "default_profile": {
+    "rule_version": "sichuan_xuezhan_v1",
+    "exchange_three": true,
+    "base_points": 1,
+    "fan_cap": 5,
+    "self_draw_bonus": "base",
+    "seven_pairs_quads": true,
+    "passed_ron_lock": true,
+    "last_tile_bonus": true,
+    "force_win_last_four": false,
+    "kong_discard_transfer": false,
+    "check_flower_pigs": true,
+    "check_noten": true,
+    "refund_noten_kongs": true,
+    "dealer": 0
+  },
+  "elapsed_seconds": 116.97
+}

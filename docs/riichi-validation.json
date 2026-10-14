@@ -1,0 +1,39 @@
+{
+  "games": 1000,
+  "profiles": 4,
+  "policies": {
+    "greedy": 334,
+    "win-first": 333,
+    "random": 333
+  },
+  "end_reasons": {
+    "ron": 232,
+    "wall_exhausted": 683,
+    "tsumo": 75,
+    "four_riichi": 9,
+    "four_winds": 1
+  },
+  "winners": 309,
+  "events": {
+    "round_started": 1000,
+    "dealt": 4000,
+    "dora_revealed": 1098,
+    "draw": 61082,
+    "discard": 65364,
+    "riichi_declared": 490,
+    "payment": 1659,
+    "riichi_accepted": 473,
+    "win": 309,
+    "ura_revealed": 249,
+    "round_ended": 1000,
+    "chi": 2995,
+    "peng": 1446,
+    "kong_proposed": 84,
+    "kong_confirmed": 98
+  },
+  "replays_verified": 20,
+  "elapsed_seconds": 658.891,
+  "inventory_and_points_conserved": true,
+  "terminated": true,
+  "execution": "serial CPU reference engine"
+}

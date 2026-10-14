@@ -1,0 +1,22 @@
+{
+  "variant": "sichuan",
+  "seed": 700,
+  "backend": "numba",
+  "live_boards": 1000,
+  "workers": 4,
+  "controlled_player": 0,
+  "opponent_policy": "greedy",
+  "startup_seconds": 0.30614294500264805,
+  "first_three_steps_seconds": 9.387618903005205,
+  "complete_rollout_seconds": 57.848598614000366,
+  "steady_step_seconds": 48.35898838301364,
+  "steady_learner_decisions": 46423,
+  "decisions_per_second": 959.9663175813316,
+  "batch_latency_p50_ms": 734.8300829980872,
+  "batch_latency_p95_ms": 1655.282611851362,
+  "shared_buffer_bytes": 11371304,
+  "sampled_rss_sum_bytes": 1108832256,
+  "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+  "completed_hands": 1000,
+  "rewards_verified": true
+}

@@ -1,0 +1,22 @@
+{
+  "variant": "riichi",
+  "seed": 700,
+  "backend": "numba",
+  "live_boards": 1000,
+  "workers": 4,
+  "controlled_player": null,
+  "opponent_policy": null,
+  "startup_seconds": 1.5286846279996098,
+  "first_three_steps_seconds": 0.1236536060096114,
+  "complete_rollout_seconds": 16.377603850000014,
+  "steady_step_seconds": 15.855209668945463,
+  "steady_learner_decisions": 276034,
+  "decisions_per_second": 17409.672010875347,
+  "batch_latency_p50_ms": 41.66633600107161,
+  "batch_latency_p95_ms": 125.93063700332982,
+  "shared_buffer_bytes": 11371304,
+  "sampled_rss_sum_bytes": 994164736,
+  "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+  "completed_hands": 1000,
+  "rewards_verified": true
+}

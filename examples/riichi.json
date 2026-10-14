@@ -1,0 +1,1953 @@
+{
+  "format_version": 1,
+  "engine_version": "0.1.0",
+  "config": {
+    "rule_version": "riichi_4p_v1",
+    "dealer": 0,
+    "round_wind": 27,
+    "hand_number": 1,
+    "honba": 0,
+    "riichi_sticks": 0,
+    "initial_scores": [
+      25000,
+      25000,
+      25000,
+      25000
+    ],
+    "red_fives": [
+      16,
+      52,
+      88
+    ],
+    "open_tanyao": true,
+    "kuikae_forbidden": true,
+    "riichi_min_live": 4,
+    "multi_ron": true,
+    "triple_ron_abort": true,
+    "abortive_draws": true,
+    "nagashi_mangan": true,
+    "kiriage_mangan": false,
+    "counted_yakuman": true,
+    "double_yakuman": true,
+    "pao": true,
+    "delayed_open_kan_dora": true
+  },
+  "seed": 0,
+  "initial_wall": [
+    44,
+    76,
+    94,
+    121,
+    127,
+    29,
+    3,
+    104,
+    49,
+    54,
+    113,
+    25,
+    89,
+    14,
+    65,
+    43,
+    53,
+    6,
+    58,
+    23,
+    109,
+    50,
+    59,
+    111,
+    118,
+    22,
+    82,
+    105,
+    85,
+    88,
+    47,
+    75,
+    46,
+    4,
+    100,
+    16,
+    2,
+    134,
+    99,
+    67,
+    48,
+    15,
+    119,
+    20,
+    125,
+    97,
+    5,
+    73,
+    101,
+    37,
+    112,
+    38,
+    83,
+    115,
+    34,
+    52,
+    21,
+    91,
+    110,
+    135,
+    86,
+    35,
+    19,
+    13,
+    62,
+    117,
+    133,
+    84,
+    57,
+    69,
+    108,
+    30,
+    28,
+    72,
+    24,
+    8,
+    41,
+    31,
+    131,
+    63,
+    95,
+    0,
+    80,
+    51,
+    11,
+    1,
+    92,
+    7,
+    33,
+    132,
+    56,
+    61,
+    70,
+    26,
+    81,
+    78,
+    40,
+    55,
+    126,
+    106,
+    71,
+    60,
+    42,
+    87,
+    9,
+    93,
+    123,
+    39,
+    18,
+    128,
+    129,
+    90,
+    68,
+    32,
+    102,
+    79,
+    12,
+    96,
+    120,
+    36,
+    17,
+    64,
+    27,
+    116,
+    114,
+    74,
+    45,
+    122,
+    77,
+    103,
+    124,
+    130,
+    66,
+    10,
+    107,
+    98
+  ],
+  "exchange_offset": null,
+  "commands": [
+    {
+      "player": 0,
+      "decision_id": 1,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          118
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 2,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 2,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 2,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 3,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          76
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 4,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 4,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 4,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 5,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          119
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 6,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 6,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 6,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 7,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          111
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 8,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 8,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 8,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 9,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          109
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 10,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 10,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 10,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 11,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          134
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 12,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 12,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 12,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 13,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          110
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 14,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 14,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 14,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 15,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          135
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 16,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 16,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 16,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 17,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          2
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 18,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 18,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 18,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 19,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          37
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 20,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 20,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 20,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 21,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          34
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 22,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 22,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 22,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 23,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          121
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 24,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 24,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 24,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 25,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          86
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 26,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 26,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 26,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 27,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          117
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 28,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 28,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 28,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 29,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          133
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 30,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 30,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 30,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 31,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          84
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 32,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 32,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 32,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 33,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          101
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 34,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 34,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 34,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 35,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          69
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 36,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 36,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 36,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 37,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          108
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 38,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 38,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 38,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 39,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          67
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 40,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 40,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 40,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 41,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          46
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 42,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 42,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 42,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 43,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          115
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 44,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 44,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 44,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 45,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          82
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 46,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 46,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 46,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 47,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          23
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 48,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 48,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 48,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 49,
+      "action": {
+        "kind": "riichi",
+        "tiles": [
+          49
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 50,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 50,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 50,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 51,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          35
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 52,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 52,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 52,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 53,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          131
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 54,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 54,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 54,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 55,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          38
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 56,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 56,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 56,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 57,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          95
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 58,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 58,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 58,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 59,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          22
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 60,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 60,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 60,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 61,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          47
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 62,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 62,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 62,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 63,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          63
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 64,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 64,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 64,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 65,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          11
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 66,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 66,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 66,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 67,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          50
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 68,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 68,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 68,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 69,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          94
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 70,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 70,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 70,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 71,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          30
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 72,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 72,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 72,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 73,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          33
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 74,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 74,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 74,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 75,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          132
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 76,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 76,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 76,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 77,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          65
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 78,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 78,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 78,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 79,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          43
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 80,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 80,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 80,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 81,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          70
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 82,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 82,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 82,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 83,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          26
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 84,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 84,
+      "action": {
+        "kind": "pass",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 84,
+      "action": {
+        "kind": "ron",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    }
+  ],
+  "expected": {
+    "state_hash": "43c7ef17d2636f444fe184d7f7b8912d9c64f9b38c2eb1e8d7fd7e258b33e8df",
+    "event_hash": "3c95185dd6f50db477e01c492601102b6078b3870712c2d978dde94a1bc47f7c",
+    "end_reason": "ron",
+    "scores": [
+      28900,
+      21100,
+      25000,
+      25000
+    ],
+    "command_count": 168
+  }
+}

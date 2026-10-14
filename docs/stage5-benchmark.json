@@ -1,0 +1,431 @@
+{
+  "hardware": {
+    "python": "3.12.14",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "logical_cpus": 16,
+    "affinity_cpus": 16,
+    "numpy": "2.3.5",
+    "numba": "0.68.0",
+    "llvmlite": "0.50.0"
+  },
+  "seed": 10000,
+  "cold_operator_warmup_seconds": 7.553680352997617,
+  "serial": [
+    {
+      "variant": "sichuan",
+      "mode": "reference",
+      "games": 20,
+      "elapsed_seconds": 6.099948516002769,
+      "games_per_second": 3.278716196953378,
+      "commands_per_second": 497.3812470778274,
+      "identical_results": true
+    },
+    {
+      "variant": "sichuan",
+      "mode": "lean-python",
+      "games": 20,
+      "elapsed_seconds": 4.637231336000696,
+      "games_per_second": 4.312918323641079,
+      "commands_per_second": 654.2697096963517,
+      "identical_results": true
+    },
+    {
+      "variant": "sichuan",
+      "mode": "lean-native",
+      "games": 20,
+      "elapsed_seconds": 4.118619405999198,
+      "games_per_second": 4.855996155135849,
+      "commands_per_second": 736.6546167341083,
+      "identical_results": true
+    },
+    {
+      "variant": "riichi",
+      "mode": "reference",
+      "games": 20,
+      "elapsed_seconds": 24.96747565699843,
+      "games_per_second": 0.8010421347659935,
+      "commands_per_second": 150.3956608023153,
+      "identical_results": true
+    },
+    {
+      "variant": "riichi",
+      "mode": "lean-python",
+      "games": 20,
+      "elapsed_seconds": 15.141588211001363,
+      "games_per_second": 1.3208654020500095,
+      "commands_per_second": 247.9924792348893,
+      "identical_results": true
+    },
+    {
+      "variant": "riichi",
+      "mode": "lean-native",
+      "games": 20,
+      "elapsed_seconds": 4.6397834200033685,
+      "games_per_second": 4.310546029750992,
+      "commands_per_second": 809.3050170857488,
+      "identical_results": true
+    }
+  ],
+  "operators": [
+    {
+      "operator": "shanten_batch",
+      "backend": "python",
+      "rows": 1000,
+      "seconds": 0.15912408900112496
+    },
+    {
+      "operator": "shanten_batch",
+      "backend": "numba",
+      "rows": 1000,
+      "seconds": 0.009249997001461452
+    },
+    {
+      "operator": "waits_batch",
+      "backend": "python",
+      "rows": 1000,
+      "seconds": 0.5361062789997959
+    },
+    {
+      "operator": "waits_batch",
+      "backend": "numba",
+      "rows": 1000,
+      "seconds": 0.002143130997865228
+    },
+    {
+      "operator": "discard_ukeire_batch",
+      "backend": "python",
+      "rows": 1000,
+      "seconds": 33.38728629899924
+    },
+    {
+      "operator": "discard_ukeire_batch",
+      "backend": "numba",
+      "rows": 1000,
+      "seconds": 3.522952511000767
+    }
+  ],
+  "batches": [
+    {
+      "variant": "riichi",
+      "live_boards": 1000,
+      "workers": 0,
+      "startup_seconds": 0.5988173559999268,
+      "first_three_steps_seconds": 9.083005165004579,
+      "complete_rollout_seconds": 174.07555152499845,
+      "steady_step_seconds": 164.90382498599502,
+      "steady_learner_decisions": 45879,
+      "decisions_per_second": 278.21671209807545,
+      "batch_latency_p50_ms": 1949.5693525004754,
+      "batch_latency_p95_ms": 4847.546066448921,
+      "shared_buffer_bytes": 11370000,
+      "sampled_rss_sum_bytes": 514809856,
+      "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+      "completed_hands": 1000,
+      "rewards_verified": true
+    },
+    {
+      "variant": "riichi",
+      "live_boards": 1000,
+      "workers": 1,
+      "startup_seconds": 1.7772367970028426,
+      "first_three_steps_seconds": 13.953163690999645,
+      "complete_rollout_seconds": 178.52702886000043,
+      "steady_step_seconds": 164.48311613401165,
+      "steady_learner_decisions": 45879,
+      "decisions_per_second": 278.9283245498605,
+      "batch_latency_p50_ms": 1951.1693439999362,
+      "batch_latency_p95_ms": 4869.682218450179,
+      "shared_buffer_bytes": 11370280,
+      "sampled_rss_sum_bytes": 846696448,
+      "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+      "completed_hands": 1000,
+      "rewards_verified": true
+    },
+    {
+      "variant": "riichi",
+      "live_boards": 1000,
+      "workers": 2,
+      "startup_seconds": 1.5363957209992805,
+      "first_three_steps_seconds": 10.336682295001083,
+      "complete_rollout_seconds": 102.43240798700208,
+      "steady_step_seconds": 91.99831994899068,
+      "steady_learner_decisions": 45879,
+      "decisions_per_second": 498.6938894692646,
+      "batch_latency_p50_ms": 1100.2731445005338,
+      "batch_latency_p95_ms": 2706.9658825485017,
+      "shared_buffer_bytes": 11370280,
+      "sampled_rss_sum_bytes": 1100976128,
+      "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+      "completed_hands": 1000,
+      "rewards_verified": true
+    },
+    {
+      "variant": "riichi",
+      "live_boards": 1000,
+      "workers": 4,
+      "startup_seconds": 1.6109787809982663,
+      "first_three_steps_seconds": 8.732669867997174,
+      "complete_rollout_seconds": 62.9085289930008,
+      "steady_step_seconds": 54.06675287798862,
+      "steady_learner_decisions": 45879,
+      "decisions_per_second": 848.5621487854881,
+      "batch_latency_p50_ms": 831.619459499052,
+      "batch_latency_p95_ms": 1472.1904724001433,
+      "shared_buffer_bytes": 11370280,
+      "sampled_rss_sum_bytes": 1595322368,
+      "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+      "completed_hands": 1000,
+      "rewards_verified": true
+    }
+  ],
+  "profiles": {
+    "sichuan-reference": [
+      {
+        "function": "evaluation.py:15:run_game",
+        "calls": 3,
+        "cumulative_seconds": 2.116155952
+      },
+      {
+        "function": "engine.py:404:observe",
+        "calls": 457,
+        "cumulative_seconds": 1.174269629
+      },
+      {
+        "function": "copy.py:118:deepcopy",
+        "calls": 739577,
+        "cumulative_seconds": 1.025155218
+      },
+      {
+        "function": "copy.py:217:_deepcopy_dict",
+        "calls": 111384,
+        "cumulative_seconds": 0.93355427
+      },
+      {
+        "function": "greedy.py:63:act",
+        "calls": 457,
+        "cumulative_seconds": 0.813417691
+      },
+      {
+        "function": "greedy.py:74:<lambda>",
+        "calls": 11026,
+        "cumulative_seconds": 0.788235468
+      },
+      {
+        "function": "greedy.py:60:distance",
+        "calls": 11026,
+        "cumulative_seconds": 0.785361367
+      },
+      {
+        "function": "greedy.py:43:shape_distance",
+        "calls": 11026,
+        "cumulative_seconds": 0.7824551070000001
+      },
+      {
+        "function": "greedy.py:8:_regular_distance",
+        "calls": 144338,
+        "cumulative_seconds": 0.7294780750000001
+      },
+      {
+        "function": "greedy.py:144:_best",
+        "calls": 158,
+        "cumulative_seconds": 0.713317952
+      },
+      {
+        "function": "copy.py:191:_deepcopy_list",
+        "calls": 22308,
+        "cumulative_seconds": 0.698225615
+      },
+      {
+        "function": "greedy.py:131:discard_score",
+        "calls": 314,
+        "cumulative_seconds": 0.6777526110000001
+      }
+    ],
+    "sichuan-lean-native": [
+      {
+        "function": "evaluation.py:15:run_game",
+        "calls": 3,
+        "cumulative_seconds": 0.691317563
+      },
+      {
+        "function": "bots.py:30:act",
+        "calls": 457,
+        "cumulative_seconds": 0.589564508
+      },
+      {
+        "function": "operators.py:108:discard_ukeire_batch",
+        "calls": 134,
+        "cumulative_seconds": 0.5491053250000001
+      },
+      {
+        "function": "fast.py:105:observe",
+        "calls": 457,
+        "cumulative_seconds": 0.07493625500000001
+      },
+      {
+        "function": "fast.py:71:legal_actions",
+        "calls": 914,
+        "cumulative_seconds": 0.034483286
+      },
+      {
+        "function": "engine.py:116:legal_actions",
+        "calls": 457,
+        "cumulative_seconds": 0.033262898
+      },
+      {
+        "function": "greedy.py:63:act",
+        "calls": 320,
+        "cumulative_seconds": 0.02807689
+      },
+      {
+        "function": "copy.py:118:deepcopy",
+        "calls": 18379,
+        "cumulative_seconds": 0.027151905
+      },
+      {
+        "function": "copy.py:217:_deepcopy_dict",
+        "calls": 1377,
+        "cumulative_seconds": 0.02424973
+      },
+      {
+        "function": "fast.py:86:submit",
+        "calls": 457,
+        "cumulative_seconds": 0.021469729
+      },
+      {
+        "function": "scoring.py:18:evaluate_hand",
+        "calls": 726,
+        "cumulative_seconds": 0.020690921
+      },
+      {
+        "function": "~:0:<built-in method builtins.any>",
+        "calls": 8199,
+        "cumulative_seconds": 0.020534182
+      }
+    ],
+    "riichi-reference": [
+      {
+        "function": "evaluation.py:15:run_game",
+        "calls": 3,
+        "cumulative_seconds": 7.167693414
+      },
+      {
+        "function": "riichi_engine.py:480:observe",
+        "calls": 689,
+        "cumulative_seconds": 3.6908395300000003
+      },
+      {
+        "function": "copy.py:118:deepcopy",
+        "calls": 2365863,
+        "cumulative_seconds": 3.3536585640000003
+      },
+      {
+        "function": "riichi_agent.py:23:act",
+        "calls": 689,
+        "cumulative_seconds": 3.263990658
+      },
+      {
+        "function": "riichi_agent.py:36:<lambda>",
+        "calls": 41697,
+        "cumulative_seconds": 3.21878805
+      },
+      {
+        "function": "riichi_agent.py:20:distance",
+        "calls": 41697,
+        "cumulative_seconds": 3.2090683290000004
+      },
+      {
+        "function": "riichi_agent.py:7:riichi_shanten",
+        "calls": 41697,
+        "cumulative_seconds": 3.1975115670000003
+      },
+      {
+        "function": "copy.py:217:_deepcopy_dict",
+        "calls": 339548,
+        "cumulative_seconds": 3.1878895700000003
+      },
+      {
+        "function": "greedy.py:144:_best",
+        "calls": 172,
+        "cumulative_seconds": 2.8394943390000003
+      },
+      {
+        "function": "riichi_agent.py:80:score",
+        "calls": 1056,
+        "cumulative_seconds": 2.8315120360000003
+      },
+      {
+        "function": "copy.py:191:_deepcopy_list",
+        "calls": 73385,
+        "cumulative_seconds": 2.74910105
+      },
+      {
+        "function": "engine.py:404:observe",
+        "calls": 689,
+        "cumulative_seconds": 2.481851206
+      }
+    ],
+    "riichi-lean-native": [
+      {
+        "function": "evaluation.py:15:run_game",
+        "calls": 3,
+        "cumulative_seconds": 0.9560120160000001
+      },
+      {
+        "function": "bots.py:30:act",
+        "calls": 689,
+        "cumulative_seconds": 0.756117083
+      },
+      {
+        "function": "operators.py:108:discard_ukeire_batch",
+        "calls": 172,
+        "cumulative_seconds": 0.7206358460000001
+      },
+      {
+        "function": "fast.py:105:observe",
+        "calls": 689,
+        "cumulative_seconds": 0.16990786000000002
+      },
+      {
+        "function": "fast.py:71:legal_actions",
+        "calls": 1378,
+        "cumulative_seconds": 0.08168473000000001
+      },
+      {
+        "function": "riichi_engine.py:138:legal_actions",
+        "calls": 689,
+        "cumulative_seconds": 0.079702138
+      },
+      {
+        "function": "fast.py:145:_waits_for",
+        "calls": 3220,
+        "cumulative_seconds": 0.069641858
+      },
+      {
+        "function": "copy.py:118:deepcopy",
+        "calls": 42191,
+        "cumulative_seconds": 0.053612428000000004
+      },
+      {
+        "function": "~:0:<method 'extend' of 'list' objects>",
+        "calls": 195,
+        "cumulative_seconds": 0.049916989
+      },
+      {
+        "function": "riichi_engine.py:151:<genexpr>",
+        "calls": 148,
+        "cumulative_seconds": 0.049767429
+      },
+      {
+        "function": "copy.py:217:_deepcopy_dict",
+        "calls": 2073,
+        "cumulative_seconds": 0.049656562
+      },
+      {
+        "function": "operators.py:51:structural_waits",
+        "calls": 3220,
+        "cumulative_seconds": 0.041696383000000004
+      }
+    ]
+  }
+}

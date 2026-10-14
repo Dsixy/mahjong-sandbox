@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 88" role="img" aria-label="一条">
+<title>一条</title><defs><linearGradient id="ivory" x2=".3" y2="1"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#eee9d8"/></linearGradient></defs>
+<rect x="1" y="1" width="62" height="86" rx="6" fill="url(#ivory)" stroke="#d6d1bd"/>
+<path d="M7 3h50q4 0 4 4v72" fill="none" stroke="#fff" opacity=".8"/><g class="bird-mark" stroke-linecap="round" stroke-linejoin="round">
+<path d="M23 52Q15 66 12 76Q25 71 34 57M28 53Q28 66 26 76M33 52Q39 64 42 71" fill="none" stroke="#17654c" stroke-width="4"/>
+<path d="M19 39Q15 52 27 57Q42 57 42 43Q35 35 36 30Q37 22 44 23Q51 25 46 33L43 38Q50 50 39 57Q27 65 17 53Q11 47 19 39Z" fill="#17654c"/>
+<path d="M21 42Q20 53 32 54Q36 48 33 42Q26 38 21 42Z" fill="#213f75" stroke="#e7dabb" stroke-width="1.2"/>
+<path d="M23 44L31 50M23 48L29 52" fill="none" stroke="#ede7c9" stroke-width="1"/>
+<path d="M42 23L42 18M45 24L48 19" stroke="#ab3038" stroke-width="2.5"/>
+<path d="M48 28L54 31L48 33" fill="#ab3038"/>
+<circle cx="44" cy="28" r="2" fill="#fff9e9"/><circle cx="44.5" cy="28" r=".9" fill="#173627"/>
+<path d="M34 57L33 63L29 65M40 55L41 63L46 64M18 78H48" fill="none" stroke="#ab3038" stroke-width="1.6"/>
+</g></svg>

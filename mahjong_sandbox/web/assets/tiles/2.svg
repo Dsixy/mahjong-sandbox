@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 88" role="img" aria-label="三万">
+<title>三万</title><defs><linearGradient id="ivory" x2=".3" y2="1"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#eee9d8"/></linearGradient></defs>
+<rect x="1" y="1" width="62" height="86" rx="6" fill="url(#ivory)" stroke="#d6d1bd"/>
+<path d="M7 3h50q4 0 4 4v72" fill="none" stroke="#fff" opacity=".8"/><g text-anchor="middle" font-family="Noto Serif CJK SC,Songti SC,serif" font-weight="700"><text x="32" y="38" font-size="29" fill="#202e28">三</text><text x="32" y="73" font-size="30" fill="#ab3038">萬</text></g></svg>

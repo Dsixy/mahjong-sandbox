@@ -1,0 +1,284 @@
+{
+  "format_version": 1,
+  "engine_version": "0.1.0",
+  "config": {
+    "rule_version": "sichuan_xuezhan_v1",
+    "exchange_three": true,
+    "base_points": 1,
+    "fan_cap": 5,
+    "self_draw_bonus": "base",
+    "seven_pairs_quads": true,
+    "passed_ron_lock": true,
+    "last_tile_bonus": true,
+    "force_win_last_four": false,
+    "kong_discard_transfer": false,
+    "check_flower_pigs": true,
+    "check_noten": true,
+    "refund_noten_kongs": true,
+    "dealer": 0
+  },
+  "seed": 0,
+  "initial_wall": [
+    3,
+    0,
+    1,
+    2,
+    7,
+    4,
+    5,
+    6,
+    11,
+    8,
+    9,
+    10,
+    15,
+    12,
+    13,
+    14,
+    19,
+    16,
+    17,
+    18,
+    23,
+    20,
+    21,
+    22,
+    27,
+    24,
+    25,
+    26,
+    31,
+    28,
+    29,
+    30,
+    35,
+    32,
+    33,
+    34,
+    39,
+    36,
+    37,
+    38,
+    43,
+    40,
+    41,
+    42,
+    47,
+    44,
+    45,
+    46,
+    52,
+    48,
+    49,
+    50,
+    51,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107
+  ],
+  "exchange_offset": 1,
+  "commands": [
+    {
+      "player": 0,
+      "decision_id": 1,
+      "action": {
+        "kind": "exchange",
+        "tiles": [
+          3,
+          7,
+          11
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 1,
+      "action": {
+        "kind": "exchange",
+        "tiles": [
+          0,
+          4,
+          8
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 1,
+      "action": {
+        "kind": "exchange",
+        "tiles": [
+          1,
+          5,
+          9
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 1,
+      "action": {
+        "kind": "exchange",
+        "tiles": [
+          2,
+          6,
+          10
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 2,
+      "action": {
+        "kind": "declare_suit",
+        "tiles": [],
+        "suit": 2,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 2,
+      "action": {
+        "kind": "declare_suit",
+        "tiles": [],
+        "suit": 2,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 2,
+      "action": {
+        "kind": "declare_suit",
+        "tiles": [],
+        "suit": 2,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 2,
+      "action": {
+        "kind": "declare_suit",
+        "tiles": [],
+        "suit": 2,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 0,
+      "decision_id": 3,
+      "action": {
+        "kind": "discard",
+        "tiles": [
+          51
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 1,
+      "decision_id": 4,
+      "action": {
+        "kind": "ron",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 2,
+      "decision_id": 4,
+      "action": {
+        "kind": "ron",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "player": 3,
+      "decision_id": 4,
+      "action": {
+        "kind": "ron",
+        "tiles": [],
+        "suit": null,
+        "meld_index": null
+      }
+    }
+  ],
+  "expected": {
+    "state_hash": "6bb648bd7624e19874218d9d7a72b6586dcf71740654453c16c1d844f2b6f4b2",
+    "event_hash": "63929265624f0d6a633f5ef335cebcc76e50360003b024b65493767b24dc19de",
+    "end_reason": "three_winners",
+    "scores": [
+      -3,
+      1,
+      1,
+      1
+    ],
+    "command_count": 12
+  }
+}

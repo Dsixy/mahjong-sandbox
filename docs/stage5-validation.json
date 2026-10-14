@@ -1,0 +1,189 @@
+{
+  "created_at_utc": "2026-10-09T12:45:58.910924+00:00",
+  "hardware": {
+    "python": "3.12.14",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "logical_cpus": 16,
+    "affinity_cpus": 16,
+    "numpy": "2.3.5",
+    "numba": "0.68.0",
+    "llvmlite": "0.50.0"
+  },
+  "regression": [
+    {
+      "environment": "optional-native",
+      "command": ".venv/bin/python -X faulthandler -m unittest discover -s tests -v",
+      "tests": 120,
+      "seconds": 85.702,
+      "skipped": 0,
+      "passed": true,
+      "log_sha256": "d4378cd3827567c1a9229b1aa6902e3216a3d1db9161ae99e22ff1824a6a2521"
+    },
+    {
+      "environment": "standard-library",
+      "command": "python3 -m unittest discover -s tests -v",
+      "tests": 120,
+      "seconds": 43.108,
+      "skipped": 14,
+      "passed": true,
+      "log_sha256": "2723d3b4cf2e35ab4a2b3775ae60a08504f90b8d92efba206440b7663e43767b"
+    }
+  ],
+  "package": {
+    "package_path": "/tmp/mahjong-stage5-install-final/mahjong_sandbox/__init__.py",
+    "python": "3.14.4",
+    "standard_library_game_and_replay": true,
+    "no_eager_numpy": true,
+    "svg_assets": 43,
+    "wheel_sha256": "fe97892418f9386bfd61a9f86f0dab32e6b2da54c3ad8baf716c01d2b1c71926",
+    "source_and_web_files_match_installed_wheel": true,
+    "native_process_batch": {
+      "variant": "riichi",
+      "seed": 700,
+      "backend": "numba",
+      "live_boards": 4,
+      "workers": 2,
+      "controlled_player": null,
+      "opponent_policy": null,
+      "startup_seconds": 1.3240723900016746,
+      "first_three_steps_seconds": 0.0026562880084384233,
+      "complete_rollout_seconds": 0.24411919400154147,
+      "steady_step_seconds": 0.18163019096391508,
+      "steady_learner_decisions": 1108,
+      "decisions_per_second": 6100.307411008168,
+      "batch_latency_p50_ms": 0.5221649989834987,
+      "batch_latency_p95_ms": 1.0424236010294408,
+      "shared_buffer_bytes": 45892,
+      "sampled_rss_sum_bytes": 377307136,
+      "rss_note": "sum of RSS includes shared-page duplicates; sampled at step boundaries",
+      "completed_hands": 4,
+      "rewards_verified": true
+    }
+  },
+  "code_and_asset_sha256": {
+    "tiles.py": "f80146288937f733b142223a9d508407f29e14e03df67f40653fe95f17a47bdf",
+    "hands.py": "7b50c10d50c1860d0f8dec3f93c60ac0187c457222a89480c67ae9b5b9148b0f",
+    "model.py": "50a84a40b082fbf3b28b00cbb3c54b81cd37ce58fc3293cc2f71d9ab35d7aa81",
+    "scoring.py": "fc15e9a3a6449ffdd12d5462725585b52ade9cadebb93dd0a6ecb5822fcdac12",
+    "engine.py": "f2e4290e8b123931ca54460ad3f6c5862769b0f2e1276e2bdf1a3f726ff4fc86",
+    "agents.py": "f67b8d77a3afda444a6de11f092951a515bf0268ea843db5ad03fd3a7c98adf1",
+    "replay.py": "9b1590efd57fdda5f505d0968e02000851dfdaaf6250087d78ff07fbccd947be",
+    "cli.py": "1baf77a3e1ce27776844261ecf2976bba5c9e6e50b286348f63a87c6ff204700",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "__init__.py": "e4a6edb2107ecc3a4a51fc4e6ff4469f742c4be18d0c961309c5eb36e3b86dcd",
+    "greedy.py": "f77de595499e2c3124e0a09564361efaa9cd722db3651755b010ff92462befd7",
+    "webserver.py": "a0fbb927c0f9842534cfe8b6a254f0b8a12adc019c6e288f5d8719fe36667f56",
+    "riichi_model.py": "641ec97b1d3111df5291a7677a0e12fb7cee0c2811912a369cc5b6ac4983cbd1",
+    "riichi_scoring.py": "a0938b9ea3ceb0778c50b54c424c8aa311ddb02b5f3c045b0ed5701110cce26e",
+    "riichi_engine.py": "0892e11be21a0a6edb3352a4964c4ea8f7ca36621309f6623c9835889a9abbfa",
+    "riichi_agent.py": "21e79c55c9d3ddb379d457d7c23d2ef429cc0df2e78bc6465a652d72c8ed6f63",
+    "riichi_match.py": "d1a42f625ca9ae8f189cdb5943a48ed5da6d415b0b5524d1365d1a9260707d41",
+    "operators.py": "5ec1a746f87088757493c85689862d2eb91bcbb94f1b541694e921ea7ac3d9c4",
+    "_kernels.py": "2cfaa6c6fcbe8e4c43f0a5834ca62ebb7f8be8aca5dc3e51adf4034dcd4991d8",
+    "fast.py": "959a6a5e0c4d6f25d816b5e5fd27c6114b56e7e0c121015c24945087c91336a2",
+    "bots.py": "52e78d89b9ddbcf4550d960dc7ef82d583f5851d246b9ee1b2e64b48792e1c7c",
+    "batch.py": "0898a87fe6be60925db9f3abe5864adcd64481f19b9b7afd8c61162b3df4b921",
+    "parallel.py": "6ae5eb652530030dd2b58371676337be450840b77c2409ca10051b431e62b74a",
+    "evaluation.py": "762134bd2696a81acda37719f6024a2c6d8c645bfaa22db7f9da379c0741eee4",
+    "training.py": "fd70b0b5da3ef09b1684f634d276c6c682e41157fc18a57c5d361b3d816ae072",
+    "benchmark.py": "9a346dfc0b5e8e5c0d3d5833104976b28b3110c6f75958a4a64be848b896235b",
+    "web/index.html": "5214f2e66a08e29866e753d736af503a4c4da12f1789e32a37724f68cace8a0e",
+    "web/style.css": "b102ea740cfdca1fa3f80c7727712060ef5b86bb2e18f9f96458636781b7f1e6",
+    "web/app.js": "7e89763de6fa7b35e475788bcdac03ed1296ffdfd5366cfc0b78a3c4f0ed4ea7",
+    "web/tile-preview.html": "0c8917550c907dafd0ce53b343333123986e6eb0fd00e31487bb09a5ce1497b6",
+    "web/assets/avatar-0.svg": "2431a15e0b4ae42d5dd42dc60cce8a528dcf600ca63a113080dd4efa2b9ce481",
+    "web/assets/avatar-1.svg": "10e7615dda7197dfeec3b8761c1aa6529b8fd1fc58fbed712b6103a52ed0e3ec",
+    "web/assets/avatar-2.svg": "34379eee9b754d2990e56f232aaa9bdcff8f005390b4b42927030c7d2119ba3e",
+    "web/assets/avatar-3.svg": "4c4ccdae4cb64e455940a0167a578d99ee14bc1b776b3046dd6b57c74950a05a",
+    "web/assets/logo.svg": "638d40c67487364efc8d2ec481611856a3dbc27836c941c1853a7d3be5461d34",
+    "web/assets/three_winners.json": "2f143dc247cb23580e7b3c7ac6465de68fc036b801bcdfe12c6b724d5992bf38",
+    "web/assets/riichi.json": "f9832b1125f87853b946c3fc8c05c7146a1eb9207db8863c46dd26ef25e8faf9",
+    "web/assets/tiles/0.svg": "5b747e6188e2c1214ddbd0be81cf0d8778dacf72e199de71a4f98fa5695d83b6",
+    "web/assets/tiles/1.svg": "769bf473a090882aef99d784fbeffd63db0ec700370c3c8d6cf15685f6d2a028",
+    "web/assets/tiles/2.svg": "e5de7bb0907569dd57dc4c6aa95d4304d5c24bc710d353fb084aa2d17a5c30b7",
+    "web/assets/tiles/3.svg": "916e5fba99684b121d72f1d442bf783c31ca0e735f20b9b401a831df5fac473d",
+    "web/assets/tiles/4.svg": "cd6183b5b02a5bef70132910d3ee36fb8f6b6f45e5ce19e3a275e37be5a31328",
+    "web/assets/tiles/5.svg": "c242b17d30eeeb4f964d3b41576f3c8da333cc305883bf04f403797bfd7a280e",
+    "web/assets/tiles/6.svg": "88d4c02db9164758f6f66a6db056cd7bf29f777263778142ad795728d0fee550",
+    "web/assets/tiles/7.svg": "53fd842fa71b9d2c894b690b2f86fd3a338114e69e3b07d9bdefe1b300bf4c1f",
+    "web/assets/tiles/8.svg": "f563bff32a8415d16a43dc2b06522b25b5d4411b4557d41da5c3c2776a0f436e",
+    "web/assets/tiles/9.svg": "a8ebae1d194a1adb3c73843c8f841ab9339c99bfec40ca8fc8d5d45b817387cb",
+    "web/assets/tiles/10.svg": "21ed41b24041fb9a64a7d2a0d49309878c33525c62b4d5b0c744568485b7472b",
+    "web/assets/tiles/11.svg": "a0255ed66fba6a95763ae1723045e4d47f287883dbf66051bf5c0bd590fe5b02",
+    "web/assets/tiles/12.svg": "eef67b51de57677c8e853305cf0afc7b51ac69729651e29d6a721014316b05a0",
+    "web/assets/tiles/13.svg": "21eac8b5bfd42e449aaf355bda14f9aab83612bbd7c92af0f225cb84a99f1def",
+    "web/assets/tiles/14.svg": "6159ddf16ce009238e6afd5196377cf39591ff038df6279eac4df54b34030cc7",
+    "web/assets/tiles/15.svg": "91c345ce7d4235db6246f5a61403bbaaf72bdcf74c0ced68d362a4b0fadabad7",
+    "web/assets/tiles/16.svg": "2aa17ef97e86a67c7c5d124e88e01b0409e70fc06877b68effa537183e48671e",
+    "web/assets/tiles/17.svg": "72beed0a56f4a775d4685e4ed8f96c316a1675580f6984831624417a15f1301b",
+    "web/assets/tiles/18.svg": "cbf89bf395157887567a978e7b0e74edbd854dcd9a5f677bbb91ccc3fecb5ead",
+    "web/assets/tiles/19.svg": "82bb015bae6a040e5c2e6a9001e4707aee62629ced500e6a856ffa27a5e92856",
+    "web/assets/tiles/20.svg": "6e366fccae155494a032c546001f6ceae9121763786c15f741e08660f617b58e",
+    "web/assets/tiles/21.svg": "393701a51e2cc595c0c6e7189c4099cee78906327b20cd8c34f8de577dd76408",
+    "web/assets/tiles/22.svg": "d117415204a05a7edc4e987c2623eacfc0f02f9ac187cf46326c68d109571bf0",
+    "web/assets/tiles/23.svg": "b229e23cc7c4a93f0fb9a99173f8b10c3948514a554e6f9690f9a8c446e95bcc",
+    "web/assets/tiles/24.svg": "fa17df5b3f85e25caf34cf06d4e6f11db2484c44185addb3255d25a0cfc3348f",
+    "web/assets/tiles/25.svg": "584b0664a7e0be0ba13d93ce682f3b0edfeb13971e5b8be562e689cd7f268faa",
+    "web/assets/tiles/26.svg": "bc8aa601be23561aa5f454299fc307bd166cfcc7b7a52a1439fac05a158ff551",
+    "web/assets/tiles/back.svg": "970ddcd04843588e03e374e8c492279d670b00e6975df4fef28dd742b188b7c2",
+    "web/assets/tiles/27.svg": "c7d461973c66f6eebed1cc77832b82f4d29679141405d916bfa6719cb0a6328b",
+    "web/assets/tiles/28.svg": "b4d1ac47cdf0ae7ac15aea7ba9bb6dde2bad1240e541c04b6d1e04b8088a9649",
+    "web/assets/tiles/29.svg": "f5cc67c249b3fc4e97019aa3efe8d52d6144e56cb6b75229498252785a9a498c",
+    "web/assets/tiles/30.svg": "996902b1e7bc8b5fa7810f9cecc0f07cebda2991126b5d12adab051fae52f5d5",
+    "web/assets/tiles/31.svg": "49b2706e41756992f358414894b6f2a50d628f2bc9af3939abe446cc7b8cd84c",
+    "web/assets/tiles/32.svg": "22201abe3c357698159303a0e6a0af4b3894ac9e36976c0668a4cbf345cd1a29",
+    "web/assets/tiles/33.svg": "68b927789091e1b815c64cd517849270e4045d86b857943adee4cd13bfe77829",
+    "web/assets/tiles/4-red.svg": "31ae450062e06477bedd9e8eb6fa613cb4eb4202c6c244a5e7cae9dcf19129ea",
+    "web/assets/tiles/13-red.svg": "28f17524d16f1ec3fd085bf6d0ce208ebc9052412e89b77be0060920ee0dfc4b",
+    "web/assets/tiles/22-red.svg": "52bd56faaac199bacd662a29ed09de971d033aa4622ae06480d6994ec28a3784"
+  },
+  "report_files": {
+    "stage5-baseline.json": {
+      "sha256": "36a388d37d5ae414d2158af3d31c48e51693865851405eda6157d59acd769a89",
+      "bytes": 612
+    },
+    "stage5-batch-self-play.json": {
+      "sha256": "eaca2b8274e2fccb234cebd20a100b109f37334d209d30fecab6d4fe21a3a9fc",
+      "bytes": 736
+    },
+    "stage5-batch-sichuan.json": {
+      "sha256": "0513bbbf609b947542ef09c6d938947a2bfb4003487bafa639a215faf2b68889",
+      "bytes": 735
+    },
+    "stage5-benchmark.json": {
+      "sha256": "36b259eb6091b9677b8e2aa93b92abad396113a038e7a24ea20a5e3a040726a3",
+      "bytes": 12094
+    },
+    "stage5-evaluation-riichi.json": {
+      "sha256": "358e249ce06190f1ac01227cc3333e53fa06b28f605236f94941d2b3a84a3779",
+      "bytes": 4373
+    },
+    "stage5-evaluation-sichuan.json": {
+      "sha256": "a15a6fa4fa08ea6184cf3dd8cceb2aaff4ae4db7ac235ca1f2f1983e0ea8ac96",
+      "bytes": 4282
+    },
+    "stage5-training-riichi.json": {
+      "sha256": "10765fad4f5575731549f8fc0390e39833c8a93296b41aff1fa029347420659c",
+      "bytes": 1163
+    },
+    "stage5-training.json": {
+      "sha256": "75f2dc2ff28dbd5e366f3b8323f0318ee348ede22c9647be5700bca79801dc02",
+      "bytes": 1403
+    }
+  },
+  "acceptance": {
+    "1000_sichuan_hands": true,
+    "1000_riichi_self_play_hands": true,
+    "reward_score_checks": true,
+    "strategy_evaluation_games": 2000,
+    "real_policy_updates_both_variants": true,
+    "reference_native_differential_tests": true,
+    "worker_count_determinism_and_failure_cleanup": true
+  },
+  "scope": {
+    "episode": "one hand",
+    "reference_match_api": "RiichiMatch",
+    "gpu_rule_engine": false,
+    "competitive_trained_agent": false
+  }
+}

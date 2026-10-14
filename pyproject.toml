@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mahjong-sandbox"
+version = "0.1.0"
+description = "Playable Sichuan and riichi Mahjong with deterministic AI sandbox engines"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+batch = ["numpy>=2.2,<2.5"]
+fast = ["numpy>=2.2,<2.5", "numba>=0.68,<0.69"]
+
+[project.scripts]
+mahjong-sandbox = "mahjong_sandbox.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mahjong_sandbox*"]
+
+[tool.setuptools.package-data]
+mahjong_sandbox = ["web/*.html", "web/*.css", "web/*.js", "web/assets/*.svg", "web/assets/*.json", "web/assets/tiles/*.svg"]

@@ -1,0 +1,227 @@
+{
+  "variant": "riichi",
+  "opponents": "three greedy bots",
+  "blocks": 50,
+  "wall_seeds": [
+    0,
+    49
+  ],
+  "seat_rotations": 4,
+  "interval_method": "95% paired-block percentile bootstrap, 2000 resamples; conservative exact bounds for all-zero/all-one bounded metrics",
+  "workers": 4,
+  "backend": "numba",
+  "games": 1000,
+  "commands": 182409,
+  "elapsed_seconds": 78.87404473399874,
+  "games_per_second": 12.678441981420903,
+  "commands_per_second": 2312.6619233890056,
+  "end_reasons": {
+    "ron": 691,
+    "tsumo": 205,
+    "wall_exhausted": 88,
+    "four_riichi": 16
+  },
+  "policies": {
+    "random": {
+      "games": 200,
+      "metrics": {
+        "win": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.07112173646419762
+          ]
+        },
+        "deal_in": {
+          "mean": 0.24,
+          "ci95": [
+            0.19,
+            0.29
+          ]
+        },
+        "gain": {
+          "mean": -2294.0,
+          "ci95": [
+            -2817.5125,
+            -1807.4875000000002
+          ]
+        },
+        "top_score": {
+          "mean": 0.00125,
+          "ci95": [
+            0.0,
+            0.00375
+          ]
+        },
+        "draw": {
+          "mean": 0.11,
+          "ci95": [
+            0.075,
+            0.1451249999999993
+          ]
+        }
+      }
+    },
+    "win-first": {
+      "games": 200,
+      "metrics": {
+        "win": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.07112173646419762
+          ]
+        },
+        "deal_in": {
+          "mean": 0.24,
+          "ci95": [
+            0.19,
+            0.29
+          ]
+        },
+        "gain": {
+          "mean": -2294.0,
+          "ci95": [
+            -2817.5125,
+            -1807.4875000000002
+          ]
+        },
+        "top_score": {
+          "mean": 0.00125,
+          "ci95": [
+            0.0,
+            0.00375
+          ]
+        },
+        "draw": {
+          "mean": 0.11,
+          "ci95": [
+            0.075,
+            0.1451249999999993
+          ]
+        }
+      }
+    },
+    "greedy": {
+      "games": 200,
+      "metrics": {
+        "win": {
+          "mean": 0.235,
+          "ci95": [
+            0.215,
+            0.25
+          ]
+        },
+        "deal_in": {
+          "mean": 0.195,
+          "ci95": [
+            0.165,
+            0.22012499999999932
+          ]
+        },
+        "gain": {
+          "mean": -55.0,
+          "ci95": [
+            -125.0,
+            0.0
+          ]
+        },
+        "top_score": {
+          "mean": 0.25,
+          "ci95": [
+            0.25,
+            0.25
+          ]
+        },
+        "draw": {
+          "mean": 0.06,
+          "ci95": [
+            0.0,
+            0.14
+          ]
+        }
+      }
+    },
+    "defensive": {
+      "games": 200,
+      "metrics": {
+        "win": {
+          "mean": 0.18,
+          "ci95": [
+            0.149875,
+            0.21
+          ]
+        },
+        "deal_in": {
+          "mean": 0.095,
+          "ci95": [
+            0.06,
+            0.13
+          ]
+        },
+        "gain": {
+          "mean": 15.0,
+          "ci95": [
+            -413.0375,
+            436.5499999999997
+          ]
+        },
+        "top_score": {
+          "mean": 0.18416666666666667,
+          "ci95": [
+            0.1525,
+            0.21292708333333327
+          ]
+        },
+        "draw": {
+          "mean": 0.095,
+          "ci95": [
+            0.05,
+            0.155
+          ]
+        }
+      }
+    },
+    "value": {
+      "games": 200,
+      "metrics": {
+        "win": {
+          "mean": 0.165,
+          "ci95": [
+            0.13,
+            0.2
+          ]
+        },
+        "deal_in": {
+          "mean": 0.135,
+          "ci95": [
+            0.09,
+            0.185
+          ]
+        },
+        "gain": {
+          "mean": -240.0,
+          "ci95": [
+            -841.0,
+            301.51249999999993
+          ]
+        },
+        "top_score": {
+          "mean": 0.1825,
+          "ci95": [
+            0.145,
+            0.21791666666666665
+          ]
+        },
+        "draw": {
+          "mean": 0.145,
+          "ci95": [
+            0.085,
+            0.215
+          ]
+        }
+      }
+    }
+  },
+  "interval_correction": "Boundary intervals recomputed analytically from all-zero/all-one bounded samples; game outcomes and timing unchanged."
+}

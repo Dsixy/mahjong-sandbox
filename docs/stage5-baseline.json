@@ -1,0 +1,41 @@
+{
+  "variant": "riichi",
+  "policy": "greedy",
+  "games": 3,
+  "python_profile_seconds": 3.4452476840000004,
+  "rounds": [
+    {
+      "seed": 0,
+      "commands": 168,
+      "scores": [
+        28900,
+        21100,
+        25000,
+        25000
+      ],
+      "reason": "ron"
+    },
+    {
+      "seed": 1,
+      "commands": 93,
+      "scores": [
+        21000,
+        33000,
+        23000,
+        23000
+      ],
+      "reason": "tsumo"
+    },
+    {
+      "seed": 2,
+      "commands": 140,
+      "scores": [
+        38000,
+        24000,
+        13000,
+        25000
+      ],
+      "reason": "ron"
+    }
+  ]
+}
