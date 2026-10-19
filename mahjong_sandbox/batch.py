@@ -89,6 +89,56 @@ def validate_actions(indices, tokens, batch):
     return np.asarray(a, dtype=np.int64).copy(), np.asarray(t, dtype=np.uint64).copy()
 
 
+def encode_observation(obs, actions, b, i=0):
+    """Project a player's public observation; never reads an engine/private state."""
+    p = obs['player']
+    own = obs['players'][p]
+    for k in ('concealed', 'revealed', 'rivers', 'melds', 'dora', 'ura', 'actions', 'wins'):
+        b[k][i].fill(-1)
+    for k in ('own_counts', 'river_flags', 'red_mask', 'action_mask'):
+        b[k][i].fill(0)
+    tiles = own['concealed']
+    b['concealed'][i, :len(tiles)] = tiles
+    for t in tiles:
+        b['own_counts'][i, t // 4] += 1
+    b['known_counts'][i] = known_counts(obs, announcements=True)
+    for seat, hand in enumerate(obs['players']):
+        b['seats'][i, seat] = [int(hand.get(k, -1)) if hand.get(k) is not None else -1 for k in SEAT_FIELDS]
+        revealed = hand.get('concealed', ())
+        b['revealed'][i, seat, :len(revealed)] = revealed
+        b['river_lengths'][i, seat] = len(hand['river'])
+        for j, d in enumerate(hand['river']):
+            b['rivers'][i, seat, j] = d['tile']
+            b['river_flags'][i, seat, j] = int(d['tsumogiri']) | (int(d['called_by'] is not None) << 1) | (int(bool(d['winner_refs'])) << 2) | (int(d['tile'] == hand.get('riichi_discard')) << 3)
+        for j, m in enumerate(hand['melds']):
+            row = b['melds'][i, seat, j]
+            row[0], row[8] = MELD_KINDS.index(m['kind']), len(m['tiles'])
+            row[1:1 + len(m['tiles'])] = m['tiles']
+            row[5:8] = [m[k] if m[k] is not None else -1 for k in ('source_player', 'called_tile', 'added_tile')]
+    values = {**obs, **{k: own.get(k) for k in META_FIELDS if k in own}}
+    values['phase'] = PHASES.index(obs['phase'])
+    b['meta'][i] = [int(values.get(k, -1)) if values.get(k) is not None else -1 for k in META_FIELDS]
+    b['scores'][i] = obs['scores']
+    b['exchange_offsets'][i] = obs.get('exchange_offset') if obs.get('exchange_offset') is not None else -1
+    for j, w in enumerate(obs['wins']):
+        v = w['value']
+        b['wins'][i,j] = [w['player'], w['source_player'] if w['source_player'] is not None else -1,
+                          w['tile'] if w['tile'] is not None else -1, int(w['self_draw']),
+                          v['fan'], v.get('fu', 0), v['payment'], v.get('yakuman', 0)]
+    for field, name in (('dora', 'dora_indicators'), ('ura', 'ura_indicators')):
+        indicators = obs.get(name, ())
+        b[field][i, :len(indicators)] = indicators
+    b['red_mask'][i, obs.get('red_fives', ())] = True
+    if len(actions) > MAX_ACTIONS:
+        raise AssertionError('action capacity exceeded')
+    for j, a in enumerate(actions):
+        row = b['actions'][i, j]
+        row[0:2] = ACTION_KINDS.index(a.kind.value), len(a.tiles)
+        row[2:2 + len(a.tiles)] = a.tiles
+        row[6:8] = a.suit if a.suit is not None else -1, a.meld_index if a.meld_index is not None else -1
+    b['action_mask'][i, :len(actions)] = True
+
+
 @dataclass(frozen=True)
 class BatchConfig:
     variant: str = 'riichi'
@@ -98,6 +148,8 @@ class BatchConfig:
     backend: str = 'auto'
     validate_every: int = 0
     rules: RuleConfig | RiichiConfig | None = None
+    rotate_seats: bool = False
+    opponent_pool: tuple[str, ...] = ()
 
     def __post_init__(self):
         if self.variant not in ('sichuan', 'riichi') or type(self.seed) is not int:
@@ -107,6 +159,10 @@ class BatchConfig:
         from .bots import POLICIES
         if self.opponent_policy not in POLICIES:
             raise ValueError('unknown opponent policy')
+        if type(self.rotate_seats) is not bool or self.rotate_seats and self.controlled_player is None:
+            raise ValueError('seat rotation requires one controlled player')
+        if not isinstance(self.opponent_pool, tuple) or any(p not in POLICIES for p in self.opponent_pool):
+            raise ValueError('opponent_pool must be a tuple of known policies')
         RuntimeOptions(validate_every=self.validate_every, operator_backend=self.backend)
         expected = RiichiConfig if self.variant == 'riichi' else RuleConfig
         if self.rules is not None and not isinstance(self.rules, expected):
@@ -130,6 +186,7 @@ class SyncBatchEnv:
         self.agents = [None] * n
         self.menus = [()] * n
         self.players = [0] * n
+        self.learners = [self.config.controlled_player] * n
         self.episodes = [-1] * n
         self.tickets = [0] * n
         self.closed = False
@@ -143,13 +200,13 @@ class SyncBatchEnv:
         engine = self.engines[i]
         while engine.state.phase != Phase.TERMINAL:
             p = engine.next_player()
-            if self.config.controlled_player is None or p == self.config.controlled_player:
+            if self.learners[i] is None or p == self.learners[i]:
                 self.players[i] = p
                 return
             if engine.command_count >= 2000:
                 raise RuntimeError('nonterminating rules loop')
             engine.submit(p, self.agents[i][p].act(engine.observe(p)), engine.state.decision_id)
-        self.players[i] = self.config.controlled_player if self.config.controlled_player is not None else self.players[i]
+        self.players[i] = self.learners[i] if self.learners[i] is not None else self.players[i]
 
     def _reset(self, indices):
         cls = FastRiichiEngine if self.config.variant == 'riichi' else FastEngine
@@ -158,9 +215,13 @@ class SyncBatchEnv:
             self.tickets[i] = 0
             lane = self.lane_offset + i
             seed = derived_seed(self.config.seed, lane, self.episodes[i])
+            if self.config.rotate_seats:
+                self.learners[i] = (self.config.controlled_player + lane + self.episodes[i]) % 4
             self.engines[i] = cls(self.config.rules, seed=seed, runtime=RuntimeOptions(
                 validate_every=self.config.validate_every, operator_backend=self.config.backend))
-            self.agents[i] = [make_bot(self.config.opponent_policy, variant=self.config.variant,
+            self.agents[i] = [make_bot(
+                self.config.opponent_pool[derived_seed(self.config.seed, lane, self.episodes[i], p + 11) % len(self.config.opponent_pool)]
+                if self.config.opponent_pool else self.config.opponent_policy, variant=self.config.variant,
                                      seed=derived_seed(self.config.seed, lane, self.episodes[i], p + 1),
                                      backend=self.config.backend) for p in range(4)]
             self._advance(i)
@@ -170,52 +231,8 @@ class SyncBatchEnv:
     def _encode(self, i):
         b, engine, p = self.buffers, self.engines[i], self.players[i]
         obs = engine.observe(p)
-        own = obs['players'][p]
-        for k in ('concealed', 'revealed', 'rivers', 'melds', 'dora', 'ura', 'actions', 'wins'):
-            b[k][i].fill(-1)
-        for k in ('own_counts', 'river_flags', 'red_mask', 'action_mask'):
-            b[k][i].fill(0)
-        tiles = own['concealed']
-        b['concealed'][i, :len(tiles)] = tiles
-        for t in tiles:
-            b['own_counts'][i, t // 4] += 1
-        b['known_counts'][i] = known_counts(obs, announcements=True)
-        for seat, hand in enumerate(obs['players']):
-            b['seats'][i, seat] = [int(hand.get(k, -1)) if hand.get(k) is not None else -1 for k in SEAT_FIELDS]
-            revealed = hand.get('concealed', ())
-            b['revealed'][i, seat, :len(revealed)] = revealed
-            b['river_lengths'][i, seat] = len(hand['river'])
-            for j, d in enumerate(hand['river']):
-                b['rivers'][i, seat, j] = d['tile']
-                b['river_flags'][i, seat, j] = int(d['tsumogiri']) | (int(d['called_by'] is not None) << 1) | (int(bool(d['winner_refs'])) << 2) | (int(d['tile'] == hand.get('riichi_discard')) << 3)
-            for j, m in enumerate(hand['melds']):
-                row = b['melds'][i, seat, j]
-                row[0], row[8] = MELD_KINDS.index(m['kind']), len(m['tiles'])
-                row[1:1 + len(m['tiles'])] = m['tiles']
-                row[5:8] = [m[k] if m[k] is not None else -1 for k in ('source_player', 'called_tile', 'added_tile')]
-        values = {**obs, **{k: own.get(k) for k in META_FIELDS if k in own}}
-        values['phase'] = PHASES.index(obs['phase'])
-        b['meta'][i] = [int(values.get(k, -1)) if values.get(k) is not None else -1 for k in META_FIELDS]
-        b['scores'][i] = obs['scores']
-        b['exchange_offsets'][i] = obs.get('exchange_offset') if obs.get('exchange_offset') is not None else -1
-        for j, w in enumerate(obs['wins']):
-            v = w['value']
-            b['wins'][i,j] = [w['player'], w['source_player'] if w['source_player'] is not None else -1,
-                              w['tile'] if w['tile'] is not None else -1, int(w['self_draw']),
-                              v['fan'], v.get('fu', 0), v['payment'], v.get('yakuman', 0)]
-        for field, name in (('dora', 'dora_indicators'), ('ura', 'ura_indicators')):
-            indicators = obs.get(name, ())
-            b[field][i, :len(indicators)] = indicators
-        b['red_mask'][i, obs.get('red_fives', ())] = True
         self.menus[i] = engine.legal_actions(p)
-        if len(self.menus[i]) > MAX_ACTIONS:
-            raise AssertionError('action capacity exceeded')
-        for j, a in enumerate(self.menus[i]):
-            row = b['actions'][i, j]
-            row[0:2] = ACTION_KINDS.index(a.kind.value), len(a.tiles)
-            row[2:2 + len(a.tiles)] = a.tiles
-            row[6:8] = a.suit if a.suit is not None else -1, a.meld_index if a.meld_index is not None else -1
-        b['action_mask'][i, :len(self.menus[i])] = True
+        encode_observation(obs, self.menus[i], b, i)
         b['tokens'][i] = self.episodes[i], self.tickets[i]
         b['decision_ids'][i] = engine.state.decision_id
         b['terminated'][i] = engine.state.phase == Phase.TERMINAL

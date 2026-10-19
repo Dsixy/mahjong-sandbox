@@ -12,6 +12,7 @@ dependencies = []
 [project.optional-dependencies]
 batch = ["numpy>=2.2,<2.5"]
 fast = ["numpy>=2.2,<2.5", "numba>=0.68,<0.69"]
+rl = ["numpy>=2.2,<2.5", "torch>=2.8,<3", "gymnasium>=1.0,<2", "stable-baselines3>=2.9,<2.10", "sb3-contrib>=2.9,<2.10"]
 
 [project.scripts]
 mahjong-sandbox = "mahjong_sandbox.cli:main"
