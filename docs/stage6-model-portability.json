@@ -1,0 +1,14 @@
+{
+  "git_revision": "78a0d91f9fdde8eefe68f572696a4bbe349a5a48",
+  "project": "/workspace/mahjong-sandbox-stage6",
+  "python": "3.13.5",
+  "torch": "2.14.1+cpu",
+  "checkpoint_sha256": "ccb8e879c76a4b1b951cfbabdc5f0d3c7e7b89b80c45264941f1dce4fcb1c98b",
+  "source_sha256": "baf08d25082aed96e4d9532f381a9044816700aad2d48c91d4fc60d20ac0b0c2",
+  "checkpoint_source_matches_current_code": true,
+  "trained_timesteps": 69632,
+  "cross_machine_model_load_and_legal_submit": true,
+  "cpu_training_python": "3.12.14",
+  "inference_device": "cpu",
+  "gpu_job_submitted": false
+}
