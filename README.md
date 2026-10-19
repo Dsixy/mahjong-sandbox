@@ -1,6 +1,6 @@
 # Mahjong Sandbox
 
-可游玩、可复现的川麻血战到底与四人立直麻将游戏和 AI 沙盒。已实现规则引擎、观察与回放、浏览器牌桌、日麻番符与整场流程，以及阶段 5 的增量牌数、编译算子、批量张量接口、多进程分片、策略评测与训练接口验证。
+可游玩、可复现的川麻血战到底与四人立直麻将游戏和 AI 沙盒。已实现规则引擎、观察与回放、浏览器牌桌、日麻番符与整场流程，以及阶段 5 的增量牌数、编译算子、批量张量接口、多进程分片、策略评测，以及阶段 6 的川麻 MaskablePPO 训练、模型保存/续训和独立对战评测。
 
 ![四人立直麻将浏览器牌桌](docs/screenshots/riichi-desktop.jpg)
 
@@ -128,4 +128,19 @@ if __name__ == '__main__':  # spawn 进程必须保护程序入口
     main()
 ```
 
-设计、张量字段、并发边界和实测报告见 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。`training-smoke` 实际运行短程 REINFORCE，验证轨迹、奖励、合法采样与参数更新；优秀 agent 的网络、训练配方和大规模自博弈属于阶段 6。当前批量环境的 episode 是一手牌，日麻整场仍由 `RiichiMatch` 提供；CPU 上的规则状态机与 NumPy/Numba 算子已有实现，GPU 整局引擎尚未实现。
+设计、张量字段、并发边界和实测报告见 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。`training-smoke` 实际运行短程 REINFORCE，验证轨迹、奖励、合法采样与参数更新；阶段 6 的神经网络 PPO、检查点与评测已接入，见下文；更强策略及长期自博弈仍需继续实验。当前批量环境的 episode 是一手牌，日麻整场仍由 `RiichiMatch` 提供；CPU 上的规则状态机与 NumPy/Numba 算子已有实现，GPU 整局引擎尚未实现。
+
+
+## 阶段 6：川麻 RL 训练、恢复与评测
+
+```bash
+.venv/bin/python -m pip install 'torch>=2.8,<3' --index-url https://download.pytorch.org/whl/cpu
+.venv/bin/python -m pip install '.[fast,rl]'
+.venv/bin/python -m mahjong_sandbox rl-train --config configs/rl/sichuan-cpu.json --output runs/sichuan-cpu
+.venv/bin/python -m mahjong_sandbox rl-train --resume runs/sichuan-cpu/latest.zip --output runs/sichuan-cpu --timesteps 65536
+.venv/bin/python -m mahjong_sandbox rl-evaluate --model runs/sichuan-cpu/best.zip --baseline-model runs/sichuan-cpu/warmstart.zip --blocks 50 --workers 4 --output runs/sichuan-cpu/evaluation.json
+```
+
+采用现有 MaskablePPO 框架及共享候选评分网络，只使用本家可见信息；奖励为整手血战净分增量。默认可选 bot 模仿初始化后再做 PPO，保留 warmstart 用于独立对照。模型、Adam、规则、特征版本及校验和一并保存，支持 CPU/CUDA 跨设备加载。GPU/RJob 入口使用 `configs/rl/sichuan-gpu.json` 与 `scripts/train_sichuan_rl.sh`，本次先完成 CPU 验证。
+
+算法选择、状态/action/reward 定义、完整命令和实测见 [docs/RL.md](docs/RL.md)。

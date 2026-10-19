@@ -1,0 +1,78 @@
+{
+  "method": "py-spy active-stack sampling, 10 seconds at 99 Hz; Python leaves include time in called native kernels; not a whole-run wall-time profile",
+  "samples": 770,
+  "top_leaves": [
+    {
+      "file": "operators.py",
+      "function": "discard_ukeire_batch",
+      "samples": 193,
+      "fraction": 0.2506493506493506
+    },
+    {
+      "file": "graph.py",
+      "function": "_engine_run_backward",
+      "samples": 188,
+      "fraction": 0.24415584415584415
+    },
+    {
+      "file": "policy.py",
+      "function": "_actor",
+      "samples": 109,
+      "fraction": 0.14155844155844155
+    },
+    {
+      "file": "linear.py",
+      "function": "forward",
+      "samples": 57,
+      "fraction": 0.07402597402597402
+    },
+    {
+      "file": "activation.py",
+      "function": "forward",
+      "samples": 57,
+      "fraction": 0.07402597402597402
+    },
+    {
+      "file": "categorical.py",
+      "function": "__init__",
+      "samples": 28,
+      "fraction": 0.03636363636363636
+    },
+    {
+      "file": "operators.py",
+      "function": "shanten_batch",
+      "samples": 15,
+      "fraction": 0.01948051948051948
+    },
+    {
+      "file": "buffers.py",
+      "function": "swap_and_flatten",
+      "samples": 14,
+      "fraction": 0.01818181818181818
+    },
+    {
+      "file": "adam.py",
+      "function": "_single_tensor_adam",
+      "samples": 13,
+      "fraction": 0.016883116883116882
+    },
+    {
+      "file": "buffers.py",
+      "function": "to_torch",
+      "samples": 9,
+      "fraction": 0.011688311688311689
+    },
+    {
+      "file": "features.py",
+      "function": "_candidate_hints",
+      "samples": 8,
+      "fraction": 0.01038961038961039
+    },
+    {
+      "file": "functional.py",
+      "function": "softmax",
+      "samples": 8,
+      "fraction": 0.01038961038961039
+    }
+  ]
+}
