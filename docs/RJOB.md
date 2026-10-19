@@ -32,3 +32,21 @@ python -m mahjong_sandbox.rl.longrun --config CPU_CONFIG.json \
   --output PERSISTENT_OUTPUT --initial models/sichuan-ppo-demo/best.zip \
   --additional-steps 512 --no-evaluation
 ```
+
+## 本次部署记录
+
+代码提交为 `c1977b7`，135 项本地回归测试通过；固定 CUDA 镜像内的 15 项 RL/自博弈测试通过。镜像内 Python 3.12.12、PyTorch 2.8.0+cu128、CUDA build 12.8；依赖全部安装在实验私有 runtime，GPU 任务离线运行。
+
+先尝试闲时队列；等待驱逐冷却窗口后仍未分配，已确认停止且没有 GPU 绑定。正式任务改用同项目 `llmagent_gpu` 普通队列：单卡、16 CPU、64,000 MiB、priority 9、preemptible=yes、平台 auto-restart=true、backoff_limit=20；普通任务使用平台要求的 Never 重启策略，由平台自动恢复机制重新调度，控制器据持久检查点继续。资源预测发现 `gpu-lg-cmc-h-h200-1680.host.h.pjlab.org.cn` 是已有任务占用的部分空闲节点，于生成的原生 RJob 模板中加入该节点的软亲和性；资源变化时允许调度到其他可用节点。正式作业名为 `policy-optimization-20261019-main`，已调度至该部分空闲节点。完整资源清单和实际运行状态由 `longrun-rjob.json` 记录。
+
+本次发现平台 admission webhook 对服务端 dry-run 会产生空 PodGroup 副作用，因此只用 `rjob submit --dry-run=true` 生成客户端模板。预检产生的空组已核对 UID、创建时间、无 RJob/replica 后删除；正式作业独立创建，保留实际 UID。
+
+```bash
+# 在开发机当前会话中设置非敏感路由参数，不改动全局配置。
+export KUBEBRAIN_CLUSTER_ENTRY=https://h.pjlab.org.cn
+export KUBEBRAIN_NAMESPACE=ailab-llmagent
+rjob get policy-optimization-20261019-main
+rjob logs job policy-optimization-20261019-main --tail-lines=50
+```
+
+持久输出：`/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/`。指标在 `metrics.jsonl`，模型在 `checkpoints/`，自博弈池在 `selfplay/`，最终成绩在 `evaluation.json`。

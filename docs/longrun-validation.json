@@ -1,0 +1,51 @@
+{
+  "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+  "regression": {
+    "command": ".venv/bin/python -m unittest discover -s tests -q",
+    "tests": 135,
+    "elapsed_seconds": 165.435,
+    "passed": true
+  },
+  "selfplay_tests": {
+    "tests": 5,
+    "passed": true,
+    "covers": [
+      "frozen opponents retained within a hand",
+      "same trajectory across process shards",
+      "bounded restart target and torn checkpoint fallback",
+      "stop at completed update boundary",
+      "best-model recovery from validation logs after torn publication"
+    ]
+  },
+  "preemption": {
+    "signal_exit": 75,
+    "resumed_start": 69664,
+    "final_timesteps": 70144,
+    "bounded_target": 70144,
+    "self_play_probability": 0.5,
+    "workers": 1,
+    "actual_device": "cpu",
+    "optimizer_epochs_after_resume": 98,
+    "latest_model_sha256": "13eed0e11798041f149983d8977f877416e88e8aebe41889251824c238f76444",
+    "source_sha256": "dcc7bed88d927be82823f4ea5910b8ef3a189775845b03bfbe4344af259eed6d"
+  },
+  "gpu_validation": {
+    "job_name": "policy-optimization-20261019-main",
+    "job_uid": "a8d0884f-a857-4e6d-8a4b-8236e910521b",
+    "phase_at_verification": "Running",
+    "device": "cuda",
+    "gpu": "NVIDIA H200",
+    "matmul_backward": true,
+    "completed_ppo_updates": 10,
+    "checkpoint_timesteps": 151552,
+    "checkpoint_sha256": "bbad79c2b85007c670251bdecc4292cfd02ea28fa9b77bd465676f1a6f578fba",
+    "gpu_to_cpu_reload": true,
+    "selfplay_snapshots": 2
+  },
+  "code_commit": "c1977b771c67cd347ae7fc4516e9bbb80fd1c92a",
+  "cluster_cpu_tests": {
+    "passed": true,
+    "tests": 15,
+    "elapsed_seconds": 12.964
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "observed_utc": "2026-10-19T11:19:58.500206+00:00",
+  "job_name": "policy-optimization-20261019-main",
+  "job_uid": "a8d0884f-a857-4e6d-8a4b-8236e910521b",
+  "created_utc": "2026-10-19T11:11:14Z",
+  "phase": "Running",
+  "namespace": "ailab-llmagent",
+  "charged_group": "llmagent_gpu",
+  "job_type": "rjob-normal",
+  "resources": {
+    "limits": {
+      "cpu": "16",
+      "memory": "64000Mi",
+      "nvidia.com/gpu": "1"
+    },
+    "requests": {
+      "cpu": "16",
+      "memory": "64000Mi",
+      "nvidia.com/gpu": "1"
+    }
+  },
+  "automatic_restart": "true",
+  "backoff_limit": 20,
+  "preemptible": "yes",
+  "image": "registry.h.pjlab.org.cn/ailab-llmagent-llmagent_cpu_task/mls_task@sha256:490b9dd1687b15d6da83fbd5f2344e683e72e3548266709014de6a15f6b6372d",
+  "code_commit": "c1977b771c67cd347ae7fc4516e9bbb80fd1c92a",
+  "replicas": [
+    {
+      "name": "policy-optimization-20261019-main-nchff",
+      "uid": "9245d94e-d316-487d-8059-4b2f7ecc639f",
+      "status": {
+        "hostIP": "10.102.236.7",
+        "nodeName": "gpu-lg-cmc-h-h200-1680.host.h.pjlab.org.cn",
+        "phase": "Running",
+        "startTime": "2026-10-19T11:11:24Z"
+      }
+    }
+  ],
+  "allocated_node_observed": "gpu-lg-cmc-h-h200-1680.host.h.pjlab.org.cn",
+  "fragment_preference": {
+    "preferredDuringSchedulingIgnoredDuringExecution": [
+      {
+        "preference": {
+          "matchExpressions": [
+            {
+              "key": "kubernetes.io/hostname",
+              "operator": "In",
+              "values": [
+                "gpu-lg-cmc-h-h200-1680.host.h.pjlab.org.cn"
+              ]
+            }
+          ]
+        },
+        "weight": 100
+      }
+    ]
+  },
+  "placement_prediction": [
+    {
+      "node": "gpu-lg-cmc-h-h200-1680.host.h.pjlab.org.cn",
+      "gpu_free": 6,
+      "cpu_free": 44,
+      "memory_free_gib": 1291.51
+    }
+  ],
+  "idle_attempt": {
+    "name": "policy-optimization-20261019",
+    "uid": "0c01c3c4-a408-46db-ba28-3518a511cc90",
+    "phase": "Stopped",
+    "reason": "idle eviction cooldown; stopped unassigned before primary queue submission"
+  },
+  "runtime_preparation": {
+    "event": "runtime_prepared",
+    "python": "3.12.12",
+    "torch": "2.8.0+cu128",
+    "cuda_build": "12.8",
+    "initial_timesteps": 69632,
+    "model_device": "cpu"
+  },
+  "cluster_cpu_tests": {
+    "passed": true,
+    "tests": 15,
+    "elapsed_seconds": 12.964
+  },
+  "gpu_runtime": {
+    "utc": "2026-10-19T11:12:38.835333+00:00",
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA H200",
+    "memory_bytes": 150393585664,
+    "cuda_matmul_backward": true,
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+    "visible_cpus": 16
+  },
+  "experiment": {
+    "version": 1,
+    "initial_sha256": "ccb8e879c76a4b1b951cfbabdc5f0d3c7e7b89b80c45264941f1dce4fcb1c98b",
+    "initial_timesteps": 69632,
+    "target_timesteps": 10072064,
+    "additional_steps_requested": 10000000,
+    "config": {
+      "total_timesteps": 10000000,
+      "n_envs": 128,
+      "workers": 8,
+      "rollout_steps": 64,
+      "batch_size": 1024,
+      "epochs": 4,
+      "learning_rate": 0.0001,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 32.0,
+      "hidden": 128,
+      "seed": 42,
+      "backend": "numba",
+      "device": "cuda",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 0,
+      "bc_epochs": 8,
+      "checkpoint_every": 1,
+      "validation_every": 32,
+      "validation_blocks": 16,
+      "validation_seed": 100000,
+      "self_play_probability": 0.5,
+      "snapshot_every": 8,
+      "snapshot_pool_size": 4,
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      }
+    },
+    "evaluation_blocks": 100,
+    "evaluate": true,
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+  },
+  "training_start": {
+    "elapsed_seconds": 6.92800173163414,
+    "event": "start",
+    "timesteps": 69632,
+    "device": "cuda",
+    "config": {
+      "total_timesteps": 10002432,
+      "n_envs": 128,
+      "workers": 8,
+      "rollout_steps": 64,
+      "batch_size": 1024,
+      "epochs": 4,
+      "learning_rate": 0.0001,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 32.0,
+      "hidden": 128,
+      "seed": 42,
+      "backend": "numba",
+      "device": "cuda",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 0,
+      "bc_epochs": 8,
+      "checkpoint_every": 1,
+      "validation_every": 32,
+      "validation_blocks": 16,
+      "validation_seed": 100000,
+      "self_play_probability": 0.5,
+      "snapshot_every": 8,
+      "snapshot_pool_size": 4,
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      }
+    }
+  },
+  "completed_ppo_updates": 10,
+  "last_ppo_update": {
+    "elapsed_seconds": 390.859929734841,
+    "event": "ppo_update",
+    "timesteps": 151552,
+    "optimizer_epochs": 106,
+    "rollout_updates_this_run": 10,
+    "train/learning_rate": 0.0001,
+    "train/entropy_loss": -0.12338530831038952,
+    "train/policy_gradient_loss": -0.0005507330861291848,
+    "train/value_loss": 0.004816415355890058,
+    "train/approx_kl": 0.00020090481848455966,
+    "train/clip_fraction": 0.00079345703125,
+    "train/loss": 0.0001322990283370018,
+    "train/explained_variance": 0.02048468589782715,
+    "train/n_updates": 106.0,
+    "train/clip_range": 0.2,
+    "recent_completed_episodes": 512,
+    "train/win": 0.685546875,
+    "train/deal_in": 0.345703125,
+    "train/net_score": 0.13671875
+  },
+  "latest_verified_checkpoint": {
+    "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/checkpoints/step_151552.zip",
+    "timesteps": 151552,
+    "sha256": "bbad79c2b85007c670251bdecc4292cfd02ea28fa9b77bd465676f1a6f578fba",
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+    "optimizer_epochs": 106
+  },
+  "selfplay_pool": {
+    "version": 1,
+    "snapshots": [
+      {
+        "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_69632_36c9e088.zip",
+        "timesteps": 69632,
+        "sha256": "a5bf2d8a5514ef5a8504fe8a90bcf07a2c44d34c441f6c6f5b39166b188f6c3c"
+      },
+      {
+        "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_135168_de2c63eb.zip",
+        "timesteps": 135168,
+        "sha256": "1ee09963a0a37d6f9590ddce34e7a65596ba7d9216124487c8ba45de669b60c7"
+      }
+    ]
+  },
+  "persistent_output": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output",
+  "spec_sha256": "43a7bf3fd079d19fed859a615e6eba24cace1d4a2b54d838e1010f03d22c4b52",
+  "evaluation": {
+    "scheduled_after_target": true,
+    "games": 2800,
+    "blocks": 100,
+    "wall_seed_start": 200000,
+    "opponents": [
+      "greedy"
+    ],
+    "candidate_models": [
+      "rl",
+      "initial"
+    ],
+    "bot_baselines": [
+      "random",
+      "win-first",
+      "greedy",
+      "defensive",
+      "value"
+    ],
+    "metrics": [
+      "win_rate",
+      "deal_in_rate",
+      "mean_net_score"
+    ],
+    "report": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/evaluation.json"
+  }
+}

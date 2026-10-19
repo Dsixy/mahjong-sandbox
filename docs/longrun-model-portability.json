@@ -1,0 +1,15 @@
+{
+  "observed_utc": "2026-10-19T11:17:11.852911+00:00",
+  "checkpoint_timesteps": 77824,
+  "saved_torch": "2.8.0",
+  "loaded_torch": "2.14.1+cpu",
+  "saved_model_device": "cuda (training start event)",
+  "loaded_device": "cpu",
+  "checksum_verified": true,
+  "all_parameters_finite": true,
+  "legal_action_submitted": "exchange",
+  "model_sha256": "9fa92d455f745b7de1a20a55a89c2310e8f49080b81e9120e18bb63dd594dc9a",
+  "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+  "optimizer_epochs": 70,
+  "local_checkpoint": "/home/doney/Workspace/Mahjong/runs/gpu-load-verification/step_77824.zip"
+}
