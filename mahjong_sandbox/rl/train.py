@@ -90,6 +90,7 @@ class TrainingCallback(BaseCallback):
         self.episodes = deque(maxlen=512)
         self.validations, self.history = [], []
         self.last_step = -1
+        self.rollout_updates = 0
         self.last_validation = -1
         self.best_score = -float('inf')
         if (self.output / 'best.zip').exists():
@@ -103,11 +104,12 @@ class TrainingCallback(BaseCallback):
     def emit(self, event):
         event = {'elapsed_seconds': time.perf_counter() - self.started, **event}
         with (self.output / 'metrics.jsonl').open('a') as stream:
-            stream.write(json.dumps(event, ensure_ascii=False) + '\n')
+            stream.write(json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n')
         print(json.dumps(event, ensure_ascii=False), flush=True)
         return event
 
     def _on_training_start(self):
+        self.last_step = self.model.num_timesteps
         self.emit({'event': 'start', 'timesteps': self.model.num_timesteps,
                    'device': str(self.model.device), 'config': asdict(self.config)})
 
@@ -122,11 +124,16 @@ class TrainingCallback(BaseCallback):
         if steps == self.last_step:
             return
         self.last_step = steps
-        iteration = self.model._n_updates // self.config.epochs
-        stats = {'event': 'ppo_update', 'timesteps': steps, 'optimizer_epochs': self.model._n_updates}
+        self.rollout_updates += 1
+        iteration = self.rollout_updates
+        stats = {'event': 'ppo_update', 'timesteps': steps, 'optimizer_epochs': self.model._n_updates,
+                 'rollout_updates_this_run': self.rollout_updates}
         for key, value in self.model.logger.name_to_value.items():
             if key.startswith('train/') and np.isscalar(value):
-                stats[key] = float(value)
+                numeric = float(value)
+                if not np.isfinite(numeric) and key != 'train/explained_variance':
+                    raise FloatingPointError(f'nonfinite training metric: {key}')
+                stats[key] = numeric if np.isfinite(numeric) else None
         if self.episodes:
             stats['recent_completed_episodes'] = len(self.episodes)
             stats.update({f'train/{key}': float(np.mean([r[key] for r in self.episodes])) for key in ('win', 'deal_in', 'net_score')})
@@ -224,7 +231,8 @@ def train(output, config=None, *, resume=None):
         report = {'algorithm': 'sb3-contrib MaskablePPO', 'config': asdict(config),
             'actual_device': str(model.device), 'start_timesteps': start_steps,
             'final_timesteps': model.num_timesteps, 'additional_timesteps': model.num_timesteps - start_steps,
-            'optimizer_epochs': model._n_updates, 'completed_episodes_this_run': env.completed_episodes,
+            'optimizer_epochs': model._n_updates, 'rollout_updates_this_run': callback.rollout_updates,
+            'completed_episodes_this_run': env.completed_episodes,
             'elapsed_seconds': time.perf_counter() - started, 'imitation': bc_report,
             'initial_validation': initial_validation, 'validations': callback.validations,
             'latest_model_sha256': latest['model_sha256'], 'source_sha256': latest['source_sha256'],

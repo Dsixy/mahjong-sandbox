@@ -37,6 +37,9 @@ def source_fingerprint():
 
 
 def save_checkpoint(model, path, *, rules=None, hints=True, training=None):
+    import torch
+    if not all(bool(torch.isfinite(p).all()) for p in model.policy.parameters()):
+        raise FloatingPointError('refusing to save nonfinite model parameters')
     path = model_path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(path.stem + '.' + uuid.uuid4().hex + '.zip')

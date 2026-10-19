@@ -216,6 +216,32 @@ class RLTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 evaluate_models(workers=1, **args)
 
+    def test_checkpoint_schedule_counts_rollouts_after_early_kl_stop(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        import torch
+        from mahjong_sandbox.rl.train import TrainConfig, TrainingCallback
+        with tempfile.TemporaryDirectory() as directory:
+            config = TrainConfig(checkpoint_every=2, validation_blocks=0)
+            callback = TrainingCallback(directory, config, {})
+            callback.model = SimpleNamespace(num_timesteps=100, _n_updates=4, device='cpu',
+                logger=SimpleNamespace(name_to_value={'train/loss': .1, 'train/explained_variance': float('nan')}))
+            callback._on_training_start()
+            with patch('mahjong_sandbox.rl.train.save_checkpoint') as save:
+                # One epoch versus four: either case is exactly one rollout update.
+                callback.model.num_timesteps = 200
+                callback.model._n_updates = 5
+                callback.finish_iteration()
+                self.assertEqual(save.call_count, 0)
+                callback.model.num_timesteps = 300
+                callback.model._n_updates = 9
+                callback.finish_iteration()
+                self.assertEqual(save.call_count, 1)
+                self.assertEqual(callback.rollout_updates, 2)
+                self.assertIsNone(callback.history[-1]['train/explained_variance'])
+                callback.finish_iteration(final=True)
+                self.assertEqual(save.call_count, 1)
+
     def test_imitation_and_configuration_guards(self):
         import torch
         from mahjong_sandbox.rl.train import TrainConfig
