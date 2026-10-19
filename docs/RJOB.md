@@ -17,6 +17,8 @@ bash "$EXPERIMENT_ROOT/source/scripts/run_policy_gpu.sh" "$EXPERIMENT_ROOT"
 
 `rl.longrun` 把目标总步数、初始模型哈希、配置、代码哈希绑定到 `experiment.json`。重启扫描 `latest` 和不可变 `checkpoints/step_*`，校验后选择步数最多的完整文件对；损坏或保存中断的文件会跳过。目标不会因每次重启重复增加。文件锁阻止同目录两个学习者并发写入。
 
+如果 `best` 的模型/元数据替换被打断，控制器按验证日志选择已有的完整同一步检查点并重建文件对；只用验证集记录恢复选择，不查询最终测试成绩。最后一条未写完的日志会忽略。
+
 收到 SIGTERM 时尽可能完成当前 rollout 和优化，再在更新边界保存退出，返回 75 以触发重试。平台仅给 30 秒时可能强杀，此时从上一完整更新恢复；中途牌局、未完成 rollout 和随机数流不精确恢复。检查点包含初始策略/优化器；对手池使用持久不可变快照。框架不提供跨平台逐位复现。
 
 `gpu-runtime.json` 是真实 CUDA 矩阵乘与反向传播证据；`metrics.jsonl` 的 start/ppo_update 证明实际模型设备、优化与有限损失。启动脚本在 CUDA 不可用时明确失败。GPU 利用率可能受规则推进及单动作历史对手 CPU 推理限制，不能从资源申请推断 GPU 加速比。

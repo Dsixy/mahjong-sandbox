@@ -115,6 +115,26 @@ class SelfPlayTests(unittest.TestCase):
             with self.assertRaises(TrainingInterrupted):
                 callback._on_rollout_start()
 
+    def test_best_recovery_uses_validation_and_intact_update_copy(self):
+        from mahjong_sandbox.rl.checkpoint import save_checkpoint, read_metadata
+        from mahjong_sandbox.rl.longrun import recover_best
+        from mahjong_sandbox.rl.train import TrainConfig
+        with tempfile.TemporaryDirectory() as root:
+            model, _ = self.fixture(root)
+            output = Path(root)
+            config = TrainConfig(hints=False)
+            model.num_timesteps = 16
+            saved = save_checkpoint(model, output / 'checkpoints/step_16.zip', hints=False,
+                training={'validation_seed': config.validation_seed, 'validation_blocks': config.validation_blocks})
+            (output / 'best.zip').write_bytes(b'interrupted replacement')
+            (output / 'metrics.jsonl').write_text(json.dumps({'event': 'validation', 'timesteps': 16,
+                'mean_net_score': .25}) + '\n' + '{"event":')
+            recover_best(output, config)
+            restored = read_metadata(output / 'best.zip')
+            self.assertEqual(restored['model_sha256'], saved['model_sha256'])
+            self.assertEqual(restored['training']['validation_score'], .25)
+            self.assertNotIn('validation_score', read_metadata(output / 'checkpoints/step_16.zip')['training'])
+
 
 if __name__ == '__main__':
     unittest.main()

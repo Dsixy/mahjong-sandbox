@@ -3,7 +3,10 @@ import argparse
 from dataclasses import asdict, replace
 import fcntl
 import json
+import math
+import os
 from pathlib import Path
+import shutil
 from .checkpoint import read_metadata, source_fingerprint
 from .train import TrainConfig, train
 
@@ -25,6 +28,53 @@ def newest_checkpoint(output, initial, *, rules):
         except (OSError, ValueError, KeyError):
             print(json.dumps({'event': 'invalid_checkpoint_skipped', 'path': path}), flush=True)
     raise ValueError('no intact compatible checkpoint to resume')
+
+
+def recover_best(output, config):
+    """Recover an interrupted best-file replacement from evaluated update copies.
+
+    Validation logs precede best publication. Periodic checkpoints at the same
+    step contain exactly the evaluated weights, so no test walls select a model.
+    """
+    output = Path(output)
+    path = output / 'best.zip'
+    score = -math.inf
+    try:
+        existing = read_metadata(path, expected_rules=config.rules)
+        score = float(existing['training'].get('validation_score', -math.inf))
+    except (OSError, ValueError, KeyError):
+        pass
+    log = output / 'metrics.jsonl'
+    candidates = []
+    if log.exists():
+        for line in log.read_text().splitlines():
+            try:
+                row = json.loads(line)
+                if row.get('event') == 'validation' and math.isfinite(row['mean_net_score']):
+                    candidates.append((float(row['mean_net_score']), int(row['timesteps'])))
+            except (ValueError, KeyError, TypeError):
+                continue  # A signal can interrupt the last log line as well.
+    for candidate_score, steps in sorted(candidates, reverse=True):
+        if candidate_score <= score:
+            return
+        checkpoint = output / 'checkpoints' / f'step_{steps}.zip'
+        try:
+            metadata = read_metadata(checkpoint, expected_rules=config.rules)
+        except (OSError, ValueError, KeyError):
+            continue
+        settings = metadata['training']
+        if (settings.get('validation_seed') != config.validation_seed or
+                settings.get('validation_blocks') != config.validation_blocks or metadata['hints'] != config.hints):
+            continue
+        metadata['training'] = {**settings, 'validation_score': candidate_score}
+        temporary = output / 'best.recovery.zip'
+        temporary_json = output / 'best.recovery.json'
+        shutil.copyfile(checkpoint, temporary)
+        temporary_json.write_text(json.dumps(metadata, indent=2) + '\n')
+        os.replace(temporary, path)
+        os.replace(temporary_json, path.with_suffix('.json'))
+        print(json.dumps({'event': 'best_recovered', 'timesteps': steps, 'validation_score': candidate_score}), flush=True)
+        return
 
 
 def run(config, output, initial, *, additional_steps, evaluate=True, eval_blocks=100):
@@ -49,6 +99,7 @@ def run(config, output, initial, *, additional_steps, evaluate=True, eval_blocks
                 raise ValueError('experiment settings changed; use a new output directory')
         else:
             manifest.write_text(json.dumps(experiment, indent=2) + '\n')
+        recover_best(output, config)
         resume, metadata = newest_checkpoint(output, initial, rules=config.rules)
         print(json.dumps({'event': 'experiment_resume', 'checkpoint': str(resume),
                           'timesteps': metadata['timesteps'], 'target': target}), flush=True)
