@@ -3,6 +3,7 @@ from collections import deque
 from dataclasses import asdict, dataclass, field
 import json
 from pathlib import Path
+import signal
 import time
 import numpy as np
 import torch
@@ -47,6 +48,9 @@ class TrainConfig:
     validation_every: int = 8
     validation_blocks: int = 8
     validation_seed: int = 100000
+    self_play_probability: float = 0.
+    snapshot_every: int = 8
+    snapshot_pool_size: int = 4
     rules: RuleConfig = field(default_factory=RuleConfig)
 
     def __post_init__(self):
@@ -54,7 +58,7 @@ class TrainConfig:
             object.__setattr__(self, 'rules', RuleConfig(**self.rules))
         if isinstance(self.opponents, list):
             object.__setattr__(self, 'opponents', tuple(self.opponents))
-        for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every'):
+        for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every', 'snapshot_every', 'snapshot_pool_size'):
             if type(getattr(self, key)) is not int or getattr(self, key) < 1:
                 raise ValueError(f'{key} must be a positive integer')
         for key in ('workers', 'bc_samples', 'bc_epochs', 'validation_blocks', 'validation_seed', 'seed'):
@@ -80,7 +84,13 @@ class TrainConfig:
             raise ValueError('invalid operator or feature settings')
         if not isinstance(self.rules, RuleConfig):
             raise ValueError('Sichuan rules required')
+        if not np.isfinite(self.self_play_probability) or not 0 <= self.self_play_probability <= 1:
+            raise ValueError('self_play_probability must be in [0,1]')
 
+
+
+class TrainingInterrupted(Exception):
+    """A termination request reached a completed optimizer update boundary."""
 
 
 class TrainingCallback(BaseCallback):
@@ -93,6 +103,7 @@ class TrainingCallback(BaseCallback):
         self.rollout_updates = 0
         self.last_validation = -1
         self.best_score = -float('inf')
+        self.stop_requested = False
         if (self.output / 'best.zip').exists():
             saved = read_metadata(self.output / 'best.zip', expected_rules=config.rules)
             settings = saved['training']
@@ -141,6 +152,11 @@ class TrainingCallback(BaseCallback):
         if iteration % self.config.checkpoint_every == 0 or final:
             save_checkpoint(self.model, self.output / 'checkpoints' / f'step_{steps}.zip',
                             rules=self.config.rules, hints=self.config.hints, training=self.context)
+        if self.config.self_play_probability and iteration % self.config.snapshot_every == 0:
+            from .selfplay import publish_snapshot
+            pool = publish_snapshot(self.model, self.output / 'selfplay', rules=self.config.rules,
+                hints=self.config.hints, training=self.context, pool_size=self.config.snapshot_pool_size)
+            self.emit({'event': 'self_play_pool', 'timesteps': steps, **pool})
         if self.config.validation_blocks and (iteration % self.config.validation_every == 0 or final):
             self.validate()
 
@@ -161,6 +177,8 @@ class TrainingCallback(BaseCallback):
     def _on_rollout_start(self):
         if self.model._n_updates:
             self.finish_iteration()
+        if self.stop_requested:
+            raise TrainingInterrupted()
 
     def _on_training_end(self):
         self.finish_iteration(final=True)
@@ -187,7 +205,9 @@ def train(output, config=None, *, resume=None):
     # seed stream; in-flight walls/trajectories are intentionally not restored.
     env_seed = (config.seed + (previous['timesteps'] + 1000003 if previous else 0)) % 2**32
     env = SichuanVecEnv(config.n_envs, config.workers, seed=env_seed, opponents=config.opponents,
-        backend=config.backend, reward_scale=config.reward_scale, rules=config.rules, hints=config.hints)
+        backend=config.backend, reward_scale=config.reward_scale, rules=config.rules, hints=config.hints,
+        opponent_manifest=output.resolve() / 'selfplay' / 'opponents.json' if config.self_play_probability else None,
+        self_play_probability=config.self_play_probability)
     started = time.perf_counter()
     bc_report = previous['training'].get('imitation') if previous else None
     initial_validation = None
@@ -218,13 +238,26 @@ def train(output, config=None, *, resume=None):
                             training={**context, 'imitation': bc_report})
             print(json.dumps({'event': 'imitation_complete', **bc_report}), flush=True)
         context['imitation'] = bc_report
+        if config.self_play_probability:
+            from .selfplay import publish_snapshot
+            publish_snapshot(model, output / 'selfplay', rules=config.rules, hints=config.hints,
+                training=context, pool_size=config.snapshot_pool_size)
         if config.validation_blocks:
             initial_validation = validate_model(model, {'rules': asdict(config.rules), 'hints': config.hints},
                 blocks=config.validation_blocks, seed=config.validation_seed, backend=config.backend)
             print(json.dumps({'event': 'initial_validation', **initial_validation}), flush=True)
         callback = TrainingCallback(output, config, context)
-        model.learn(total_timesteps=config.total_timesteps, callback=callback,
-                    reset_num_timesteps=not bool(resume), progress_bar=False)
+        def request_stop(signum, frame):
+            callback.stop_requested = True
+        old_handler = signal.signal(signal.SIGTERM, request_stop)
+        interrupted = False
+        try:
+            model.learn(total_timesteps=config.total_timesteps, callback=callback,
+                        reset_num_timesteps=not bool(resume), progress_bar=False)
+        except TrainingInterrupted:
+            interrupted = True
+        finally:
+            signal.signal(signal.SIGTERM, old_handler)
         latest = save_checkpoint(model, output / 'latest.zip', rules=config.rules, hints=config.hints, training=context)
         if not (output / 'best.zip').exists():
             save_checkpoint(model, output / 'best.zip', rules=config.rules, hints=config.hints, training=context)
@@ -238,6 +271,7 @@ def train(output, config=None, *, resume=None):
             'latest_model_sha256': latest['model_sha256'], 'source_sha256': latest['source_sha256'],
             'latest': str(output / 'latest.zip'), 'best': str(output / 'best.zip'),
             'resume': context['resume_restores'], 'illegal_actions': 0}
+        report['interrupted'] = interrupted
         (output / 'training.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
         return report
     finally:

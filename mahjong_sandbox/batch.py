@@ -150,6 +150,8 @@ class BatchConfig:
     rules: RuleConfig | RiichiConfig | None = None
     rotate_seats: bool = False
     opponent_pool: tuple[str, ...] = ()
+    opponent_manifest: str | None = None
+    self_play_probability: float = 0.
 
     def __post_init__(self):
         if self.variant not in ('sichuan', 'riichi') or type(self.seed) is not int:
@@ -163,6 +165,11 @@ class BatchConfig:
             raise ValueError('seat rotation requires one controlled player')
         if not isinstance(self.opponent_pool, tuple) or any(p not in POLICIES for p in self.opponent_pool):
             raise ValueError('opponent_pool must be a tuple of known policies')
+        if not 0 <= self.self_play_probability <= 1:
+            raise ValueError('self_play_probability must be in [0,1]')
+        if self.opponent_manifest is not None and (not isinstance(self.opponent_manifest, str) or
+                self.variant != 'sichuan' or self.controlled_player is None):
+            raise ValueError('snapshot opponents require a Sichuan learner and a manifest path')
         RuntimeOptions(validate_every=self.validate_every, operator_backend=self.backend)
         expected = RiichiConfig if self.variant == 'riichi' else RuleConfig
         if self.rules is not None and not isinstance(self.rules, expected):
@@ -190,6 +197,11 @@ class SyncBatchEnv:
         self.episodes = [-1] * n
         self.tickets = [0] * n
         self.closed = False
+        self.snapshot_pool = None
+        if self.config.opponent_manifest:
+            from .rl.selfplay import SnapshotPool
+            self.snapshot_pool = SnapshotPool(self.config.opponent_manifest, rules=self.config.rules or RuleConfig(),
+                backend=self.config.backend, probability=self.config.self_play_probability)
         self._reset(range(n))
 
     def _check_open(self):
@@ -210,6 +222,8 @@ class SyncBatchEnv:
 
     def _reset(self, indices):
         cls = FastRiichiEngine if self.config.variant == 'riichi' else FastEngine
+        if self.snapshot_pool:
+            self.snapshot_pool.refresh()
         for i in indices:
             self.episodes[i] += 1
             self.tickets[i] = 0
@@ -224,6 +238,11 @@ class SyncBatchEnv:
                 if self.config.opponent_pool else self.config.opponent_policy, variant=self.config.variant,
                                      seed=derived_seed(self.config.seed, lane, self.episodes[i], p + 1),
                                      backend=self.config.backend) for p in range(4)]
+            if self.snapshot_pool:
+                for p in range(4):
+                    if p != self.learners[i]:
+                        self.agents[i][p] = self.snapshot_pool.opponent(
+                            derived_seed(self.config.seed, lane, self.episodes[i], p + 31), self.agents[i][p])
             self._advance(i)
             self._encode(i)
             self.buffers['rewards'][i] = 0

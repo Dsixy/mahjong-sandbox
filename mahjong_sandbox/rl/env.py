@@ -20,13 +20,16 @@ def observation_space():
 
 class SichuanVecEnv(VecEnv):
     def __init__(self, n=32, workers=0, *, seed=0, opponents=('greedy',),
-                 backend='auto', reward_scale=32., rules=None, hints=True, rotate_seats=True):
+                 backend='auto', reward_scale=32., rules=None, hints=True, rotate_seats=True,
+                 opponent_manifest=None, self_play_probability=0.):
         if type(n) is not int or n < 1 or type(workers) is not int or not 0 <= workers <= n:
             raise ValueError('positive environment count and workers in 0..N required')
         if not np.isfinite(reward_scale) or reward_scale <= 0:
             raise ValueError('reward_scale must be finite and positive')
         self.config = BatchConfig(variant='sichuan', seed=seed, backend=backend,
-            rules=rules or RuleConfig(), rotate_seats=rotate_seats, opponent_pool=tuple(opponents))
+            rules=rules or RuleConfig(), rotate_seats=rotate_seats, opponent_pool=tuple(opponents),
+            opponent_manifest=str(opponent_manifest) if opponent_manifest else None,
+            self_play_probability=self_play_probability)
         if not opponents:
             raise ValueError('at least one opponent policy required')
         self.workers, self.reward_scale, self.hints = workers, reward_scale, hints

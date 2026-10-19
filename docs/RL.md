@@ -111,6 +111,8 @@ engine.submit(player, action, engine.state.decision_id)
 
 ## GPU / RJob 入口
 
+历史模型自博弈、闲时 GPU 作业、固定训练总量与抢占恢复见 [长程训练说明](RJOB.md)。
+
 RJob 只需准备代码和依赖、分配 GPU/CPU、挂载持久输出目录，然后调用：
 
 ```bash

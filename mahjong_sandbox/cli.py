@@ -67,11 +67,12 @@ def main(argv=None) -> int:
                        ('seed', 'seed'), ('torch-threads', 'torch_threads'), ('hidden', 'hidden'),
                        ('bc-samples', 'bc_samples'), ('bc-epochs', 'bc_epochs'),
                        ('checkpoint-every', 'checkpoint_every'), ('eval-every', 'validation_every'),
-                       ('eval-blocks', 'validation_blocks'), ('eval-seed', 'validation_seed')):
+                       ('eval-blocks', 'validation_blocks'), ('eval-seed', 'validation_seed'),
+                       ('snapshot-every', 'snapshot_every'), ('snapshot-pool-size', 'snapshot_pool_size')):
         rl_train.add_argument('--' + flag, dest=dest, type=int)
     for flag, dest in (('learning-rate', 'learning_rate'), ('gamma', 'gamma'),
                        ('gae-lambda', 'gae_lambda'), ('entropy-coef', 'entropy_coef'),
-                       ('reward-scale', 'reward_scale')):
+                       ('reward-scale', 'reward_scale'), ('self-play-probability', 'self_play_probability')):
         rl_train.add_argument('--' + flag, dest=dest, type=float)
     rl_train.add_argument('--opponents', nargs='+', choices=('random', 'win-first', 'greedy', 'defensive', 'value'))
     rl_train.add_argument('--device')

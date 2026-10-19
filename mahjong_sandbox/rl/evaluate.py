@@ -74,7 +74,7 @@ def validate_model(model, metadata, *, blocks=8, seed=100000, backend='auto'):
 
 def evaluate_models(model, *, baseline_model=None, opponents=('greedy',), baselines=POLICIES,
                     blocks=50, seed=200000, workers=4, backend='auto', deterministic=True,
-                    include_games=True, device='cpu'):
+                    include_games=True, device='cpu', baseline_label='warmstart'):
     if type(blocks) is not int or blocks < 1 or type(workers) is not int or workers < 1:
         raise ValueError('positive blocks and worker counts required')
     if not opponents or len(set(opponents)) != len(opponents) or any(x not in POLICIES for x in opponents):
@@ -86,7 +86,9 @@ def evaluate_models(model, *, baseline_model=None, opponents=('greedy',), baseli
         raise ValueError('GPU evaluation uses --workers 1 to keep one GPU model owner')
     models = {'rl': str(model_path(model).resolve())}
     if baseline_model:
-        models['warmstart'] = str(model_path(baseline_model).resolve())
+        if not isinstance(baseline_label, str) or not baseline_label or baseline_label == 'rl' or baseline_label in POLICIES:
+            raise ValueError('baseline model label must be unique')
+        models[baseline_label] = str(model_path(baseline_model).resolve())
     metadata = {k: read_metadata(p) for k, p in models.items()}
     rules = RuleConfig(**metadata['rl']['rules'])
     for p in models.values():
