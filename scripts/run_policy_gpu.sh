@@ -3,6 +3,7 @@
 set -euo pipefail
 policy_root="${1:?usage: run_policy_gpu.sh EXPERIMENT_ROOT}"
 policy_python="$policy_root/runtime/bin/python"
+test -f "$policy_root/preparation/ready"
 cd -- "$policy_root/source"
 mkdir -p "$policy_root/output" "$policy_root/cache/numba" "$policy_root/cache/matplotlib" "$policy_root/cache/cuda"
 export POLICY_OUTPUT="$policy_root/output"

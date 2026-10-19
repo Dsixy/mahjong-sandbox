@@ -13,7 +13,7 @@
 bash "$EXPERIMENT_ROOT/source/scripts/run_policy_gpu.sh" "$EXPERIMENT_ROOT"
 ```
 
-使用平台支持的 `rjob submit --task-type=idle`、单副本、1 GPU、16 CPU、64,000 MiB 内存；闲时任务不指定 priority/配额组。设置 `--restart-policy=RestartJobOnFailure --backoff_limit=20 --termination-grace-period-seconds=30`；先 dry-run 检查当前平台接受的实际模板。GPFS mount、镜像和作业名由部署环境传入。任务名使用 `policy-optimization-*`。
+使用平台支持的 `rjob submit --task-type=idle`、单副本、1 GPU、16 CPU、64,000 MiB 内存；闲时任务不指定 priority/配额组。CLI 设置 `--restart-policy=restartjobonfailure --backoff_limit=20 --termination-grace-period-seconds=30`，模板中的策略值为 `RestartJobOnFailure`；先 dry-run 检查当前平台接受的实际模板。GPFS mount、镜像和作业名由部署环境传入。任务名使用 `policy-optimization-*`。
 
 `rl.longrun` 把目标总步数、初始模型哈希、配置、代码哈希绑定到 `experiment.json`。重启扫描 `latest` 和不可变 `checkpoints/step_*`，校验后选择步数最多的完整文件对；损坏或保存中断的文件会跳过。目标不会因每次重启重复增加。文件锁阻止同目录两个学习者并发写入。
 
