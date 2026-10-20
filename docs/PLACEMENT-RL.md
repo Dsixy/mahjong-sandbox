@@ -50,3 +50,18 @@ python scripts/run_placement_ablation.py --root runs/placement \
 ```
 
 计划记录初始哈希、源码哈希、每份配置的哈希和固定目标；单组控制器重启不会重复追加训练量。SIGTERM 在完整更新边界保存；硬中断从最新完整不可变检查点恢复。更换已经训练的奖励单位须从独立零步 warmstart 开始，不静默恢复另一目标的 Adam 状态。
+
+## 相同局面的补充诊断
+
+另用 700000–700031 的 32 场 greedy 半庄收集公开观察，按阶段/名次与立直、和牌、鸣牌、面对立直的安全弃牌机会做 reservoir 抽样，每个类别上限 200，交叉类别去重后共 **1,977 个局面**。其他三家的暗手不进入数据，公共历史仅保留特征合同所需的规则公告与牌河/副露。
+
+固定局面库见 `docs/placement/decision-bank.json.gz`，SHA-256 为 `e8c38c2d4eab78f1d2d402803ea477c0861f47199978b8d9f03b8f5cc522b33a`；生成清单记录代码与数据哈希。该数据在四组训练完成前已固定，不参与训练、选模或主测试。局面类别经过抽样，其动作比例用于相同输入的诊断，不当作真实对局频率。
+
+```bash
+python scripts/placement_decision_probe.py --collect \
+  --bank runs/placement/decision-bank.json.gz --blocks 32 --seed 700000
+python scripts/placement_decision_probe.py \
+  --bank docs/placement/decision-bank.json.gz \
+  --models rank=RANK_MODEL.zip score=SCORE_MODEL.zip \
+  --output runs/placement/decision-probe.json
+```

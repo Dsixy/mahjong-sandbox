@@ -1,0 +1,49 @@
+{
+  "format": "riichi_public_decision_bank_v1",
+  "seed_range": [
+    700000,
+    700031
+  ],
+  "source_sha256": "32e3cca7a1c39312f5c6d3a2db8c619453362177a03f5600754419832c2e5e9b",
+  "script_sha256": "050eecbc60fb50e5d43310e9ccfc379510c1c0e3836a16a28225f09768935bd9",
+  "selection": "reservoir per context/opportunity; overlapping positions deduplicated; diagnostic frequencies are not game frequencies",
+  "cap_per_stratum": 200,
+  "eligible_counts": {
+    "early_call": 3128,
+    "early_riichi": 387,
+    "early_threat": 1608,
+    "early_win": 245,
+    "late_middle_call": 418,
+    "late_lead_call": 191,
+    "late_last_call": 204,
+    "late_last_riichi": 28,
+    "late_middle_riichi": 58,
+    "late_middle_threat": 237,
+    "late_lead_riichi": 24,
+    "late_middle_win": 38,
+    "late_last_threat": 141,
+    "late_lead_threat": 123,
+    "late_lead_win": 13,
+    "late_last_win": 12
+  },
+  "selected_counts": {
+    "early_call": 200,
+    "early_riichi": 200,
+    "early_threat": 200,
+    "early_win": 200,
+    "late_middle_call": 200,
+    "late_lead_call": 191,
+    "late_last_call": 200,
+    "late_last_riichi": 28,
+    "late_middle_riichi": 58,
+    "late_middle_threat": 200,
+    "late_lead_riichi": 24,
+    "late_middle_win": 38,
+    "late_last_threat": 141,
+    "late_lead_threat": 123,
+    "late_lead_win": 13,
+    "late_last_win": 12
+  },
+  "positions": 1977,
+  "bank_sha256": "e8c38c2d4eab78f1d2d402803ea477c0861f47199978b8d9f03b8f5cc522b33a"
+}
