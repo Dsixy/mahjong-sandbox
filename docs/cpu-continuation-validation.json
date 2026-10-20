@@ -1,0 +1,35 @@
+{
+  "end_to_end_launcher": {
+    "passed": true,
+    "device": "cpu",
+    "additional_steps": 16,
+    "evaluation_games": 28,
+    "fixed_target": 69648,
+    "visible_cuda_devices": 0,
+    "optimizer_tensor_count": 42,
+    "selfplay_snapshots": 2,
+    "completion_written": true
+  },
+  "gpu_checkpoint_cpu_portability": {
+    "best_timesteps": 6361088,
+    "latest_timesteps": 10072064,
+    "finite_weights": true,
+    "optimizer_tensors_on_cpu": true
+  },
+  "engine_source_unchanged": true,
+  "launcher_bash_syntax_passed": true,
+  "full_old_gpu_evaluation_games": 2800,
+  "cluster_cpu_launch": {
+    "passed": true,
+    "job": "policy-cpu-continuation-small-20261020-80380532",
+    "phase": "Running",
+    "gpu_resources": 0,
+    "visible_cuda_devices": 0,
+    "initial_timesteps": 10072064,
+    "latest_verified_timesteps": 10088448,
+    "initial_optimizer_epochs": 4949,
+    "latest_optimizer_epochs": 4957,
+    "checkpoint_sha256_verified": true,
+    "fixed_target": 11079680
+  }
+}
