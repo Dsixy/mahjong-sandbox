@@ -1,6 +1,6 @@
 # 长程 GPU PPO 与历史自博弈
 
-2026-10-20：该轮 GPU 训练及最终评测已完成。后续使用纯 CPU 续训，实际资源、恢复点与有界目标见 [CPU RJob 说明](CPU-RJOB.md)。下文保留原 GPU 部署记录。
+2026-10-20：该轮 GPU 训练及最终评测已完成。后续先用 CPU RJob，现已迁至 CPU 沙盒；当前资源、恢复点、固定目标及独立评测见 [CPU 沙盒说明](CPU-SANDBOX.md)，此前记录见 [CPU RJob 说明](CPU-RJOB.md)。下文保留原 GPU 部署记录。
 
 `configs/rl/policy-longrun.json` 从阶段 6 的 69,632 步 CPU 模型继续训练。单 GPU 负责学习者批量推理和 PPO 更新，8 个 CPU worker 管理 128 手牌，历史对手在 worker 上做 CPU 推理。对手模型在整手牌内冻结；每个对手座位有 50% 概率从最近 4 个历史快照中均匀抽取，否则使用 greedy/defensive/value。初始模型也进入池，每 8 次完整更新发布新快照。这是历史模型自博弈，不是四座位同时更新。
 

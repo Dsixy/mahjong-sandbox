@@ -1,5 +1,7 @@
 # CPU RJob 续训
 
+2026-10-20：该作业已停止，最新模型和固定目标已迁至更充足的 CPU 沙盒，见 [当前沙盒状态与 AI 指标](CPU-SANDBOX.md)。下文保留 RJob 部署记录。
+
 本轮使用纯 CPU 作业 `policy-cpu-continuation-small-20261020-80380532`，namespace 为 `ailab-llmagent`，配额组为 `llmagent_cpu_task`，资源为 4 CPU、16,000 MiB、0 GPU。8 CPU 的初次请求未分配节点，已停止；较小请求已分配到 `lg-cmc-h-cpu-0078.host.h.pjlab.org.cn`。
 
 上一轮 GPU 作业已成功完成，从 69,632 到 10,072,064 次学习者决策，追加 10,002,432 步，并完成 2,800 手独立对战评测。该作业状态为 Succeeded，不再占用 GPU。完整最佳模型、最终模型及原始评测已取回本地 `runs/gpu-longrun-20261019/`。

@@ -1,0 +1,607 @@
+{
+  "observed_utc": "2026-10-20T03:29:38.459582+00:00",
+  "sandbox": {
+    "id": "cprod2-v45bzzrg83y4le6nlg4w",
+    "state": "running",
+    "projectID": "ailab-llmagent",
+    "resourceRequests": {
+      "cpu": "16",
+      "memory": "32Gi"
+    },
+    "resourceLimits": {
+      "cpu": "32",
+      "memory": "32Gi",
+      "disk": "80Gi"
+    },
+    "expiresAt": "2026-10-20T07:12:19.393237113Z",
+    "extensions": {
+      "clusterID": "cprod2",
+      "clusterResourcePoolID": "prod02-physical-container@cprod2",
+      "lxcfs": "true",
+      "namespace": "sandbox-project-ailab-llmagent",
+      "preferredNodeSelector": "sandbox-system.io/resource-pool-id=prod02-physical-container",
+      "project": "ailab-llmagent",
+      "resourcePoolID": "prod02-physical-container",
+      "sandbox-system.io/lxcfs": "true",
+      "sandbox-system.io/projectID": "ailab-llmagent"
+    }
+  },
+  "persistent_root": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg",
+  "runtime": {
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "cuda_devices": 0,
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+    "tests_passed": true,
+    "cpu_model": "AMD EPYC 9654 96-Core Processor"
+  },
+  "model_preflight": {
+    "utc": "2026-10-20T03:22:08.943889+00:00",
+    "device": "cpu",
+    "cuda_devices": 0,
+    "model_sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+    "timesteps": 6361088,
+    "optimizer_epochs": 3137,
+    "legal_action": true,
+    "finite_weights": true,
+    "optimizer_on_cpu": true
+  },
+  "restored": {
+    "restored": true,
+    "resume_timesteps": 10293248,
+    "optimizer_epochs": 5057,
+    "device": "cpu",
+    "model_sha256": "d237675bbfa8d79f5ee8b1d03da8b2dae2702920cd8a01f79735e8e7ea09a41e",
+    "target_timesteps": 11079680,
+    "remaining_timesteps": 786432,
+    "workers": 16,
+    "visible_cuda_devices": 0,
+    "all_file_hashes_verified": true
+  },
+  "handoff": {
+    "version": 1,
+    "storage_root": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019",
+    "run_relative": "cpu-continuation-20261020",
+    "initial_timesteps": 10072064,
+    "resume_timesteps": 10293248,
+    "optimizer_epochs": 5057,
+    "target_timesteps": 11079680,
+    "remaining_timesteps": 786432,
+    "initial_sha256": "47ee2906095f2eedc125d908a8b9dfae744f9eceefb8c66a6e08501658f76d90",
+    "resume_sha256": "d237675bbfa8d79f5ee8b1d03da8b2dae2702920cd8a01f79735e8e7ea09a41e",
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+    "workers": 16,
+    "snapshot_count": 4,
+    "files_sha256": {
+      "cpu-continuation-20261020/initial.zip": "47ee2906095f2eedc125d908a8b9dfae744f9eceefb8c66a6e08501658f76d90",
+      "cpu-continuation-20261020/initial.json": "3b05abfda466cd9acecb34289c51af7985e90fa15b7472066ad09ce6ab21c7b6",
+      "cpu-continuation-20261020/output/checkpoints/step_10293248.zip": "d237675bbfa8d79f5ee8b1d03da8b2dae2702920cd8a01f79735e8e7ea09a41e",
+      "cpu-continuation-20261020/output/checkpoints/step_10293248.json": "7fe78f025ee8559180af31e4bbf64f0d101479a1cd009daedc181e35a5ed0a37",
+      "cpu-continuation-20261020/output/selfplay/step_10072064_c8e07780.zip": "e30c6827279bf38270ea46fada91af4d7d51728f759fd5313c6f59af13817256",
+      "cpu-continuation-20261020/output/selfplay/step_10072064_c8e07780.json": "c5a353250a7e7e358157bb30938df3844dcf1d347bd508e55bfea1f8019f9e92",
+      "cpu-continuation-20261020/output/selfplay/step_10137600_b1086e84.zip": "72cb0aace6886c44447ac7199cb8b485906891559b9dc92b4874a9ea48069508",
+      "cpu-continuation-20261020/output/selfplay/step_10137600_b1086e84.json": "f7ce35dc8c9a05ffd52d48538f2ebae610ac06f96eceae9eb8bee4b2410bd78a",
+      "cpu-continuation-20261020/output/selfplay/step_10203136_40f40427.zip": "d6f74af7635935090b04df70c3fce030055a9659bfa905b123938c5da5d44051",
+      "cpu-continuation-20261020/output/selfplay/step_10203136_40f40427.json": "d32d01a3e27cf8cd9c66d0c196ab964beaf8d531a444c8b82c4ac8848ce7f52c",
+      "cpu-continuation-20261020/output/selfplay/step_10268672_2276a767.zip": "67c99faf811ae188025a521ef1fbc8eaf872c82577bd58b10ab226c5fd50e064",
+      "cpu-continuation-20261020/output/selfplay/step_10268672_2276a767.json": "fca42c7539aa7deb093b80d9158ef4b2831226db95ac5c054534e036ff1471a9",
+      "cpu-continuation-20261020/run_cpu.sh": "6ef2982402509e32a613bd84b865d6c92dadeae1f759d369090fedfc0d7ed35c"
+    },
+    "archive": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/cpu-continuation-20261020/sandbox-handoff-20261020.tar",
+    "archive_sha256": "c78fe77bb4d4c808eb3cd629c464ad427a721477234673e96d3a2263c6e28583",
+    "archive_bytes": 42516480
+  },
+  "experiment": {
+    "version": 1,
+    "initial_sha256": "47ee2906095f2eedc125d908a8b9dfae744f9eceefb8c66a6e08501658f76d90",
+    "initial_timesteps": 10072064,
+    "target_timesteps": 11079680,
+    "additional_steps_requested": 1000000,
+    "config": {
+      "total_timesteps": 1000000,
+      "n_envs": 128,
+      "workers": 16,
+      "rollout_steps": 64,
+      "batch_size": 1024,
+      "epochs": 4,
+      "learning_rate": 0.0001,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 32.0,
+      "hidden": 128,
+      "seed": 42,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 0,
+      "bc_epochs": 8,
+      "checkpoint_every": 1,
+      "validation_every": 32,
+      "validation_blocks": 16,
+      "validation_seed": 100000,
+      "self_play_probability": 0.5,
+      "snapshot_every": 8,
+      "snapshot_pool_size": 4,
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      }
+    },
+    "evaluation_blocks": 100,
+    "evaluate": true,
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+  },
+  "cpu_runtime": {
+    "observed_utc": "2026-10-20T03:26:53.249228+00:00",
+    "torch": "2.8.0+cpu",
+    "device": "cpu",
+    "visible_cuda_devices": 0,
+    "initial_timesteps": 10072064,
+    "optimizer_epochs": 4949,
+    "optimizer_tensor_count": 42,
+    "initial_sha256": "47ee2906095f2eedc125d908a8b9dfae744f9eceefb8c66a6e08501658f76d90",
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+    "cpu_matmul_backward": true
+  },
+  "training_start": {
+    "elapsed_seconds": 8.62803843151778,
+    "event": "start",
+    "timesteps": 10293248,
+    "device": "cpu",
+    "config": {
+      "total_timesteps": 786432,
+      "n_envs": 128,
+      "workers": 16,
+      "rollout_steps": 64,
+      "batch_size": 1024,
+      "epochs": 4,
+      "learning_rate": 0.0001,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 32.0,
+      "hidden": 128,
+      "seed": 42,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 0,
+      "bc_epochs": 8,
+      "checkpoint_every": 1,
+      "validation_every": 32,
+      "validation_blocks": 16,
+      "validation_seed": 100000,
+      "self_play_probability": 0.5,
+      "snapshot_every": 8,
+      "snapshot_pool_size": 4,
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      }
+    }
+  },
+  "completed_updates_this_sandbox": 4,
+  "last_update": {
+    "elapsed_seconds": 118.69476243760437,
+    "event": "ppo_update",
+    "timesteps": 10326016,
+    "optimizer_epochs": 5073,
+    "rollout_updates_this_run": 4,
+    "train/learning_rate": 0.0001,
+    "train/entropy_loss": -0.0995805049315095,
+    "train/policy_gradient_loss": -0.0009604726838006172,
+    "train/value_loss": 0.011311506386846304,
+    "train/approx_kl": 0.0009597782627679408,
+    "train/clip_fraction": 0.003021240234375,
+    "train/loss": 0.0015642859507352114,
+    "train/explained_variance": 0.4007123112678528,
+    "train/n_updates": 5073.0,
+    "train/clip_range": 0.2,
+    "recent_completed_episodes": 512,
+    "train/win": 0.609375,
+    "train/deal_in": 0.3828125,
+    "train/net_score": 0.357421875
+  },
+  "latest_verified_checkpoint": {
+    "timesteps": 10326016,
+    "optimizer_updates": 5073,
+    "model_sha256": "2addbc29c3033ece6657d6ab7f3400e4a8817c9c1052f18204bf32504141e232",
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+  },
+  "selfplay_pool": {
+    "version": 1,
+    "snapshots": [
+      {
+        "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/cpu-continuation-20261020/output/selfplay/step_10137600_b1086e84.zip",
+        "timesteps": 10137600,
+        "sha256": "72cb0aace6886c44447ac7199cb8b485906891559b9dc92b4874a9ea48069508"
+      },
+      {
+        "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/cpu-continuation-20261020/output/selfplay/step_10203136_40f40427.zip",
+        "timesteps": 10203136,
+        "sha256": "d6f74af7635935090b04df70c3fce030055a9659bfa905b123938c5da5d44051"
+      },
+      {
+        "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/cpu-continuation-20261020/output/selfplay/step_10268672_2276a767.zip",
+        "timesteps": 10268672,
+        "sha256": "67c99faf811ae188025a521ef1fbc8eaf872c82577bd58b10ab226c5fd50e064"
+      },
+      {
+        "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/output/selfplay/step_10293248_486fa5e3.zip",
+        "timesteps": 10293248,
+        "sha256": "26f0ed282fe4a749a3439391336c92f9980ea337832d32e1664dd74b334c3cd6"
+      }
+    ]
+  },
+  "snapshot_evaluation": {
+    "games": 2800,
+    "models": {
+      "rl": {
+        "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/output/checkpoints/step_10293248.zip",
+        "sha256": "d237675bbfa8d79f5ee8b1d03da8b2dae2702920cd8a01f79735e8e7ea09a41e",
+        "timesteps": 10293248,
+        "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+      },
+      "previous_best": {
+        "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/previous-best.zip",
+        "sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+        "timesteps": 6361088,
+        "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+      }
+    },
+    "wall_seeds": [
+      300000,
+      300099
+    ],
+    "matchups": {
+      "greedy": {
+        "rl": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.565,
+          "deal_in_rate": 0.47,
+          "mean_net_score": 0.3925,
+          "ci95": {
+            "win": [
+              0.5125,
+              0.615
+            ],
+            "deal_in": [
+              0.425,
+              0.515
+            ],
+            "net_score": [
+              -0.1700625,
+              1.01
+            ]
+          }
+        },
+        "previous_best": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.59,
+          "deal_in_rate": 0.445,
+          "mean_net_score": 0.4625,
+          "ci95": {
+            "win": [
+              0.5425,
+              0.64
+            ],
+            "deal_in": [
+              0.4,
+              0.4925
+            ],
+            "net_score": [
+              -0.10506249999999999,
+              1.0825
+            ]
+          }
+        },
+        "random": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.0075,
+          "deal_in_rate": 0.645,
+          "mean_net_score": -5.0675,
+          "ci95": {
+            "win": [
+              0.0,
+              0.0175
+            ],
+            "deal_in": [
+              0.5975,
+              0.6925
+            ],
+            "net_score": [
+              -5.802625,
+              -4.5049375000000005
+            ]
+          }
+        },
+        "win-first": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.0175,
+          "deal_in_rate": 0.64,
+          "mean_net_score": -5.0125,
+          "ci95": {
+            "win": [
+              0.0075,
+              0.03
+            ],
+            "deal_in": [
+              0.5925,
+              0.6875
+            ],
+            "net_score": [
+              -5.7500625,
+              -4.4349375
+            ]
+          }
+        },
+        "greedy": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.705,
+          "deal_in_rate": 0.3425,
+          "mean_net_score": 0.0,
+          "ci95": {
+            "win": [
+              0.6775,
+              0.7275
+            ],
+            "deal_in": [
+              0.31,
+              0.375
+            ],
+            "net_score": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "defensive": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.6725,
+          "deal_in_rate": 0.3525,
+          "mean_net_score": -0.175,
+          "ci95": {
+            "win": [
+              0.64,
+              0.7
+            ],
+            "deal_in": [
+              0.3175,
+              0.385
+            ],
+            "net_score": [
+              -0.3550625,
+              0.00012499999999931788
+            ]
+          }
+        },
+        "value": {
+          "games": 400,
+          "wall_blocks": 100,
+          "win_rate": 0.5,
+          "deal_in_rate": 0.445,
+          "mean_net_score": -1.32,
+          "ci95": {
+            "win": [
+              0.4525,
+              0.545
+            ],
+            "deal_in": [
+              0.4,
+              0.4925
+            ],
+            "net_score": [
+              -1.6375625,
+              -1.0
+            ]
+          }
+        }
+      }
+    },
+    "paired_comparisons": {
+      "greedy": {
+        "previous_best": {
+          "win": {
+            "rl_minus_baseline": -0.025,
+            "ci95": [
+              -0.0825,
+              0.03
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": 0.025,
+            "ci95": [
+              -0.025,
+              0.0725
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": -0.07,
+            "ci95": [
+              -0.6325,
+              0.4275
+            ]
+          }
+        },
+        "random": {
+          "win": {
+            "rl_minus_baseline": 0.5575,
+            "ci95": [
+              0.505,
+              0.6075
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": -0.175,
+            "ci95": [
+              -0.2475,
+              -0.11
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": 5.46,
+            "ci95": [
+              4.6148750000000005,
+              6.3875
+            ]
+          }
+        },
+        "win-first": {
+          "win": {
+            "rl_minus_baseline": 0.5475,
+            "ci95": [
+              0.4925,
+              0.6
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": -0.17,
+            "ci95": [
+              -0.24006249999999998,
+              -0.105
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": 5.405,
+            "ci95": [
+              4.564687500000001,
+              6.335062499999999
+            ]
+          }
+        },
+        "greedy": {
+          "win": {
+            "rl_minus_baseline": -0.14,
+            "ci95": [
+              -0.1975,
+              -0.085
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": 0.1275,
+            "ci95": [
+              0.0775,
+              0.175
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": 0.3925,
+            "ci95": [
+              -0.1700625,
+              1.01
+            ]
+          }
+        },
+        "defensive": {
+          "win": {
+            "rl_minus_baseline": -0.1075,
+            "ci95": [
+              -0.1625,
+              -0.055
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": 0.1175,
+            "ci95": [
+              0.065,
+              0.1675
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": 0.5675,
+            "ci95": [
+              -0.0325,
+              1.1926249999999992
+            ]
+          }
+        },
+        "value": {
+          "win": {
+            "rl_minus_baseline": 0.065,
+            "ci95": [
+              -0.0025,
+              0.13256249999999967
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": 0.025,
+            "ci95": [
+              -0.035,
+              0.0825
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": 1.7125,
+            "ci95": [
+              1.107375,
+              2.33
+            ]
+          }
+        }
+      }
+    }
+  },
+  "previous_jobs": [
+    {
+      "name": "policy-cpu-continuation-small-20261020-80380532",
+      "uid": "ab799290-3e3b-4014-94ef-65867b4f64f9",
+      "phase": "Stopped"
+    },
+    {
+      "name": "policy-optimization-20261019-main",
+      "uid": "a8d0884f-a857-4e6d-8a4b-8236e910521b",
+      "phase": "Succeeded"
+    }
+  ]
+}
