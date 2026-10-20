@@ -77,6 +77,9 @@ def main(argv=None) -> int:
                        ('reward-scale', 'reward_scale'), ('self-play-probability', 'self_play_probability')):
         rl_train.add_argument('--' + flag, dest=dest, type=float)
     rl_train.add_argument('--opponents', nargs='+', choices=('random', 'win-first', 'greedy', 'defensive', 'value'))
+    rl_train.add_argument('--reward-mode', choices=('score', 'rank'))
+    rl_train.add_argument('--rank-rewards', nargs=4, type=float)
+    rl_train.add_argument('--validation-workers', type=int)
     rl_train.add_argument('--device')
     rl_train.add_argument('--backend', choices=('auto', 'python', 'numba'))
     rl_train.add_argument('--no-hints', dest='hints', action='store_false', default=None)

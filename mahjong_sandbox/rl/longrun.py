@@ -9,6 +9,7 @@ from pathlib import Path
 import shutil
 from .checkpoint import read_metadata, source_fingerprint
 from .train import TrainConfig, train
+from .placement import DEFAULT_RANK_REWARDS, validation_objective
 
 
 def newest_checkpoint(output, initial, *, rules):
@@ -45,7 +46,9 @@ def recover_best(output, config):
     score = -math.inf
     try:
         existing = read_metadata(path, expected_rules=config.rules)
-        score = float(existing['training'].get('validation_score', -math.inf))
+        settings = existing['training']
+        if settings.get('config', {}).get('reward_mode', 'score') == config.reward_mode:
+            score = float(settings.get('validation_score', -math.inf))
     except (OSError, ValueError, KeyError):
         pass
     log = output / 'metrics.jsonl'
@@ -54,8 +57,8 @@ def recover_best(output, config):
         for line in log.read_text().splitlines():
             try:
                 row = json.loads(line)
-                if row.get('event') == 'validation' and math.isfinite(row['mean_net_score']):
-                    candidates.append((float(row['mean_net_score']), int(row['timesteps'])))
+                if row.get('event') == 'validation' and math.isfinite(validation_objective(row, config)):
+                    candidates.append((float(validation_objective(row, config)), int(row['timesteps'])))
             except (ValueError, KeyError, TypeError):
                 continue  # A signal can interrupt the last log line as well.
     for candidate_score, steps in sorted(candidates, reverse=True):
@@ -68,9 +71,12 @@ def recover_best(output, config):
             continue
         settings = metadata['training']
         if (settings.get('validation_seed') != config.validation_seed or
-                settings.get('validation_blocks') != config.validation_blocks or metadata['hints'] != config.hints):
+                settings.get('validation_blocks') != config.validation_blocks or metadata['hints'] != config.hints or
+                settings.get('config', {}).get('reward_mode', 'score') != config.reward_mode or
+                tuple(settings.get('config', {}).get('rank_rewards', DEFAULT_RANK_REWARDS)) != config.rank_rewards):
             continue
-        metadata['training'] = {**settings, 'validation_score': candidate_score}
+        metadata['training'] = {**settings, 'validation_score': candidate_score,
+            'validation_metric': 'rank_utility' if config.reward_mode == 'rank' else 'mean_net_score'}
         temporary = output / 'best.recovery.zip'
         temporary_json = output / 'best.recovery.json'
         shutil.copyfile(checkpoint, temporary)

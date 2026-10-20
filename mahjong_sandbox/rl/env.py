@@ -9,6 +9,7 @@ from ..model import RuleConfig
 from ..riichi_model import RiichiConfig
 from .features import STATE_DIM, HINT_DIM, encode_batch
 from .schema import feature_module
+from .placement import DEFAULT_RANK_REWARDS, rank_rewards as validate_rank_rewards, ranking
 
 
 def observation_space(rules=None):
@@ -25,11 +26,14 @@ class MahjongVecEnv(VecEnv):
     def __init__(self, n=32, workers=0, *, seed=0, opponents=('greedy',),
                  backend='auto', reward_scale=32., rules=None, hints=True, rotate_seats=True,
                  opponent_manifest=None, self_play_probability=0., variant='sichuan', match_length='hand',
-                 skip_forced_actions=None):
+                 skip_forced_actions=None, reward_mode='score', rank_rewards=DEFAULT_RANK_REWARDS):
         if type(n) is not int or n < 1 or type(workers) is not int or not 0 <= workers <= n:
             raise ValueError('positive environment count and workers in 0..N required')
         if not np.isfinite(reward_scale) or reward_scale <= 0:
             raise ValueError('reward_scale must be finite and positive')
+        if reward_mode not in ('score', 'rank') or (reward_mode == 'rank' and (variant != 'riichi' or match_length == 'hand' or reward_scale != 1)):
+            raise ValueError('rank reward requires a riichi match and reward_scale=1')
+        self.reward_mode, self.rank_rewards = reward_mode, validate_rank_rewards(rank_rewards)
         self.config = BatchConfig(variant=variant, seed=seed, backend=backend,
             rules=rules or (RiichiConfig() if variant == 'riichi' else RuleConfig()), rotate_seats=rotate_seats, opponent_pool=tuple(opponents),
             opponent_manifest=str(opponent_manifest) if opponent_manifest else None,
@@ -81,7 +85,8 @@ class MahjongVecEnv(VecEnv):
         if self.config.match_length != 'hand':
             self.initial_scores[:] = self.config.rules.initial_scores
             players = self.raw['meta'][:, 1].astype(int)
-            self.prefix_rewards = (self.raw['scores'] - self.initial_scores)[np.arange(self.num_envs), players].astype(float)
+            if self.reward_mode == 'score':
+                self.prefix_rewards = (self.raw['scores'] - self.initial_scores)[np.arange(self.num_envs), players].astype(float)
         self.episode_returns.fill(0)
         self.episode_lengths.fill(0)
         self.features = self._encode(self.raw)
@@ -111,11 +116,16 @@ class MahjongVecEnv(VecEnv):
         self.pending = None
         if terminal['truncated'].any():
             raise RuntimeError('unexpected rule-engine truncation')
-        rewards = (terminal['rewards'][np.arange(self.num_envs), players] + self.prefix_rewards) / self.reward_scale
+        rewards = ((terminal['rewards'][np.arange(self.num_envs), players] + self.prefix_rewards) / self.reward_scale
+                   if self.reward_mode == 'score' else np.zeros(self.num_envs))
         self.prefix_rewards.fill(0)
+        done = terminal['terminated'].copy()
+        if self.reward_mode == 'rank':
+            for i in np.flatnonzero(done):
+                rank = ranking(terminal['scores'][i], self.config.rules.dealer).index(int(players[i])) + 1
+                rewards[i] = self.rank_rewards[rank - 1]
         self.episode_returns += rewards
         self.episode_lengths += 1
-        done = terminal['terminated'].copy()
         infos = [{} for _ in range(self.num_envs)]
         indices = np.flatnonzero(done)
         if len(indices):
@@ -123,13 +133,15 @@ class MahjongVecEnv(VecEnv):
             for local, i in enumerate(indices):
                 wins = terminal['wins'][i]
                 net = int(terminal['scores'][i, players[i]] - self.initial_scores[i, players[i]])
-                if not np.isclose(self.episode_returns[i] * self.reward_scale, net, atol=1e-4):
-                    raise AssertionError('training reward lost part of the blood-battle settlement')
+                if self.reward_mode == 'score' and not np.isclose(self.episode_returns[i] * self.reward_scale, net, atol=1e-4):
+                    raise AssertionError('training reward lost part of the match settlement')
                 metrics = {'net_score': net, 'seat': int(players[i])}
                 if self.config.match_length != 'hand':
-                    ranking = sorted(range(4), key=lambda p: (-int(terminal['scores'][i, p]), (p - self.config.rules.dealer) % 4))
-                    rank = ranking.index(int(players[i])) + 1
-                    metrics.update(rank=rank, first_place=int(rank == 1), last_place=int(rank == 4))
+                    rank = ranking(terminal['scores'][i], self.config.rules.dealer).index(int(players[i])) + 1
+                    utility = self.rank_rewards[rank - 1]
+                    if self.reward_mode == 'rank' and not np.isclose(self.episode_returns[i], utility, atol=1e-7):
+                        raise AssertionError('rank reward must equal final placement utility')
+                    metrics.update(rank=rank, rank_utility=utility, first_place=int(rank == 1), last_place=int(rank == 4))
                 else:
                     metrics.update(win=int(np.any(wins[:, 0] == players[i])), deal_in=int(np.any(wins[:, 1] == players[i])))
                 infos[i] = {'terminal_observation': {k: v[local].copy() for k, v in final_features.items()},
@@ -143,7 +155,8 @@ class MahjongVecEnv(VecEnv):
             if self.config.match_length != 'hand':
                 self.initial_scores[indices] = self.config.rules.initial_scores
                 next_players = self.raw['meta'][indices, 1].astype(int)
-                self.prefix_rewards[indices] = (self.raw['scores'][indices] - self.initial_scores[indices])[np.arange(len(indices)), next_players]
+                if self.reward_mode == 'score':
+                    self.prefix_rewards[indices] = (self.raw['scores'][indices] - self.initial_scores[indices])[np.arange(len(indices)), next_players]
             self.episode_returns[indices] = 0
             self.episode_lengths[indices] = 0
         else:
@@ -184,5 +197,5 @@ SichuanVecEnv = MahjongVecEnv
 class RiichiVecEnv(MahjongVecEnv):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('variant', 'riichi')
-        kwargs.setdefault('reward_scale', 10000.)
+        kwargs.setdefault('reward_scale', 1. if kwargs.get('reward_mode') == 'rank' else 10000.)
         super().__init__(*args, **kwargs)

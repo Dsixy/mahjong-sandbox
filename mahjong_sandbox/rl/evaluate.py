@@ -65,10 +65,10 @@ def summarize(rows, *, seed=0):
             'ci95': {key: _interval(values, rng, bounded=key != 'net_score') for key, values in means.items()}}
 
 
-def validate_model(model, metadata, *, blocks=8, seed=100000, backend='auto'):
+def validate_model(model, metadata, *, blocks=8, seed=100000, backend='auto', workers=1):
     if metadata['rules']['rule_version'] == 'riichi_4p_v1':
         from .riichi_evaluate import validate_model as validate_riichi
-        return validate_riichi(model, metadata, blocks=blocks, seed=seed, backend=backend)
+        return validate_riichi(model, metadata, blocks=blocks, seed=seed, backend=backend, workers=workers)
     agent = RLAgent(model=model, metadata=metadata, backend=backend)
     rows = [play_game(seed + b, seat, 'rl', 'greedy', agents={'rl': agent}, rules=agent.rules, backend=backend)
             for b in range(blocks) for seat in range(4)]

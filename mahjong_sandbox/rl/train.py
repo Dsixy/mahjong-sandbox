@@ -1,4 +1,4 @@
-"""Train, validate, checkpoint and resume Sichuan MaskablePPO on CPU or CUDA."""
+"""Train, validate, checkpoint and resume Mahjong MaskablePPO on CPU or CUDA."""
 from collections import deque
 from dataclasses import asdict, dataclass, field
 import json
@@ -17,6 +17,7 @@ from .env import MahjongVecEnv
 from .evaluate import validate_model
 from .imitation import pretrain
 from .policy import MahjongPolicy
+from .placement import DEFAULT_RANK_REWARDS, rank_rewards as validate_rank_rewards, validation_objective
 from .schema import rules_from_values
 
 
@@ -37,6 +38,9 @@ class TrainConfig:
     max_grad_norm: float = .5
     target_kl: float = .03
     reward_scale: float | None = None
+    reward_mode: str = 'score'
+    rank_rewards: tuple[float, ...] = DEFAULT_RANK_REWARDS
+    validation_workers: int = 1
     hidden: int = 128
     seed: int = 42
     backend: str = 'auto'
@@ -61,8 +65,13 @@ class TrainConfig:
     def __post_init__(self):
         if self.variant not in ('sichuan', 'riichi'):
             raise ValueError('unknown training variant')
+        if self.reward_mode not in ('score', 'rank'):
+            raise ValueError('unknown reward mode')
+        object.__setattr__(self, 'rank_rewards', validate_rank_rewards(self.rank_rewards))
         if self.reward_scale is None:
-            object.__setattr__(self, 'reward_scale', 10000. if self.variant == 'riichi' else 32.)
+            object.__setattr__(self, 'reward_scale', 1. if self.reward_mode == 'rank' else 10000. if self.variant == 'riichi' else 32.)
+        if self.reward_mode == 'rank' and (self.variant != 'riichi' or self.match_length == 'hand' or self.reward_scale != 1 or self.gamma != 1):
+            raise ValueError('pure rank reward requires a riichi match, scale=1 and gamma=1')
         if self.skip_forced_actions is None:
             object.__setattr__(self, 'skip_forced_actions', self.variant == 'riichi')
         if type(self.skip_forced_actions) is not bool:
@@ -75,7 +84,7 @@ class TrainConfig:
             object.__setattr__(self, 'rules', rules_from_values(self.rules))
         if isinstance(self.opponents, list):
             object.__setattr__(self, 'opponents', tuple(self.opponents))
-        for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every', 'snapshot_every', 'snapshot_pool_size'):
+        for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every', 'snapshot_every', 'snapshot_pool_size', 'validation_workers'):
             if type(getattr(self, key)) is not int or getattr(self, key) < 1:
                 raise ValueError(f'{key} must be a positive integer')
         for key in ('workers', 'bc_samples', 'bc_epochs', 'validation_blocks', 'validation_seed', 'seed'):
@@ -125,7 +134,9 @@ class TrainingCallback(BaseCallback):
             saved = read_metadata(self.output / 'best.zip', expected_rules=config.rules)
             settings = saved['training']
             if (settings.get('validation_seed') == config.validation_seed and
-                    settings.get('validation_blocks') == config.validation_blocks and saved['hints'] == config.hints):
+                    settings.get('validation_blocks') == config.validation_blocks and saved['hints'] == config.hints and
+                    settings.get('config', {}).get('reward_mode', 'score') == config.reward_mode and
+                    tuple(settings.get('config', {}).get('rank_rewards', DEFAULT_RANK_REWARDS)) == config.rank_rewards):
                 self.best_score = float(settings.get('validation_score', -float('inf')))
         self.started = time.perf_counter()
 
@@ -165,7 +176,7 @@ class TrainingCallback(BaseCallback):
         if self.episodes:
             stats['recent_completed_episodes'] = len(self.episodes)
             stats.update({f'train/{key}': float(np.mean([r[key] for r in self.episodes]))
-                          for key in ('win', 'deal_in', 'net_score', 'rank', 'first_place', 'last_place')
+                          for key in ('win', 'deal_in', 'net_score', 'rank', 'rank_utility', 'first_place', 'last_place')
                           if all(key in r for r in self.episodes)})
         self.history.append(self.emit(stats))
         if iteration % self.config.checkpoint_every == 0 or final:
@@ -182,16 +193,17 @@ class TrainingCallback(BaseCallback):
     def validate(self):
         metadata = {'rules': asdict(self.config.rules), 'hints': self.config.hints, 'training': self.context}
         stats = validate_model(self.model, metadata, blocks=self.config.validation_blocks,
-                               seed=self.config.validation_seed, backend=self.config.backend)
+                               seed=self.config.validation_seed, backend=self.config.backend, workers=self.config.validation_workers)
         event = self.emit({'event': 'validation', 'timesteps': self.model.num_timesteps, **stats})
         self.validations.append(event)
         self.last_validation = self.model.num_timesteps
         # Only PPO-trained checkpoints compete here; the BC-only model is kept
         # separately for a held-out ablation instead of masquerading as RL.
-        if stats['mean_net_score'] > self.best_score:
-            self.best_score = stats['mean_net_score']
+        if validation_objective(stats, self.config) > self.best_score:
+            self.best_score = validation_objective(stats, self.config)
             save_checkpoint(self.model, self.output / 'best.zip', rules=self.config.rules,
-                hints=self.config.hints, training={**self.context, 'validation_score': self.best_score})
+                hints=self.config.hints, training={**self.context, 'validation_score': self.best_score,
+                    'validation_metric': 'rank_utility' if self.config.reward_mode == 'rank' else 'mean_net_score'})
 
     def _on_rollout_start(self):
         if self.model._n_updates:
@@ -209,6 +221,10 @@ def train(output, config=None, *, resume=None):
     torch.set_num_threads(config.torch_threads)
     if resume:
         previous = read_metadata(resume, expected_rules=config.rules)
+        old = previous['training'].get('config', {})
+        if previous['timesteps'] and (old.get('reward_mode', 'score') != config.reward_mode or
+                (config.reward_mode == 'rank' and tuple(old.get('rank_rewards', DEFAULT_RANK_REWARDS)) != config.rank_rewards)):
+            raise ValueError('changing trained reward units requires a zero-step warmstart, not optimizer resume')
         if previous['hints'] != config.hints:
             raise ValueError('cannot change hint features while resuming')
     else:
@@ -227,7 +243,7 @@ def train(output, config=None, *, resume=None):
         backend=config.backend, reward_scale=config.reward_scale, rules=config.rules, hints=config.hints,
         opponent_manifest=output.resolve() / 'selfplay' / 'opponents.json' if config.self_play_probability else None,
         self_play_probability=config.self_play_probability, variant=config.variant, match_length=config.match_length,
-        skip_forced_actions=config.skip_forced_actions)
+        skip_forced_actions=config.skip_forced_actions, reward_mode=config.reward_mode, rank_rewards=config.rank_rewards)
     started = time.perf_counter()
     bc_report = previous['training'].get('imitation') if previous else None
     initial_validation = None
@@ -264,7 +280,7 @@ def train(output, config=None, *, resume=None):
                 training=context, pool_size=config.snapshot_pool_size)
         if config.validation_blocks:
             initial_validation = validate_model(model, {'rules': asdict(config.rules), 'hints': config.hints, 'training': context},
-                blocks=config.validation_blocks, seed=config.validation_seed, backend=config.backend)
+                blocks=config.validation_blocks, seed=config.validation_seed, backend=config.backend, workers=config.validation_workers)
             print(json.dumps({'event': 'initial_validation', **initial_validation}), flush=True)
         callback = TrainingCallback(output, config, context)
         def request_stop(signum, frame):
