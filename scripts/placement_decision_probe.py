@@ -83,16 +83,32 @@ def evaluate(bank,models,output):
     with gzip.open(bank,'rt') as file:data=json.load(file)
     positions=data['records'];agents={label:RLAgent(path,backend='numba',device='cpu') for label,path in models.items()}
     choices={k:[] for k in agents};counts={k:Counter() for k in agents};rows={k:[] for k in agents}
-    rules=next(iter(agents.values())).rules
+    probabilities={k:defaultdict(lambda:[0,0.]) for k in agents}
+    first=next(iter(agents.values()));rules=first.rules
+    if any(a.rules!=rules or a.metadata['hints']!=first.metadata['hints'] for a in agents.values()):
+        raise ValueError('shared probe requires matching rules and feature settings')
     for start in range(0,len(positions),64):
         batch=positions[start:start+64];singles=[observation_batch(x['observation']) for x in batch]
-        features=encode_batch({k:np.concatenate([x[k] for x in singles]) for k in singles[0]},rules=rules,backend='numba')
+        features=encode_batch({k:np.concatenate([x[k] for x in singles]) for k in singles[0]},rules=rules,backend='numba',hints=first.metadata['hints'])
         for label,agent in agents.items():
             indices,_=agent.model.predict(features,action_masks=features['mask'],deterministic=True)
-            for item,index in zip(batch,indices):
+            with torch.no_grad():
+                tensors,_=agent.model.policy.obs_to_tensor(features)
+                probs=agent.model.policy.get_distribution(tensors,action_masks=features['mask']).distribution.probs.cpu().numpy()
+            assert np.isfinite(probs).all() and np.allclose(probs.sum(axis=1),1,atol=1e-5)
+            for item,index,distribution in zip(batch,indices,probs):
                 obs=item['observation'];action=Action.from_dict(obs['legal_actions'][int(index)])
                 own=Counter();_context_choice(obs,action,own);_threat_choice(obs,action,own,'numba')
-                counts[label].update(own);rows[label].append({'id':item['id'],'seed':item['seed'],'counts':dict(own)})
+                soft={}
+                for group,kinds in [('riichi',('riichi',)),('win',('ron','tsumo')),('call',('chi','peng','open_kong'))]:
+                    columns=[j for j,a in enumerate(obs['legal_actions']) if a['kind'] in kinds]
+                    if columns:
+                        probability=float(distribution[columns].sum());soft[group]=probability
+                        accumulator=probabilities[label][item['context']+'_'+group]
+                        accumulator[0]+=1;accumulator[1]+=probability
+                if start==0 and len(choices[label])<4 and agent.act(obs).to_dict()!=action.to_dict():
+                    raise AssertionError('batch probe and single-agent inference disagree')
+                counts[label].update(own);rows[label].append({'id':item['id'],'seed':item['seed'],'counts':dict(own),'action':action.to_dict(),'choice_probabilities':soft})
                 choices[label].append(action.to_dict())
     comparison={}
     labels=list(agents)
@@ -103,6 +119,9 @@ def evaluate(bank,models,output):
                 'by_context':{c:{'different':sum(flag for x,flag in zip(positions,different) if x['context']==c),'positions':sum(x['context']==c for x in positions)} for c in sorted({x['context'] for x in positions})}}
     result={'format':'riichi_shared_position_probe_v1','bank_sha256':hashlib.sha256(Path(bank).read_bytes()).hexdigest(),
         'positions':len(positions),'seed_range':data['seed_range'],'selection':data['selection'],
+        'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'batch_single_agent_checks_per_model':4,
+        'probability_note':'Post-hoc diagnostic on the fixed bank: mean masked policy mass for each available action group, not match action rates.',
+        'choice_probabilities':{label:{key:{'positions':v[0],'mean_probability':v[1]/v[0]} for key,v in groups.items()} for label,groups in probabilities.items()},
         'models':{k:{'sha256':a.metadata['model_sha256'],'timesteps':a.metadata['timesteps']} for k,a in agents.items()},
         'counts':{k:dict(v) for k,v in counts.items()},'action_disagreement':comparison,'decision_records':rows}
     Path(output).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k!='decision_records'},indent=2))

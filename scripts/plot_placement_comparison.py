@@ -27,7 +27,8 @@ def bars(ax,groups,keys,labels,title):
             value*=100;ax.bar(position,value,width,color=COLORS[mode],label=LABELS[mode] if j==0 else None)
             if ci is not None:
                 ax.errorbar(position,value,yerr=np.array([[max(0,value-100*ci[0])],[max(0,100*ci[1]-value)]]),color='#1f2925',capsize=3,linewidth=1)
-            ax.text(position,value+1.5,f'{value:.1f}',ha='center',fontsize=8)
+            label_height=max(value,100*ci[1]) if ci is not None else value
+            ax.text(position,label_height+1,f'{value:.1f}',ha='center',fontsize=8)
     ax.set_xticks(x,labels);ax.set_title(title,loc='left',fontweight='bold',fontsize=11)
     ax.set_ylim(0,min(105,max(15,ax.get_ylim()[1]*1.12)))
 
@@ -50,10 +51,10 @@ def main():
     bars(axes[1,2],groups,['early_shanten_backoff','late_lead_shanten_backoff','late_last_shanten_backoff'],['Early','Late leader','Late last'],'Shanten sacrificed for genbutsu (%)')
     for ax in axes.flat:
         ax.spines[['top','right']].set_visible(False);ax.grid(axis='y',alpha=.15);ax.set_axisbelow(True);ax.tick_params(axis='x',labelsize=9)
-    axes[0,1].legend(frameon=False,fontsize=9,loc='upper right')
+    axes[0,1].legend(frameon=False,fontsize=9,loc='upper left')
     fig.suptitle('Points versus final placement — fixed-budget South matches',fontsize=17,fontweight='bold')
     games=groups['rank']['games'];seeds=len(data['experiment']['seeds']);step=data['experiment']['runs'][0]['target_steps']
-    fig.supxlabel(f'{seeds} fitted training seeds / reward; {step:,} decisions / model. {games:,} test matches / reward. Bars and dots: 95% test-wall block bootstrap.\nLate = South 3 onward. Defensive choices require a common genbutsu, at least two discard kinds, and not already being in riichi. Conditional rates use encountered states.',fontsize=9)
+    fig.supxlabel(f'{seeds} fitted training seeds / reward; {step:,} decisions / model. {games:,} test matches / reward. Bars and dots: 95% test-wall block bootstrap.\nLate = South 3 onward. Defensive rates condition on actually discarding, a common genbutsu, at least two discard kinds, and not already being in riichi.\nZero observed backoffs and zero-width bootstrap intervals do not establish a zero true rate.',fontsize=9)
     output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True);fig.savefig(output,dpi=170,facecolor='white');plt.close(fig);print(output)
 
 if __name__=='__main__':main()
