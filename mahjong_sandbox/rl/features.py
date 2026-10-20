@@ -39,6 +39,10 @@ def _hist(tiles):
 
 
 def encode_batch(batch, *, rules=None, backend='auto', hints=True):
+    from ..riichi_model import RiichiConfig
+    if isinstance(rules, RiichiConfig):
+        from .riichi_features import encode_batch as encode_riichi
+        return encode_riichi(batch, rules=rules, backend=backend, hints=hints)
     rules = rules or RuleConfig()
     n = len(batch['meta'])
     players = batch['meta'][:, 1].astype(np.int64)
@@ -143,8 +147,8 @@ def _candidate_hints(batch, mask, rules, backend):
 
 
 def observation_batch(observation):
-    if observation.get('variant') != 'sichuan':
-        raise ValueError('the RL feature schema supports Sichuan only')
+    if observation.get('variant') not in ('sichuan', 'riichi'):
+        raise ValueError('unknown RL observation variant')
     b = allocate(1)
     actions = tuple(Action.from_dict(a) for a in observation['legal_actions'])
     encode_observation(observation, actions, b)

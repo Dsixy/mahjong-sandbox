@@ -6,30 +6,35 @@ from stable_baselines3.common.vec_env import VecEnv
 from ..batch import BatchConfig, SyncBatchEnv, MAX_ACTIONS
 from ..parallel import ProcessBatchEnv
 from ..model import RuleConfig
+from ..riichi_model import RiichiConfig
 from .features import STATE_DIM, HINT_DIM, encode_batch
+from .schema import feature_module
 
 
-def observation_space():
+def observation_space(rules=None):
+    schema = feature_module(rules or RuleConfig())
     return spaces.Dict({
-        'state': spaces.Box(-np.inf, np.inf, (STATE_DIM,), np.float32),
+        'state': spaces.Box(-np.inf, np.inf, (schema.STATE_DIM,), np.float32),
         'candidates': spaces.Box(-1, 135, (MAX_ACTIONS, 8), np.int16),
-        'hints': spaces.Box(-np.inf, np.inf, (MAX_ACTIONS, HINT_DIM), np.float32),
+        'hints': spaces.Box(-np.inf, np.inf, (MAX_ACTIONS, schema.HINT_DIM), np.float32),
         'mask': spaces.Box(0, 1, (MAX_ACTIONS,), np.bool_),
     })
 
 
-class SichuanVecEnv(VecEnv):
+class MahjongVecEnv(VecEnv):
     def __init__(self, n=32, workers=0, *, seed=0, opponents=('greedy',),
                  backend='auto', reward_scale=32., rules=None, hints=True, rotate_seats=True,
-                 opponent_manifest=None, self_play_probability=0.):
+                 opponent_manifest=None, self_play_probability=0., variant='sichuan', match_length='hand',
+                 skip_forced_actions=None):
         if type(n) is not int or n < 1 or type(workers) is not int or not 0 <= workers <= n:
             raise ValueError('positive environment count and workers in 0..N required')
         if not np.isfinite(reward_scale) or reward_scale <= 0:
             raise ValueError('reward_scale must be finite and positive')
-        self.config = BatchConfig(variant='sichuan', seed=seed, backend=backend,
-            rules=rules or RuleConfig(), rotate_seats=rotate_seats, opponent_pool=tuple(opponents),
+        self.config = BatchConfig(variant=variant, seed=seed, backend=backend,
+            rules=rules or (RiichiConfig() if variant == 'riichi' else RuleConfig()), rotate_seats=rotate_seats, opponent_pool=tuple(opponents),
             opponent_manifest=str(opponent_manifest) if opponent_manifest else None,
-            self_play_probability=self_play_probability)
+            self_play_probability=self_play_probability, match_length=match_length,
+            skip_forced_actions=(variant == 'riichi') if skip_forced_actions is None else skip_forced_actions)
         if not opponents:
             raise ValueError('at least one opponent policy required')
         self.workers, self.reward_scale, self.hints = workers, reward_scale, hints
@@ -38,9 +43,10 @@ class SichuanVecEnv(VecEnv):
         self.episode_returns = np.zeros(n)
         self.episode_lengths = np.zeros(n, np.int64)
         self.initial_scores = np.zeros((n, 4), np.int64)
+        self.prefix_rewards = np.zeros(n)
         self.completed_episodes = 0
         self.render_mode = None
-        super().__init__(n, observation_space(), spaces.Discrete(MAX_ACTIONS))
+        super().__init__(n, observation_space(self.config.rules), spaces.Discrete(MAX_ACTIONS))
 
     def _encode(self, batch):
         return encode_batch(batch, rules=self.config.rules, backend=self.config.backend, hints=self.hints)
@@ -59,6 +65,10 @@ class SichuanVecEnv(VecEnv):
             self.raw = self.core.reset()
         self.pending = None
         self.initial_scores = self.raw['scores'].copy()
+        if self.config.match_length != 'hand':
+            self.initial_scores[:] = self.config.rules.initial_scores
+            players = self.raw['meta'][:, 1].astype(int)
+            self.prefix_rewards = (self.raw['scores'] - self.initial_scores)[np.arange(self.num_envs), players].astype(float)
         self.episode_returns.fill(0)
         self.episode_lengths.fill(0)
         self.features = self._encode(self.raw)
@@ -88,7 +98,8 @@ class SichuanVecEnv(VecEnv):
         self.pending = None
         if terminal['truncated'].any():
             raise RuntimeError('unexpected rule-engine truncation')
-        rewards = terminal['rewards'][np.arange(self.num_envs), players] / self.reward_scale
+        rewards = (terminal['rewards'][np.arange(self.num_envs), players] + self.prefix_rewards) / self.reward_scale
+        self.prefix_rewards.fill(0)
         self.episode_returns += rewards
         self.episode_lengths += 1
         done = terminal['terminated'].copy()
@@ -101,15 +112,24 @@ class SichuanVecEnv(VecEnv):
                 net = int(terminal['scores'][i, players[i]] - self.initial_scores[i, players[i]])
                 if not np.isclose(self.episode_returns[i] * self.reward_scale, net, atol=1e-4):
                     raise AssertionError('training reward lost part of the blood-battle settlement')
+                metrics = {'net_score': net, 'seat': int(players[i])}
+                if self.config.match_length != 'hand':
+                    ranking = sorted(range(4), key=lambda p: (-int(terminal['scores'][i, p]), (p - self.config.rules.dealer) % 4))
+                    rank = ranking.index(int(players[i])) + 1
+                    metrics.update(rank=rank, first_place=int(rank == 1), last_place=int(rank == 4))
+                else:
+                    metrics.update(win=int(np.any(wins[:, 0] == players[i])), deal_in=int(np.any(wins[:, 1] == players[i])))
                 infos[i] = {'terminal_observation': {k: v[local].copy() for k, v in final_features.items()},
                             'TimeLimit.truncated': False,
                             'episode': {'r': float(self.episode_returns[i]), 'l': int(self.episode_lengths[i])},
-                            'metrics': {'win': int(np.any(wins[:, 0] == players[i])),
-                                        'deal_in': int(np.any(wins[:, 1] == players[i])), 'net_score': net,
-                                        'seat': int(players[i])}}
+                            'metrics': metrics}
             self.completed_episodes += len(indices)
             self.raw = self.core.reset_done()
             self.initial_scores[indices] = self.raw['scores'][indices]
+            if self.config.match_length != 'hand':
+                self.initial_scores[indices] = self.config.rules.initial_scores
+                next_players = self.raw['meta'][indices, 1].astype(int)
+                self.prefix_rewards[indices] = (self.raw['scores'][indices] - self.initial_scores[indices])[np.arange(len(indices)), next_players]
             self.episode_returns[indices] = 0
             self.episode_lengths[indices] = 0
         else:
@@ -142,3 +162,13 @@ class SichuanVecEnv(VecEnv):
         if self.core is not None:
             self.core.close()
             self.core = None
+
+
+SichuanVecEnv = MahjongVecEnv
+
+
+class RiichiVecEnv(MahjongVecEnv):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('variant', 'riichi')
+        kwargs.setdefault('reward_scale', 10000.)
+        super().__init__(*args, **kwargs)

@@ -66,6 +66,9 @@ def summarize(rows, *, seed=0):
 
 
 def validate_model(model, metadata, *, blocks=8, seed=100000, backend='auto'):
+    if metadata['rules']['rule_version'] == 'riichi_4p_v1':
+        from .riichi_evaluate import validate_model as validate_riichi
+        return validate_riichi(model, metadata, blocks=blocks, seed=seed, backend=backend)
     agent = RLAgent(model=model, metadata=metadata, backend=backend)
     rows = [play_game(seed + b, seat, 'rl', 'greedy', agents={'rl': agent}, rules=agent.rules, backend=backend)
             for b in range(blocks) for seat in range(4)]
@@ -90,6 +93,11 @@ def evaluate_models(model, *, baseline_model=None, opponents=('greedy',), baseli
             raise ValueError('baseline model label must be unique')
         models[baseline_label] = str(model_path(baseline_model).resolve())
     metadata = {k: read_metadata(p) for k, p in models.items()}
+    if metadata['rl']['rules']['rule_version'] == 'riichi_4p_v1':
+        from .riichi_evaluate import evaluate_models as evaluate_riichi
+        return evaluate_riichi(model, baseline_model=baseline_model, opponents=opponents, baselines=baselines,
+            blocks=blocks, seed=seed, workers=workers, backend=backend, deterministic=deterministic,
+            include_games=include_games, device=device, baseline_label=baseline_label)
     rules = RuleConfig(**metadata['rl']['rules'])
     for p in models.values():
         read_metadata(p, expected_rules=rules)

@@ -5,9 +5,10 @@ import numpy as np
 import torch
 from ..batch import allocate, encode_observation, derived_seed
 from ..bots import make_bot
-from ..fast import FastEngine, RuntimeOptions
+from ..fast import FastEngine, FastRiichiEngine, RuntimeOptions
 from ..model import Phase
 from .features import canonical_mask, canonical_index, encode_batch
+from .schema import variant_of, feature_module
 
 
 def collect_demonstrations(samples, *, seed=1234, rules=None, backend='auto', hints=True):
@@ -16,10 +17,12 @@ def collect_demonstrations(samples, *, seed=1234, rules=None, backend='auto', hi
     blocks, labels, phases = [], [], Counter()
     pending, pending_labels = [], []
     hands, commands = 0, 0
+    variant = variant_of(rules)
+    schema = feature_module(rules)
     while len(labels) + len(pending_labels) < samples:
-        engine = FastEngine(rules, seed=derived_seed(seed, hands, 0),
+        engine = (FastRiichiEngine if variant == 'riichi' else FastEngine)(rules, seed=derived_seed(seed, hands, 0),
                             runtime=RuntimeOptions(operator_backend=backend))
-        bots = [make_bot('greedy', variant='sichuan', seed=derived_seed(seed, hands, 0, p + 1),
+        bots = [make_bot('greedy', variant=variant, seed=derived_seed(seed, hands, 0, p + 1),
                          backend=backend) for p in range(4)]
         while engine.state.phase != Phase.TERMINAL:
             p = engine.next_player()
@@ -28,9 +31,9 @@ def collect_demonstrations(samples, *, seed=1234, rules=None, backend='auto', hi
             raw = allocate(1)
             encode_observation(obs, engine.legal_actions(p), raw)
             # Forced passes convey no policy-learning signal; keep branch decisions.
-            if canonical_mask(raw).sum() > 1:
+            if schema.canonical_mask(raw).sum() > 1:
                 pending.append(raw)
-                pending_labels.append(canonical_index(raw, action))
+                pending_labels.append(schema.canonical_index(raw, action))
                 phases[obs['phase']] += 1
                 if len(pending) >= 128 or len(labels) + len(pending) == samples:
                     combined = {k: np.concatenate([r[k] for r in pending]) for k in raw}

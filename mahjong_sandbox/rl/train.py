@@ -11,11 +11,13 @@ from sb3_contrib import MaskablePPO
 from stable_baselines3.common.callbacks import BaseCallback
 from ..bots import POLICIES
 from ..model import RuleConfig
+from ..riichi_model import RiichiConfig
 from .checkpoint import load_checkpoint, read_metadata, save_checkpoint, resolve_device
-from .env import SichuanVecEnv
+from .env import MahjongVecEnv
 from .evaluate import validate_model
 from .imitation import pretrain
 from .policy import MahjongPolicy
+from .schema import rules_from_values
 
 
 @dataclass(frozen=True)
@@ -34,7 +36,7 @@ class TrainConfig:
     value_coef: float = .5
     max_grad_norm: float = .5
     target_kl: float = .03
-    reward_scale: float = 32.
+    reward_scale: float | None = None
     hidden: int = 128
     seed: int = 42
     backend: str = 'auto'
@@ -51,11 +53,26 @@ class TrainConfig:
     self_play_probability: float = 0.
     snapshot_every: int = 8
     snapshot_pool_size: int = 4
-    rules: RuleConfig = field(default_factory=RuleConfig)
+    variant: str = 'sichuan'
+    match_length: str = 'hand'
+    skip_forced_actions: bool | None = None
+    rules: RuleConfig | RiichiConfig | None = None
 
     def __post_init__(self):
+        if self.variant not in ('sichuan', 'riichi'):
+            raise ValueError('unknown training variant')
+        if self.reward_scale is None:
+            object.__setattr__(self, 'reward_scale', 10000. if self.variant == 'riichi' else 32.)
+        if self.skip_forced_actions is None:
+            object.__setattr__(self, 'skip_forced_actions', self.variant == 'riichi')
+        if type(self.skip_forced_actions) is not bool:
+            raise ValueError('skip_forced_actions must be boolean')
+        if self.match_length not in ('hand', 'east', 'south') or (self.variant != 'riichi' and self.match_length != 'hand'):
+            raise ValueError('match training requires riichi')
+        if self.rules is None:
+            object.__setattr__(self, 'rules', RiichiConfig() if self.variant == 'riichi' else RuleConfig())
         if isinstance(self.rules, dict):
-            object.__setattr__(self, 'rules', RuleConfig(**self.rules))
+            object.__setattr__(self, 'rules', rules_from_values(self.rules))
         if isinstance(self.opponents, list):
             object.__setattr__(self, 'opponents', tuple(self.opponents))
         for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every', 'snapshot_every', 'snapshot_pool_size'):
@@ -82,8 +99,8 @@ class TrainConfig:
             raise ValueError('known opponent policies required')
         if self.backend not in ('auto', 'python', 'numba') or type(self.hints) is not bool:
             raise ValueError('invalid operator or feature settings')
-        if not isinstance(self.rules, RuleConfig):
-            raise ValueError('Sichuan rules required')
+        if not isinstance(self.rules, RiichiConfig if self.variant == 'riichi' else RuleConfig):
+            raise ValueError('training variant and rules do not match')
         if not np.isfinite(self.self_play_probability) or not 0 <= self.self_play_probability <= 1:
             raise ValueError('self_play_probability must be in [0,1]')
 
@@ -147,7 +164,9 @@ class TrainingCallback(BaseCallback):
                 stats[key] = numeric if np.isfinite(numeric) else None
         if self.episodes:
             stats['recent_completed_episodes'] = len(self.episodes)
-            stats.update({f'train/{key}': float(np.mean([r[key] for r in self.episodes])) for key in ('win', 'deal_in', 'net_score')})
+            stats.update({f'train/{key}': float(np.mean([r[key] for r in self.episodes]))
+                          for key in ('win', 'deal_in', 'net_score', 'rank', 'first_place', 'last_place')
+                          if all(key in r for r in self.episodes)})
         self.history.append(self.emit(stats))
         if iteration % self.config.checkpoint_every == 0 or final:
             save_checkpoint(self.model, self.output / 'checkpoints' / f'step_{steps}.zip',
@@ -161,7 +180,7 @@ class TrainingCallback(BaseCallback):
             self.validate()
 
     def validate(self):
-        metadata = {'rules': asdict(self.config.rules), 'hints': self.config.hints}
+        metadata = {'rules': asdict(self.config.rules), 'hints': self.config.hints, 'training': self.context}
         stats = validate_model(self.model, metadata, blocks=self.config.validation_blocks,
                                seed=self.config.validation_seed, backend=self.config.backend)
         event = self.emit({'event': 'validation', 'timesteps': self.model.num_timesteps, **stats})
@@ -204,10 +223,11 @@ def train(output, config=None, *, resume=None):
     # Resume restores policy, value network and Adam state. New games use a new
     # seed stream; in-flight walls/trajectories are intentionally not restored.
     env_seed = (config.seed + (previous['timesteps'] + 1000003 if previous else 0)) % 2**32
-    env = SichuanVecEnv(config.n_envs, config.workers, seed=env_seed, opponents=config.opponents,
+    env = MahjongVecEnv(config.n_envs, config.workers, seed=env_seed, opponents=config.opponents,
         backend=config.backend, reward_scale=config.reward_scale, rules=config.rules, hints=config.hints,
         opponent_manifest=output.resolve() / 'selfplay' / 'opponents.json' if config.self_play_probability else None,
-        self_play_probability=config.self_play_probability)
+        self_play_probability=config.self_play_probability, variant=config.variant, match_length=config.match_length,
+        skip_forced_actions=config.skip_forced_actions)
     started = time.perf_counter()
     bc_report = previous['training'].get('imitation') if previous else None
     initial_validation = None
@@ -223,7 +243,7 @@ def train(output, config=None, *, resume=None):
             start_steps = model.num_timesteps
         else:
             model = MaskablePPO(MahjongPolicy, env, seed=config.seed, device=device,
-                policy_kwargs={'hidden': config.hidden}, verbose=0, **hyperparameters)
+                policy_kwargs={'hidden': config.hidden, 'variant': config.variant}, verbose=0, **hyperparameters)
             start_steps = 0
         context = {'config': asdict(config), 'validation_seed': config.validation_seed,
                    'validation_blocks': config.validation_blocks, 'env_seed': env_seed,
@@ -243,7 +263,7 @@ def train(output, config=None, *, resume=None):
             publish_snapshot(model, output / 'selfplay', rules=config.rules, hints=config.hints,
                 training=context, pool_size=config.snapshot_pool_size)
         if config.validation_blocks:
-            initial_validation = validate_model(model, {'rules': asdict(config.rules), 'hints': config.hints},
+            initial_validation = validate_model(model, {'rules': asdict(config.rules), 'hints': config.hints, 'training': context},
                 blocks=config.validation_blocks, seed=config.validation_seed, backend=config.backend)
             print(json.dumps({'event': 'initial_validation', **initial_validation}), flush=True)
         callback = TrainingCallback(output, config, context)

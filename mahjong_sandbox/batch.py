@@ -4,6 +4,7 @@ Rules remain authoritative engines. Buffers are a struct of arrays, never a
 projection of the wall or opponents' private state. No implicit autoreset.
 """
 from dataclasses import dataclass
+from functools import partial
 import hashlib
 from .bots import make_bot, known_counts
 from .fast import FastEngine, FastRiichiEngine, RuntimeOptions
@@ -152,10 +153,16 @@ class BatchConfig:
     opponent_pool: tuple[str, ...] = ()
     opponent_manifest: str | None = None
     self_play_probability: float = 0.
+    match_length: str = 'hand'
+    skip_forced_actions: bool = False
 
     def __post_init__(self):
         if self.variant not in ('sichuan', 'riichi') or type(self.seed) is not int:
             raise ValueError('invalid variant or seed')
+        if self.match_length not in ('hand', 'east', 'south') or (self.variant != 'riichi' and self.match_length != 'hand'):
+            raise ValueError('match episodes require riichi and hand/east/south length')
+        if type(self.skip_forced_actions) is not bool:
+            raise ValueError('skip_forced_actions must be boolean')
         if self.controlled_player is not None and (type(self.controlled_player) is not int or not 0 <= self.controlled_player < 4):
             raise ValueError('controlled_player must be a seat or None for self play')
         from .bots import POLICIES
@@ -168,8 +175,8 @@ class BatchConfig:
         if not 0 <= self.self_play_probability <= 1:
             raise ValueError('self_play_probability must be in [0,1]')
         if self.opponent_manifest is not None and (not isinstance(self.opponent_manifest, str) or
-                self.variant != 'sichuan' or self.controlled_player is None):
-            raise ValueError('snapshot opponents require a Sichuan learner and a manifest path')
+                self.controlled_player is None):
+            raise ValueError('snapshot opponents require a learner and a manifest path')
         RuntimeOptions(validate_every=self.validate_every, operator_backend=self.backend)
         expected = RiichiConfig if self.variant == 'riichi' else RuleConfig
         if self.rules is not None and not isinstance(self.rules, expected):
@@ -190,6 +197,7 @@ class SyncBatchEnv:
         self.n, self.config, self.lane_offset = n, config or BatchConfig(), lane_offset
         self.buffers = allocate(n) if buffers is None else buffers
         self.engines = [None] * n
+        self.matches = [None] * n
         self.agents = [None] * n
         self.menus = [()] * n
         self.players = [0] * n
@@ -200,7 +208,8 @@ class SyncBatchEnv:
         self.snapshot_pool = None
         if self.config.opponent_manifest:
             from .rl.selfplay import SnapshotPool
-            self.snapshot_pool = SnapshotPool(self.config.opponent_manifest, rules=self.config.rules or RuleConfig(),
+            default_rules = RiichiConfig() if self.config.variant == 'riichi' else RuleConfig()
+            self.snapshot_pool = SnapshotPool(self.config.opponent_manifest, rules=self.config.rules or default_rules,
                 backend=self.config.backend, probability=self.config.self_play_probability)
         self._reset(range(n))
 
@@ -209,15 +218,30 @@ class SyncBatchEnv:
             raise RuntimeError('environment is closed')
 
     def _advance(self, i):
-        engine = self.engines[i]
-        while engine.state.phase != Phase.TERMINAL:
-            p = engine.next_player()
-            if self.learners[i] is None or p == self.learners[i]:
-                self.players[i] = p
-                return
-            if engine.command_count >= 2000:
-                raise RuntimeError('nonterminating rules loop')
-            engine.submit(p, self.agents[i][p].act(engine.observe(p)), engine.state.decision_id)
+        while True:
+            engine = self.engines[i]
+            while engine.state.phase != Phase.TERMINAL:
+                p = engine.next_player()
+                if self.learners[i] is None or p == self.learners[i]:
+                    forced = engine.legal_actions(p) if self.config.skip_forced_actions else ()
+                    if len(forced) != 1:
+                        self.players[i] = p
+                        return
+                    action = forced[0]
+                else:
+                    action = self.agents[i][p].act(engine.observe(p))
+                if engine.command_count >= 2000:
+                    raise RuntimeError('nonterminating rules loop')
+                engine.submit(p, action, engine.state.decision_id)
+            match = self.matches[i]
+            if match is None:
+                break
+            match.complete_hand()
+            if match.ended:
+                break
+            if len(match.rounds) >= 128:
+                raise RuntimeError('match exceeded 128 hands')
+            self.engines[i] = match.next_hand()
         self.players[i] = self.learners[i] if self.learners[i] is not None else self.players[i]
 
     def _reset(self, indices):
@@ -231,8 +255,15 @@ class SyncBatchEnv:
             seed = derived_seed(self.config.seed, lane, self.episodes[i])
             if self.config.rotate_seats:
                 self.learners[i] = (self.config.controlled_player + lane + self.episodes[i]) % 4
-            self.engines[i] = cls(self.config.rules, seed=seed, runtime=RuntimeOptions(
+            factory = partial(cls, runtime=RuntimeOptions(
                 validate_every=self.config.validate_every, operator_backend=self.config.backend))
+            if self.config.match_length != 'hand':
+                from .riichi_match import RiichiMatch, MatchConfig
+                self.matches[i] = RiichiMatch(MatchConfig(length=self.config.match_length),
+                    self.config.rules, seed, engine_factory=factory, record=False)
+                self.engines[i] = self.matches[i].engine
+            else:
+                self.engines[i] = factory(self.config.rules, seed=seed)
             self.agents[i] = [make_bot(
                 self.config.opponent_pool[derived_seed(self.config.seed, lane, self.episodes[i], p + 11) % len(self.config.opponent_pool)]
                 if self.config.opponent_pool else self.config.opponent_policy, variant=self.config.variant,
@@ -252,6 +283,8 @@ class SyncBatchEnv:
         obs = engine.observe(p)
         self.menus[i] = engine.legal_actions(p)
         encode_observation(obs, self.menus[i], b, i)
+        if self.matches[i] is not None and self.matches[i].ended:
+            b['scores'][i] = self.matches[i].final_scores
         b['tokens'][i] = self.episodes[i], self.tickets[i]
         b['decision_ids'][i] = engine.state.decision_id
         b['terminated'][i] = engine.state.phase == Phase.TERMINAL
@@ -275,7 +308,7 @@ class SyncBatchEnv:
             self._advance(i)
             self.tickets[i] += 1
             self._encode(i)
-            self.buffers['rewards'][i] = [now - old for now, old in zip(engine.state.scores, before)]
+            self.buffers['rewards'][i] = [now - old for now, old in zip(self.buffers['scores'][i], before)]
 
     def step(self, indices, tokens):
         self._check_open()
@@ -305,6 +338,7 @@ class SyncBatchEnv:
     def close(self):
         self.closed = True
         self.engines.clear()
+        self.matches.clear()
         self.agents.clear()
 
     def __enter__(self):

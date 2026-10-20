@@ -10,6 +10,7 @@ import uuid
 from ..batch import ACTION_KINDS
 from ..model import RuleConfig
 from .features import FEATURE_VERSION, STATE_DIM, HINT_DIM
+from .schema import feature_module, rules_from_values, variant_of
 
 CHECKPOINT_VERSION = 'mahjong_maskable_ppo_v1'
 
@@ -40,6 +41,12 @@ def save_checkpoint(model, path, *, rules=None, hints=True, training=None):
     import torch
     if not all(bool(torch.isfinite(p).all()) for p in model.policy.parameters()):
         raise FloatingPointError('refusing to save nonfinite model parameters')
+    rules = rules or RuleConfig()
+    schema = feature_module(rules)
+    if (model.observation_space['state'].shape != (schema.STATE_DIM,) or
+            model.observation_space['hints'].shape[-1] != schema.HINT_DIM or
+            getattr(model.policy, 'variant', 'sichuan') != variant_of(rules)):
+        raise ValueError('model architecture does not match checkpoint rules/features')
     path = model_path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(path.stem + '.' + uuid.uuid4().hex + '.zip')
@@ -48,9 +55,9 @@ def save_checkpoint(model, path, *, rules=None, hints=True, training=None):
     try:
         model.save(temporary)
         metadata = {'format': CHECKPOINT_VERSION, 'created_at_utc': datetime.now(timezone.utc).isoformat(),
-            'algorithm': 'sb3-contrib MaskablePPO', 'feature_version': FEATURE_VERSION,
-            'state_dim': STATE_DIM, 'hint_dim': HINT_DIM, 'action_kinds': list(ACTION_KINDS),
-            'rules': asdict(rules or RuleConfig()), 'hints': bool(hints),
+            'algorithm': 'sb3-contrib MaskablePPO', 'feature_version': schema.FEATURE_VERSION,
+            'state_dim': schema.STATE_DIM, 'hint_dim': schema.HINT_DIM, 'action_kinds': list(ACTION_KINDS),
+            'rules': asdict(rules), 'hints': bool(hints),
             'model_sha256': checksum(temporary), 'source_sha256': source_fingerprint(),
             'timesteps': int(model.num_timesteps), 'optimizer_updates': int(model._n_updates),
             'versions': {name: version(name) for name in ('torch', 'numpy', 'stable_baselines3', 'sb3-contrib')},
@@ -67,11 +74,12 @@ def save_checkpoint(model, path, *, rules=None, hints=True, training=None):
 def read_metadata(path, *, expected_rules=None):
     path = model_path(path)
     metadata = json.loads(path.with_suffix('.json').read_text())
-    expected = (CHECKPOINT_VERSION, FEATURE_VERSION, STATE_DIM, HINT_DIM, list(ACTION_KINDS))
+    rules = rules_from_values(metadata['rules'])
+    schema = feature_module(rules)
+    expected = (CHECKPOINT_VERSION, schema.FEATURE_VERSION, schema.STATE_DIM, schema.HINT_DIM, list(ACTION_KINDS))
     actual = tuple(metadata.get(k) for k in ('format', 'feature_version', 'state_dim', 'hint_dim', 'action_kinds'))
     if actual != expected:
         raise ValueError('incompatible checkpoint/feature/action schema')
-    rules = RuleConfig(**metadata['rules'])
     if expected_rules is not None and asdict(expected_rules) != asdict(rules):
         raise ValueError('checkpoint rules differ from evaluation/training rules')
     if metadata['model_sha256'] != checksum(path):

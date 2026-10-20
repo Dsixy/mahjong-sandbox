@@ -58,10 +58,12 @@ def main(argv=None) -> int:
     batches.add_argument('--self-play', action='store_true')
     for item in (evaluation, performance, training, batches):
         item.add_argument('--output', type=Path)
-    rl_train = subparsers.add_parser('rl-train', help='train/resume Sichuan MaskablePPO on CPU or CUDA')
+    rl_train = subparsers.add_parser('rl-train', help='train/resume Mahjong MaskablePPO on CPU or CUDA')
     rl_train.add_argument('--output', type=Path, required=True)
     rl_train.add_argument('--config', type=Path)
     rl_train.add_argument('--resume', type=Path)
+    rl_train.add_argument('--variant', choices=('sichuan', 'riichi'))
+    rl_train.add_argument('--match-length', choices=('hand', 'east', 'south'))
     for flag, dest in (('timesteps', 'total_timesteps'), ('boards', 'n_envs'), ('workers', 'workers'),
                        ('rollout-steps', 'rollout_steps'), ('batch-size', 'batch_size'), ('epochs', 'epochs'),
                        ('seed', 'seed'), ('torch-threads', 'torch_threads'), ('hidden', 'hidden'),
@@ -78,7 +80,7 @@ def main(argv=None) -> int:
     rl_train.add_argument('--device')
     rl_train.add_argument('--backend', choices=('auto', 'python', 'numba'))
     rl_train.add_argument('--no-hints', dest='hints', action='store_false', default=None)
-    rl_eval = subparsers.add_parser('rl-evaluate', help='compare a saved Sichuan model with observation-only bots')
+    rl_eval = subparsers.add_parser('rl-evaluate', help='compare a saved Mahjong model with observation-only bots')
     rl_eval.add_argument('--model', type=Path, required=True)
     rl_eval.add_argument('--baseline-model', type=Path)
     rl_eval.add_argument('--opponents', nargs='+', default=('greedy',), choices=('random', 'win-first', 'greedy', 'defensive', 'value'))

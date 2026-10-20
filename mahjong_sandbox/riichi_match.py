@@ -27,13 +27,14 @@ class MatchConfig:
 
 
 class RiichiMatch:
-    def __init__(self, config=None, rules=None, seed=0):
+    def __init__(self, config=None, rules=None, seed=0, *, engine_factory=RiichiEngine, record=True):
         self.config, self.rules, self.seed = config or MatchConfig(), rules or RiichiConfig(), seed
         if not isinstance(self.config, MatchConfig) or not isinstance(self.rules, RiichiConfig):
             raise ValueError('match config and riichi rules required')
         if self.rules.round_wind != 27 or self.rules.hand_number != 1:
             raise ValueError('a match must start at East 1')
-        self.engine = RiichiEngine(self.rules, seed)
+        self.engine_factory, self.record = engine_factory, record
+        self.engine = self.engine_factory(self.rules, seed)
         self.rounds = []
         self.ended = False
         self.final_scores = None
@@ -49,7 +50,7 @@ class RiichiMatch:
         if self.engine.state.phase != Phase.TERMINAL:
             raise ValueError('current hand has not ended')
         if self._resolved: return self.summary()
-        self.rounds.append(export_replay(self.engine))
+        self.rounds.append(export_replay(self.engine) if self.record else None)
         self._resolved = True
         s, r, c = self.engine.state, self.engine.config, self.config
         leader = self.summary()['ranking'][0]
@@ -88,11 +89,13 @@ class RiichiMatch:
         rules = replace(r, dealer=r.dealer if continuation else (r.dealer+1)%4,
                         round_wind=wind, hand_number=number, honba=r.honba+1 if continuation or not win else 0,
                         riichi_sticks=s.riichi_sticks, initial_scores=tuple(s.scores))
-        self.engine = RiichiEngine(rules, self.seed + len(self.rounds))
+        self.engine = self.engine_factory(rules, self.seed + len(self.rounds))
         self._resolved = False
         return self.engine
 
     def export(self):
+        if not self.record:
+            raise ValueError('match replay requires record mode')
         if not self.ended: raise ValueError('finish the match before exporting it')
         return deepcopy({'format_version': 2, 'kind': 'riichi_match', 'config': asdict(self.config),
                 'rules': asdict(self.rules), 'seed': self.seed, 'rounds': self.rounds,

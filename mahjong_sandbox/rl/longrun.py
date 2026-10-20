@@ -14,7 +14,9 @@ from .train import TrainConfig, train
 def newest_checkpoint(output, initial, *, rules):
     """A torn latest pair cannot hide an earlier immutable completed update."""
     output = Path(output)
-    candidates = [Path(initial), output / 'latest.zip', *output.glob('checkpoints/step_*.zip')]
+    candidates = ([Path(initial)] if initial else []) + [output / 'latest.zip', *output.glob('checkpoints/step_*.zip')]
+    if initial is None:
+        candidates.append(output / 'warmstart.zip')
     ranked = []
     for path in candidates:
         try:
@@ -27,6 +29,8 @@ def newest_checkpoint(output, initial, *, rules):
             return Path(path), read_metadata(path, expected_rules=rules)
         except (OSError, ValueError, KeyError):
             print(json.dumps({'event': 'invalid_checkpoint_skipped', 'path': path}), flush=True)
+    if initial is None and not any(p.exists() or p.with_suffix('.json').exists() for p in candidates):
+        return None, {'timesteps': 0}
     raise ValueError('no intact compatible checkpoint to resume')
 
 
@@ -84,7 +88,7 @@ def run(config, output, initial, *, additional_steps, evaluate=True, eval_blocks
     output.mkdir(parents=True, exist_ok=True)
     with (output / '.experiment.lock').open('w') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        initial_metadata = read_metadata(initial, expected_rules=config.rules)
+        initial_metadata = read_metadata(initial, expected_rules=config.rules) if initial else {'timesteps': 0, 'model_sha256': None}
         quantum = config.n_envs * config.rollout_steps
         target = initial_metadata['timesteps'] + ((additional_steps + quantum - 1) // quantum) * quantum
         experiment = {'version': 1, 'initial_sha256': initial_metadata['model_sha256'],
@@ -110,8 +114,10 @@ def run(config, output, initial, *, additional_steps, evaluate=True, eval_blocks
         if evaluate and not (output / 'evaluation.json').exists():
             from .evaluate import evaluate_models
             # Fixed held-out walls; best is chosen on an entirely different seed set.
-            stats = evaluate_models(output / 'best.zip', baseline_model=initial,
-                opponents=('greedy',), blocks=eval_blocks, seed=200000, workers=1,
+            baseline = initial or (output / 'warmstart.zip' if (output / 'warmstart.zip').exists() else None)
+            stats = evaluate_models(output / 'best.zip', baseline_model=baseline,
+                opponents=('greedy',), blocks=eval_blocks, seed=200000,
+                workers=min(4, max(1, config.workers)) if config.device == 'cpu' else 1,
                 backend=config.backend, device=config.device, baseline_label='initial')
             temporary = output / 'evaluation.tmp'
             temporary.write_text(json.dumps(stats, indent=2) + '\n')
@@ -125,7 +131,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--initial', type=Path, required=True)
+    parser.add_argument('--initial', type=Path)
     parser.add_argument('--additional-steps', type=int, default=10000000)
     parser.add_argument('--eval-blocks', type=int, default=100)
     parser.add_argument('--no-evaluation', action='store_true')
