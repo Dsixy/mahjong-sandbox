@@ -429,17 +429,25 @@ $('sound-toggle').addEventListener('click', () => {
   $('sound-toggle').textContent=`声音${sound?'开':'关'}`;$('sound-toggle').setAttribute('aria-pressed',String(sound));
 });
 let exchangeBeforeHigh = $('exchange-setting').checked;
+let redBeforeHigh = $('red-setting').checked;
+let tanyaoBeforeHigh = $('tanyao-setting').checked;
+function fixedCheckbox(node, fixed, previous) {
+  if (fixed && !node.disabled) previous = node.checked;
+  if (fixed) node.checked = true;
+  else if (node.disabled) node.checked = previous;
+  node.disabled = fixed;
+  return previous;
+}
 function updateGameSettings() {
   const riichi = $('variant-setting').value === 'riichi';
   const policy = $('ai-policy'), exchange = $('exchange-setting');
-  policy.querySelector('option[value="high"]').disabled = riichi;
-  if (riichi && policy.value === 'high') policy.value = 'greedy';
   const high = policy.value === 'high';
-  if (high && !exchange.disabled) exchangeBeforeHigh = exchange.checked;
-  if (high) exchange.checked = true;
-  else if (exchange.disabled) exchange.checked = exchangeBeforeHigh;
-  exchange.disabled = high;
-  $('exchange-note').textContent = high ? '高难度 AI 使用换三张规则' : '开局交换同一门的三张牌';
+  exchangeBeforeHigh = fixedCheckbox(exchange, high && !riichi, exchangeBeforeHigh);
+  redBeforeHigh = fixedCheckbox($('red-setting'), high && riichi, redBeforeHigh);
+  tanyaoBeforeHigh = fixedCheckbox($('tanyao-setting'), high && riichi, tanyaoBeforeHigh);
+  $('exchange-note').textContent = high && !riichi ? '高难度 AI 使用换三张规则' : '开局交换同一门的三张牌';
+  $('red-note').textContent = high && riichi ? '高难度 AI 使用赤宝牌规则' : '万、筒、条各一张赤五';
+  $('tanyao-note').textContent = high && riichi ? '高难度 AI 使用食断规则' : '副露后可凭断幺九和牌';
   $('riichi-settings').hidden = !riichi;
   $('exchange-field').hidden = riichi;
 }

@@ -45,11 +45,23 @@ class MahjongVecEnv(VecEnv):
         self.initial_scores = np.zeros((n, 4), np.int64)
         self.prefix_rewards = np.zeros(n)
         self.completed_episodes = 0
+        self.noninteractive_episodes_skipped = 0
         self.render_mode = None
         super().__init__(n, observation_space(self.config.rules), spaces.Discrete(MAX_ACTIONS))
 
     def _encode(self, batch):
         return encode_batch(batch, rules=self.config.rules, backend=self.config.backend, hints=self.hints)
+
+    def _skip_closed_starts(self):
+        # An opponent can end a hand before this seat gets its first choice.
+        # Gym reset must still return a live decision, never an all-false mask.
+        for _ in range(128):
+            closed = self.raw['terminated'] | self.raw['truncated']
+            if not closed.any():
+                return
+            self.noninteractive_episodes_skipped += int(closed.sum())
+            self.raw = self.core.reset_done()
+        raise RuntimeError('could not obtain an interactive episode start')
 
     def reset(self):
         requested_seed = self._seeds[0]
@@ -63,6 +75,7 @@ class MahjongVecEnv(VecEnv):
             self.raw = self.core.observation()
         else:
             self.raw = self.core.reset()
+        self._skip_closed_starts()
         self.pending = None
         self.initial_scores = self.raw['scores'].copy()
         if self.config.match_length != 'hand':
@@ -125,6 +138,7 @@ class MahjongVecEnv(VecEnv):
                             'metrics': metrics}
             self.completed_episodes += len(indices)
             self.raw = self.core.reset_done()
+            self._skip_closed_starts()
             self.initial_scores[indices] = self.raw['scores'][indices]
             if self.config.match_length != 'hand':
                 self.initial_scores[indices] = self.config.rules.initial_scores

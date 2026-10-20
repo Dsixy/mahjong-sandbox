@@ -12,13 +12,21 @@ import unittest
 
 from mahjong_sandbox.model import Phase
 from mahjong_sandbox.replay import replay
-from mahjong_sandbox.rl.opponent import MODEL_PATH, high_difficulty_opponent
+from mahjong_sandbox.rl.opponent import MODEL_PATH, MODEL_PATHS, high_difficulty_opponent
 from mahjong_sandbox.webserver import GameSession, make_server
 
 HAS_RL = all(importlib.util.find_spec(name) is not None for name in ('torch', 'numpy', 'sb3_contrib'))
 
 
 class TrainedOpponentSettingsTests(unittest.TestCase):
+    def test_bundled_riichi_model_has_its_own_schema_and_checksum(self):
+        path = MODEL_PATHS['riichi']
+        metadata = json.loads(path.with_suffix('.json').read_text())
+        self.assertEqual(metadata['feature_version'], 'riichi_visible_v1')
+        self.assertGreater(metadata['timesteps'], 0)
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), metadata['model_sha256'])
+        self.assertEqual(metadata['rules']['rule_version'], 'riichi_4p_v1')
+
     def test_bundled_checkpoint_matches_promoted_model(self):
         metadata = json.loads(MODEL_PATH.with_suffix('.json').read_text())
         self.assertEqual(metadata['timesteps'], 6361088)
@@ -27,8 +35,8 @@ class TrainedOpponentSettingsTests(unittest.TestCase):
         self.assertTrue(metadata['rules']['exchange_three'])
 
     def test_incompatible_settings_are_rejected(self):
-        for settings in ({'variant': 'riichi'}, {'exchange': False}):
-            with self.subTest(settings=settings), self.assertRaisesRegex(ValueError, '换三张的川麻'):
+        for settings in ({'variant': 'riichi', 'red': False}, {'variant': 'riichi', 'tanyao': False}, {'exchange': False}):
+            with self.subTest(settings=settings), self.assertRaises(ValueError):
                 GameSession(policy='high', **settings)
 
     def test_baseline_games_work_without_torch_and_high_has_actionable_error(self):
@@ -50,6 +58,29 @@ else:
 
 @unittest.skipUnless(HAS_RL, 'install .[rl] for trained opponent integration')
 class TrainedOpponentIntegrationTests(unittest.TestCase):
+    def test_riichi_high_round_replay_privacy_and_next_hand(self):
+        from mahjong_sandbox.bots import make_bot
+        human = make_bot('greedy', variant='riichi', seed=123)
+        game = GameSession(seed=21, variant='riichi', match='east', policy='high')
+        self.assertIsNot(game.agents[1], high_difficulty_opponent('sichuan'))
+        self.assertEqual(str(game.agents[1].agent.model.device), 'cpu')
+        for _ in range(500):
+            obs = game.view()['observation']
+            if game.engine.state.phase == Phase.TERMINAL:
+                break
+            result = game.submit({'decision_id': obs['decision_id'], 'action': human.act(obs).to_dict()})
+            for frame in result['frames']:
+                projected = frame['observation']
+                if projected['phase'] != 'terminal':
+                    self.assertTrue(all('concealed' not in p for p in projected['players'][1:] if p['can_act']))
+        self.assertEqual(game.engine.state.phase, Phase.TERMINAL)
+        self.assertEqual(replay(game.export()).state_hash(), game.engine.state_hash())
+        view = game.view()
+        if not view['match']['ended']:
+            next_view = game.next_hand({'decision_id': view['observation']['decision_id'], 'hands_played': view['match']['hands_played']})
+            self.assertEqual(next_view['settings']['policy'], 'high')
+            self.assertEqual(game.engine.config.initial_scores, tuple(view['observation']['scores']))
+
     def test_reference_observations_match_training_features(self):
         import numpy as np
         from mahjong_sandbox.bots import make_bot
@@ -105,7 +136,7 @@ class TrainedOpponentIntegrationTests(unittest.TestCase):
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
         try:
-            for settings, expected in [({}, 201), ({'exchange': False}, 400), ({'variant': 'riichi'}, 400)]:
+            for settings, expected in [({}, 201), ({'exchange': False}, 400), ({'variant': 'riichi'}, 201), ({'variant': 'riichi', 'red': False}, 400)]:
                 conn = http.client.HTTPConnection('127.0.0.1', server.server_address[1], timeout=30)
                 try:
                     conn.request('POST', '/api/games', json.dumps({'seed': 44, 'policy': 'high', **settings}))
@@ -114,7 +145,7 @@ class TrainedOpponentIntegrationTests(unittest.TestCase):
                     self.assertEqual(response.status, expected, data)
                     if expected == 201:
                         self.assertEqual(data['settings']['policy'], 'high')
-                        self.assertTrue(data['settings']['exchange'])
+                        self.assertEqual(data['settings']['exchange'], data['settings']['variant'] == 'sichuan')
                 finally:
                     conn.close()
         finally:

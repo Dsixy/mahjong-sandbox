@@ -43,8 +43,10 @@ class GameSession:
             raise ValueError("settings must be boolean")
         if variant not in ('sichuan', 'riichi') or match not in ('hand', 'east', 'south') or (variant == 'sichuan' and match != 'hand'):
             raise ValueError('unsupported variant / match')
-        if policy == 'high' and (variant != 'sichuan' or not exchange):
+        if policy == 'high' and variant == 'sichuan' and not exchange:
             raise ValueError('高难度 AI 仅支持开启换三张的川麻血战到底。')
+        if policy == 'high' and variant == 'riichi' and (not red or not tanyao):
+            raise ValueError('高难度立直 AI 使用开启赤宝牌和食断的规则。')
         self.id = secrets.token_urlsafe(18)
         seed = secrets.randbelow(2**32) if seed is None else seed
         self.variant, self.match = variant, None
@@ -57,7 +59,7 @@ class GameSession:
         self.policy, self.auto_pass = policy, auto_pass
         if policy == 'high':
             from .rl.opponent import high_difficulty_opponent
-            opponent = high_difficulty_opponent()
+            opponent = high_difficulty_opponent(variant)
             if opponent.rules != self.engine.config:
                 raise ValueError('高难度 AI 模型与当前规则不兼容。')
             self.agents = [opponent] * 4

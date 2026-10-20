@@ -1,0 +1,719 @@
+{
+  "format": "riichi_cpu_training_run_v1",
+  "date": "2026-10-20",
+  "training_commit": "acdcb48845f1bcc6ab4ba39bca2713e9c897af1a",
+  "source_sha256": "5a628fa6bf63b5cdc7c3d47ad1a529dbdf37bb9e712bfb9df82126b8481249f4",
+  "runtime": {
+    "cpu_request": 16,
+    "cpu_limit": 32,
+    "memory_gib": 32,
+    "gpu": 0,
+    "torch": "2.8.0+cpu"
+  },
+  "training": {
+    "algorithm": "sb3-contrib MaskablePPO",
+    "config": {
+      "total_timesteps": 262144,
+      "n_envs": 128,
+      "workers": 16,
+      "rollout_steps": 64,
+      "batch_size": 1024,
+      "epochs": 4,
+      "learning_rate": 0.0001,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 10000.0,
+      "hidden": 128,
+      "seed": 2718,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 12000,
+      "bc_epochs": 12,
+      "checkpoint_every": 1,
+      "validation_every": 8,
+      "validation_blocks": 4,
+      "validation_seed": 100000,
+      "self_play_probability": 0.25,
+      "snapshot_every": 8,
+      "snapshot_pool_size": 4,
+      "variant": "riichi",
+      "match_length": "east",
+      "skip_forced_actions": true,
+      "rules": {
+        "rule_version": "riichi_4p_v1",
+        "dealer": 0,
+        "round_wind": 27,
+        "hand_number": 1,
+        "honba": 0,
+        "riichi_sticks": 0,
+        "initial_scores": [
+          25000,
+          25000,
+          25000,
+          25000
+        ],
+        "red_fives": [
+          16,
+          52,
+          88
+        ],
+        "open_tanyao": true,
+        "kuikae_forbidden": true,
+        "riichi_min_live": 4,
+        "multi_ron": true,
+        "triple_ron_abort": true,
+        "abortive_draws": true,
+        "nagashi_mangan": true,
+        "kiriage_mangan": false,
+        "counted_yakuman": true,
+        "double_yakuman": true,
+        "pao": true,
+        "delayed_open_kan_dora": true
+      }
+    },
+    "actual_device": "cpu",
+    "start_timesteps": 0,
+    "final_timesteps": 262144,
+    "additional_timesteps": 262144,
+    "optimizer_epochs": 128,
+    "rollout_updates_this_run": 32,
+    "completed_episodes_this_run": 3370,
+    "elapsed_seconds": 1582.2915676049888,
+    "imitation": {
+      "teacher": "greedy",
+      "samples": 12000,
+      "hands_started": 220,
+      "commands": 39817,
+      "phase_counts": {
+        "self_turn": 9253,
+        "discard_response": 2747
+      },
+      "seed": 3952,
+      "epochs": 12,
+      "training_cross_entropy": [
+        1.306119526863098,
+        0.8223933396339417,
+        0.687100869178772,
+        0.6130973695119222,
+        0.5624132356643676,
+        0.5280123173395793,
+        0.49771082878112793,
+        0.47212909468015035,
+        0.4556636523405711,
+        0.4320942502816518,
+        0.4104715619087219,
+        0.3997547475496928
+      ],
+      "training_accuracy": [
+        0.56925,
+        0.6823333333333333,
+        0.72075,
+        0.7431666666666666,
+        0.7554166666666666,
+        0.7695833333333333,
+        0.7789166666666667,
+        0.789,
+        0.7954166666666667,
+        0.8021666666666667,
+        0.8136666666666666,
+        0.8169166666666666
+      ],
+      "ppo_timesteps": 0
+    },
+    "initial_validation": {
+      "games": 16,
+      "wall_blocks": 4,
+      "hands": 84,
+      "win_rate": 0.21428571428571427,
+      "deal_in_rate": 0.23809523809523808,
+      "mean_net_score": -1125.0,
+      "mean_rank": 2.5625,
+      "first_place_rate": 0.1875,
+      "last_place_rate": 0.125,
+      "style": {
+        "riichi": 0.2857142857142857,
+        "open": 0.14285714285714285,
+        "kongs": 0.011904761904761904,
+        "self_draw_share": 0.16666666666666666,
+        "win_han": 2.5555555555555554,
+        "win_income": 5344.444444444444,
+        "safe_choice": null,
+        "shanten_backoff": null
+      },
+      "counts": {
+        "hands": 84,
+        "win": 18,
+        "deal_in": 20,
+        "riichi": 24,
+        "open": 12,
+        "kongs": 1,
+        "self_draw": 3,
+        "win_han": 46,
+        "win_income": 96200,
+        "net_score": -18000,
+        "matches": 16,
+        "rank": 41,
+        "first_place": 3,
+        "last_place": 2,
+        "threat_decisions": 0,
+        "safe_opportunities": 0,
+        "safe_choices": 0,
+        "shanten_backoff": 0
+      },
+      "ci95": {
+        "win": [
+          0.11904761904761904,
+          0.30952380952380953
+        ],
+        "deal_in": [
+          0.21428571428571427,
+          0.2682926829268293
+        ],
+        "net_score": [
+          -4400.0,
+          1475.0
+        ],
+        "rank": [
+          2.125,
+          3.0
+        ],
+        "first_place": [
+          0.0,
+          0.375
+        ],
+        "last_place": [
+          0.0,
+          0.25
+        ],
+        "riichi": [
+          0.225,
+          0.3409090909090909
+        ],
+        "open": [
+          0.047619047619047616,
+          0.20512820512820512
+        ],
+        "kongs": [
+          0.0,
+          0.03333333333333333
+        ],
+        "self_draw_share": [
+          0.0,
+          0.375
+        ],
+        "win_han": [
+          2.3333333333333335,
+          2.8181818181818183
+        ],
+        "win_income": [
+          4566.666666666667,
+          5972.727272727273
+        ],
+        "safe_choice": null,
+        "shanten_backoff": null
+      }
+    },
+    "validations": [
+      {
+        "elapsed_seconds": 369.808627971448,
+        "event": "validation",
+        "timesteps": 65536,
+        "games": 16,
+        "wall_blocks": 4,
+        "hands": 82,
+        "win_rate": 0.1951219512195122,
+        "deal_in_rate": 0.2073170731707317,
+        "mean_net_score": -2131.25,
+        "mean_rank": 2.6875,
+        "first_place_rate": 0.25,
+        "last_place_rate": 0.375,
+        "style": {
+          "riichi": 0.25609756097560976,
+          "open": 0.10975609756097561,
+          "kongs": 0.012195121951219513,
+          "self_draw_share": 0.0625,
+          "win_han": 2.75,
+          "win_income": 6337.5,
+          "safe_choice": null,
+          "shanten_backoff": null
+        },
+        "counts": {
+          "hands": 82,
+          "win": 16,
+          "deal_in": 17,
+          "riichi": 21,
+          "open": 9,
+          "kongs": 1,
+          "self_draw": 1,
+          "win_han": 44,
+          "win_income": 101400,
+          "net_score": -34100,
+          "matches": 16,
+          "rank": 43,
+          "first_place": 4,
+          "last_place": 6,
+          "threat_decisions": 0,
+          "safe_opportunities": 0,
+          "safe_choices": 0,
+          "shanten_backoff": 0
+        },
+        "ci95": {
+          "win": [
+            0.18181818181818182,
+            0.21052631578947367
+          ],
+          "deal_in": [
+            0.13636363636363635,
+            0.3076923076923077
+          ],
+          "net_score": [
+            -5043.75,
+            612.5
+          ],
+          "rank": [
+            2.375,
+            3.0625
+          ],
+          "first_place": [
+            0.25,
+            0.25
+          ],
+          "last_place": [
+            0.25,
+            0.625
+          ],
+          "riichi": [
+            0.19047619047619047,
+            0.32894736842105265
+          ],
+          "open": [
+            0.039473684210526314,
+            0.175
+          ],
+          "kongs": [
+            0.0,
+            0.03409090909090909
+          ],
+          "self_draw_share": [
+            0.0,
+            0.1875
+          ],
+          "win_han": [
+            2.0,
+            3.5
+          ],
+          "win_income": [
+            3793.75,
+            8837.5
+          ],
+          "safe_choice": null,
+          "shanten_backoff": null
+        }
+      },
+      {
+        "elapsed_seconds": 728.6052641468123,
+        "event": "validation",
+        "timesteps": 131072,
+        "games": 16,
+        "wall_blocks": 4,
+        "hands": 83,
+        "win_rate": 0.1927710843373494,
+        "deal_in_rate": 0.1927710843373494,
+        "mean_net_score": -2262.5,
+        "mean_rank": 2.6875,
+        "first_place_rate": 0.3125,
+        "last_place_rate": 0.4375,
+        "style": {
+          "riichi": 0.3253012048192771,
+          "open": 0.08433734939759036,
+          "kongs": 0.0,
+          "self_draw_share": 0.125,
+          "win_han": 2.9375,
+          "win_income": 6212.5,
+          "safe_choice": null,
+          "shanten_backoff": null
+        },
+        "counts": {
+          "hands": 83,
+          "win": 16,
+          "deal_in": 16,
+          "riichi": 27,
+          "open": 7,
+          "kongs": 0,
+          "self_draw": 2,
+          "win_han": 47,
+          "win_income": 99400,
+          "net_score": -36200,
+          "matches": 16,
+          "rank": 43,
+          "first_place": 5,
+          "last_place": 7,
+          "threat_decisions": 0,
+          "safe_opportunities": 0,
+          "safe_choices": 0,
+          "shanten_backoff": 0
+        },
+        "ci95": {
+          "win": [
+            0.13953488372093023,
+            0.2625
+          ],
+          "deal_in": [
+            0.1625,
+            0.21348314606741572
+          ],
+          "net_score": [
+            -6787.5,
+            3025.0
+          ],
+          "rank": [
+            2.0625,
+            3.125
+          ],
+          "first_place": [
+            0.0625,
+            0.625
+          ],
+          "last_place": [
+            0.25,
+            0.625
+          ],
+          "riichi": [
+            0.2375,
+            0.38202247191011235
+          ],
+          "open": [
+            0.025,
+            0.1375
+          ],
+          "kongs": [
+            0.0,
+            0.0
+          ],
+          "self_draw_share": [
+            0.0,
+            0.25
+          ],
+          "win_han": [
+            2.142857142857143,
+            3.8333333333333335
+          ],
+          "win_income": [
+            3728.5714285714284,
+            8144.444444444444
+          ],
+          "safe_choice": null,
+          "shanten_backoff": null
+        }
+      },
+      {
+        "elapsed_seconds": 1094.3486368479207,
+        "event": "validation",
+        "timesteps": 196608,
+        "games": 16,
+        "wall_blocks": 4,
+        "hands": 83,
+        "win_rate": 0.21686746987951808,
+        "deal_in_rate": 0.1686746987951807,
+        "mean_net_score": -262.5,
+        "mean_rank": 2.3125,
+        "first_place_rate": 0.3125,
+        "last_place_rate": 0.125,
+        "style": {
+          "riichi": 0.24096385542168675,
+          "open": 0.14457831325301204,
+          "kongs": 0.04819277108433735,
+          "self_draw_share": 0.2777777777777778,
+          "win_han": 2.888888888888889,
+          "win_income": 6794.444444444444,
+          "safe_choice": null,
+          "shanten_backoff": null
+        },
+        "counts": {
+          "hands": 83,
+          "win": 18,
+          "deal_in": 14,
+          "riichi": 20,
+          "open": 12,
+          "kongs": 4,
+          "self_draw": 5,
+          "win_han": 52,
+          "win_income": 122300,
+          "net_score": -4200,
+          "matches": 16,
+          "rank": 37,
+          "first_place": 5,
+          "last_place": 2,
+          "threat_decisions": 0,
+          "safe_opportunities": 0,
+          "safe_choices": 0,
+          "shanten_backoff": 0
+        },
+        "ci95": {
+          "win": [
+            0.16279069767441862,
+            0.27631578947368424
+          ],
+          "deal_in": [
+            0.046511627906976744,
+            0.3026315789473684
+          ],
+          "net_score": [
+            -5450.0,
+            4212.5
+          ],
+          "rank": [
+            1.875,
+            2.9375
+          ],
+          "first_place": [
+            0.125,
+            0.5
+          ],
+          "last_place": [
+            0.0,
+            0.375
+          ],
+          "riichi": [
+            0.15384615384615385,
+            0.358974358974359
+          ],
+          "open": [
+            0.08641975308641975,
+            0.18292682926829268
+          ],
+          "kongs": [
+            0.0,
+            0.0989010989010989
+          ],
+          "self_draw_share": [
+            0.2222222222222222,
+            0.3333333333333333
+          ],
+          "win_han": [
+            2.375,
+            3.3333333333333335
+          ],
+          "win_income": [
+            4937.5,
+            8933.333333333334
+          ],
+          "safe_choice": null,
+          "shanten_backoff": null
+        }
+      },
+      {
+        "elapsed_seconds": 1454.0745048420504,
+        "event": "validation",
+        "timesteps": 262144,
+        "games": 16,
+        "wall_blocks": 4,
+        "hands": 82,
+        "win_rate": 0.23170731707317074,
+        "deal_in_rate": 0.1951219512195122,
+        "mean_net_score": -2125.0,
+        "mean_rank": 2.8125,
+        "first_place_rate": 0.25,
+        "last_place_rate": 0.375,
+        "style": {
+          "riichi": 0.34146341463414637,
+          "open": 0.07317073170731707,
+          "kongs": 0.0,
+          "self_draw_share": 0.21052631578947367,
+          "win_han": 2.789473684210526,
+          "win_income": 6436.8421052631575,
+          "safe_choice": null,
+          "shanten_backoff": null
+        },
+        "counts": {
+          "hands": 82,
+          "win": 19,
+          "deal_in": 16,
+          "riichi": 28,
+          "open": 6,
+          "kongs": 0,
+          "self_draw": 4,
+          "win_han": 53,
+          "win_income": 122300,
+          "net_score": -34000,
+          "matches": 16,
+          "rank": 45,
+          "first_place": 4,
+          "last_place": 6,
+          "threat_decisions": 0,
+          "safe_opportunities": 0,
+          "safe_choices": 0,
+          "shanten_backoff": 0
+        },
+        "ci95": {
+          "win": [
+            0.14285714285714285,
+            0.3132530120481928
+          ],
+          "deal_in": [
+            0.06976744186046512,
+            0.3333333333333333
+          ],
+          "net_score": [
+            -5700.0,
+            1450.0
+          ],
+          "rank": [
+            2.25,
+            3.375
+          ],
+          "first_place": [
+            0.0625,
+            0.4375
+          ],
+          "last_place": [
+            0.125,
+            0.625
+          ],
+          "riichi": [
+            0.22077922077922077,
+            0.425
+          ],
+          "open": [
+            0.025,
+            0.1038961038961039
+          ],
+          "kongs": [
+            0.0,
+            0.0
+          ],
+          "self_draw_share": [
+            0.07692307692307693,
+            0.35
+          ],
+          "win_han": [
+            2.230769230769231,
+            3.235294117647059
+          ],
+          "win_income": [
+            4315.384615384615,
+            8120.0
+          ],
+          "safe_choice": null,
+          "shanten_backoff": null
+        }
+      }
+    ],
+    "latest_model_sha256": "306879b2b03f74b52686593b88d0bd3e3c6f1ff791a81ff9edf4978f509754e7",
+    "source_sha256": "5a628fa6bf63b5cdc7c3d47ad1a529dbdf37bb9e712bfb9df82126b8481249f4",
+    "latest": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/riichi-20261020/output/latest.zip",
+    "best": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/riichi-20261020/output/best.zip",
+    "resume": "model, value function, Adam; new hands, not exact in-flight state",
+    "illegal_actions": 0,
+    "interrupted": false
+  },
+  "verification": {
+    "full_suite_tests": 154,
+    "full_suite_seconds": 327.736,
+    "full_suite_passed": true,
+    "final_checkpoint_serving_tests": 9,
+    "final_checkpoint_serving_seconds": 28.572,
+    "final_checkpoint_serving_passed": true,
+    "runtime": {
+      "format": "riichi_release_runtime_proof_v1",
+      "model_sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+      "cpu_load": true,
+      "finite_parameters_and_optimizer": true,
+      "dynamic_round_legal_action": {
+        "kind": "discard",
+        "tiles": [
+          132
+        ],
+        "suit": null,
+        "meld_index": null
+      },
+      "saved_optimizer_steps": [
+        768.0,
+        768.0
+      ],
+      "resume_optimizer_steps": [
+        770.0,
+        770.0
+      ],
+      "resumed_from_timesteps": 196608,
+      "resumed_to_timesteps": 196640,
+      "optimizer_epochs_before": 96,
+      "optimizer_epochs_after": 97,
+      "parameters_changed": true,
+      "illegal_actions": 0,
+      "promoted_checkpoint_unchanged": true
+    },
+    "wheel": {
+      "format": "riichi_wheel_verification_v1",
+      "wheel_sha256": "c01b48ad3c32492ab65329698986a3a59d05fed17b4b9246c8c856cb4fc3d329",
+      "both_models_and_cards_packaged": true,
+      "extracted_package_cpu_load_and_legal_actions": {
+        "sichuan": {
+          "legal_cpu_action": {
+            "kind": "exchange",
+            "tiles": [
+              36,
+              41,
+              66
+            ],
+            "suit": null,
+            "meld_index": null
+          },
+          "model_sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241"
+        },
+        "riichi": {
+          "legal_cpu_action": {
+            "kind": "discard",
+            "tiles": [
+              38
+            ],
+            "suit": null,
+            "meld_index": null
+          },
+          "model_sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e"
+        }
+      }
+    }
+  },
+  "notes": [
+    "The frozen training commit matches the checkpoint package source fingerprint. Release changes add game integration and a reset guard; remote training code was not hot patched.",
+    "The 32-step resume verification used temporary output; published weights were unchanged."
+  ],
+  "confirmation": {
+    "models": {
+      "rl": {
+        "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/riichi-20261020/output/best.zip",
+        "timesteps": 196608,
+        "sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+        "source_sha256": "5a628fa6bf63b5cdc7c3d47ad1a529dbdf37bb9e712bfb9df82126b8481249f4"
+      },
+      "warmstart": {
+        "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/riichi-20261020/output/warmstart.zip",
+        "timesteps": 0,
+        "sha256": "82562978b74ec4adb6426ce0d2b4d68baaad3b81433f00d617f1ea5d23c50b57",
+        "source_sha256": "5a628fa6bf63b5cdc7c3d47ad1a529dbdf37bb9e712bfb9df82126b8481249f4"
+      }
+    },
+    "wall_seeds": [
+      400000,
+      400063
+    ],
+    "blocks": 64,
+    "games": 1792,
+    "hands": 9610,
+    "workers": 16,
+    "elapsed_seconds": 129.08213329687715
+  }
+}

@@ -16,6 +16,25 @@ class RiichiRLTests(unittest.TestCase):
         import torch
         torch.set_num_threads(1)
 
+    def test_reset_retries_if_opponent_ends_hand_before_first_choice(self):
+        from unittest.mock import Mock,patch
+        from mahjong_sandbox.batch import SyncBatchEnv,BatchConfig
+        from mahjong_sandbox.rl.env import RiichiVecEnv
+        from mahjong_sandbox.riichi_model import RiichiConfig
+        with SyncBatchEnv(1,BatchConfig(variant='riichi',rules=RiichiConfig())) as reference:
+            ready=reference.observation()
+        closed={k:v.copy() for k,v in ready.items()}
+        closed['terminated'][0]=True;closed['action_mask'][0]=False
+        fake=Mock();fake.observation.return_value=closed;fake.reset_done.return_value=ready
+        with patch('mahjong_sandbox.rl.env.SyncBatchEnv',return_value=fake):
+            env=RiichiVecEnv(1,hints=False)
+            try:
+                observation=env.reset()
+                self.assertTrue(observation['mask'].any())
+                self.assertEqual(env.noninteractive_episodes_skipped,1)
+                fake.reset_done.assert_called_once()
+            finally:env.close()
+
     def test_public_projection_parity_and_hidden_wall_invariance(self):
         import numpy as np
         from mahjong_sandbox.riichi_engine import RiichiEngine

@@ -286,6 +286,7 @@ def train(output, config=None, *, resume=None):
             'final_timesteps': model.num_timesteps, 'additional_timesteps': model.num_timesteps - start_steps,
             'optimizer_epochs': model._n_updates, 'rollout_updates_this_run': callback.rollout_updates,
             'completed_episodes_this_run': env.completed_episodes,
+            'noninteractive_episodes_skipped': env.noninteractive_episodes_skipped,
             'elapsed_seconds': time.perf_counter() - started, 'imitation': bc_report,
             'initial_validation': initial_validation, 'validations': callback.validations,
             'latest_model_sha256': latest['model_sha256'], 'source_sha256': latest['source_sha256'],

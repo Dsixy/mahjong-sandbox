@@ -4,6 +4,7 @@ from pathlib import Path
 import threading
 
 MODEL_PATH = Path(__file__).resolve().parents[1] / 'models/sichuan-high/best.zip'
+MODEL_PATHS = {'sichuan': MODEL_PATH, 'riichi': MODEL_PATH.parents[1] / 'riichi-high/best.zip'}
 _LOAD_LOCK = threading.Lock()
 
 
@@ -19,19 +20,22 @@ class TrainedOpponent:
             return self.agent.act(observation)
 
 
-@lru_cache(maxsize=1)
-def _load_opponent():
+@lru_cache(maxsize=2)
+def _load_opponent(variant):
+    if variant not in MODEL_PATHS:
+        raise ValueError('unknown trained opponent variant')
+    path = MODEL_PATHS[variant]
     try:
         import torch
         from .agent import RLAgent
     except ImportError as error:
         raise ValueError('高难度 AI 需要 RL 依赖，请在服务端安装 .[fast,rl] 后重试。') from error
-    if not MODEL_PATH.is_file() or not MODEL_PATH.with_suffix('.json').is_file():
+    if not path.is_file() or not path.with_suffix('.json').is_file():
         raise ValueError('高难度 AI 模型文件缺失，请重新安装完整的游戏包。')
     torch.set_num_threads(1)
-    return TrainedOpponent(RLAgent(MODEL_PATH, device='cpu', deterministic=True))
+    return TrainedOpponent(RLAgent(path, device='cpu', deterministic=True))
 
 
-def high_difficulty_opponent():
+def high_difficulty_opponent(variant='sichuan'):
     with _LOAD_LOCK:
-        return _load_opponent()
+        return _load_opponent(variant)

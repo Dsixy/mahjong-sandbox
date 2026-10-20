@@ -16,7 +16,7 @@ python3 -m mahjong_sandbox serve
 
 “新开一局”可选择川麻或日麻，以及牌效、优先胡牌或随机基线，关闭换三张或自动过牌，以及指定种子。牌效基线使用可见信息估算牌型距离与有效进张，尚未经过 RL 训练。界面支持桌面和手机，手机手牌较长时可横向滑动。
 
-川麻另可选择 **高难度 · 训练 AI**，使用随包提供的 6,361,088 步 PPO 检查点，在 CPU 上运行。首次使用先安装 RL 依赖，再启动服务：
+川麻与立直均可选择 **高难度 · 训练 AI**，使用随包提供的各自 PPO 检查点，在 CPU 上运行。川麻沿用 6,361,088 步最佳模型，立直使用独立的 34 种牌模型。首次使用先安装 RL 依赖，再启动服务：
 
 ```bash
 python3 -m venv .venv
@@ -25,7 +25,7 @@ python3 -m venv .venv
 .venv/bin/python -m mahjong_sandbox serve
 ```
 
-此选项固定开启换三张，日麻使用原有策略。模型按固定验证集的净分选择；“高难度”是游戏档位名称，目前评测尚未证明它稳定强于牌效基线。模型、校验和及选择依据见 [模型说明](mahjong_sandbox/models/sichuan-high/README.md)，续训进度和前后对照见 [CPU 沙盒记录](docs/CPU-SANDBOX.md)，界面见 [高难度牌桌截图](docs/screenshots/high-ai-desktop.png)。
+此选项在川麻固定开启换三张，在立直固定开启赤宝牌与食断。模型按固定验证集的净分选择；“高难度”是游戏档位名称，不代表已证明稳定强于牌效基线。川麻模型和选择依据见 [模型说明](mahjong_sandbox/models/sichuan-high/README.md)，立直检查点见 [模型说明](mahjong_sandbox/models/riichi-high/README.md)，训练、整场评测和牌风分析见 [立直 RL](docs/RIICHI-RL.md)。
 
 日麻支持吃、立直、一番缚、振听、宝牌/赤牌/里宝牌、番符计分及单局/东风战/半庄；和牌或流局后结束本局，整场中点击“下一局”继续。规则与 Python 接口见 [docs/RIICHI.md](docs/RIICHI.md)。
 
@@ -155,3 +155,5 @@ if __name__ == '__main__':  # spawn 进程必须保护程序入口
 采用现有 MaskablePPO 框架及共享候选评分网络，只使用本家可见信息；奖励为整手血战净分增量。默认可选 bot 模仿初始化后再做 PPO，保留 warmstart 用于独立对照。模型、Adam、规则、特征版本及校验和一并保存，支持 CPU/CUDA 跨设备加载。GPU/RJob 入口使用 `configs/rl/sichuan-gpu.json` 与 `scripts/train_sichuan_rl.sh`，本次先完成 CPU 验证。
 
 算法选择、状态/action/reward 定义、完整命令和实测见 [docs/RL.md](docs/RL.md)。
+
+四人立直复用同一训练与模型接口，使用独立特征和赤牌动作身份，支持单手、东风战和半庄 episode。默认东风战训练完整传递分数、本场与供托，另评测顺位、立直率、副露和面对立直的现物选择；配置见 `configs/rl/riichi-cpu.json`，完整命令见 [docs/RIICHI-RL.md](docs/RIICHI-RL.md)。
