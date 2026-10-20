@@ -16,6 +16,17 @@ python3 -m mahjong_sandbox serve
 
 “新开一局”可选择川麻或日麻，以及牌效、优先胡牌或随机基线，关闭换三张或自动过牌，以及指定种子。牌效基线使用可见信息估算牌型距离与有效进张，尚未经过 RL 训练。界面支持桌面和手机，手机手牌较长时可横向滑动。
 
+川麻另可选择 **高难度 · 训练 AI**，使用随包提供的 6,361,088 步 PPO 检查点，在 CPU 上运行。首次使用先安装 RL 依赖，再启动服务：
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install 'torch>=2.8,<3' --index-url https://download.pytorch.org/whl/cpu
+.venv/bin/python -m pip install '.[fast,rl]'
+.venv/bin/python -m mahjong_sandbox serve
+```
+
+此选项固定开启换三张，日麻使用原有策略。模型按固定验证集的净分选择；“高难度”是游戏档位名称，目前评测尚未证明它稳定强于牌效基线。模型、校验和及选择依据见 [模型说明](mahjong_sandbox/models/sichuan-high/README.md)，续训进度和前后对照见 [CPU 沙盒记录](docs/CPU-SANDBOX.md)，界面见 [高难度牌桌截图](docs/screenshots/high-ai-desktop.png)。
+
 日麻支持吃、立直、一番缚、振听、宝牌/赤牌/里宝牌、番符计分及单局/东风战/半庄；和牌或流局后结束本局，整场中点击“下一局”继续。规则与 Python 接口见 [docs/RIICHI.md](docs/RIICHI.md)。
 
 “牌谱”可打开内置川麻一炮三响或日麻立直荣和示例，亦可导入单局或整场 JSON；本局结束后可下载和复盘，支持单步、播放、进度条、返回开局、跳到结局和全桌手牌视角。进行中的对局不会提供完整牌谱，未胡对手的暗牌由服务端隐藏；胡牌后亮牌。刷新页面可恢复同一浏览器标签的牌局，服务重启后需要重新开局。服务采用内存存储，保留最近 32 桌和 8 份回放。

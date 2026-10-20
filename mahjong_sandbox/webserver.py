@@ -37,12 +37,14 @@ class GameSession:
     def __init__(self, *, seed=None, policy="greedy", exchange=True, auto_pass=True, variant="sichuan", match="hand", red=True, tanyao=True):
         if seed is not None and (type(seed) is not int or not 0 <= seed < 2**53):
             raise ValueError("seed must be a nonnegative integer below 2^53")
-        if policy not in ("greedy", "win-first", "random"):
+        if policy not in ("greedy", "win-first", "random", "high"):
             raise ValueError("unknown AI policy")
         if any(type(x) is not bool for x in (exchange, auto_pass, red, tanyao)):
             raise ValueError("settings must be boolean")
         if variant not in ('sichuan', 'riichi') or match not in ('hand', 'east', 'south') or (variant == 'sichuan' and match != 'hand'):
             raise ValueError('unsupported variant / match')
+        if policy == 'high' and (variant != 'sichuan' or not exchange):
+            raise ValueError('高难度 AI 仅支持开启换三张的川麻血战到底。')
         self.id = secrets.token_urlsafe(18)
         seed = secrets.randbelow(2**32) if seed is None else seed
         self.variant, self.match = variant, None
@@ -53,8 +55,15 @@ class GameSession:
         else:
             self.engine = Engine(RuleConfig(exchange_three=exchange), seed)
         self.policy, self.auto_pass = policy, auto_pass
-        self.agents = [(RiichiAgent if variant == "riichi" else GreedyAgent)(self.engine.seed * 4 + p) if policy == "greedy"
-                       else RandomAgent(self.engine.seed * 4 + p, prefer_win=policy == "win-first") for p in range(4)]
+        if policy == 'high':
+            from .rl.opponent import high_difficulty_opponent
+            opponent = high_difficulty_opponent()
+            if opponent.rules != self.engine.config:
+                raise ValueError('高难度 AI 模型与当前规则不兼容。')
+            self.agents = [opponent] * 4
+        else:
+            self.agents = [(RiichiAgent if variant == "riichi" else GreedyAgent)(self.engine.seed * 4 + p) if policy == "greedy"
+                           else RandomAgent(self.engine.seed * 4 + p, prefer_win=policy == "win-first") for p in range(4)]
         self.lock = threading.RLock()
         self._advance()
 

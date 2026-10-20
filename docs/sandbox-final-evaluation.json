@@ -1,0 +1,345 @@
+{
+  "format": "sichuan_rl_evaluation_v1",
+  "variant": "sichuan",
+  "rules": {
+    "rule_version": "sichuan_xuezhan_v1",
+    "exchange_three": true,
+    "base_points": 1,
+    "fan_cap": 5,
+    "self_draw_bonus": "base",
+    "seven_pairs_quads": true,
+    "passed_ron_lock": true,
+    "last_tile_bonus": true,
+    "force_win_last_four": false,
+    "kong_discard_transfer": false,
+    "check_flower_pigs": true,
+    "check_noten": true,
+    "refund_noten_kongs": true,
+    "dealer": 0
+  },
+  "models": {
+    "rl": {
+      "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/output/best.zip",
+      "sha256": "6dcfdd8824771e9d9ca04181bdf7dfe6ab2267f9988c8a18ba1b3610fdcde33c",
+      "timesteps": 10555392,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+    },
+    "initial": {
+      "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/initial.zip",
+      "sha256": "47ee2906095f2eedc125d908a8b9dfae744f9eceefb8c66a6e08501658f76d90",
+      "timesteps": 10072064,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+    }
+  },
+  "wall_seeds": [
+    200000,
+    200099
+  ],
+  "blocks": 100,
+  "seat_rotations": 4,
+  "interval_method": "95% paired-wall block bootstrap, 2000 resamples; conservative exact boundary intervals",
+  "deterministic_policy": true,
+  "workers": 1,
+  "device": "cpu",
+  "games": 2800,
+  "elapsed_seconds": 594.1559769269079,
+  "games_per_second": 4.712567252932729,
+  "commands": 438119,
+  "end_reasons": {
+    "three_winners": 2294,
+    "wall_exhausted": 506
+  },
+  "matchups": {
+    "greedy": {
+      "rl": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.52,
+        "deal_in_rate": 0.52,
+        "mean_net_score": 0.1575,
+        "ci95": {
+          "win": [
+            0.47243749999999995,
+            0.5675
+          ],
+          "deal_in": [
+            0.4725,
+            0.57
+          ],
+          "net_score": [
+            -0.3875,
+            0.6976249999999993
+          ]
+        }
+      },
+      "initial": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.57,
+        "deal_in_rate": 0.505,
+        "mean_net_score": 0.2125,
+        "ci95": {
+          "win": [
+            0.52,
+            0.6175
+          ],
+          "deal_in": [
+            0.4525,
+            0.5575624999999996
+          ],
+          "net_score": [
+            -0.33756250000000004,
+            0.8300624999999996
+          ]
+        }
+      },
+      "random": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.0075,
+        "deal_in_rate": 0.65,
+        "mean_net_score": -5.45,
+        "ci95": {
+          "win": [
+            0.0,
+            0.0175
+          ],
+          "deal_in": [
+            0.605,
+            0.695
+          ],
+          "net_score": [
+            -6.257625,
+            -4.785
+          ]
+        }
+      },
+      "win-first": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.015,
+        "deal_in_rate": 0.645,
+        "mean_net_score": -5.4125,
+        "ci95": {
+          "win": [
+            0.005,
+            0.0275
+          ],
+          "deal_in": [
+            0.6,
+            0.69
+          ],
+          "net_score": [
+            -6.200125,
+            -4.744937500000001
+          ]
+        }
+      },
+      "greedy": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.7175,
+        "deal_in_rate": 0.3825,
+        "mean_net_score": 0.0,
+        "ci95": {
+          "win": [
+            0.695,
+            0.735
+          ],
+          "deal_in": [
+            0.3475,
+            0.4175
+          ],
+          "net_score": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "defensive": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.6725,
+        "deal_in_rate": 0.3975,
+        "mean_net_score": -0.19,
+        "ci95": {
+          "win": [
+            0.64,
+            0.7
+          ],
+          "deal_in": [
+            0.3575,
+            0.435
+          ],
+          "net_score": [
+            -0.34,
+            -0.06
+          ]
+        }
+      },
+      "value": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.5525,
+        "deal_in_rate": 0.425,
+        "mean_net_score": -1.18,
+        "ci95": {
+          "win": [
+            0.505,
+            0.6
+          ],
+          "deal_in": [
+            0.38,
+            0.4725
+          ],
+          "net_score": [
+            -1.56,
+            -0.8424375000000004
+          ]
+        }
+      }
+    }
+  },
+  "paired_comparisons": {
+    "greedy": {
+      "initial": {
+        "win": {
+          "rl_minus_baseline": -0.05,
+          "ci95": [
+            -0.095,
+            -0.005
+          ]
+        },
+        "deal_in": {
+          "rl_minus_baseline": 0.015,
+          "ci95": [
+            -0.03,
+            0.06
+          ]
+        },
+        "net_score": {
+          "rl_minus_baseline": -0.055,
+          "ci95": [
+            -0.5875,
+            0.45256249999999965
+          ]
+        }
+      },
+      "random": {
+        "win": {
+          "rl_minus_baseline": 0.5125,
+          "ci95": [
+            0.4625,
+            0.5625
+          ]
+        },
+        "deal_in": {
+          "rl_minus_baseline": -0.13,
+          "ci95": [
+            -0.195,
+            -0.0625
+          ]
+        },
+        "net_score": {
+          "rl_minus_baseline": 5.6075,
+          "ci95": [
+            4.6999375,
+            6.635062499999999
+          ]
+        }
+      },
+      "win-first": {
+        "win": {
+          "rl_minus_baseline": 0.505,
+          "ci95": [
+            0.455,
+            0.5525
+          ]
+        },
+        "deal_in": {
+          "rl_minus_baseline": -0.125,
+          "ci95": [
+            -0.19,
+            -0.0575
+          ]
+        },
+        "net_score": {
+          "rl_minus_baseline": 5.57,
+          "ci95": [
+            4.662375,
+            6.592625
+          ]
+        }
+      },
+      "greedy": {
+        "win": {
+          "rl_minus_baseline": -0.1975,
+          "ci95": [
+            -0.25,
+            -0.145
+          ]
+        },
+        "deal_in": {
+          "rl_minus_baseline": 0.1375,
+          "ci95": [
+            0.09,
+            0.1925
+          ]
+        },
+        "net_score": {
+          "rl_minus_baseline": 0.1575,
+          "ci95": [
+            -0.3875,
+            0.6976249999999993
+          ]
+        }
+      },
+      "defensive": {
+        "win": {
+          "rl_minus_baseline": -0.1525,
+          "ci95": [
+            -0.21,
+            -0.095
+          ]
+        },
+        "deal_in": {
+          "rl_minus_baseline": 0.1225,
+          "ci95": [
+            0.07,
+            0.1775
+          ]
+        },
+        "net_score": {
+          "rl_minus_baseline": 0.3475,
+          "ci95": [
+            -0.2225625,
+            0.9351249999999993
+          ]
+        }
+      },
+      "value": {
+        "win": {
+          "rl_minus_baseline": -0.0325,
+          "ci95": [
+            -0.1,
+            0.03256249999999966
+          ]
+        },
+        "deal_in": {
+          "rl_minus_baseline": 0.095,
+          "ci95": [
+            0.03,
+            0.16
+          ]
+        },
+        "net_score": {
+          "rl_minus_baseline": 1.3375,
+          "ci95": [
+            0.677375,
+            2.02
+          ]
+        }
+      }
+    }
+  }
+}

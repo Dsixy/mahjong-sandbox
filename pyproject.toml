@@ -21,4 +21,4 @@ mahjong-sandbox = "mahjong_sandbox.cli:main"
 include = ["mahjong_sandbox*"]
 
 [tool.setuptools.package-data]
-mahjong_sandbox = ["web/*.html", "web/*.css", "web/*.js", "web/assets/*.svg", "web/assets/*.json", "web/assets/tiles/*.svg"]
+mahjong_sandbox = ["web/*.html", "web/*.css", "web/*.js", "web/assets/*.svg", "web/assets/*.json", "web/assets/tiles/*.svg", "models/sichuan-high/*"]

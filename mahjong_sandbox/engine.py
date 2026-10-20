@@ -415,7 +415,11 @@ class Engine:
                 item.update(last_drawn=hand.last_drawn, passed_ron_fan=hand.passed_ron_fan)
             players.append(item)
         visible = [event.for_player(player) for event in self.events]
+        exchange_offset = next((event['data']['offset'] for event in visible
+                                if event and event['kind'] == 'exchange_completed'), None)
         return deepcopy({"rule_version": self.config.rule_version, "player": player,
+                         "variant": "sichuan", "dealer": self.config.dealer,
+                         "pending_tile": state.pending_tile, "exchange_offset": exchange_offset,
                          "phase": state.phase.value, "actor": state.actor, "decision_id": state.decision_id,
                          "remaining_tiles": state.remaining_tiles, "scores": list(state.scores),
                          "players": players, "wins": [asdict(w) for w in state.wins],
