@@ -42,12 +42,53 @@ def _artifact_choice(root,result):
         curriculum.write_json(path,choice)
 
 
+def validate_candidate(root,entry,config,workers):
+    from scripts import run_riichi_curriculum as curriculum
+    from scripts.riichi_evaluation import digest
+    from mahjong_sandbox.rl.checkpoint import load_checkpoint
+    from mahjong_sandbox.rl.riichi_evaluate import validate_model
+    path=Path(entry['path'])
+    identity={'model_sha256':entry['sha256'],'metadata_sha256':hashlib.sha256(path.with_suffix('.json').read_bytes()).hexdigest(),
+        'blocks':config.validation_blocks,'seed':config.validation_seed,'backend':config.backend}
+    key=digest(identity);destination=Path(root)/'validation-cache'/(key+'.json')
+    if destination.exists():
+        receipt=json.loads(destination.read_text())
+        if receipt['identity']!=identity or receipt['statistics_sha256']!=digest(receipt['statistics']):
+            raise ValueError('validation cache checksum changed')
+        return receipt['statistics']
+    model,metadata=load_checkpoint(path,device='cpu',n_steps=1,n_envs=1)
+    stats=validate_model(model,metadata,blocks=config.validation_blocks,seed=config.validation_seed,
+        backend=config.backend,workers=min(workers,8))
+    # Distinct writers can compute a deterministic candidate simultaneously.
+    temporary=destination.with_name(key+'.'+str(os.getpid())+'.json')
+    curriculum.write_json(temporary,{'identity':identity,'statistics':stats,'statistics_sha256':digest(stats)})
+    temporary.replace(destination)
+    return stats
+
+
+def prevalidate(root,label,workers=8):
+    """Evaluate only the predeclared candidates of an already finished learner."""
+    import torch
+    from scripts.riichi_runtime import configuration
+    from mahjong_sandbox.rl.checkpoint import read_metadata,source_fingerprint
+    root=Path(root);plan=json.loads((root/'plan.json').read_text());config=configuration(root,label)
+    if source_fingerprint()!=plan['source_sha256']:raise ValueError('prevalidation source changed')
+    if read_metadata(root/label/'checkpoints'/f'step_{plan["ppo_steps_per_run"]}.zip')['timesteps']!=plan['ppo_steps_per_run']:
+        raise ValueError('prevalidation requires a finished learner')
+    interval=config.n_envs*config.rollout_steps*config.validation_every;torch.set_num_threads(2)
+    steps=sorted(set([*range(interval,plan['ppo_steps_per_run']+1,interval),plan['ppo_steps_per_run']]))
+    for step in steps:
+        path=root/label/'checkpoints'/f'step_{step}.zip';metadata=read_metadata(path,expected_rules=config.rules)
+        if metadata['timesteps']!=step or metadata['source_sha256']!=plan['source_sha256']:raise ValueError('prevalidation candidate changed')
+        stats=validate_candidate(root,{'path':str(path),'sha256':metadata['model_sha256']},config,workers)
+        print(json.dumps({'event':'predeclared_checkpoint_validation','label':label,'step':step,'mean_rank':stats['mean_rank']}),flush=True)
+
+
 def select(root,workers=8):
     import torch
     from scripts import run_riichi_curriculum as curriculum
     from scripts.riichi_runtime import configuration
-    from mahjong_sandbox.rl.checkpoint import read_metadata,load_checkpoint,source_fingerprint
-    from mahjong_sandbox.rl.riichi_evaluate import validate_model
+    from mahjong_sandbox.rl.checkpoint import read_metadata,source_fingerprint
     root=Path(root).resolve();plan=json.loads((root/'plan.json').read_text())
     if plan['source_sha256']!=source_fingerprint():raise ValueError('selection source differs from frozen plan')
     labels=['v1_'+str(plan['train_seeds'][0]),*['v2_'+str(s) for s in plan['train_seeds']]]
@@ -86,13 +127,10 @@ def select(root,workers=8):
             # Inference needs no N-environment training buffer. This changes
             # neither parameters nor optimizer state; original files are copied
             # unchanged when publishing the selected model.
-            model,metadata=load_checkpoint(entry['path'],device='cpu',n_steps=1,n_envs=1)
-            stats=validate_model(model,metadata,blocks=config.validation_blocks,seed=config.validation_seed,
-                backend=config.backend,workers=min(workers,8))
+            stats=validate_candidate(root,entry,config,workers)
             scores.append({**entry,'statistics':stats})
             print(json.dumps({'event':'global_checkpoint_validation','label':label,'step':entry['step'],
                 'mean_rank':stats['mean_rank'],'mean_net_score':stats['mean_net_score']}),flush=True)
-            del model
         selected=max(scores,key=lambda x:x['statistics']['rank_utility'])
         _publish(Path(selected['path']),root/label/'best.zip',selected['statistics'],digest)
         result['runs'][label]={'candidates':scores,'selected':selected}
@@ -102,6 +140,9 @@ def select(root,workers=8):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--root',required=True)
-    parser.add_argument('--workers',type=int,default=8);args=parser.parse_args();select(args.root,args.workers)
+    parser.add_argument('--workers',type=int,default=8);parser.add_argument('--prevalidate-label')
+    args=parser.parse_args()
+    if args.prevalidate_label:prevalidate(args.root,args.prevalidate_label,args.workers)
+    else:select(args.root,args.workers)
 
 if __name__=='__main__':main()

@@ -13,6 +13,17 @@ HAS_RL=all(importlib.util.find_spec(name) is not None for name in ('numpy','torc
 
 @unittest.skipUnless(HAS_RL,'optional RL dependencies not installed')
 class CurriculumSelectionTests(unittest.TestCase):
+    def test_prefetch_selects_only_planned_rl_seeds_and_excludes_bc(self):
+        from scripts.riichi_evaluation import selected_v2
+        plan={'train_seeds':[91,92]}
+        frozen={key:{'path':key} for key in ['v2_91','v2_92','v2_bc','v1_91']}
+        def metadata(path):
+            if path=='v2_bc':raise AssertionError('BC must not enter V2 RL selection')
+            return {'training':{'validation_score':.3 if path=='v2_91' else .2}}
+        with patch('mahjong_sandbox.rl.checkpoint.read_metadata',side_effect=metadata):
+            self.assertEqual(selected_v2(plan,frozen),'v2_91')
+            with self.assertRaises(ValueError):selected_v2(plan,{'v2_bc':frozen['v2_bc']})
+
     def test_final_boundary_recovery_keeps_model_bytes_and_checks_optimizer(self):
         from scripts.riichi_runtime import configuration,recover_finished_training
         from mahjong_sandbox.rl.checkpoint import save_checkpoint,read_metadata,source_fingerprint
@@ -35,9 +46,15 @@ class CurriculumSelectionTests(unittest.TestCase):
             self.assertEqual(read_metadata(root/label/'latest.zip')['timesteps'],128)
             self.assertIsNone(json.loads((root/label/'training.json').read_text())['elapsed_seconds'])
             self.assertIsNone(recover_finished_training(root,label,config))
+            (root/label/'latest.zip').write_bytes(b'interrupted pair replacement')
+            (root/label/'training.json').unlink()
+            repaired=recover_finished_training(root,label,config)
+            self.assertEqual(repaired['checkpoint_sha256'],result['checkpoint_sha256'])
+            self.assertEqual((root/label/'latest.zip').read_bytes(),path.read_bytes())
 
     def test_match_cache_freezes_task_and_detects_corruption(self):
-        from scripts.riichi_evaluation import cached_block,digest
+        from scripts.riichi_evaluation import cached_block
+        from mahjong_sandbox.riichi_match import MatchConfig
         def play(seed, seat, candidate, opponent, **kwargs):
             return {'seed':seed,'seat':seat,'policy':candidate,'opponent':opponent,'net_score':seat*100}
         with tempfile.TemporaryDirectory() as directory:
@@ -46,11 +63,17 @@ class CurriculumSelectionTests(unittest.TestCase):
             with patch('mahjong_sandbox.rl.riichi_evaluate.play_match',side_effect=play) as match:
                 original=cached_block(args,cache_root=directory,identity=identity)
                 self.assertEqual(match.call_count,4)
+                path=next(Path(directory).glob('*.json'))
                 self.assertEqual(cached_block(args,cache_root=directory,identity=identity),original)
+                self.assertEqual(match.call_count,4)
+                # The prefetcher receives the plan's partial rules; the main
+                # evaluator expands defaults. They must reuse the same block.
+                normalized=(*args[:8],asdict(MatchConfig(length='south')))
+                self.assertEqual(cached_block(normalized,cache_root=directory,identity=identity),original)
                 self.assertEqual(match.call_count,4)
                 cached_block(args,cache_root=directory,identity={**identity,'models':{'rl':'new'}})
                 self.assertEqual(match.call_count,8)
-                path=Path(directory)/(digest({'identity':identity,'task':args})+'.json');receipt=json.loads(path.read_text())
+                receipt=json.loads(path.read_text())
                 receipt['rows'][0]['net_score']=999;path.write_text(json.dumps(receipt))
                 with self.assertRaises(ValueError):
                     cached_block(args,cache_root=directory,identity=identity)
@@ -142,6 +165,11 @@ class CurriculumSelectionTests(unittest.TestCase):
                 for label in ['v1_91','v2_91']:
                     self.assertEqual(report['runs'][label]['selected']['step'],512)
                     self.assertEqual(read_metadata(root/label/'best.zip')['timesteps'],512)
+                # Rebuilding selection after interruption reuses exact validation
+                # candidates, even with a different worker count.
+                (root/'validation-selection.json').unlink()
+                select(root,2)
+                self.assertEqual(validate.call_count,4)
                 (root/'v2_91/best.zip').write_bytes(b'interrupted replacement')
                 select(root,1)
                 self.assertEqual(validate.call_count,4)

@@ -25,7 +25,14 @@ def recover_finished_training(root,label,config):
     target=plan['ppo_steps_per_run'];checkpoint=folder/'checkpoints'/f'step_{target}.zip'
     latest=folder/'latest.zip'
     if not checkpoint.exists():return None
-    if latest.exists() and read_metadata(latest)['timesteps']==target:return None
+    report_path=folder/'training.json'
+    try:
+        if (read_metadata(latest)['timesteps']==target and
+                json.loads(report_path.read_text())['final_timesteps']==target):return None
+    except (OSError,ValueError,KeyError):
+        # A process can stop between the two atomic checkpoint replacements,
+        # or after replacing them but before writing its final report.
+        pass
     metadata=read_metadata(checkpoint,expected_rules=config.rules)
     if metadata['timesteps']!=target or metadata['source_sha256']!=plan['source_sha256']:
         raise ValueError('final recovery checkpoint differs from frozen target or source')
@@ -49,7 +56,6 @@ def recover_finished_training(root,label,config):
         temporary=latest.with_suffix('.recovery.'+suffix)
         shutil.copyfile(checkpoint.with_suffix('.'+suffix),temporary)
         temporary.replace(latest.with_suffix('.'+suffix))
-    report_path=folder/'training.json'
     if report_path.exists():shutil.copyfile(report_path,folder/'training.before_target_recovery.json')
     report={'algorithm':'sb3-contrib MaskablePPO','config':asdict(config),'actual_device':'cpu',
         'final_timesteps':target,'optimizer_epochs':model._n_updates,'interrupted':False,

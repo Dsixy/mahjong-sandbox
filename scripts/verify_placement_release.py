@@ -3,6 +3,7 @@ import argparse
 from dataclasses import replace
 import json
 from pathlib import Path
+import platform
 import sys
 import tempfile
 
@@ -23,7 +24,7 @@ def main():
     torch.set_num_threads(1)
     path = Path(args.model)
     before_sha = checksum(path)
-    model, metadata = load_checkpoint(path, device='cpu')
+    model, metadata = load_checkpoint(path, device='cpu', n_steps=1, n_envs=1)
     config = metadata['training']['config']
     assert config['reward_mode'] == 'rank' and config['match_length'] == 'south'
     assert config['reward_scale'] == config['gamma'] == 1
@@ -52,7 +53,7 @@ def main():
             total_timesteps=32, n_envs=4, workers=0, rollout_steps=8, batch_size=16,
             epochs=1, learning_rate=1e-4, hidden=128, bc_samples=0, bc_epochs=0,
             validation_blocks=0, backend='numba', self_play_probability=0,
-            checkpoint_every=1, seed=777777), resume=path)
+            feature_version=metadata['feature_version'],checkpoint_every=1, seed=777777), resume=path)
         restored, after = load_checkpoint(Path(directory) / 'latest.zip', device='cpu')
         assert after['timesteps'] == metadata['timesteps'] + 32
         assert after['optimizer_updates'] == metadata['optimizer_updates'] + 1
@@ -63,6 +64,8 @@ def main():
         assert min(new_steps) > min(steps)
         proof = {
             'format': 'placement_release_runtime_proof_v1', 'model_sha256': before_sha,
+            'python':platform.python_version(),'torch':torch.__version__,
+            'feature_version':metadata['feature_version'],
             'cpu_load': True, 'finite_parameters_and_optimizer': True,
             'reward_mode': config['reward_mode'], 'match_length': config['match_length'],
             'dynamic_round_legal_action': action.to_dict(),

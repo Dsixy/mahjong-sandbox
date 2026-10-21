@@ -35,11 +35,16 @@ def initialize(models, backend, deterministic):
 
 
 def cached_block(args, *, cache_root, identity):
+    from dataclasses import asdict
     from mahjong_sandbox.rl.riichi_evaluate import play_match
     from mahjong_sandbox.riichi_model import RiichiConfig
+    from mahjong_sandbox.riichi_match import MatchConfig
+    seed, candidate, opponent, rules, backend, deterministic, length, style, match_config = args
+    if length != 'hand':
+        match_config=asdict(MatchConfig(**match_config) if isinstance(match_config,dict) else match_config or MatchConfig(length=length))
+    args=(seed,candidate,opponent,rules,backend,deterministic,length,style,match_config)
     key = digest({'identity': identity, 'task': args})
     destination = Path(cache_root) / (key + '.json')
-    seed, candidate, opponent, rules, backend, deterministic, length, style, match_config = args
     if not deterministic:
         raise ValueError('persistent match cache requires deterministic policies')
     if destination.exists():
@@ -101,13 +106,19 @@ def evaluate_curriculum(root, workers):
         evaluator.evaluate_models = original
 
 
+def selected_v2(plan,frozen):
+    from mahjong_sandbox.rl.checkpoint import read_metadata
+    labels=['v2_'+str(seed) for seed in plan['train_seeds'] if 'v2_'+str(seed) in frozen]
+    if not labels:raise ValueError('no planned V2 RL seed in the frozen test models')
+    return max(labels,key=lambda label:read_metadata(frozen[label]['path'])['training']['validation_score'])
+
+
 def precompute(root, workers=8):
     from dataclasses import asdict
     from mahjong_sandbox.rl.checkpoint import read_metadata
     from mahjong_sandbox.riichi_model import RiichiConfig
     plan, frozen, block = setup(root)
-    v2 = [label for label in frozen if label.startswith('v2_')]
-    selected = max(v2, key=lambda label: read_metadata(frozen[label]['path'])['training']['validation_score'])
+    selected = selected_v2(plan,frozen)
     models = {'rl': frozen[selected]['path'], **{label: entry['path'] for label, entry in frozen.items() if label != selected}}
     rules = asdict(RiichiConfig(**read_metadata(models['rl'])['rules']))
     tasks = [(plan['test_seed'] + b, candidate, 'greedy', rules, 'numba', True, 'south', True, plan['match_config'])
