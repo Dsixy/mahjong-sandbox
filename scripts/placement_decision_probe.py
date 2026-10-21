@@ -76,12 +76,16 @@ def evaluate(bank,models,output):
     import numpy as np
     import torch
     from mahjong_sandbox.rl.agent import RLAgent
+    from mahjong_sandbox.rl.checkpoint import load_checkpoint
     from mahjong_sandbox.rl.features import observation_batch,encode_batch
     from mahjong_sandbox.rl.riichi_evaluate import _context_choice,_threat_choice
     from mahjong_sandbox.model import Action
     torch.set_num_threads(1)
     with gzip.open(bank,'rt') as file:data=json.load(file)
-    positions=data['records'];agents={label:RLAgent(path,backend='numba',device='cpu') for label,path in models.items()}
+    positions=data['records'];agents={}
+    for label,path in models.items():
+        model,metadata=load_checkpoint(path,device='cpu',n_steps=1,n_envs=1)
+        agents[label]=RLAgent(model=model,metadata=metadata,backend='numba')
     choices={k:[] for k in agents};counts={k:Counter() for k in agents};rows={k:[] for k in agents}
     probabilities={k:defaultdict(lambda:[0,0.]) for k in agents}
     first=next(iter(agents.values()));rules=first.rules

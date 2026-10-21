@@ -51,14 +51,20 @@ def analyze(root,output):
             try:events.append(json.loads(line))
             except ValueError:pass
         curves[label]={'validation':[{key:x.get(key) for key in ('timesteps',*metrics)} for x in events if x.get('event')=='validation'],
-            'updates':[{key:x.get(key) for key in ('timesteps','elapsed_seconds','train/rank','train/net_score','train/approx_kl','train/value_loss','anchor/set_cross_entropy')} for x in events if x.get('event')=='ppo_update'],
+            'updates':[{key:x.get(key) for key in ('timesteps','elapsed_seconds','train/rank','train/net_score','train/approx_kl','train/value_loss','train/explained_variance','train/entropy_loss','anchor/set_cross_entropy')} for x in events if x.get('event')=='ppo_update'],
             'report':json.loads((root/label/'training.json').read_text())}
+    selection_path=root/'validation-selection.json'
+    selection=json.loads(selection_path.read_text()) if selection_path.exists() else None
+    if selection:
+        for label,details in selection['runs'].items():
+            curves[label]['live_validation']=curves[label]['validation']
+            curves[label]['validation']=[{'timesteps':entry['step'],**{k:entry['statistics'][k] for k in metrics}} for entry in details['candidates']]
     summary={'format':'riichi_curriculum_analysis_v1','experiment':plan,'selected_label':selected,
         'evaluation_sha256':hashlib.sha256((root/'evaluation.json').read_bytes()).hexdigest(),
         'games':evaluation['games'],'hands':evaluation['hands'],'models':evaluation['models'],
         'matchups':summaries,'paired_comparisons':evaluation['paired_comparisons']['greedy'],
         'pooled_v2':pooled,'pooled_v2_vs_matched_v1':paired,'imitation':imitation,'training':curves,
-        'release_gate':evaluation['release_gate'],
+        'release_gate':evaluation['release_gate'],'global_checkpoint_selection':selection,
         'interval_note':'Test-wall block bootstrap conditional on these fitted models; two V2 training seeds do not estimate uncertainty over arbitrary retraining.',
         'comparison_limits':'Published V1 used a different reward and training budget. Matched V1 control shares new teacher data, DAgger budgets, rank reward, self-play and anchor settings; V2 also fixes the declaration marker. Each run selects by validation before testing.'}
     (output/'analysis.json').write_text(json.dumps(summary,indent=2)+'\n')

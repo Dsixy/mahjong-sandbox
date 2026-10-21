@@ -21,9 +21,17 @@ def pipeline(root,workers):
         curriculum.collect(root,'dagger',version,min(workers,8))
         curriculum.fit(root,version,True)
     for label in ['v1_'+str(plan['train_seeds'][0]),*['v2_'+str(seed) for seed in plan['train_seeds']]]:
-        status=curriculum.train_run(root,label)
+        directory=root/label
+        if (directory/'complete.json').exists() and read_metadata(directory/'latest.zip')['timesteps']==plan['ppo_steps_per_run']:
+            continue
+        from scripts.riichi_runtime import train_run
+        status=train_run(root,label)
         if status:return status
-    if not (root/'evaluation.json').exists():curriculum.evaluate(root,min(workers,16))
+    from scripts.select_riichi_checkpoints import select
+    select(root,min(workers,8))
+    if not (root/'evaluation.json').exists():
+        from scripts.riichi_evaluation import evaluate_curriculum
+        evaluate_curriculum(root,min(workers,16))
     result=json.loads((root/'evaluation.json').read_text())
     frozen=json.loads((root/'test-models.json').read_text())
     for entry in frozen.values():
