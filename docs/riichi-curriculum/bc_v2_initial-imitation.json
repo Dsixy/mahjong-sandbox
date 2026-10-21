@@ -1,0 +1,1321 @@
+{
+  "feature_version": "riichi_visible_v2",
+  "epochs": 20,
+  "training_samples_per_epoch": 32768,
+  "group_weights": {
+    "discard": 0.5210079475067525,
+    "call": 0.9631277192244913,
+    "riichi": 2.7227880307937093,
+    "win": 3.4148513824781324,
+    "kong": 7.582065635316383
+  },
+  "history": [
+    {
+      "event": "distillation_epoch",
+      "epoch": 1,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.7619111130479723,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.77294921875,
+          "sampled_action_accuracy": 0.58154296875,
+          "teacher_set_probability": 0.6470401734113693,
+          "set_cross_entropy": 0.6627709344029427
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.8043715846994536,
+          "sampled_action_accuracy": 0.6546448087431694,
+          "teacher_set_probability": 0.6874087661993308,
+          "set_cross_entropy": 0.5961776889738489
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.7662162162162162,
+          "sampled_action_accuracy": 0.5581081081081081,
+          "teacher_set_probability": 0.6465176788536278,
+          "set_cross_entropy": 0.6828249029211095
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.7194555112881806,
+          "sampled_action_accuracy": 0.4638114209827357,
+          "teacher_set_probability": 0.5588684943251084,
+          "set_cross_entropy": 0.8227953334570247
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9265212399540758,
+          "sampled_action_accuracy": 0.9265212399540758,
+          "teacher_set_probability": 0.9012039876559025,
+          "set_cross_entropy": 0.20626183191205275
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9375,
+          "sampled_action_accuracy": 0.8482142857142857,
+          "teacher_set_probability": 0.8744192378861564,
+          "set_cross_entropy": 0.17441965284940256
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9925615586025615,
+          "set_cross_entropy": 0.007467840050517673
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.5333333333333333,
+          "sampled_action_accuracy": 0.4,
+          "teacher_set_probability": 0.45363841876387595,
+          "set_cross_entropy": 1.2243622690439224
+        }
+      },
+      "elapsed_seconds": 21.304150443524122
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 2,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.41874738899059594,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.867919921875,
+          "sampled_action_accuracy": 0.65087890625,
+          "teacher_set_probability": 0.7643729709088802,
+          "set_cross_entropy": 0.40009633637964725
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.8765027322404372,
+          "sampled_action_accuracy": 0.7125683060109289,
+          "teacher_set_probability": 0.7866630220673775,
+          "set_cross_entropy": 0.379395367148144
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.8432432432432433,
+          "sampled_action_accuracy": 0.6148648648648649,
+          "teacher_set_probability": 0.7598295005592139,
+          "set_cross_entropy": 0.43298311362395414
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.8452855245683931,
+          "sampled_action_accuracy": 0.5541168658698539,
+          "teacher_set_probability": 0.7114825052410799,
+          "set_cross_entropy": 0.4804699785047635
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.931113662456946,
+          "sampled_action_accuracy": 0.931113662456946,
+          "teacher_set_probability": 0.9167589741651008,
+          "set_cross_entropy": 0.16266343568961739
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9732142857142857,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9071454661233085,
+          "set_cross_entropy": 0.12132330441175197
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9996824936127998,
+          "set_cross_entropy": 0.0003175484131313336
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.6,
+          "sampled_action_accuracy": 0.5,
+          "teacher_set_probability": 0.5603852202494939,
+          "set_cross_entropy": 1.2109471708536148
+        }
+      },
+      "elapsed_seconds": 40.31678283307701
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 3,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.29990912845823914,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.9033203125,
+          "sampled_action_accuracy": 0.681884765625,
+          "teacher_set_probability": 0.812279649078846,
+          "set_cross_entropy": 0.31215434707701206
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.898360655737705,
+          "sampled_action_accuracy": 0.7355191256830601,
+          "teacher_set_probability": 0.8233410590333365,
+          "set_cross_entropy": 0.3060855823787835
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.8824324324324324,
+          "sampled_action_accuracy": 0.65,
+          "teacher_set_probability": 0.8079035088822648,
+          "set_cross_entropy": 0.3478386440792599
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.8824701195219123,
+          "sampled_action_accuracy": 0.5853253652058433,
+          "teacher_set_probability": 0.7712679048616731,
+          "set_cross_entropy": 0.36685943096915724
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9667049368541906,
+          "sampled_action_accuracy": 0.9667049368541906,
+          "teacher_set_probability": 0.9320260933701946,
+          "set_cross_entropy": 0.14085648226820094
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9732142857142857,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9217991530895233,
+          "set_cross_entropy": 0.09964259221629439
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999642137070777,
+          "set_cross_entropy": 3.577359022759557e-05
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.6666666666666666,
+          "sampled_action_accuracy": 0.5666666666666667,
+          "teacher_set_probability": 0.6001592338085174,
+          "set_cross_entropy": 1.325170125812292
+        }
+      },
+      "elapsed_seconds": 60.54584058281034
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 4,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.25314232683740556,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.910888671875,
+          "sampled_action_accuracy": 0.690185546875,
+          "teacher_set_probability": 0.8394660279154778,
+          "set_cross_entropy": 0.27005328331142664
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.8950819672131147,
+          "sampled_action_accuracy": 0.7289617486338797,
+          "teacher_set_probability": 0.8448960184399548,
+          "set_cross_entropy": 0.274703813250599
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.8932432432432432,
+          "sampled_action_accuracy": 0.6635135135135135,
+          "teacher_set_probability": 0.8361534324852196,
+          "set_cross_entropy": 0.30032080379692283
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.8947543160690571,
+          "sampled_action_accuracy": 0.598605577689243,
+          "teacher_set_probability": 0.8083679432254706,
+          "set_cross_entropy": 0.3056676036333183
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9678530424799081,
+          "sampled_action_accuracy": 0.9678530424799081,
+          "teacher_set_probability": 0.9356029874011105,
+          "set_cross_entropy": 0.12143682776581406
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9732142857142857,
+          "sampled_action_accuracy": 0.875,
+          "teacher_set_probability": 0.9306731649807521,
+          "set_cross_entropy": 0.0891239722259363
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999945801748357,
+          "set_cross_entropy": 5.416484244461302e-06
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.43333333333333335,
+          "sampled_action_accuracy": 0.4,
+          "teacher_set_probability": 0.4501100858052572,
+          "set_cross_entropy": 2.3237891542026774
+        }
+      },
+      "elapsed_seconds": 80.56525693554431
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 5,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.22793446062132716,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.928466796875,
+          "sampled_action_accuracy": 0.699462890625,
+          "teacher_set_probability": 0.853913564234972,
+          "set_cross_entropy": 0.2336019268259406
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9202185792349726,
+          "sampled_action_accuracy": 0.7453551912568306,
+          "teacher_set_probability": 0.858050368262119,
+          "set_cross_entropy": 0.2301675291009288
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9054054054054054,
+          "sampled_action_accuracy": 0.6783783783783783,
+          "teacher_set_probability": 0.8516957179920094,
+          "set_cross_entropy": 0.26905138814771495
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9186586985391766,
+          "sampled_action_accuracy": 0.6108897742363878,
+          "teacher_set_probability": 0.8258403661558195,
+          "set_cross_entropy": 0.2654034372661535
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9667049368541906,
+          "sampled_action_accuracy": 0.9667049368541906,
+          "teacher_set_probability": 0.9417518633241357,
+          "set_cross_entropy": 0.09006845855274923
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9390898772648403,
+          "set_cross_entropy": 0.07649138732813705
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.999998539266452,
+          "set_cross_entropy": 1.4674508837371422e-06
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.43333333333333335,
+          "sampled_action_accuracy": 0.4,
+          "teacher_set_probability": 0.45849611759185793,
+          "set_cross_entropy": 2.347385933428692
+        }
+      },
+      "elapsed_seconds": 100.15001758560538
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 6,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.2014716033008881,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.94091796875,
+          "sampled_action_accuracy": 0.709716796875,
+          "teacher_set_probability": 0.8710711300373077,
+          "set_cross_entropy": 0.20753072760999203
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9300546448087431,
+          "sampled_action_accuracy": 0.7573770491803279,
+          "teacher_set_probability": 0.8761070459918247,
+          "set_cross_entropy": 0.20222972208033493
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9216216216216216,
+          "sampled_action_accuracy": 0.6891891891891891,
+          "teacher_set_probability": 0.8688679050754856,
+          "set_cross_entropy": 0.2367465760256793
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9319389110225763,
+          "sampled_action_accuracy": 0.6218459495351926,
+          "teacher_set_probability": 0.8446737899881593,
+          "set_cross_entropy": 0.23132947969879922
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9781859931113662,
+          "sampled_action_accuracy": 0.9770378874856487,
+          "teacher_set_probability": 0.9582563196613649,
+          "set_cross_entropy": 0.057758804851229785
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9431453772953579,
+          "set_cross_entropy": 0.07088200496842388
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999989220793818,
+          "set_cross_entropy": 1.0829589530363643e-06
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.43333333333333335,
+          "sampled_action_accuracy": 0.4,
+          "teacher_set_probability": 0.41588186820348105,
+          "set_cross_entropy": 3.167822751148439
+        }
+      },
+      "elapsed_seconds": 117.93176420219243
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 7,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.19534218008629978,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.95263671875,
+          "sampled_action_accuracy": 0.72216796875,
+          "teacher_set_probability": 0.8857107199728489,
+          "set_cross_entropy": 0.183288489934057
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.946448087431694,
+          "sampled_action_accuracy": 0.7683060109289618,
+          "teacher_set_probability": 0.8894656447113537,
+          "set_cross_entropy": 0.17767783227514047
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.95,
+          "sampled_action_accuracy": 0.722972972972973,
+          "teacher_set_probability": 0.8863277847702439,
+          "set_cross_entropy": 0.21462933759431582
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9462151394422311,
+          "sampled_action_accuracy": 0.6371181938911022,
+          "teacher_set_probability": 0.8613356834705449,
+          "set_cross_entropy": 0.20086847358490842
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9873708381171068,
+          "sampled_action_accuracy": 0.9862227324913893,
+          "teacher_set_probability": 0.9688488142361734,
+          "set_cross_entropy": 0.038830925074291554
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9511237804378782,
+          "set_cross_entropy": 0.060845955441308774
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999992209421077,
+          "set_cross_entropy": 7.757016362575087e-07
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.36666666666666664,
+          "sampled_action_accuracy": 0.3333333333333333,
+          "teacher_set_probability": 0.40449780225753784,
+          "set_cross_entropy": 3.503242502056431
+        }
+      },
+      "elapsed_seconds": 135.51929563377053
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 8,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.1841802290873602,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.960205078125,
+          "sampled_action_accuracy": 0.72607421875,
+          "teacher_set_probability": 0.9020956568419933,
+          "set_cross_entropy": 0.15322548430413008
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9584699453551913,
+          "sampled_action_accuracy": 0.7781420765027323,
+          "teacher_set_probability": 0.907575044475618,
+          "set_cross_entropy": 0.13801601675690198
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9540540540540541,
+          "sampled_action_accuracy": 0.727027027027027,
+          "teacher_set_probability": 0.899694386044064,
+          "set_cross_entropy": 0.21704942986771866
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.950531208499336,
+          "sampled_action_accuracy": 0.6374501992031872,
+          "teacher_set_probability": 0.8792347293767637,
+          "set_cross_entropy": 0.17567209038601453
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9931113662456946,
+          "sampled_action_accuracy": 0.9919632606199771,
+          "teacher_set_probability": 0.9710352708223082,
+          "set_cross_entropy": 0.035062010471637435
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.875,
+          "teacher_set_probability": 0.9575183945042747,
+          "set_cross_entropy": 0.052722396412349326
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999994022745482,
+          "set_cross_entropy": 5.994060485267588e-07
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.8,
+          "sampled_action_accuracy": 0.7,
+          "teacher_set_probability": 0.7571696162223815,
+          "set_cross_entropy": 2.0681096153799445
+        }
+      },
+      "elapsed_seconds": 153.01891598571092
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 9,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.17556601640535519,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.9619140625,
+          "sampled_action_accuracy": 0.72802734375,
+          "teacher_set_probability": 0.9078103564679623,
+          "set_cross_entropy": 0.15135872969403863
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9551912568306011,
+          "sampled_action_accuracy": 0.7704918032786885,
+          "teacher_set_probability": 0.911609141031901,
+          "set_cross_entropy": 0.14267554595822193
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9540540540540541,
+          "sampled_action_accuracy": 0.722972972972973,
+          "teacher_set_probability": 0.9078283773886191,
+          "set_cross_entropy": 0.19260005209897016
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9578353253652059,
+          "sampled_action_accuracy": 0.6444223107569721,
+          "teacher_set_probability": 0.8898967119802041,
+          "set_cross_entropy": 0.1561732843102687
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9896670493685419,
+          "sampled_action_accuracy": 0.9885189437428243,
+          "teacher_set_probability": 0.9730390949446353,
+          "set_cross_entropy": 0.03432504352006792
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9581032948834556,
+          "set_cross_entropy": 0.05104696951042342
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999996507671517,
+          "set_cross_entropy": 3.4755464799724305e-07
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.36666666666666664,
+          "sampled_action_accuracy": 0.3333333333333333,
+          "teacher_set_probability": 0.4065908908843994,
+          "set_cross_entropy": 3.798567452922024
+        }
+      },
+      "elapsed_seconds": 169.70097458548844
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 10,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.17173719318816438,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.971435546875,
+          "sampled_action_accuracy": 0.739013671875,
+          "teacher_set_probability": 0.9174453876912594,
+          "set_cross_entropy": 0.1304408428259194
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9693989071038251,
+          "sampled_action_accuracy": 0.7836065573770492,
+          "teacher_set_probability": 0.9200328639296235,
+          "set_cross_entropy": 0.11879168403604642
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9702702702702702,
+          "sampled_action_accuracy": 0.7405405405405405,
+          "teacher_set_probability": 0.9171706225420978,
+          "set_cross_entropy": 0.1946526694942165
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9687915006640107,
+          "sampled_action_accuracy": 0.6570385126162018,
+          "teacher_set_probability": 0.9004931152262694,
+          "set_cross_entropy": 0.13859586221763337
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9908151549942594,
+          "sampled_action_accuracy": 0.9896670493685419,
+          "teacher_set_probability": 0.9743778828775295,
+          "set_cross_entropy": 0.03190049641989129
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9641448578664235,
+          "set_cross_entropy": 0.043928160904044944
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999998320995922,
+          "set_cross_entropy": 1.6790062878678494e-07
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.5333333333333333,
+          "sampled_action_accuracy": 0.5,
+          "teacher_set_probability": 0.5967917780081431,
+          "set_cross_entropy": 2.804321546864897
+        }
+      },
+      "elapsed_seconds": 186.4582652905956
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 11,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.17554923801799305,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.974609375,
+          "sampled_action_accuracy": 0.7431640625,
+          "teacher_set_probability": 0.9217909388244152,
+          "set_cross_entropy": 0.13522743247449398
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9683060109289617,
+          "sampled_action_accuracy": 0.7836065573770492,
+          "teacher_set_probability": 0.922515033242481,
+          "set_cross_entropy": 0.13115965916159375
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.977027027027027,
+          "sampled_action_accuracy": 0.75,
+          "teacher_set_probability": 0.9245025840965477,
+          "set_cross_entropy": 0.1767113381140941
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9750996015936255,
+          "sampled_action_accuracy": 0.6653386454183267,
+          "teacher_set_probability": 0.908096419862542,
+          "set_cross_entropy": 0.12476916395493871
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9908151549942594,
+          "sampled_action_accuracy": 0.9896670493685419,
+          "teacher_set_probability": 0.9763875144494251,
+          "set_cross_entropy": 0.03090803740903239
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.9620666993515832,
+          "set_cross_entropy": 0.05748411711108149
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999997817294698,
+          "set_cross_entropy": 2.2834502879466296e-07
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.36666666666666664,
+          "sampled_action_accuracy": 0.3333333333333333,
+          "teacher_set_probability": 0.3761414349079132,
+          "set_cross_entropy": 4.82425716277794
+        }
+      },
+      "elapsed_seconds": 203.4603630853817
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 12,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.17146091401809826,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.97509765625,
+          "sampled_action_accuracy": 0.741455078125,
+          "teacher_set_probability": 0.9257739819586277,
+          "set_cross_entropy": 0.1287784343585372
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9683060109289617,
+          "sampled_action_accuracy": 0.7857923497267759,
+          "teacher_set_probability": 0.9259231567382813,
+          "set_cross_entropy": 0.12257519484869119
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9756756756756757,
+          "sampled_action_accuracy": 0.7418918918918919,
+          "teacher_set_probability": 0.928495082339725,
+          "set_cross_entropy": 0.17496855710003828
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9767596281540505,
+          "sampled_action_accuracy": 0.6640106241699867,
+          "teacher_set_probability": 0.9136807161814979,
+          "set_cross_entropy": 0.11583301017325555
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9873708381171068,
+          "sampled_action_accuracy": 0.9862227324913893,
+          "teacher_set_probability": 0.9754642175615312,
+          "set_cross_entropy": 0.03554014435591846
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.9639627571616854,
+          "set_cross_entropy": 0.0559521222420634
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999999294818287,
+          "set_cross_entropy": 7.219723560775863e-08
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.36666666666666664,
+          "sampled_action_accuracy": 0.3333333333333333,
+          "teacher_set_probability": 0.37902577022711437,
+          "set_cross_entropy": 4.712177587368448
+        }
+      },
+      "elapsed_seconds": 219.98922891169786
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 13,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.14948623889358714,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.9775390625,
+          "sampled_action_accuracy": 0.745361328125,
+          "teacher_set_probability": 0.9298619776964188,
+          "set_cross_entropy": 0.1295093111693859
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9737704918032787,
+          "sampled_action_accuracy": 0.7890710382513662,
+          "teacher_set_probability": 0.9297699308134819,
+          "set_cross_entropy": 0.13174126278507253
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9783783783783784,
+          "sampled_action_accuracy": 0.7432432432432432,
+          "teacher_set_probability": 0.9309134560662347,
+          "set_cross_entropy": 0.16144313473959226
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9804116865869854,
+          "sampled_action_accuracy": 0.6686586985391766,
+          "teacher_set_probability": 0.9191952030338931,
+          "set_cross_entropy": 0.1068294459921747
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9862227324913893,
+          "sampled_action_accuracy": 0.9850746268656716,
+          "teacher_set_probability": 0.9758369498356886,
+          "set_cross_entropy": 0.04229927519774738
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9658227222306388,
+          "set_cross_entropy": 0.05294069030735977
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999999664199184,
+          "set_cross_entropy": 3.6938108534331416e-08
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.36666666666666664,
+          "sampled_action_accuracy": 0.3333333333333333,
+          "teacher_set_probability": 0.3657556520154079,
+          "set_cross_entropy": 5.530927746431553
+        }
+      },
+      "elapsed_seconds": 236.71301191765815
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 14,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.12252056578290649,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.980224609375,
+          "sampled_action_accuracy": 0.74755859375,
+          "teacher_set_probability": 0.9374862648546696,
+          "set_cross_entropy": 0.10331261530518532
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9748633879781421,
+          "sampled_action_accuracy": 0.7857923497267759,
+          "teacher_set_probability": 0.9412367982291133,
+          "set_cross_entropy": 0.08389334678649903
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.972972972972973,
+          "sampled_action_accuracy": 0.7405405405405405,
+          "teacher_set_probability": 0.9363313571826831,
+          "set_cross_entropy": 0.1765692370968896
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9814077025232404,
+          "sampled_action_accuracy": 0.6696547144754316,
+          "teacher_set_probability": 0.9258000043283896,
+          "set_cross_entropy": 0.09817189429385728
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9850746268656716,
+          "sampled_action_accuracy": 0.983926521239954,
+          "teacher_set_probability": 0.97869822680608,
+          "set_cross_entropy": 0.03418337871094933
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9821428571428571,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.9687885876212802,
+          "set_cross_entropy": 0.03972221007326685
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 0.9999999597039021,
+          "set_cross_entropy": 3.861711961786235e-08
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.6666666666666666,
+          "sampled_action_accuracy": 0.6666666666666666,
+          "teacher_set_probability": 0.6494539459546407,
+          "set_cross_entropy": 3.1084038576576862
+        }
+      },
+      "elapsed_seconds": 255.09420256037265
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 15,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.08939121593721211,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.9833984375,
+          "sampled_action_accuracy": 0.748046875,
+          "teacher_set_probability": 0.9474227428436279,
+          "set_cross_entropy": 0.0934213763102889
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9825136612021858,
+          "sampled_action_accuracy": 0.7912568306010929,
+          "teacher_set_probability": 0.9506499285254973,
+          "set_cross_entropy": 0.06927867131155045
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9783783783783784,
+          "sampled_action_accuracy": 0.7337837837837838,
+          "teacher_set_probability": 0.9447061280946474,
+          "set_cross_entropy": 0.18121396899223327
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9840637450199203,
+          "sampled_action_accuracy": 0.6693227091633466,
+          "teacher_set_probability": 0.9383496186964382,
+          "set_cross_entropy": 0.08175140326399885
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9850746268656716,
+          "sampled_action_accuracy": 0.983926521239954,
+          "teacher_set_probability": 0.9779645917609967,
+          "set_cross_entropy": 0.04185869626008
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9776243610041482,
+          "set_cross_entropy": 0.025766365483185893
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.7666666666666667,
+          "sampled_action_accuracy": 0.7,
+          "teacher_set_probability": 0.7344477236270904,
+          "set_cross_entropy": 3.235799223533832
+        }
+      },
+      "elapsed_seconds": 274.0594908166677
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 16,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.06463439539948013,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.98583984375,
+          "sampled_action_accuracy": 0.752685546875,
+          "teacher_set_probability": 0.9526256732642651,
+          "set_cross_entropy": 0.0870697342325002
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9836065573770492,
+          "sampled_action_accuracy": 0.7923497267759563,
+          "teacher_set_probability": 0.9552699500745763,
+          "set_cross_entropy": 0.06256016115021835
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.981081081081081,
+          "sampled_action_accuracy": 0.7445945945945946,
+          "teacher_set_probability": 0.9498515051764411,
+          "set_cross_entropy": 0.1889910877556414
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9867197875166003,
+          "sampled_action_accuracy": 0.6752988047808764,
+          "teacher_set_probability": 0.9442501093445229,
+          "set_cross_entropy": 0.0721972235645431
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9862227324913893,
+          "sampled_action_accuracy": 0.9850746268656716,
+          "teacher_set_probability": 0.9806561387912824,
+          "set_cross_entropy": 0.034161016652970035
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 0.875,
+          "teacher_set_probability": 0.9775956954274859,
+          "set_cross_entropy": 0.0257795700744623
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.8,
+          "sampled_action_accuracy": 0.7333333333333333,
+          "teacher_set_probability": 0.7743727723757426,
+          "set_cross_entropy": 3.551267960186427
+        }
+      },
+      "elapsed_seconds": 292.82114209234715
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 17,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.04952312477689702,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.98486328125,
+          "sampled_action_accuracy": 0.752197265625,
+          "teacher_set_probability": 0.9575377963483334,
+          "set_cross_entropy": 0.08436328149400651
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.985792349726776,
+          "sampled_action_accuracy": 0.7978142076502732,
+          "teacher_set_probability": 0.9579644562768155,
+          "set_cross_entropy": 0.05914327994070418
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.981081081081081,
+          "sampled_action_accuracy": 0.7513513513513513,
+          "teacher_set_probability": 0.9536557584195524,
+          "set_cross_entropy": 0.20376370227014695
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9857237715803453,
+          "sampled_action_accuracy": 0.6746347941567065,
+          "teacher_set_probability": 0.9502472389900035,
+          "set_cross_entropy": 0.0658407855635462
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.983926521239954,
+          "sampled_action_accuracy": 0.9827784156142365,
+          "teacher_set_probability": 0.9802349629276245,
+          "set_cross_entropy": 0.038714650800252756
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9797643848827907,
+          "set_cross_entropy": 0.023408733308964917
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.8333333333333334,
+          "sampled_action_accuracy": 0.7666666666666667,
+          "teacher_set_probability": 0.8470644613107046,
+          "set_cross_entropy": 3.696577142303204
+        }
+      },
+      "elapsed_seconds": 311.37179905269295
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 18,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.038920585095183924,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.98828125,
+          "sampled_action_accuracy": 0.75341796875,
+          "teacher_set_probability": 0.9610026106238365,
+          "set_cross_entropy": 0.08009479031898081
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9868852459016394,
+          "sampled_action_accuracy": 0.7934426229508197,
+          "teacher_set_probability": 0.9614469142559448,
+          "set_cross_entropy": 0.05124134522318188
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9905405405405405,
+          "sampled_action_accuracy": 0.7567567567567568,
+          "teacher_set_probability": 0.9599032118513777,
+          "set_cross_entropy": 0.1913463491040307
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9910358565737052,
+          "sampled_action_accuracy": 0.6759628154050464,
+          "teacher_set_probability": 0.9560869832437827,
+          "set_cross_entropy": 0.05496098004172681
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9862227324913893,
+          "sampled_action_accuracy": 0.9850746268656716,
+          "teacher_set_probability": 0.9812338573924436,
+          "set_cross_entropy": 0.038670404736127977
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8928571428571429,
+          "teacher_set_probability": 0.9770257409129824,
+          "set_cross_entropy": 0.04401028244841752
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.7333333333333333,
+          "sampled_action_accuracy": 0.7,
+          "teacher_set_probability": 0.7150411546230316,
+          "set_cross_entropy": 4.130490115224772
+        }
+      },
+      "elapsed_seconds": 328.45580954290926
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 19,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.03254799348360393,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.98779296875,
+          "sampled_action_accuracy": 0.751708984375,
+          "teacher_set_probability": 0.9638864099979401,
+          "set_cross_entropy": 0.07696860376745462
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9890710382513661,
+          "sampled_action_accuracy": 0.7978142076502732,
+          "teacher_set_probability": 0.9665586544516308,
+          "set_cross_entropy": 0.043626205517294625
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9851351351351352,
+          "sampled_action_accuracy": 0.7472972972972973,
+          "teacher_set_probability": 0.9614479992840741,
+          "set_cross_entropy": 0.1951525249996701
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9890438247011952,
+          "sampled_action_accuracy": 0.6736387782204515,
+          "teacher_set_probability": 0.9589915129926259,
+          "set_cross_entropy": 0.051492229875815344
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9862227324913893,
+          "sampled_action_accuracy": 0.9850746268656716,
+          "teacher_set_probability": 0.9806074455602846,
+          "set_cross_entropy": 0.04389887972896326
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.9802123137882778,
+          "set_cross_entropy": 0.02526605750117434
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.8666666666666667,
+          "sampled_action_accuracy": 0.8,
+          "teacher_set_probability": 0.8234483202298483,
+          "set_cross_entropy": 3.970102458819747
+        }
+      },
+      "elapsed_seconds": 344.53355089668185
+    },
+    {
+      "event": "distillation_epoch",
+      "epoch": 20,
+      "samples": 32768,
+      "training_weighted_set_cross_entropy": 0.025115213022218086,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.9892578125,
+          "sampled_action_accuracy": 0.750244140625,
+          "teacher_set_probability": 0.9681597128510475,
+          "set_cross_entropy": 0.07253616186790168
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9901639344262295,
+          "sampled_action_accuracy": 0.7934426229508197,
+          "teacher_set_probability": 0.9697890130548529,
+          "set_cross_entropy": 0.03845652700121937
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9878378378378379,
+          "sampled_action_accuracy": 0.7391891891891892,
+          "teacher_set_probability": 0.9649010941788957,
+          "set_cross_entropy": 0.19925907979140411
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9916998671978752,
+          "sampled_action_accuracy": 0.6723107569721115,
+          "teacher_set_probability": 0.9642455213731662,
+          "set_cross_entropy": 0.043891374491758714
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9827784156142365,
+          "sampled_action_accuracy": 0.981630309988519,
+          "teacher_set_probability": 0.9803370663000166,
+          "set_cross_entropy": 0.0492909846294898
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.9808630730424609,
+          "set_cross_entropy": 0.025100190036320264
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.9,
+          "sampled_action_accuracy": 0.8333333333333334,
+          "teacher_set_probability": 0.8848157902558644,
+          "set_cross_entropy": 3.972121191645662
+        }
+      },
+      "elapsed_seconds": 361.11149749718606
+    }
+  ],
+  "best_validation_selection_key": [
+    0,
+    0.0,
+    -0.9892578125,
+    0.07253616186790168
+  ],
+  "elapsed_seconds": 361.215195087716
+}

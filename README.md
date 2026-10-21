@@ -163,3 +163,5 @@ if __name__ == '__main__':  # spawn 进程必须保护程序入口
 算法选择、状态/action/reward 定义、完整命令和实测见 [docs/RL.md](docs/RL.md)。
 
 四人立直复用同一训练与模型接口，使用独立特征和赤牌动作身份，支持单手、东风战和半庄 episode。默认东风战训练完整传递分数、本场与供托，另评测顺位、立直率、副露和面对立直的现物选择；配置见 `configs/rl/riichi-cpu.json`，完整命令见 [docs/RIICHI-RL.md](docs/RIICHI-RL.md)。
+
+V2 的 greedy 蒸馏、learner 局面补充及混合自博弈已完成首轮实验。三个种子各跑满 524,288 个决策，独立测试 8,192 场半庄，尚未证实 RL 稳定超过 greedy；检查点按实验模型保存，默认高难度 AI 不变。流程、打点/放铳/顺位曲线及配对区间见 [新版训练报告](docs/RIICHI-CURRICULUM.md)，模型和续训说明见 [实验模型目录](mahjong_sandbox/models/riichi-curriculum/README.md)。

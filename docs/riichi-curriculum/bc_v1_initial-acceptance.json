@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "checks": {
+    "all": true,
+    "discard": true,
+    "call": true,
+    "riichi": true,
+    "win": true,
+    "threat": true
+  },
+  "thresholds": {
+    "all": 0.94,
+    "discard": 0.94,
+    "call": 0.9,
+    "riichi": 0.98,
+    "win": 0.995,
+    "threat": 0.9
+  },
+  "audit": {
+    "all": {
+      "samples": 4096,
+      "teacher_set_accuracy": 0.989501953125,
+      "sampled_action_accuracy": 0.75341796875,
+      "teacher_set_probability": 0.9628045633435249,
+      "set_cross_entropy": 0.0809307701420039
+    },
+    "threat": {
+      "samples": 915,
+      "teacher_set_accuracy": 0.9868852459016394,
+      "sampled_action_accuracy": 0.7989071038251366,
+      "teacher_set_probability": 0.9647084950097923,
+      "set_cross_entropy": 0.050497980879955606
+    },
+    "late": {
+      "samples": 740,
+      "teacher_set_accuracy": 0.9891891891891892,
+      "sampled_action_accuracy": 0.7486486486486487,
+      "teacher_set_probability": 0.9615828952273807,
+      "set_cross_entropy": 0.20758544673790802
+    },
+    "discard": {
+      "samples": 3012,
+      "teacher_set_accuracy": 0.9950199203187251,
+      "sampled_action_accuracy": 0.6786188579017264,
+      "teacher_set_probability": 0.9627722731307842,
+      "set_cross_entropy": 0.04590018732772564
+    },
+    "call": {
+      "samples": 871,
+      "teacher_set_accuracy": 0.9758897818599311,
+      "sampled_action_accuracy": 0.9758897818599311,
+      "teacher_set_probability": 0.9647277148801889,
+      "set_cross_entropy": 0.06687746334705506
+    },
+    "riichi": {
+      "samples": 112,
+      "teacher_set_accuracy": 1.0,
+      "sampled_action_accuracy": 0.875,
+      "teacher_set_probability": 0.9859946199825832,
+      "set_cross_entropy": 0.015978509767348572
+    },
+    "win": {
+      "samples": 71,
+      "teacher_set_accuracy": 1.0,
+      "sampled_action_accuracy": 1.0,
+      "teacher_set_probability": 1.0,
+      "set_cross_entropy": 0.0
+    },
+    "kong": {
+      "samples": 30,
+      "teacher_set_accuracy": 0.7666666666666667,
+      "sampled_action_accuracy": 0.7666666666666667,
+      "teacher_set_probability": 0.7356066803137461,
+      "set_cross_entropy": 4.440039983640115
+    }
+  },
+  "model_sha256": "4213eff511841dcbe3075dabe34af9a879216a116ed74218f507fd109930c556",
+  "note": "Teacher fidelity only; playing strength requires whole-match evaluation."
+}

@@ -1,0 +1,13 @@
+{
+  "format": "riichi_deterministic_cache_smoke_v1",
+  "model_sha256": "fc2c20ab30f4ad3822a3578ac58ee7c84f917c79b04b1ebca72ab355a1cb9748",
+  "independent_smoke_seed": 2100000,
+  "games": 12,
+  "hands": 119,
+  "workers": 2,
+  "cache_blocks": 3,
+  "cache_bytes_unchanged_after_read": true,
+  "first_pass_seconds": 26.50133209489286,
+  "cached_evaluation_seconds": 2.933289988897741,
+  "target_test_walls_used": false
+}

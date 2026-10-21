@@ -1,0 +1,21 @@
+{
+  "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "model_sha256": "47766382d0ba8d6fd6bb96e93b9045d6423ca87ac5505049fbc5cccd45403236",
+  "torch": "2.8.0+cpu",
+  "parameters_bitwise_equal": true,
+  "optimizer_tensors_bitwise_equal": true,
+  "probabilities_bitwise_equal_on_positions": 8,
+  "training_layout": {
+    "n_envs": 512,
+    "n_steps": 32,
+    "logical_observation_buffer_bytes": 1302200320,
+    "action_mask_buffer_bytes": 33554432
+  },
+  "inference_layout": {
+    "n_envs": 1,
+    "n_steps": 1,
+    "logical_observation_buffer_bytes": 79480,
+    "action_mask_buffer_bytes": 2048
+  },
+  "note": "Logical array capacity, not an RSS measurement; inference never uses the training rollout buffer."
+}

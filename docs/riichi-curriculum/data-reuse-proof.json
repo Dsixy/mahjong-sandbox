@@ -1,0 +1,11 @@
+{
+  "producer_source_sha256": "86e85e6e9579072221685a3d2c99ea481adc822319a7c8e0ee446b28a6564f02",
+  "training_source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "collector_functions_ast_unchanged": {
+    "ChoiceRecorder": true,
+    "teacher_targets": true,
+    "decision_group": true,
+    "_collect_shard": true
+  },
+  "reuse": "Immutable teacher/validation feature shards retain original producer manifests and hashes. Learner-state data are regenerated from the newly selected warmstarts."
+}

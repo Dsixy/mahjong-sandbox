@@ -1,0 +1,26 @@
+{
+  "v1_20261021": {
+    "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/best.zip",
+    "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455"
+  },
+  "v2_20261021": {
+    "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/best.zip",
+    "sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072"
+  },
+  "v2_20261022": {
+    "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/best.zip",
+    "sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2"
+  },
+  "v2_bc": {
+    "path": "/sandbox-data/policy-lab-20261021/experiment-final/bc_v2/warmstart.zip",
+    "sha256": "6c9fb5a4066b744b7a28eee42420563d9ee72b7977115bfc2f82372ff5483824"
+  },
+  "v1_bc": {
+    "path": "/sandbox-data/policy-lab-20261021/experiment-final/bc_v1/warmstart.zip",
+    "sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21"
+  },
+  "v1_published": {
+    "path": "/sandbox-data/policy-lab-20261021/source/mahjong_sandbox/models/riichi-high/best.zip",
+    "sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e"
+  }
+}

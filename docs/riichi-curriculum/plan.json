@@ -1,0 +1,67 @@
+{
+  "format": "riichi_curriculum_v1",
+  "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "runner_sha256": "e7038cb85d22cc6de81b864f387bef879eed441c8ea91f7403d06557c44c1fc2",
+  "teacher_samples": 32768,
+  "validation_samples": 4096,
+  "dagger_samples": 8192,
+  "epochs": 20,
+  "dagger_epochs": 8,
+  "ppo_steps_per_run": 524288,
+  "workers": 12,
+  "n_envs": 512,
+  "eval_blocks": 256,
+  "train_seeds": [
+    20261021,
+    20261022
+  ],
+  "teacher_seed": 1100000,
+  "validation_seed": 1200000,
+  "dagger_seed": 1300000,
+  "checkpoint_validation_seed": 1500000,
+  "checkpoint_validation_blocks": 32,
+  "test_seed": 1800000,
+  "probe_seed": 1900000,
+  "probe_blocks": 16,
+  "legacy_sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+  "match_config": {
+    "length": "south",
+    "target": 30000,
+    "bankruptcy": true,
+    "agari_yame": true,
+    "tenpai_yame": false,
+    "west_extension": true
+  },
+  "reward": "final match placement only: [1.5,0.5,-0.5,-1.5]",
+  "opponents": "each opponent seat: 50% greedy, 50% frozen historical self-play; selected for a whole match",
+  "teacher_anchor": {
+    "coefficient": 0.05,
+    "steps_per_ppo_update": 4,
+    "batch_size": 256
+  },
+  "coldstart_thresholds": {
+    "all": 0.94,
+    "discard": 0.94,
+    "call": 0.9,
+    "riichi": 0.98,
+    "win": 0.995,
+    "threat": 0.9
+  },
+  "comparison": "V1 published baseline plus a V1 control with matched new training; V2 BC and two independent V2 RL seeds. Test walls never select a checkpoint.",
+  "release_gate": "Independent test upper 95% CI of rank difference vs greedy and vs BC must both be below zero. A failed gate retains experimental artifacts without replacing the game model.",
+  "coldstart_selection": "Fidelity gates first, then overall teacher-set accuracy, then overall held-out teacher-set loss; rare-action losses are reported separately.",
+  "imported_data": {
+    "teacher": {
+      "directory": "/sandbox-data/policy-lab-20261021/experiment/data/teacher",
+      "manifest_sha256": "f4094f9f598f7b15846ec4cbea4816cff093b601f9fa0a6e56230fd93a0e21e6",
+      "producer_source_sha256": "86e85e6e9579072221685a3d2c99ea481adc822319a7c8e0ee446b28a6564f02",
+      "note": "Immutable public feature tensors reused with original producer provenance; no source hash is relabeled."
+    },
+    "validation": {
+      "directory": "/sandbox-data/policy-lab-20261021/experiment/data/validation",
+      "manifest_sha256": "40ebd294cab84ce1b174b99474cffac1ebc73ab269ce5dbaec264e464b1254a8",
+      "producer_source_sha256": "86e85e6e9579072221685a3d2c99ea481adc822319a7c8e0ee446b28a6564f02",
+      "note": "Immutable public feature tensors reused with original producer provenance; no source hash is relabeled."
+    }
+  }
+}

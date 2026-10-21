@@ -1,0 +1,2719 @@
+{
+  "format": "riichi_global_validation_selection_v1",
+  "candidates_sha256": "fb151ace377df4e557c9d95bd5b2d7b022369e1a32bc204b0fe33029bb57d7ab",
+  "runs": {
+    "v1_20261021": {
+      "candidates": [
+        {
+          "step": 131072,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_131072.zip",
+          "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1329,
+            "win_rate": 0.22498118886380739,
+            "deal_in_rate": 0.16930022573363432,
+            "mean_net_score": 1556.25,
+            "mean_rank": 2.3984375,
+            "rank_utility": 0.1015625,
+            "first_place_rate": 0.3046875,
+            "last_place_rate": 0.2421875,
+            "style": {
+              "riichi": 0.35891647855530473,
+              "open": 0.12189616252821671,
+              "kongs": 0.018811136192626036,
+              "self_draw_share": 0.2842809364548495,
+              "win_han": 3.2474916387959865,
+              "win_income": 7968.561872909699,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1329,
+              "win": 299,
+              "deal_in": 225,
+              "riichi": 477,
+              "open": 162,
+              "kongs": 25,
+              "self_draw": 85,
+              "win_han": 971,
+              "win_income": 2382600,
+              "net_score": 199200,
+              "matches": 128,
+              "rank": 307,
+              "first_place": 39,
+              "last_place": 31,
+              "rank_utility": 13.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.19795713254339434,
+                0.25334099616858236
+              ],
+              "deal_in": [
+                0.1496109323089701,
+                0.19139663867796436
+              ],
+              "net_score": [
+                -1477.03125,
+                4607.871093749991
+              ],
+              "rank": [
+                2.2029296875,
+                2.59375
+              ],
+              "first_place": [
+                0.2109375,
+                0.3984375
+              ],
+              "last_place": [
+                0.1796875,
+                0.3046875
+              ],
+              "riichi": [
+                0.33430588291720337,
+                0.3863300325436589
+              ],
+              "open": [
+                0.1050228310502283,
+                0.13883117165668019
+              ],
+              "kongs": [
+                0.013024602026049204,
+                0.025248857315565688
+              ],
+              "self_draw_share": [
+                0.2342544146500981,
+                0.3372165697674418
+              ],
+              "win_han": [
+                3.030066675927212,
+                3.472617324229722
+              ],
+              "win_income": [
+                7420.413732394367,
+                8539.34273925126
+              ],
+              "rank_utility": [
+                -0.09375,
+                0.29707031249999893
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 262144,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_262144.zip",
+          "sha256": "d93468e84a887a591e650e45cb02686234f23a615505483f840602c0ce6e1509",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1274,
+            "win_rate": 0.21585557299843014,
+            "deal_in_rate": 0.15620094191522763,
+            "mean_net_score": 576.5625,
+            "mean_rank": 2.4609375,
+            "rank_utility": 0.0390625,
+            "first_place_rate": 0.2109375,
+            "last_place_rate": 0.234375,
+            "style": {
+              "riichi": 0.34850863422291994,
+              "open": 0.141287284144427,
+              "kongs": 0.023547880690737835,
+              "self_draw_share": 0.28,
+              "win_han": 3.272727272727273,
+              "win_income": 7870.909090909091,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1274,
+              "win": 275,
+              "deal_in": 199,
+              "riichi": 444,
+              "open": 180,
+              "kongs": 30,
+              "self_draw": 77,
+              "win_han": 900,
+              "win_income": 2164500,
+              "net_score": 73800,
+              "matches": 128,
+              "rank": 315,
+              "first_place": 27,
+              "last_place": 30,
+              "rank_utility": 5.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.19599811912225706,
+                0.2371659398464986
+              ],
+              "deal_in": [
+                0.13720729751403368,
+                0.17404911596088066
+              ],
+              "net_score": [
+                -1594.35546875,
+                2842.148437499996
+              ],
+              "rank": [
+                2.296875,
+                2.6171875
+              ],
+              "first_place": [
+                0.1484375,
+                0.2734375
+              ],
+              "last_place": [
+                0.171875,
+                0.3046875
+              ],
+              "riichi": [
+                0.3217537393162393,
+                0.37651325312908746
+              ],
+              "open": [
+                0.12066146325596239,
+                0.1634472049689441
+              ],
+              "kongs": [
+                0.014682822354821764,
+                0.033589249662521345
+              ],
+              "self_draw_share": [
+                0.22140150981662488,
+                0.339104980227385
+              ],
+              "win_han": [
+                3.074349442379182,
+                3.483873837676501
+              ],
+              "win_income": [
+                7276.172362159501,
+                8559.676819859107
+              ],
+              "rank_utility": [
+                -0.1171875,
+                0.203125
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 393216,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_393216.zip",
+          "sha256": "8b6b781260b14876d339277e7c04e41ddc562705762f28f14a7e8f081f881830",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1275,
+            "win_rate": 0.21803921568627452,
+            "deal_in_rate": 0.16941176470588235,
+            "mean_net_score": -1430.46875,
+            "mean_rank": 2.5859375,
+            "rank_utility": -0.0859375,
+            "first_place_rate": 0.1953125,
+            "last_place_rate": 0.2421875,
+            "style": {
+              "riichi": 0.323921568627451,
+              "open": 0.14666666666666667,
+              "kongs": 0.0203921568627451,
+              "self_draw_share": 0.28776978417266186,
+              "win_han": 3.1906474820143886,
+              "win_income": 7470.863309352518,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1275,
+              "win": 278,
+              "deal_in": 216,
+              "riichi": 413,
+              "open": 187,
+              "kongs": 26,
+              "self_draw": 80,
+              "win_han": 887,
+              "win_income": 2076900,
+              "net_score": -183100,
+              "matches": 128,
+              "rank": 331,
+              "first_place": 25,
+              "last_place": 31,
+              "rank_utility": -11.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.18916533226217458,
+                0.2482337368283027
+              ],
+              "deal_in": [
+                0.14814382139148494,
+                0.19107783298572772
+              ],
+              "net_score": [
+                -4266.89453125,
+                1418.6914062499961
+              ],
+              "rank": [
+                2.4140625,
+                2.765625
+              ],
+              "first_place": [
+                0.1328125,
+                0.265625
+              ],
+              "last_place": [
+                0.171875,
+                0.3125
+              ],
+              "riichi": [
+                0.29233795239052196,
+                0.3559610385536909
+              ],
+              "open": [
+                0.12520061005424696,
+                0.1697399691171858
+              ],
+              "kongs": [
+                0.012288550703622622,
+                0.029102874457695993
+              ],
+              "self_draw_share": [
+                0.2319984790874525,
+                0.3460438754793594
+              ],
+              "win_han": [
+                2.9367927936211857,
+                3.4568640507441373
+              ],
+              "win_income": [
+                6797.484693877551,
+                8244.705624999999
+              ],
+              "rank_utility": [
+                -0.265625,
+                0.0859375
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 524288,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_524288.zip",
+          "sha256": "94fc75a3bb687d8fb0ef235233647b164c503acf946ff3a35c3ce3dd67403c17",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1312,
+            "win_rate": 0.22103658536585366,
+            "deal_in_rate": 0.1722560975609756,
+            "mean_net_score": -593.75,
+            "mean_rank": 2.546875,
+            "rank_utility": -0.046875,
+            "first_place_rate": 0.2109375,
+            "last_place_rate": 0.234375,
+            "style": {
+              "riichi": 0.32698170731707316,
+              "open": 0.1524390243902439,
+              "kongs": 0.019817073170731708,
+              "self_draw_share": 0.2655172413793103,
+              "win_han": 3.217241379310345,
+              "win_income": 7568.275862068966,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1312,
+              "win": 290,
+              "deal_in": 226,
+              "riichi": 429,
+              "open": 200,
+              "kongs": 26,
+              "self_draw": 77,
+              "win_han": 933,
+              "win_income": 2194800,
+              "net_score": -76000,
+              "matches": 128,
+              "rank": 326,
+              "first_place": 27,
+              "last_place": 30,
+              "rank_utility": -6.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.19727063063597533,
+                0.2462153500800424
+              ],
+              "deal_in": [
+                0.1521027153727693,
+                0.19145771459175226
+              ],
+              "net_score": [
+                -3532.8125,
+                2422.7343749999995
+              ],
+              "rank": [
+                2.3359375,
+                2.7578125
+              ],
+              "first_place": [
+                0.1484375,
+                0.28125
+              ],
+              "last_place": [
+                0.1484375,
+                0.3203125
+              ],
+              "riichi": [
+                0.30407928235329407,
+                0.35067944899478776
+              ],
+              "open": [
+                0.13172148388658697,
+                0.17317057559602997
+              ],
+              "kongs": [
+                0.011049215957101071,
+                0.028595158101037663
+              ],
+              "self_draw_share": [
+                0.21179715501792115,
+                0.3246774126195348
+              ],
+              "win_han": [
+                2.9557766439909297,
+                3.5208369755244755
+              ],
+              "win_income": [
+                6910.298221030827,
+                8349.084903593339
+              ],
+              "rank_utility": [
+                -0.2578125,
+                0.1640625
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        }
+      ],
+      "selected": {
+        "step": 131072,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_131072.zip",
+        "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+        "statistics": {
+          "games": 128,
+          "wall_blocks": 32,
+          "hands": 1329,
+          "win_rate": 0.22498118886380739,
+          "deal_in_rate": 0.16930022573363432,
+          "mean_net_score": 1556.25,
+          "mean_rank": 2.3984375,
+          "rank_utility": 0.1015625,
+          "first_place_rate": 0.3046875,
+          "last_place_rate": 0.2421875,
+          "style": {
+            "riichi": 0.35891647855530473,
+            "open": 0.12189616252821671,
+            "kongs": 0.018811136192626036,
+            "self_draw_share": 0.2842809364548495,
+            "win_han": 3.2474916387959865,
+            "win_income": 7968.561872909699,
+            "safe_choice": null,
+            "shanten_backoff": null,
+            "early_safe_choice": null,
+            "early_shanten_backoff": null,
+            "early_riichi_choice": null,
+            "early_call_choice": null,
+            "early_win_choice": null,
+            "late_lead_safe_choice": null,
+            "late_lead_shanten_backoff": null,
+            "late_lead_riichi_choice": null,
+            "late_lead_call_choice": null,
+            "late_lead_win_choice": null,
+            "late_last_safe_choice": null,
+            "late_last_shanten_backoff": null,
+            "late_last_riichi_choice": null,
+            "late_last_call_choice": null,
+            "late_last_win_choice": null,
+            "late_middle_safe_choice": null,
+            "late_middle_shanten_backoff": null,
+            "late_middle_riichi_choice": null,
+            "late_middle_call_choice": null,
+            "late_middle_win_choice": null
+          },
+          "counts": {
+            "hands": 1329,
+            "win": 299,
+            "deal_in": 225,
+            "riichi": 477,
+            "open": 162,
+            "kongs": 25,
+            "self_draw": 85,
+            "win_han": 971,
+            "win_income": 2382600,
+            "net_score": 199200,
+            "matches": 128,
+            "rank": 307,
+            "first_place": 39,
+            "last_place": 31,
+            "rank_utility": 13.0,
+            "threat_decisions": 0,
+            "safe_opportunities": 0,
+            "safe_choices": 0,
+            "shanten_backoff": 0,
+            "early_safe_opportunities": 0,
+            "early_safe_choices": 0,
+            "early_shanten_backoff": 0,
+            "early_riichi_opportunities": 0,
+            "early_riichi_choices": 0,
+            "early_call_opportunities": 0,
+            "early_call_choices": 0,
+            "early_win_opportunities": 0,
+            "early_win_choices": 0,
+            "late_lead_safe_opportunities": 0,
+            "late_lead_safe_choices": 0,
+            "late_lead_shanten_backoff": 0,
+            "late_lead_riichi_opportunities": 0,
+            "late_lead_riichi_choices": 0,
+            "late_lead_call_opportunities": 0,
+            "late_lead_call_choices": 0,
+            "late_lead_win_opportunities": 0,
+            "late_lead_win_choices": 0,
+            "late_last_safe_opportunities": 0,
+            "late_last_safe_choices": 0,
+            "late_last_shanten_backoff": 0,
+            "late_last_riichi_opportunities": 0,
+            "late_last_riichi_choices": 0,
+            "late_last_call_opportunities": 0,
+            "late_last_call_choices": 0,
+            "late_last_win_opportunities": 0,
+            "late_last_win_choices": 0,
+            "late_middle_safe_opportunities": 0,
+            "late_middle_safe_choices": 0,
+            "late_middle_shanten_backoff": 0,
+            "late_middle_riichi_opportunities": 0,
+            "late_middle_riichi_choices": 0,
+            "late_middle_call_opportunities": 0,
+            "late_middle_call_choices": 0,
+            "late_middle_win_opportunities": 0,
+            "late_middle_win_choices": 0
+          },
+          "ci95": {
+            "win": [
+              0.19795713254339434,
+              0.25334099616858236
+            ],
+            "deal_in": [
+              0.1496109323089701,
+              0.19139663867796436
+            ],
+            "net_score": [
+              -1477.03125,
+              4607.871093749991
+            ],
+            "rank": [
+              2.2029296875,
+              2.59375
+            ],
+            "first_place": [
+              0.2109375,
+              0.3984375
+            ],
+            "last_place": [
+              0.1796875,
+              0.3046875
+            ],
+            "riichi": [
+              0.33430588291720337,
+              0.3863300325436589
+            ],
+            "open": [
+              0.1050228310502283,
+              0.13883117165668019
+            ],
+            "kongs": [
+              0.013024602026049204,
+              0.025248857315565688
+            ],
+            "self_draw_share": [
+              0.2342544146500981,
+              0.3372165697674418
+            ],
+            "win_han": [
+              3.030066675927212,
+              3.472617324229722
+            ],
+            "win_income": [
+              7420.413732394367,
+              8539.34273925126
+            ],
+            "rank_utility": [
+              -0.09375,
+              0.29707031249999893
+            ],
+            "safe_choice": null,
+            "shanten_backoff": null,
+            "early_safe_choice": null,
+            "early_shanten_backoff": null,
+            "early_riichi_choice": null,
+            "early_call_choice": null,
+            "early_win_choice": null,
+            "late_lead_safe_choice": null,
+            "late_lead_shanten_backoff": null,
+            "late_lead_riichi_choice": null,
+            "late_lead_call_choice": null,
+            "late_lead_win_choice": null,
+            "late_last_safe_choice": null,
+            "late_last_shanten_backoff": null,
+            "late_last_riichi_choice": null,
+            "late_last_call_choice": null,
+            "late_last_win_choice": null,
+            "late_middle_safe_choice": null,
+            "late_middle_shanten_backoff": null,
+            "late_middle_riichi_choice": null,
+            "late_middle_call_choice": null,
+            "late_middle_win_choice": null
+          }
+        }
+      }
+    },
+    "v2_20261021": {
+      "candidates": [
+        {
+          "step": 131072,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_131072.zip",
+          "sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1313,
+            "win_rate": 0.21325209444021326,
+            "deal_in_rate": 0.16755521706016754,
+            "mean_net_score": -714.84375,
+            "mean_rank": 2.4765625,
+            "rank_utility": 0.0234375,
+            "first_place_rate": 0.2578125,
+            "last_place_rate": 0.2421875,
+            "style": {
+              "riichi": 0.3556740289413557,
+              "open": 0.09596344249809596,
+              "kongs": 0.01827875095201828,
+              "self_draw_share": 0.2785714285714286,
+              "win_han": 3.407142857142857,
+              "win_income": 8249.642857142857,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1313,
+              "win": 280,
+              "deal_in": 220,
+              "riichi": 467,
+              "open": 126,
+              "kongs": 24,
+              "self_draw": 78,
+              "win_han": 954,
+              "win_income": 2309900,
+              "net_score": -91500,
+              "matches": 128,
+              "rank": 317,
+              "first_place": 33,
+              "last_place": 31,
+              "rank_utility": 3.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.19446421116771576,
+                0.23231668476541778
+              ],
+              "deal_in": [
+                0.14973585335970221,
+                0.18352954505064867
+              ],
+              "net_score": [
+                -3687.890625,
+                2598.5156249999995
+              ],
+              "rank": [
+                2.3125,
+                2.6328125
+              ],
+              "first_place": [
+                0.1953125,
+                0.3125
+              ],
+              "last_place": [
+                0.1796875,
+                0.3046875
+              ],
+              "riichi": [
+                0.32560399064601836,
+                0.3853709064392098
+              ],
+              "open": [
+                0.0816318675276115,
+                0.10991565501581285
+              ],
+              "kongs": [
+                0.010971143453079773,
+                0.025816249050873197
+              ],
+              "self_draw_share": [
+                0.2140296052631579,
+                0.3417289077828646
+              ],
+              "win_han": [
+                3.15624375,
+                3.7287986013518033
+              ],
+              "win_income": [
+                7471.221047186619,
+                9227.70273413126
+              ],
+              "rank_utility": [
+                -0.1328125,
+                0.1875
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 262144,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_262144.zip",
+          "sha256": "6fa4364cd17186fb75780eda27ca97ca8c43dde5de7fd716509259063d357d4a",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1286,
+            "win_rate": 0.21539657853810265,
+            "deal_in_rate": 0.1702954898911353,
+            "mean_net_score": -106.25,
+            "mean_rank": 2.53125,
+            "rank_utility": -0.03125,
+            "first_place_rate": 0.2578125,
+            "last_place_rate": 0.265625,
+            "style": {
+              "riichi": 0.3475894245723173,
+              "open": 0.1088646967340591,
+              "kongs": 0.02177293934681182,
+              "self_draw_share": 0.259927797833935,
+              "win_han": 3.3176895306859207,
+              "win_income": 7950.180505415163,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1286,
+              "win": 277,
+              "deal_in": 219,
+              "riichi": 447,
+              "open": 140,
+              "kongs": 28,
+              "self_draw": 72,
+              "win_han": 919,
+              "win_income": 2202200,
+              "net_score": -13600,
+              "matches": 128,
+              "rank": 324,
+              "first_place": 33,
+              "last_place": 34,
+              "rank_utility": -4.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.19576598223387212,
+                0.23552518499327008
+              ],
+              "deal_in": [
+                0.1518166085481702,
+                0.18921356869766265
+              ],
+              "net_score": [
+                -2366.5625,
+                2042.2265624999998
+              ],
+              "rank": [
+                2.375,
+                2.6796875
+              ],
+              "first_place": [
+                0.203125,
+                0.3125
+              ],
+              "last_place": [
+                0.203125,
+                0.3203125
+              ],
+              "riichi": [
+                0.3198432292203553,
+                0.3775275258495959
+              ],
+              "open": [
+                0.0956045272782859,
+                0.12175259537323084
+              ],
+              "kongs": [
+                0.01314689437450078,
+                0.03132391098540189
+              ],
+              "self_draw_share": [
+                0.210521778584392,
+                0.3131682669710602
+              ],
+              "win_han": [
+                3.11069093227697,
+                3.5379067596165816
+              ],
+              "win_income": [
+                7329.026600346021,
+                8597.69549864898
+              ],
+              "rank_utility": [
+                -0.1796875,
+                0.125
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 393216,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_393216.zip",
+          "sha256": "f28a7cde22693391ccce1efcff3bb14a934aca88da06e9ea06835634ada22710",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1314,
+            "win_rate": 0.2115677321156773,
+            "deal_in_rate": 0.16362252663622526,
+            "mean_net_score": -1282.03125,
+            "mean_rank": 2.5703125,
+            "rank_utility": -0.0703125,
+            "first_place_rate": 0.21875,
+            "last_place_rate": 0.2578125,
+            "style": {
+              "riichi": 0.3394216133942161,
+              "open": 0.10882800608828005,
+              "kongs": 0.0258751902587519,
+              "self_draw_share": 0.2841726618705036,
+              "win_han": 3.2517985611510793,
+              "win_income": 7746.762589928057,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1314,
+              "win": 278,
+              "deal_in": 215,
+              "riichi": 446,
+              "open": 143,
+              "kongs": 34,
+              "self_draw": 79,
+              "win_han": 904,
+              "win_income": 2153600,
+              "net_score": -164100,
+              "matches": 128,
+              "rank": 329,
+              "first_place": 28,
+              "last_place": 33,
+              "rank_utility": -9.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.18811716901778675,
+                0.23264730460169314
+              ],
+              "deal_in": [
+                0.1462852967101997,
+                0.18140247102064888
+              ],
+              "net_score": [
+                -3716.640625,
+                1244.7265624999989
+              ],
+              "rank": [
+                2.390625,
+                2.734375
+              ],
+              "first_place": [
+                0.140625,
+                0.3046875
+              ],
+              "last_place": [
+                0.1953125,
+                0.3203125
+              ],
+              "riichi": [
+                0.3156654677469848,
+                0.36350307872201715
+              ],
+              "open": [
+                0.092564233056344,
+                0.1260648180212626
+              ],
+              "kongs": [
+                0.017543191566120175,
+                0.03539356956126392
+              ],
+              "self_draw_share": [
+                0.23047720333678254,
+                0.3391003460207612
+              ],
+              "win_han": [
+                3.0352856301531213,
+                3.4594693233379368
+              ],
+              "win_income": [
+                7170.065085434492,
+                8353.238194859534
+              ],
+              "rank_utility": [
+                -0.234375,
+                0.109375
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 524288,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_524288.zip",
+          "sha256": "aef79ba4e843dc5e71238eb354dc4df3e4014985e12e4827e06596f4e57831fb",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1290,
+            "win_rate": 0.224031007751938,
+            "deal_in_rate": 0.15503875968992248,
+            "mean_net_score": -23.4375,
+            "mean_rank": 2.578125,
+            "rank_utility": -0.078125,
+            "first_place_rate": 0.21875,
+            "last_place_rate": 0.28125,
+            "style": {
+              "riichi": 0.3271317829457364,
+              "open": 0.13798449612403102,
+              "kongs": 0.02558139534883721,
+              "self_draw_share": 0.2768166089965398,
+              "win_han": 3.332179930795848,
+              "win_income": 7734.948096885813,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1290,
+              "win": 289,
+              "deal_in": 200,
+              "riichi": 422,
+              "open": 178,
+              "kongs": 33,
+              "self_draw": 80,
+              "win_han": 963,
+              "win_income": 2235400,
+              "net_score": -3000,
+              "matches": 128,
+              "rank": 330,
+              "first_place": 28,
+              "last_place": 36,
+              "rank_utility": -10.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.20253607232558782,
+                0.24653961101258828
+              ],
+              "deal_in": [
+                0.13858849777935603,
+                0.17172545291543392
+              ],
+              "net_score": [
+                -2519.84375,
+                2777.929687499997
+              ],
+              "rank": [
+                2.4296875,
+                2.71875
+              ],
+              "first_place": [
+                0.1484375,
+                0.2890625
+              ],
+              "last_place": [
+                0.2109375,
+                0.34394531249999893
+              ],
+              "riichi": [
+                0.2965541832003372,
+                0.3604576566883375
+              ],
+              "open": [
+                0.12373467830774844,
+                0.1531894395593326
+              ],
+              "kongs": [
+                0.01692242703533026,
+                0.035370660365663914
+              ],
+              "self_draw_share": [
+                0.23255226685459243,
+                0.3231948765218727
+              ],
+              "win_han": [
+                3.1369281991893456,
+                3.5448504983388704
+              ],
+              "win_income": [
+                7210.467096798371,
+                8318.23644967521
+              ],
+              "rank_utility": [
+                -0.21875,
+                0.0703125
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        }
+      ],
+      "selected": {
+        "step": 131072,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_131072.zip",
+        "sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072",
+        "statistics": {
+          "games": 128,
+          "wall_blocks": 32,
+          "hands": 1313,
+          "win_rate": 0.21325209444021326,
+          "deal_in_rate": 0.16755521706016754,
+          "mean_net_score": -714.84375,
+          "mean_rank": 2.4765625,
+          "rank_utility": 0.0234375,
+          "first_place_rate": 0.2578125,
+          "last_place_rate": 0.2421875,
+          "style": {
+            "riichi": 0.3556740289413557,
+            "open": 0.09596344249809596,
+            "kongs": 0.01827875095201828,
+            "self_draw_share": 0.2785714285714286,
+            "win_han": 3.407142857142857,
+            "win_income": 8249.642857142857,
+            "safe_choice": null,
+            "shanten_backoff": null,
+            "early_safe_choice": null,
+            "early_shanten_backoff": null,
+            "early_riichi_choice": null,
+            "early_call_choice": null,
+            "early_win_choice": null,
+            "late_lead_safe_choice": null,
+            "late_lead_shanten_backoff": null,
+            "late_lead_riichi_choice": null,
+            "late_lead_call_choice": null,
+            "late_lead_win_choice": null,
+            "late_last_safe_choice": null,
+            "late_last_shanten_backoff": null,
+            "late_last_riichi_choice": null,
+            "late_last_call_choice": null,
+            "late_last_win_choice": null,
+            "late_middle_safe_choice": null,
+            "late_middle_shanten_backoff": null,
+            "late_middle_riichi_choice": null,
+            "late_middle_call_choice": null,
+            "late_middle_win_choice": null
+          },
+          "counts": {
+            "hands": 1313,
+            "win": 280,
+            "deal_in": 220,
+            "riichi": 467,
+            "open": 126,
+            "kongs": 24,
+            "self_draw": 78,
+            "win_han": 954,
+            "win_income": 2309900,
+            "net_score": -91500,
+            "matches": 128,
+            "rank": 317,
+            "first_place": 33,
+            "last_place": 31,
+            "rank_utility": 3.0,
+            "threat_decisions": 0,
+            "safe_opportunities": 0,
+            "safe_choices": 0,
+            "shanten_backoff": 0,
+            "early_safe_opportunities": 0,
+            "early_safe_choices": 0,
+            "early_shanten_backoff": 0,
+            "early_riichi_opportunities": 0,
+            "early_riichi_choices": 0,
+            "early_call_opportunities": 0,
+            "early_call_choices": 0,
+            "early_win_opportunities": 0,
+            "early_win_choices": 0,
+            "late_lead_safe_opportunities": 0,
+            "late_lead_safe_choices": 0,
+            "late_lead_shanten_backoff": 0,
+            "late_lead_riichi_opportunities": 0,
+            "late_lead_riichi_choices": 0,
+            "late_lead_call_opportunities": 0,
+            "late_lead_call_choices": 0,
+            "late_lead_win_opportunities": 0,
+            "late_lead_win_choices": 0,
+            "late_last_safe_opportunities": 0,
+            "late_last_safe_choices": 0,
+            "late_last_shanten_backoff": 0,
+            "late_last_riichi_opportunities": 0,
+            "late_last_riichi_choices": 0,
+            "late_last_call_opportunities": 0,
+            "late_last_call_choices": 0,
+            "late_last_win_opportunities": 0,
+            "late_last_win_choices": 0,
+            "late_middle_safe_opportunities": 0,
+            "late_middle_safe_choices": 0,
+            "late_middle_shanten_backoff": 0,
+            "late_middle_riichi_opportunities": 0,
+            "late_middle_riichi_choices": 0,
+            "late_middle_call_opportunities": 0,
+            "late_middle_call_choices": 0,
+            "late_middle_win_opportunities": 0,
+            "late_middle_win_choices": 0
+          },
+          "ci95": {
+            "win": [
+              0.19446421116771576,
+              0.23231668476541778
+            ],
+            "deal_in": [
+              0.14973585335970221,
+              0.18352954505064867
+            ],
+            "net_score": [
+              -3687.890625,
+              2598.5156249999995
+            ],
+            "rank": [
+              2.3125,
+              2.6328125
+            ],
+            "first_place": [
+              0.1953125,
+              0.3125
+            ],
+            "last_place": [
+              0.1796875,
+              0.3046875
+            ],
+            "riichi": [
+              0.32560399064601836,
+              0.3853709064392098
+            ],
+            "open": [
+              0.0816318675276115,
+              0.10991565501581285
+            ],
+            "kongs": [
+              0.010971143453079773,
+              0.025816249050873197
+            ],
+            "self_draw_share": [
+              0.2140296052631579,
+              0.3417289077828646
+            ],
+            "win_han": [
+              3.15624375,
+              3.7287986013518033
+            ],
+            "win_income": [
+              7471.221047186619,
+              9227.70273413126
+            ],
+            "rank_utility": [
+              -0.1328125,
+              0.1875
+            ],
+            "safe_choice": null,
+            "shanten_backoff": null,
+            "early_safe_choice": null,
+            "early_shanten_backoff": null,
+            "early_riichi_choice": null,
+            "early_call_choice": null,
+            "early_win_choice": null,
+            "late_lead_safe_choice": null,
+            "late_lead_shanten_backoff": null,
+            "late_lead_riichi_choice": null,
+            "late_lead_call_choice": null,
+            "late_lead_win_choice": null,
+            "late_last_safe_choice": null,
+            "late_last_shanten_backoff": null,
+            "late_last_riichi_choice": null,
+            "late_last_call_choice": null,
+            "late_last_win_choice": null,
+            "late_middle_safe_choice": null,
+            "late_middle_shanten_backoff": null,
+            "late_middle_riichi_choice": null,
+            "late_middle_call_choice": null,
+            "late_middle_win_choice": null
+          }
+        }
+      }
+    },
+    "v2_20261022": {
+      "candidates": [
+        {
+          "step": 131072,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_131072.zip",
+          "sha256": "dd48d2b3179065025af0213c853f111230132ff154eda58b28b758592f3437dc",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1312,
+            "win_rate": 0.21265243902439024,
+            "deal_in_rate": 0.1798780487804878,
+            "mean_net_score": -1969.53125,
+            "mean_rank": 2.640625,
+            "rank_utility": -0.140625,
+            "first_place_rate": 0.1875,
+            "last_place_rate": 0.3125,
+            "style": {
+              "riichi": 0.3429878048780488,
+              "open": 0.10060975609756098,
+              "kongs": 0.022865853658536585,
+              "self_draw_share": 0.3010752688172043,
+              "win_han": 3.326164874551971,
+              "win_income": 8006.451612903225,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1312,
+              "win": 279,
+              "deal_in": 236,
+              "riichi": 450,
+              "open": 132,
+              "kongs": 30,
+              "self_draw": 84,
+              "win_han": 928,
+              "win_income": 2233800,
+              "net_score": -252100,
+              "matches": 128,
+              "rank": 338,
+              "first_place": 24,
+              "last_place": 40,
+              "rank_utility": -18.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.18968068128303073,
+                0.23619750055138206
+              ],
+              "deal_in": [
+                0.1607838799236509,
+                0.19856711480028277
+              ],
+              "net_score": [
+                -4791.6015625,
+                1023.5156249999995
+              ],
+              "rank": [
+                2.4763671875,
+                2.8046875
+              ],
+              "first_place": [
+                0.1328125,
+                0.2421875
+              ],
+              "last_place": [
+                0.25,
+                0.375
+              ],
+              "riichi": [
+                0.30840926791277257,
+                0.37733622620380736
+              ],
+              "open": [
+                0.08332532667179092,
+                0.11874717873392325
+              ],
+              "kongs": [
+                0.014960585751388407,
+                0.03110773899848255
+              ],
+              "self_draw_share": [
+                0.25193515532167715,
+                0.3515386490642463
+              ],
+              "win_han": [
+                3.084651392961877,
+                3.5942287784679086
+              ],
+              "win_income": [
+                7268.1761144261145,
+                8844.695106694784
+              ],
+              "rank_utility": [
+                -0.3046875,
+                0.023632812499998934
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 262144,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_262144.zip",
+          "sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1307,
+            "win_rate": 0.2180566182096404,
+            "deal_in_rate": 0.15990818668706963,
+            "mean_net_score": -771.875,
+            "mean_rank": 2.5390625,
+            "rank_utility": -0.0390625,
+            "first_place_rate": 0.2109375,
+            "last_place_rate": 0.2265625,
+            "style": {
+              "riichi": 0.35730680948737564,
+              "open": 0.0971690895179801,
+              "kongs": 0.02754399387911247,
+              "self_draw_share": 0.28771929824561404,
+              "win_han": 3.312280701754386,
+              "win_income": 7841.0526315789475,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1307,
+              "win": 285,
+              "deal_in": 209,
+              "riichi": 467,
+              "open": 127,
+              "kongs": 36,
+              "self_draw": 82,
+              "win_han": 944,
+              "win_income": 2234700,
+              "net_score": -98800,
+              "matches": 128,
+              "rank": 325,
+              "first_place": 27,
+              "last_place": 29,
+              "rank_utility": -5.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.19076744186046513,
+                0.24609778730093165
+              ],
+              "deal_in": [
+                0.1406479587686372,
+                0.18032849791779373
+              ],
+              "net_score": [
+                -3462.65625,
+                1878.9843749999995
+              ],
+              "rank": [
+                2.3515625,
+                2.7265625
+              ],
+              "first_place": [
+                0.140625,
+                0.28125
+              ],
+              "last_place": [
+                0.15625,
+                0.3046875
+              ],
+              "riichi": [
+                0.32826542347818943,
+                0.38533725284162434
+              ],
+              "open": [
+                0.0804050581136501,
+                0.11465451784358391
+              ],
+              "kongs": [
+                0.01860393116855065,
+                0.03660616850411326
+              ],
+              "self_draw_share": [
+                0.24657167318982387,
+                0.3333333333333333
+              ],
+              "win_han": [
+                3.108099008099008,
+                3.523654068777664
+              ],
+              "win_income": [
+                7240.588055609746,
+                8506.949383350462
+              ],
+              "rank_utility": [
+                -0.2265625,
+                0.1484375
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 393216,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_393216.zip",
+          "sha256": "997ae6551aa87ec8056b2deecbde15bdd4e4dfc0731c61aaf10638a2b37ce762",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1296,
+            "win_rate": 0.2222222222222222,
+            "deal_in_rate": 0.17515432098765432,
+            "mean_net_score": -1039.84375,
+            "mean_rank": 2.65625,
+            "rank_utility": -0.15625,
+            "first_place_rate": 0.2109375,
+            "last_place_rate": 0.3046875,
+            "style": {
+              "riichi": 0.3441358024691358,
+              "open": 0.11419753086419752,
+              "kongs": 0.019290123456790122,
+              "self_draw_share": 0.2881944444444444,
+              "win_han": 3.1770833333333335,
+              "win_income": 7605.208333333333,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1296,
+              "win": 288,
+              "deal_in": 227,
+              "riichi": 446,
+              "open": 148,
+              "kongs": 25,
+              "self_draw": 83,
+              "win_han": 915,
+              "win_income": 2190300,
+              "net_score": -133100,
+              "matches": 128,
+              "rank": 340,
+              "first_place": 27,
+              "last_place": 39,
+              "rank_utility": -20.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.20315847565068237,
+                0.24049771193234032
+              ],
+              "deal_in": [
+                0.15746754106390515,
+                0.1930607216634286
+              ],
+              "net_score": [
+                -3514.1015625,
+                1701.58203125
+              ],
+              "rank": [
+                2.4765625,
+                2.828125
+              ],
+              "first_place": [
+                0.140625,
+                0.2890625
+              ],
+              "last_place": [
+                0.2265625,
+                0.3828125
+              ],
+              "riichi": [
+                0.3134965639825037,
+                0.37295168463696643
+              ],
+              "open": [
+                0.09853453292356931,
+                0.13004962448642238
+              ],
+              "kongs": [
+                0.012011337179876506,
+                0.027376796865794736
+              ],
+              "self_draw_share": [
+                0.23859184384803067,
+                0.3344947735191638
+              ],
+              "win_han": [
+                2.931816242631089,
+                3.432244174265451
+              ],
+              "win_income": [
+                6848.8271205851925,
+                8434.043067226889
+              ],
+              "rank_utility": [
+                -0.328125,
+                0.0234375
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        },
+        {
+          "step": 524288,
+          "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_524288.zip",
+          "sha256": "bd46968b4cf2ff7758c39f08791278f44e9e323c31be8360d54e332dc47309d5",
+          "statistics": {
+            "games": 128,
+            "wall_blocks": 32,
+            "hands": 1239,
+            "win_rate": 0.20016142050040356,
+            "deal_in_rate": 0.1694915254237288,
+            "mean_net_score": -2532.03125,
+            "mean_rank": 2.765625,
+            "rank_utility": -0.265625,
+            "first_place_rate": 0.203125,
+            "last_place_rate": 0.3515625,
+            "style": {
+              "riichi": 0.30912025827280065,
+              "open": 0.12832929782082325,
+              "kongs": 0.0258272800645682,
+              "self_draw_share": 0.29435483870967744,
+              "win_han": 3.1370967741935485,
+              "win_income": 7456.048387096775,
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            },
+            "counts": {
+              "hands": 1239,
+              "win": 248,
+              "deal_in": 210,
+              "riichi": 383,
+              "open": 159,
+              "kongs": 32,
+              "self_draw": 73,
+              "win_han": 778,
+              "win_income": 1849100,
+              "net_score": -324100,
+              "matches": 128,
+              "rank": 354,
+              "first_place": 26,
+              "last_place": 45,
+              "rank_utility": -34.0,
+              "threat_decisions": 0,
+              "safe_opportunities": 0,
+              "safe_choices": 0,
+              "shanten_backoff": 0,
+              "early_safe_opportunities": 0,
+              "early_safe_choices": 0,
+              "early_shanten_backoff": 0,
+              "early_riichi_opportunities": 0,
+              "early_riichi_choices": 0,
+              "early_call_opportunities": 0,
+              "early_call_choices": 0,
+              "early_win_opportunities": 0,
+              "early_win_choices": 0,
+              "late_lead_safe_opportunities": 0,
+              "late_lead_safe_choices": 0,
+              "late_lead_shanten_backoff": 0,
+              "late_lead_riichi_opportunities": 0,
+              "late_lead_riichi_choices": 0,
+              "late_lead_call_opportunities": 0,
+              "late_lead_call_choices": 0,
+              "late_lead_win_opportunities": 0,
+              "late_lead_win_choices": 0,
+              "late_last_safe_opportunities": 0,
+              "late_last_safe_choices": 0,
+              "late_last_shanten_backoff": 0,
+              "late_last_riichi_opportunities": 0,
+              "late_last_riichi_choices": 0,
+              "late_last_call_opportunities": 0,
+              "late_last_call_choices": 0,
+              "late_last_win_opportunities": 0,
+              "late_last_win_choices": 0,
+              "late_middle_safe_opportunities": 0,
+              "late_middle_safe_choices": 0,
+              "late_middle_shanten_backoff": 0,
+              "late_middle_riichi_opportunities": 0,
+              "late_middle_riichi_choices": 0,
+              "late_middle_call_opportunities": 0,
+              "late_middle_call_choices": 0,
+              "late_middle_win_opportunities": 0,
+              "late_middle_win_choices": 0
+            },
+            "ci95": {
+              "win": [
+                0.18131846188954814,
+                0.2187512999168053
+              ],
+              "deal_in": [
+                0.14717898655509523,
+                0.19272275000661565
+              ],
+              "net_score": [
+                -5109.47265625,
+                -218.67187500000043
+              ],
+              "rank": [
+                2.5859375,
+                2.953125
+              ],
+              "first_place": [
+                0.1404296875,
+                0.265625
+              ],
+              "last_place": [
+                0.2578125,
+                0.453125
+              ],
+              "riichi": [
+                0.27657514471806244,
+                0.3426717293092614
+              ],
+              "open": [
+                0.11212409304547828,
+                0.14517705460562602
+              ],
+              "kongs": [
+                0.01599808917197452,
+                0.03626292560782021
+              ],
+              "self_draw_share": [
+                0.24096385542168675,
+                0.34552845528455284
+              ],
+              "win_han": [
+                2.9227716492002207,
+                3.348578880863344
+              ],
+              "win_income": [
+                6836.806432973806,
+                8118.136354943584
+              ],
+              "rank_utility": [
+                -0.453125,
+                -0.0859375
+              ],
+              "safe_choice": null,
+              "shanten_backoff": null,
+              "early_safe_choice": null,
+              "early_shanten_backoff": null,
+              "early_riichi_choice": null,
+              "early_call_choice": null,
+              "early_win_choice": null,
+              "late_lead_safe_choice": null,
+              "late_lead_shanten_backoff": null,
+              "late_lead_riichi_choice": null,
+              "late_lead_call_choice": null,
+              "late_lead_win_choice": null,
+              "late_last_safe_choice": null,
+              "late_last_shanten_backoff": null,
+              "late_last_riichi_choice": null,
+              "late_last_call_choice": null,
+              "late_last_win_choice": null,
+              "late_middle_safe_choice": null,
+              "late_middle_shanten_backoff": null,
+              "late_middle_riichi_choice": null,
+              "late_middle_call_choice": null,
+              "late_middle_win_choice": null
+            }
+          }
+        }
+      ],
+      "selected": {
+        "step": 262144,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_262144.zip",
+        "sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2",
+        "statistics": {
+          "games": 128,
+          "wall_blocks": 32,
+          "hands": 1307,
+          "win_rate": 0.2180566182096404,
+          "deal_in_rate": 0.15990818668706963,
+          "mean_net_score": -771.875,
+          "mean_rank": 2.5390625,
+          "rank_utility": -0.0390625,
+          "first_place_rate": 0.2109375,
+          "last_place_rate": 0.2265625,
+          "style": {
+            "riichi": 0.35730680948737564,
+            "open": 0.0971690895179801,
+            "kongs": 0.02754399387911247,
+            "self_draw_share": 0.28771929824561404,
+            "win_han": 3.312280701754386,
+            "win_income": 7841.0526315789475,
+            "safe_choice": null,
+            "shanten_backoff": null,
+            "early_safe_choice": null,
+            "early_shanten_backoff": null,
+            "early_riichi_choice": null,
+            "early_call_choice": null,
+            "early_win_choice": null,
+            "late_lead_safe_choice": null,
+            "late_lead_shanten_backoff": null,
+            "late_lead_riichi_choice": null,
+            "late_lead_call_choice": null,
+            "late_lead_win_choice": null,
+            "late_last_safe_choice": null,
+            "late_last_shanten_backoff": null,
+            "late_last_riichi_choice": null,
+            "late_last_call_choice": null,
+            "late_last_win_choice": null,
+            "late_middle_safe_choice": null,
+            "late_middle_shanten_backoff": null,
+            "late_middle_riichi_choice": null,
+            "late_middle_call_choice": null,
+            "late_middle_win_choice": null
+          },
+          "counts": {
+            "hands": 1307,
+            "win": 285,
+            "deal_in": 209,
+            "riichi": 467,
+            "open": 127,
+            "kongs": 36,
+            "self_draw": 82,
+            "win_han": 944,
+            "win_income": 2234700,
+            "net_score": -98800,
+            "matches": 128,
+            "rank": 325,
+            "first_place": 27,
+            "last_place": 29,
+            "rank_utility": -5.0,
+            "threat_decisions": 0,
+            "safe_opportunities": 0,
+            "safe_choices": 0,
+            "shanten_backoff": 0,
+            "early_safe_opportunities": 0,
+            "early_safe_choices": 0,
+            "early_shanten_backoff": 0,
+            "early_riichi_opportunities": 0,
+            "early_riichi_choices": 0,
+            "early_call_opportunities": 0,
+            "early_call_choices": 0,
+            "early_win_opportunities": 0,
+            "early_win_choices": 0,
+            "late_lead_safe_opportunities": 0,
+            "late_lead_safe_choices": 0,
+            "late_lead_shanten_backoff": 0,
+            "late_lead_riichi_opportunities": 0,
+            "late_lead_riichi_choices": 0,
+            "late_lead_call_opportunities": 0,
+            "late_lead_call_choices": 0,
+            "late_lead_win_opportunities": 0,
+            "late_lead_win_choices": 0,
+            "late_last_safe_opportunities": 0,
+            "late_last_safe_choices": 0,
+            "late_last_shanten_backoff": 0,
+            "late_last_riichi_opportunities": 0,
+            "late_last_riichi_choices": 0,
+            "late_last_call_opportunities": 0,
+            "late_last_call_choices": 0,
+            "late_last_win_opportunities": 0,
+            "late_last_win_choices": 0,
+            "late_middle_safe_opportunities": 0,
+            "late_middle_safe_choices": 0,
+            "late_middle_shanten_backoff": 0,
+            "late_middle_riichi_opportunities": 0,
+            "late_middle_riichi_choices": 0,
+            "late_middle_call_opportunities": 0,
+            "late_middle_call_choices": 0,
+            "late_middle_win_opportunities": 0,
+            "late_middle_win_choices": 0
+          },
+          "ci95": {
+            "win": [
+              0.19076744186046513,
+              0.24609778730093165
+            ],
+            "deal_in": [
+              0.1406479587686372,
+              0.18032849791779373
+            ],
+            "net_score": [
+              -3462.65625,
+              1878.9843749999995
+            ],
+            "rank": [
+              2.3515625,
+              2.7265625
+            ],
+            "first_place": [
+              0.140625,
+              0.28125
+            ],
+            "last_place": [
+              0.15625,
+              0.3046875
+            ],
+            "riichi": [
+              0.32826542347818943,
+              0.38533725284162434
+            ],
+            "open": [
+              0.0804050581136501,
+              0.11465451784358391
+            ],
+            "kongs": [
+              0.01860393116855065,
+              0.03660616850411326
+            ],
+            "self_draw_share": [
+              0.24657167318982387,
+              0.3333333333333333
+            ],
+            "win_han": [
+              3.108099008099008,
+              3.523654068777664
+            ],
+            "win_income": [
+              7240.588055609746,
+              8506.949383350462
+            ],
+            "rank_utility": [
+              -0.2265625,
+              0.1484375
+            ],
+            "safe_choice": null,
+            "shanten_backoff": null,
+            "early_safe_choice": null,
+            "early_shanten_backoff": null,
+            "early_riichi_choice": null,
+            "early_call_choice": null,
+            "early_win_choice": null,
+            "late_lead_safe_choice": null,
+            "late_lead_shanten_backoff": null,
+            "late_lead_riichi_choice": null,
+            "late_lead_call_choice": null,
+            "late_lead_win_choice": null,
+            "late_last_safe_choice": null,
+            "late_last_shanten_backoff": null,
+            "late_last_riichi_choice": null,
+            "late_last_call_choice": null,
+            "late_last_win_choice": null,
+            "late_middle_safe_choice": null,
+            "late_middle_shanten_backoff": null,
+            "late_middle_riichi_choice": null,
+            "late_middle_call_choice": null,
+            "late_middle_win_choice": null
+          }
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 0.24666342418640852
+}

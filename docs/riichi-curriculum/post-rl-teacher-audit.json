@@ -1,0 +1,542 @@
+{
+  "format": "riichi_teacher_policy_audit_v1",
+  "dataset_manifest_sha256": "40ebd294cab84ce1b174b99474cffac1ebc73ab269ce5dbaec264e464b1254a8",
+  "models": {
+    "rl": {
+      "model_sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072",
+      "feature_version": "riichi_visible_v2",
+      "timesteps": 131072,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.9892578125,
+          "sampled_action_accuracy": 0.755859375,
+          "teacher_set_probability": 0.9780806712806225,
+          "set_cross_entropy": 0.06747129408176988
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9890710382513661,
+          "sampled_action_accuracy": 0.7934426229508197,
+          "teacher_set_probability": 0.9784512775191844,
+          "set_cross_entropy": 0.02853548031687085
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9905405405405405,
+          "sampled_action_accuracy": 0.7418918918918919,
+          "teacher_set_probability": 0.9794002687608874,
+          "set_cross_entropy": 0.20641843394653217
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9936918990703851,
+          "sampled_action_accuracy": 0.6802788844621513,
+          "teacher_set_probability": 0.9794582453065342,
+          "set_cross_entropy": 0.02547112799893971
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9804822043628014,
+          "sampled_action_accuracy": 0.9804822043628014,
+          "teacher_set_probability": 0.9776942738161842,
+          "set_cross_entropy": 0.0541616528884141
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9848719026361193,
+          "set_cross_entropy": 0.05914515823945773
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.7666666666666667,
+          "sampled_action_accuracy": 0.7666666666666667,
+          "teacher_set_probability": 0.7737584054470062,
+          "set_cross_entropy": 4.861476910711887
+        }
+      },
+      "error_analysis": {
+        "counts": {
+          "teacher_set_disagreements": 44,
+          "discard_decisions_with_discard_teacher": 3139,
+          "discard_worsens_shanten_vs_teacher": 0,
+          "lower_ukeire_at_equal_shanten": 15,
+          "shanten_backoff_with_more_genbutsu_than_teacher": 0,
+          "missed_legal_win": 0,
+          "samples": 4096
+        },
+        "disagreements_by_group": {
+          "call": 17,
+          "discard": 19,
+          "kong": 7,
+          "riichi": 1
+        },
+        "action_kind_changes": {
+          "peng -> pass": 11,
+          "discard -> discard": 19,
+          "pass -> peng": 4,
+          "concealed_kong -> discard": 3,
+          "chi -> pass": 2,
+          "discard -> concealed_kong": 4,
+          "riichi -> concealed_kong": 1
+        },
+        "note": "Differences from the heuristic teacher, not certified tactical mistakes. After RL, shanten backoff can be deliberate defense; genbutsu is only a limited safety proxy."
+      }
+    },
+    "v1_20261021": {
+      "model_sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+      "feature_version": "riichi_visible_v1",
+      "timesteps": 131072,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.98828125,
+          "sampled_action_accuracy": 0.755126953125,
+          "teacher_set_probability": 0.9729859493672848,
+          "set_cross_entropy": 0.07843962870538235
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9901639344262295,
+          "sampled_action_accuracy": 0.8,
+          "teacher_set_probability": 0.973477126991814,
+          "set_cross_entropy": 0.04550441070332553
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9918918918918919,
+          "sampled_action_accuracy": 0.754054054054054,
+          "teacher_set_probability": 0.973847533561088,
+          "set_cross_entropy": 0.208456239507005
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9950199203187251,
+          "sampled_action_accuracy": 0.6829349269588313,
+          "teacher_set_probability": 0.9765326916617385,
+          "set_cross_entropy": 0.029384691955875432
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9747416762342136,
+          "sampled_action_accuracy": 0.9747416762342136,
+          "teacher_set_probability": 0.9688255712988729,
+          "set_cross_entropy": 0.07345429023494676
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.9853395649365017,
+          "set_cross_entropy": 0.02689097316176373
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.6666666666666666,
+          "sampled_action_accuracy": 0.6333333333333333,
+          "teacher_set_probability": 0.6276297171910604,
+          "set_cross_entropy": 5.526385188599428
+        }
+      },
+      "error_analysis": {
+        "counts": {
+          "discard_decisions_with_discard_teacher": 3135,
+          "discard_worsens_shanten_vs_teacher": 0,
+          "lower_ukeire_at_equal_shanten": 13,
+          "shanten_backoff_with_more_genbutsu_than_teacher": 0,
+          "missed_legal_win": 0,
+          "samples": 4096,
+          "teacher_set_disagreements": 48
+        },
+        "disagreements_by_group": {
+          "call": 22,
+          "discard": 15,
+          "kong": 10,
+          "riichi": 1
+        },
+        "action_kind_changes": {
+          "peng -> pass": 10,
+          "discard -> discard": 15,
+          "concealed_kong -> discard": 2,
+          "chi -> pass": 5,
+          "pass -> peng": 7,
+          "discard -> concealed_kong": 8,
+          "riichi -> concealed_kong": 1
+        },
+        "note": "Differences from the heuristic teacher, not certified tactical mistakes. After RL, shanten backoff can be deliberate defense; genbutsu is only a limited safety proxy."
+      }
+    },
+    "v2_20261022": {
+      "model_sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2",
+      "feature_version": "riichi_visible_v2",
+      "timesteps": 262144,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.989501953125,
+          "sampled_action_accuracy": 0.748046875,
+          "teacher_set_probability": 0.9702571146190166,
+          "set_cross_entropy": 0.0751198788639158
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9901639344262295,
+          "sampled_action_accuracy": 0.7956284153005464,
+          "teacher_set_probability": 0.970867421718243,
+          "set_cross_entropy": 0.037040189771704334
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9932432432432432,
+          "sampled_action_accuracy": 0.7297297297297297,
+          "teacher_set_probability": 0.9722763473923142,
+          "set_cross_entropy": 0.20928617731944935
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9943559096945551,
+          "sampled_action_accuracy": 0.6703187250996016,
+          "teacher_set_probability": 0.9695814418919375,
+          "set_cross_entropy": 0.03718186612148209
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9781859931113662,
+          "sampled_action_accuracy": 0.9770378874856487,
+          "teacher_set_probability": 0.9752708548930153,
+          "set_cross_entropy": 0.055041269793781426
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9809869144644056,
+          "set_cross_entropy": 0.06330014379552397
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.8,
+          "sampled_action_accuracy": 0.8,
+          "teacher_set_probability": 0.7820801258087158,
+          "set_cross_entropy": 4.688956136380633
+        }
+      },
+      "error_analysis": {
+        "counts": {
+          "teacher_set_disagreements": 43,
+          "discard_decisions_with_discard_teacher": 3139,
+          "discard_worsens_shanten_vs_teacher": 0,
+          "lower_ukeire_at_equal_shanten": 14,
+          "shanten_backoff_with_more_genbutsu_than_teacher": 0,
+          "missed_legal_win": 0,
+          "samples": 4096
+        },
+        "disagreements_by_group": {
+          "call": 19,
+          "discard": 17,
+          "kong": 6,
+          "riichi": 1
+        },
+        "action_kind_changes": {
+          "peng -> pass": 11,
+          "pass -> peng": 6,
+          "discard -> discard": 17,
+          "concealed_kong -> discard": 2,
+          "chi -> pass": 2,
+          "discard -> concealed_kong": 4,
+          "riichi -> concealed_kong": 1
+        },
+        "note": "Differences from the heuristic teacher, not certified tactical mistakes. After RL, shanten backoff can be deliberate defense; genbutsu is only a limited safety proxy."
+      }
+    },
+    "v2_bc": {
+      "model_sha256": "6c9fb5a4066b744b7a28eee42420563d9ee72b7977115bfc2f82372ff5483824",
+      "feature_version": "riichi_visible_v2",
+      "timesteps": 0,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.991943359375,
+          "sampled_action_accuracy": 0.75830078125,
+          "teacher_set_probability": 0.9805014356970787,
+          "set_cross_entropy": 0.06224107835441828
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9934426229508196,
+          "sampled_action_accuracy": 0.7923497267759563,
+          "teacher_set_probability": 0.9812790042064229,
+          "set_cross_entropy": 0.022778050853906433
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9905405405405405,
+          "sampled_action_accuracy": 0.7432432432432432,
+          "teacher_set_probability": 0.9788381782737938,
+          "set_cross_entropy": 0.20809595802345793
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9953519256308101,
+          "sampled_action_accuracy": 0.6829349269588313,
+          "teacher_set_probability": 0.9808961379417227,
+          "set_cross_entropy": 0.02264069363098854
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.983926521239954,
+          "sampled_action_accuracy": 0.9827784156142365,
+          "teacher_set_probability": 0.9814070253777313,
+          "set_cross_entropy": 0.04765218070330768
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.875,
+          "teacher_set_probability": 0.9856134248631341,
+          "set_cross_entropy": 0.05112629851704246
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.8666666666666667,
+          "sampled_action_accuracy": 0.8,
+          "teacher_set_probability": 0.8493501861890157,
+          "set_cross_entropy": 4.650483090492586
+        }
+      },
+      "error_analysis": {
+        "counts": {
+          "teacher_set_disagreements": 33,
+          "discard_decisions_with_discard_teacher": 3143,
+          "discard_worsens_shanten_vs_teacher": 0,
+          "lower_ukeire_at_equal_shanten": 11,
+          "shanten_backoff_with_more_genbutsu_than_teacher": 0,
+          "missed_legal_win": 0,
+          "samples": 4096
+        },
+        "disagreements_by_group": {
+          "call": 14,
+          "discard": 14,
+          "kong": 4,
+          "riichi": 1
+        },
+        "action_kind_changes": {
+          "peng -> pass": 11,
+          "discard -> discard": 14,
+          "concealed_kong -> discard": 4,
+          "pass -> peng": 3,
+          "riichi -> concealed_kong": 1
+        },
+        "note": "Differences from the heuristic teacher, not certified tactical mistakes. After RL, shanten backoff can be deliberate defense; genbutsu is only a limited safety proxy."
+      }
+    },
+    "v1_bc": {
+      "model_sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21",
+      "feature_version": "riichi_visible_v1",
+      "timesteps": 0,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.989990234375,
+          "sampled_action_accuracy": 0.753173828125,
+          "teacher_set_probability": 0.9757129326462746,
+          "set_cross_entropy": 0.07332696265075356
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9901639344262295,
+          "sampled_action_accuracy": 0.8021857923497268,
+          "teacher_set_probability": 0.9757233687437297,
+          "set_cross_entropy": 0.038914245301908484
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9891891891891892,
+          "sampled_action_accuracy": 0.7391891891891892,
+          "teacher_set_probability": 0.9755845250310125,
+          "set_cross_entropy": 0.21186962224341727
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9970119521912351,
+          "sampled_action_accuracy": 0.6802788844621513,
+          "teacher_set_probability": 0.9789034322913425,
+          "set_cross_entropy": 0.02502773427076707
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9724454649827784,
+          "sampled_action_accuracy": 0.9724454649827784,
+          "teacher_set_probability": 0.9708644722414072,
+          "set_cross_entropy": 0.07283278048277997
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.992985589163644,
+          "set_cross_entropy": 0.007363636331710158
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.7333333333333333,
+          "sampled_action_accuracy": 0.7,
+          "teacher_set_probability": 0.6741892755031585,
+          "set_cross_entropy": 5.356720825781425
+        }
+      },
+      "error_analysis": {
+        "counts": {
+          "teacher_set_disagreements": 41,
+          "discard_decisions_with_discard_teacher": 3138,
+          "discard_worsens_shanten_vs_teacher": 0,
+          "lower_ukeire_at_equal_shanten": 7,
+          "shanten_backoff_with_more_genbutsu_than_teacher": 0,
+          "missed_legal_win": 0,
+          "samples": 4096
+        },
+        "disagreements_by_group": {
+          "call": 24,
+          "discard": 9,
+          "kong": 8
+        },
+        "action_kind_changes": {
+          "peng -> pass": 13,
+          "discard -> discard": 9,
+          "concealed_kong -> discard": 2,
+          "chi -> pass": 5,
+          "pass -> peng": 6,
+          "discard -> concealed_kong": 6
+        },
+        "note": "Differences from the heuristic teacher, not certified tactical mistakes. After RL, shanten backoff can be deliberate defense; genbutsu is only a limited safety proxy."
+      }
+    },
+    "v1_published": {
+      "model_sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+      "feature_version": "riichi_visible_v1",
+      "timesteps": 196608,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.96435546875,
+          "sampled_action_accuracy": 0.734375,
+          "teacher_set_probability": 0.924404077231884,
+          "set_cross_entropy": 0.1724484907463193
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9573770491803278,
+          "sampled_action_accuracy": 0.780327868852459,
+          "teacher_set_probability": 0.923666173382535,
+          "set_cross_entropy": 0.16406176389892244
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9662162162162162,
+          "sampled_action_accuracy": 0.7148648648648649,
+          "teacher_set_probability": 0.9246914734711518,
+          "set_cross_entropy": 0.2849571054046218
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9677954847277557,
+          "sampled_action_accuracy": 0.6600265604249668,
+          "teacher_set_probability": 0.9168549951804111,
+          "set_cross_entropy": 0.12873293077486603
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9563719862227325,
+          "sampled_action_accuracy": 0.9563719862227325,
+          "teacher_set_probability": 0.9467951339914386,
+          "set_cross_entropy": 0.16534409703671865
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9732193606240409,
+          "set_cross_entropy": 0.030331566865373003
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 1.679004278332901e-09
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.6666666666666666,
+          "sampled_action_accuracy": 0.5666666666666667,
+          "teacher_set_probability": 0.6710893956113997,
+          "set_cross_entropy": 5.70645262007262
+        }
+      },
+      "error_analysis": {
+        "counts": {
+          "teacher_set_disagreements": 146,
+          "discard_decisions_with_discard_teacher": 3139,
+          "discard_worsens_shanten_vs_teacher": 0,
+          "lower_ukeire_at_equal_shanten": 98,
+          "shanten_backoff_with_more_genbutsu_than_teacher": 0,
+          "missed_legal_win": 0,
+          "samples": 4096
+        },
+        "disagreements_by_group": {
+          "call": 38,
+          "discard": 97,
+          "kong": 10,
+          "riichi": 1
+        },
+        "action_kind_changes": {
+          "chi -> pass": 14,
+          "pass -> peng": 5,
+          "discard -> discard": 97,
+          "peng -> pass": 19,
+          "concealed_kong -> discard": 5,
+          "riichi -> riichi": 1,
+          "discard -> concealed_kong": 5
+        },
+        "note": "Differences from the heuristic teacher, not certified tactical mistakes. After RL, shanten backoff can be deliberate defense; genbutsu is only a limited safety proxy."
+      }
+    }
+  }
+}
