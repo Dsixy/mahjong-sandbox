@@ -1,5 +1,6 @@
 {
   "variant": "riichi",
+  "feature_version": "riichi_visible_v1",
   "match_length": "south",
   "total_timesteps": 524288,
   "n_envs": 512,

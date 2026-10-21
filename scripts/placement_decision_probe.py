@@ -89,8 +89,11 @@ def evaluate(bank,models,output):
         raise ValueError('shared probe requires matching rules and feature settings')
     for start in range(0,len(positions),64):
         batch=positions[start:start+64];singles=[observation_batch(x['observation']) for x in batch]
-        features=encode_batch({k:np.concatenate([x[k] for x in singles]) for k in singles[0]},rules=rules,backend='numba',hints=first.metadata['hints'])
+        raw={k:np.concatenate([x[k] for x in singles]) for k in singles[0]};encoded={}
         for label,agent in agents.items():
+            if agent.feature_version not in encoded:
+                encoded[agent.feature_version]=encode_batch(raw,rules=rules,backend='numba',hints=first.metadata['hints'],feature_version=agent.feature_version)
+            features=encoded[agent.feature_version]
             indices,_=agent.model.predict(features,action_masks=features['mask'],deterministic=True)
             with torch.no_grad():
                 tensors,_=agent.model.policy.obs_to_tensor(features)
@@ -122,7 +125,7 @@ def evaluate(bank,models,output):
         'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'batch_single_agent_checks_per_model':4,
         'probability_note':'Post-hoc diagnostic on the fixed bank: mean masked policy mass for each available action group, not match action rates.',
         'choice_probabilities':{label:{key:{'positions':v[0],'mean_probability':v[1]/v[0]} for key,v in groups.items()} for label,groups in probabilities.items()},
-        'models':{k:{'sha256':a.metadata['model_sha256'],'timesteps':a.metadata['timesteps']} for k,a in agents.items()},
+        'models':{k:{'sha256':a.metadata['model_sha256'],'timesteps':a.metadata['timesteps'],'feature_version':a.feature_version} for k,a in agents.items()},
         'counts':{k:dict(v) for k,v in counts.items()},'action_disagreement':comparison,'decision_records':rows}
     Path(output).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k!='decision_records'},indent=2))
 

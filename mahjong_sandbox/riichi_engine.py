@@ -25,6 +25,7 @@ class RiichiEngine(Engine):
             random.Random(seed).shuffle(deck)
         self.initial_wall = tuple(deck)
         self.events, self.commands = [], []
+        self.public_history, self._announced_indicators = [], {}
         players = [RiichiPlayer() for _ in range(4)]
         self.state = RiichiState(players, deck[:-14], 0, 122, Phase.SELF_TURN, self.config.dealer,
                                  scores=list(self.config.initial_scores), dead_wall=deck[-14:],
@@ -41,6 +42,11 @@ class RiichiEngine(Engine):
         self._emit('dora_revealed', {'indicators': self.indicators()})
         self._draw(self.config.dealer, 'initial')
         self.assert_invariants()
+
+    def _emit(self, kind, data, *, private=None, visible_to=None):
+        from .public_history import remember_public
+        remember_public(self, kind, data)
+        super()._emit(kind, data, private=private, visible_to=visible_to)
 
     def indicators(self, ura=False):
         return [self.state.dead_wall[4 + 2 * i + int(ura)] for i in range(self.state.indicator_count)]
@@ -492,6 +498,8 @@ class RiichiEngine(Engine):
                            hand_number=self.config.hand_number, honba=self.config.honba, riichi_sticks=state.riichi_sticks,
                            dora_indicators=self.indicators(), red_fives=list(self.config.red_fives),
                            ura_indicators=self.indicators(True) if state.phase == Phase.TERMINAL and any(p.riichi and not p.can_act for p in state.players) else [])
+        from .public_history import observation_context
+        observation.update(observation_context(self))
         return deepcopy(observation)
 
     def assert_invariants(self):

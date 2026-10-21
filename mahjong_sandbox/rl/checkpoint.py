@@ -10,7 +10,7 @@ import uuid
 from ..batch import ACTION_KINDS
 from ..model import RuleConfig
 from .features import FEATURE_VERSION, STATE_DIM, HINT_DIM
-from .schema import feature_module, rules_from_values, variant_of
+from .schema import feature_module, rules_from_values, variant_of, schema_from_space
 
 CHECKPOINT_VERSION = 'mahjong_maskable_ppo_v1'
 
@@ -42,7 +42,7 @@ def save_checkpoint(model, path, *, rules=None, hints=True, training=None):
     if not all(bool(torch.isfinite(p).all()) for p in model.policy.parameters()):
         raise FloatingPointError('refusing to save nonfinite model parameters')
     rules = rules or RuleConfig()
-    schema = feature_module(rules)
+    schema = schema_from_space(rules,model.observation_space)
     if (model.observation_space['state'].shape != (schema.STATE_DIM,) or
             model.observation_space['hints'].shape[-1] != schema.HINT_DIM or
             getattr(model.policy, 'variant', 'sichuan') != variant_of(rules)):
@@ -58,6 +58,7 @@ def save_checkpoint(model, path, *, rules=None, hints=True, training=None):
             'algorithm': 'sb3-contrib MaskablePPO', 'feature_version': schema.FEATURE_VERSION,
             'state_dim': schema.STATE_DIM, 'hint_dim': schema.HINT_DIM, 'action_kinds': list(ACTION_KINDS),
             'rules': asdict(rules), 'hints': bool(hints),
+            'observation_shapes': {k:list(v.shape) for k,v in model.observation_space.spaces.items()},
             'model_sha256': checksum(temporary), 'source_sha256': source_fingerprint(),
             'timesteps': int(model.num_timesteps), 'optimizer_updates': int(model._n_updates),
             'versions': {name: version(name) for name in ('torch', 'numpy', 'stable_baselines3', 'sb3-contrib')},
@@ -75,11 +76,15 @@ def read_metadata(path, *, expected_rules=None):
     path = model_path(path)
     metadata = json.loads(path.with_suffix('.json').read_text())
     rules = rules_from_values(metadata['rules'])
-    schema = feature_module(rules)
+    schema = feature_module(rules,metadata.get('feature_version'))
     expected = (CHECKPOINT_VERSION, schema.FEATURE_VERSION, schema.STATE_DIM, schema.HINT_DIM, list(ACTION_KINDS))
     actual = tuple(metadata.get(k) for k in ('format', 'feature_version', 'state_dim', 'hint_dim', 'action_kinds'))
     if actual != expected:
         raise ValueError('incompatible checkpoint/feature/action schema')
+    shapes={'state':[schema.STATE_DIM],'candidates':[512,8],'hints':[512,schema.HINT_DIM],'mask':[512],
+            **{k:list(v) for k,v in getattr(schema,'EXTRA_SHAPES',{}).items()}}
+    if metadata.get('observation_shapes',shapes)!=shapes or (getattr(schema,'EXTRA_SHAPES',{}) and 'observation_shapes' not in metadata):
+        raise ValueError('checkpoint structured observation shapes differ from feature contract')
     if expected_rules is not None and asdict(expected_rules) != asdict(rules):
         raise ValueError('checkpoint rules differ from evaluation/training rules')
     if metadata['model_sha256'] != checksum(path):
@@ -93,6 +98,8 @@ def load_checkpoint(path, *, env=None, device='cpu', expected_rules=None, **kwar
     from sb3_contrib import MaskablePPO
     metadata = read_metadata(path, expected_rules=expected_rules)
     model = MaskablePPO.load(model_path(path), env=env, device=resolve_device(device), **kwargs)
+    if schema_from_space(rules_from_values(metadata['rules']),model.observation_space).FEATURE_VERSION!=metadata['feature_version']:
+        raise ValueError('saved model observation space differs from checkpoint metadata')
     return model, metadata
 
 def resolve_device(device):

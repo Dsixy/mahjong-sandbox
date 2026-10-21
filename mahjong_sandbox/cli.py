@@ -64,6 +64,7 @@ def main(argv=None) -> int:
     rl_train.add_argument('--resume', type=Path)
     rl_train.add_argument('--variant', choices=('sichuan', 'riichi'))
     rl_train.add_argument('--match-length', choices=('hand', 'east', 'south'))
+    rl_train.add_argument('--feature-version', choices=('sichuan_visible_v1','riichi_visible_v1','riichi_visible_v2'))
     for flag, dest in (('timesteps', 'total_timesteps'), ('boards', 'n_envs'), ('workers', 'workers'),
                        ('rollout-steps', 'rollout_steps'), ('batch-size', 'batch_size'), ('epochs', 'epochs'),
                        ('seed', 'seed'), ('torch-threads', 'torch_threads'), ('hidden', 'hidden'),

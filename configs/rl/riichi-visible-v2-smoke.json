@@ -1,0 +1,25 @@
+{
+  "variant": "riichi",
+  "feature_version": "riichi_visible_v2",
+  "match_length": "south",
+  "match_config": {
+    "length": "south",
+    "target": 30000,
+    "bankruptcy": true,
+    "agari_yame": true,
+    "tenpai_yame": false,
+    "west_extension": true
+  },
+  "total_timesteps": 64,
+  "n_envs": 4,
+  "workers": 2,
+  "rollout_steps": 8,
+  "batch_size": 16,
+  "epochs": 1,
+  "bc_samples": 0,
+  "validation_blocks": 0,
+  "backend": "numba",
+  "device": "cpu",
+  "torch_threads": 1,
+  "seed": 20261021
+}

@@ -6,14 +6,79 @@ from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from sb3_contrib.common.maskable.policies import MaskableActorCriticPolicy
 from ..batch import ACTION_KINDS, MAX_ACTIONS
 from .features import STATE_DIM, HINT_DIM
+from ..public_history import EVENT_KINDS, EVENT_DETAILS, MAX_PUBLIC_EVENTS
+
+
+class PublicInformationEncoder(nn.Module):
+    """Encode all ordered public tokens without quadratic attention storage."""
+    OUTPUT_DIM = 128
+
+    def __init__(self, state_dim):
+        super().__init__()
+        self.tile=nn.Embedding(35,4)
+        self.rivers=nn.Sequential(nn.Linear(4*136*18,32),nn.Tanh())
+        self.melds=nn.Sequential(nn.Linear(4*4*41,32),nn.Tanh())
+        self.event=nn.Embedding(len(EVENT_KINDS),8)
+        self.actor=nn.Embedding(6,4)
+        self.history_tile=nn.Embedding(35,8)
+        self.detail=nn.Embedding(len(EVENT_DETAILS),4)
+        self.meld_index=nn.Embedding(5,2)
+        self.position=nn.Embedding(MAX_PUBLIC_EVENTS,8)
+        self.history=nn.Sequential(nn.Linear(45,32),nn.Tanh())
+        self.temporal=nn.Conv1d(32,32,3,padding=1)
+        self.query=nn.Linear(state_dim,32)
+        self.pool=nn.Sequential(nn.Linear(96,64),nn.Tanh())
+
+    @staticmethod
+    def bits(value, width):
+        return ((value[...,None] >> torch.arange(width,device=value.device))&1).float()
+
+    def forward(self, obs):
+        river=obs['rivers'].long();present=(river[...,0]!=34)[...,None]
+        encoded=torch.cat((self.tile(river[...,0]),river[...,1:2].float(),
+            self.bits(river[...,2],4),torch.nn.functional.one_hot(river[...,3],5).float(),
+            self.bits(river[...,4],4)),dim=-1)*present
+        rivers=self.rivers(encoded.flatten(1))
+        meld=obs['melds'].long();present=(meld[...,0]!=5)[...,None]
+        encoded=torch.cat((torch.nn.functional.one_hot(meld[...,0],6).float(),
+            torch.nn.functional.one_hot(meld[...,1],5).float(),self.tile(meld[...,2:6]).flatten(-2),
+            self.bits(meld[...,6],4),self.tile(meld[...,7]),meld[...,8:9].float(),
+            self.tile(meld[...,9]),meld[...,10:11].float()),dim=-1)*present
+        melds=self.melds(encoded.flatten(1))
+        mask=obs['history_mask'].bool();width=max(1,int(mask.sum(1).max().item()))
+        mask=mask[:,:width];history=obs['public_history'][:,:width].long()
+        numeric=torch.stack((history[...,5]/136,history[...,6],history[...,7]/32000,
+            history[...,9]/70,history[...,10]/136,history[...,11],
+            torch.arange(width,device=history.device).expand(len(history),-1)/MAX_PUBLIC_EVENTS),dim=-1)
+        encoded=torch.cat((self.event(history[...,0]),self.actor(history[...,1]),self.actor(history[...,2]),
+            self.history_tile(history[...,3]),self.detail(history[...,8]),
+            self.meld_index((history[...,4]+1).clamp_min(0)),numeric,
+            self.position(torch.arange(width,device=history.device)).expand(len(history),-1,-1)),dim=-1)
+        encoded=self.history(encoded)*mask[...,None]
+        encoded=torch.tanh(self.temporal(encoded.transpose(1,2)).transpose(1,2))*mask[...,None]
+        logits=(encoded*self.query(obs['state'])[:,None,:]).sum(-1)/math.sqrt(32)
+        weights=logits.masked_fill(~mask,-1e9).softmax(-1)*mask
+        weights=weights/weights.sum(1,keepdim=True).clamp_min(1e-9)
+        attended=(encoded*weights[...,None]).sum(1)
+        mean=encoded.sum(1)/mask.sum(1,keepdim=True).clamp_min(1)
+        last=encoded[torch.arange(len(history),device=history.device),(mask.sum(1)-1).clamp_min(0)]
+        return torch.cat((rivers,melds,self.pool(torch.cat((attended,mean,last),dim=-1))),dim=-1)
 
 
 class MenuExtractor(BaseFeaturesExtractor):
     def __init__(self, observation_space):
-        super().__init__(observation_space, observation_space['state'].shape[0] + MAX_ACTIONS * (8 + observation_space['hints'].shape[-1] + 1))
+        state_dim=observation_space['state'].shape[0]
+        extra=PublicInformationEncoder.OUTPUT_DIM if 'public_history' in observation_space.spaces else 0
+        super().__init__(observation_space, state_dim + extra + MAX_ACTIONS * (8 + observation_space['hints'].shape[-1] + 1))
+        self.context_dim=state_dim+extra
+        self.public_encoder=PublicInformationEncoder(state_dim) if extra else None
 
     def forward(self, observations):
-        return torch.cat([observations[k].flatten(1) for k in ('state', 'candidates', 'hints', 'mask')], dim=1)
+        parts=[observations['state']]
+        if self.public_encoder is not None:
+            parts.append(self.public_encoder(observations))
+        parts.extend(observations[k].flatten(1) for k in ('candidates','hints','mask'))
+        return torch.cat(parts,dim=1)
 
 
 class CandidateHeads(nn.Module):
@@ -72,7 +137,7 @@ class MahjongPolicy(MaskableActorCriticPolicy):
         super().__init__(*args, **kwargs)
 
     def _build(self, lr_schedule):
-        self.mlp_extractor = CandidateHeads(self.hidden, self.observation_space['state'].shape[0],
+        self.mlp_extractor = CandidateHeads(self.hidden, self.features_extractor.context_dim,
             self.observation_space['hints'].shape[-1], 34 if self.variant == 'riichi' else 27)
         # The head already emits candidate logits; a learned 512x512 projection
         # here would reintroduce arbitrary menu-position dependence.

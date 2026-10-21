@@ -47,7 +47,8 @@ def recover_best(output, config):
     try:
         existing = read_metadata(path, expected_rules=config.rules)
         settings = existing['training']
-        if settings.get('config', {}).get('reward_mode', 'score') == config.reward_mode:
+        if (settings.get('config', {}).get('reward_mode', 'score') == config.reward_mode and
+                (config.feature_version is None or existing['feature_version']==config.feature_version)):
             score = float(settings.get('validation_score', -math.inf))
     except (OSError, ValueError, KeyError):
         pass
@@ -74,6 +75,8 @@ def recover_best(output, config):
                 settings.get('validation_blocks') != config.validation_blocks or metadata['hints'] != config.hints or
                 settings.get('config', {}).get('reward_mode', 'score') != config.reward_mode or
                 tuple(settings.get('config', {}).get('rank_rewards', DEFAULT_RANK_REWARDS)) != config.rank_rewards):
+            continue
+        if config.feature_version is not None and metadata['feature_version']!=config.feature_version:
             continue
         metadata['training'] = {**settings, 'validation_score': candidate_score,
             'validation_metric': 'rank_utility' if config.reward_mode == 'rank' else 'mean_net_score'}

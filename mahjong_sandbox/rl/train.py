@@ -1,6 +1,6 @@
 """Train, validate, checkpoint and resume Mahjong MaskablePPO on CPU or CUDA."""
 from collections import deque
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 import json
 from pathlib import Path
 import signal
@@ -18,7 +18,7 @@ from .evaluate import validate_model
 from .imitation import pretrain
 from .policy import MahjongPolicy
 from .placement import DEFAULT_RANK_REWARDS, rank_rewards as validate_rank_rewards, validation_objective
-from .schema import rules_from_values
+from .schema import rules_from_values, feature_module
 
 
 @dataclass(frozen=True)
@@ -59,6 +59,8 @@ class TrainConfig:
     snapshot_pool_size: int = 4
     variant: str = 'sichuan'
     match_length: str = 'hand'
+    match_config: object = None
+    feature_version: str | None = None
     skip_forced_actions: bool | None = None
     rules: RuleConfig | RiichiConfig | None = None
 
@@ -82,6 +84,13 @@ class TrainConfig:
             object.__setattr__(self, 'rules', RiichiConfig() if self.variant == 'riichi' else RuleConfig())
         if isinstance(self.rules, dict):
             object.__setattr__(self, 'rules', rules_from_values(self.rules))
+        feature_module(self.rules,self.feature_version)
+        if self.match_config is not None:
+            from ..riichi_match import MatchConfig
+            if isinstance(self.match_config,dict):
+                object.__setattr__(self,'match_config',MatchConfig(**self.match_config))
+            if self.variant!='riichi' or not isinstance(self.match_config,MatchConfig) or self.match_config.length!=self.match_length:
+                raise ValueError('match config must agree with riichi match_length')
         if isinstance(self.opponents, list):
             object.__setattr__(self, 'opponents', tuple(self.opponents))
         for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every', 'snapshot_every', 'snapshot_pool_size', 'validation_workers'):
@@ -136,7 +145,8 @@ class TrainingCallback(BaseCallback):
             if (settings.get('validation_seed') == config.validation_seed and
                     settings.get('validation_blocks') == config.validation_blocks and saved['hints'] == config.hints and
                     settings.get('config', {}).get('reward_mode', 'score') == config.reward_mode and
-                    tuple(settings.get('config', {}).get('rank_rewards', DEFAULT_RANK_REWARDS)) == config.rank_rewards):
+                    tuple(settings.get('config', {}).get('rank_rewards', DEFAULT_RANK_REWARDS)) == config.rank_rewards and
+                    saved['feature_version']==(config.feature_version or saved['feature_version'])):
                 self.best_score = float(settings.get('validation_score', -float('inf')))
         self.started = time.perf_counter()
 
@@ -229,6 +239,11 @@ def train(output, config=None, *, resume=None):
             raise ValueError('cannot change hint features while resuming')
     else:
         previous = None
+    version=config.feature_version or (previous['feature_version'] if previous else
+        'riichi_visible_v2' if config.variant=='riichi' else 'sichuan_visible_v1')
+    if previous and version!=previous['feature_version']:
+        raise ValueError('feature versions cannot change on resume; create a new cold start')
+    config=replace(config,feature_version=version)
     output = Path(output)
     if any((output / name).exists() for name in ('latest.zip', 'best.zip', 'warmstart.zip')) and not resume:
         raise ValueError('output already contains a model; use --resume or a new directory')
@@ -243,7 +258,8 @@ def train(output, config=None, *, resume=None):
         backend=config.backend, reward_scale=config.reward_scale, rules=config.rules, hints=config.hints,
         opponent_manifest=output.resolve() / 'selfplay' / 'opponents.json' if config.self_play_probability else None,
         self_play_probability=config.self_play_probability, variant=config.variant, match_length=config.match_length,
-        skip_forced_actions=config.skip_forced_actions, reward_mode=config.reward_mode, rank_rewards=config.rank_rewards)
+        skip_forced_actions=config.skip_forced_actions, reward_mode=config.reward_mode, rank_rewards=config.rank_rewards,
+        feature_version=config.feature_version,match_config=config.match_config)
     started = time.perf_counter()
     bc_report = previous['training'].get('imitation') if previous else None
     initial_validation = None
@@ -268,7 +284,8 @@ def train(output, config=None, *, resume=None):
                    'resume_restores': 'model, value function, Adam; new hands, not exact in-flight state'}
         if config.bc_samples and not resume:
             bc_report = pretrain(model, config.bc_samples, epochs=config.bc_epochs,
-                seed=(config.seed + 1234) % 2**32, rules=config.rules, backend=config.backend, hints=config.hints)
+                seed=(config.seed + 1234) % 2**32, rules=config.rules, backend=config.backend, hints=config.hints,
+                feature_version=config.feature_version,match_length=config.match_length,match_config=config.match_config)
             (output / 'imitation.json').write_text(json.dumps(bc_report, indent=2) + '\n')
             save_checkpoint(model, output / 'warmstart.zip', rules=config.rules, hints=config.hints,
                             training={**context, 'imitation': bc_report})

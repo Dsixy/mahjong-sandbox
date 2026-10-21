@@ -50,7 +50,7 @@ def canonical_index(batch, action, row=0):
     raise ValueError('action does not match a legal riichi candidate')
 
 
-def encode_batch(batch, *, rules=None, backend='auto', hints=True):
+def encode_batch(batch, *, rules=None, backend='auto', hints=True, correct_riichi_markers=False):
     rules = rules or RiichiConfig()
     n = len(batch['meta'])
     players = batch['meta'][:, 1].astype(int)
@@ -70,6 +70,8 @@ def encode_batch(batch, *, rules=None, backend='auto', hints=True):
     parts.append(np.eye(35)[recent].reshape(n, -1))
     flags = np.take_along_axis(batch['river_flags'][rows, relative], np.maximum(positions, 0), axis=2)
     flags = np.where(positions >= 0, flags, 0)
+    if correct_riichi_markers:
+        flags=(flags&7) | (((positions==seats[:,:,5,None]) & (positions>=0)).astype(np.uint8)*8)
     parts.append(((flags[..., None] & (1 << np.arange(4))) != 0).reshape(n, -1))
     meld_count = (melds[..., 8] > 0).sum(axis=2)
     scores = batch['scores'][rows, relative]
@@ -77,7 +79,9 @@ def encode_batch(batch, *, rules=None, backend='auto', hints=True):
                            np.maximum(seats[:, :, 3], 0), np.maximum(seats[:, :, 4], 0),
                            scores / 50000, (scores - scores.mean(axis=1, keepdims=True)) / 32000), axis=2).reshape(n, -1))
     parts.append(np.eye(4)[(seats[:, :, 6] - 27).clip(0, 3)].reshape(n, -1))
-    parts.append(np.eye(35)[np.where(seats[:, :, 5] >= 0, seats[:, :, 5] // 4, 34)].reshape(n, -1))
+    declaration=seats[:,:,5]
+    declaration_tile=np.take_along_axis(rivers,np.maximum(declaration,0)[:,:,None],axis=2)[:,:,0] if correct_riichi_markers else declaration
+    parts.append(np.eye(35)[np.where(declaration >= 0, declaration_tile // 4, 34)].reshape(n, -1))
     meta = batch['meta']
     actor = np.where(meta[:, 2] < 0, 4, (meta[:, 2] - players) % 4)
     parts.extend((np.eye(len(PHASES))[meta[:, 0]], np.eye(5)[actor],

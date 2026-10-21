@@ -15,12 +15,31 @@ def variant_of(rules):
     return 'riichi' if isinstance(rules, RiichiConfig) else 'sichuan'
 
 
-def feature_module(rules):
+def feature_module(rules, feature_version=None):
     if isinstance(rules, RiichiConfig):
+        if feature_version == 'riichi_visible_v2':
+            from . import riichi_features_v2
+            return riichi_features_v2
+        if feature_version not in (None,'riichi_visible_v1'):
+            raise ValueError('unknown riichi feature version')
         from . import riichi_features
         return riichi_features
+    if feature_version not in (None,'sichuan_visible_v1'):
+        raise ValueError('unknown Sichuan feature version')
     from . import features
     return features
+
+
+def schema_from_space(rules, space):
+    versions=('riichi_visible_v1','riichi_visible_v2') if isinstance(rules,RiichiConfig) else ('sichuan_visible_v1',)
+    for version in versions:
+        schema=feature_module(rules,version)
+        if space['state'].shape==(schema.STATE_DIM,) and space['hints'].shape==(512,schema.HINT_DIM):
+            expected={'state','hints','mask','candidates',*getattr(schema,'EXTRA_SHAPES',{})}
+            if (set(space.spaces)==expected and space['candidates'].shape==(512,8) and space['mask'].shape==(512,) and
+                    all(space[k].shape==v for k,v in getattr(schema,'EXTRA_SHAPES',{}).items())):
+                return schema
+    raise ValueError('model observation space does not match a supported feature contract')
 
 
 def compatible_observation_rules(expected, announced):

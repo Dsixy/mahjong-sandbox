@@ -88,12 +88,14 @@ def _threat_choice(obs, action, counters, backend):
 
 
 def play_match(seed, seat, candidate, opponent, *, rules=None, agents=None, backend='auto',
-               deterministic=True, match_length='east', collect_style=True):
+               deterministic=True, match_length='east', collect_style=True,match_config=None):
     rules, agents = rules or RiichiConfig(), _AGENTS if agents is None else agents
     # Adjacent logical evaluation blocks must not reuse each other's match walls.
     wall_seed = seed * 256
     factory = partial(FastRiichiEngine, runtime=RuntimeOptions(operator_backend=backend))
-    match = RiichiMatch(MatchConfig(length=match_length), rules, wall_seed, engine_factory=factory, record=False) if match_length != 'hand' else None
+    if isinstance(match_config,dict):match_config=MatchConfig(**match_config)
+    if match_config is not None and match_config.length!=match_length:raise ValueError('match length and config disagree')
+    match = RiichiMatch(match_config or MatchConfig(length=match_length), rules, wall_seed, engine_factory=factory, record=False) if match_length != 'hand' else None
     engine = match.engine if match else factory(rules, seed=wall_seed)
     lineup = [make_bot(opponent, variant='riichi', seed=seed * 4 + p, backend=backend) for p in range(4)]
     lineup[seat] = agents[candidate] if candidate in agents else make_bot(candidate, variant='riichi', seed=seed * 4 + seat, backend=backend)
@@ -146,9 +148,9 @@ def play_match(seed, seat, candidate, opponent, *, rules=None, agents=None, back
 
 
 def _block(args):
-    seed, candidate, opponent, values, backend, deterministic, length, style = args
+    seed, candidate, opponent, values, backend, deterministic, length, style,match_config = args
     return [play_match(seed, seat, candidate, opponent, rules=RiichiConfig(**values),
-                      backend=backend, deterministic=deterministic, match_length=length, collect_style=style) for seat in range(4)]
+                      backend=backend, deterministic=deterministic, match_length=length, collect_style=style,match_config=match_config) for seat in range(4)]
 
 
 def _totals(rows, rank_rewards=DEFAULT_RANK_REWARDS):
@@ -207,14 +209,14 @@ def validate_model(model, metadata, *, blocks=4, seed=100000, backend='auto', wo
     rewards = validate_rank_rewards(config.get('rank_rewards', DEFAULT_RANK_REWARDS))
     if workers == 1:
         rows = [play_match(seed + b, seat, 'rl', 'greedy', agents={'rl': agent}, rules=agent.rules,
-                          backend=backend, match_length=length, collect_style=False) for b in range(blocks) for seat in range(4)]
+                          backend=backend, match_length=length, collect_style=False,match_config=config.get('match_config')) for b in range(blocks) for seat in range(4)]
     else:
         if str(model.device) != 'cpu':
             raise ValueError('parallel validation requires CPU')
         with tempfile.TemporaryDirectory(prefix='riichi-validation-') as directory:
             path = Path(directory) / 'candidate.zip'
             save_checkpoint(model, path, rules=agent.rules, hints=metadata['hints'], training=metadata['training'])
-            work = [(seed+b, 'rl', 'greedy', asdict(agent.rules), backend, True, length, False) for b in range(blocks)]
+            work = [(seed+b, 'rl', 'greedy', asdict(agent.rules), backend, True, length, False,config.get('match_config')) for b in range(blocks)]
             with ProcessPoolExecutor(workers, mp_context=mp.get_context('spawn'), initializer=_initialize,
                     initargs=({'rl':str(path)}, backend, True)) as pool:
                 rows = [row for block in pool.map(_block, work) for row in block]
@@ -224,7 +226,7 @@ def validate_model(model, metadata, *, blocks=4, seed=100000, backend='auto', wo
 def evaluate_models(model, *, baseline_model=None, opponents=('greedy',), baselines=POLICIES,
                     blocks=16, seed=200000, workers=4, backend='auto', deterministic=True,
                     include_games=True, device='cpu', baseline_label='warmstart', additional_models=None, match_length=None,
-                    rank_rewards=None):
+                    rank_rewards=None,match_config=None):
     device = resolve_device(device)
     if device != 'cpu' and workers != 1:
         raise ValueError('GPU evaluation requires workers=1')
@@ -244,20 +246,26 @@ def evaluate_models(model, *, baseline_model=None, opponents=('greedy',), baseli
     length = match_length or metadata['rl']['training'].get('config', {}).get('match_length', 'east')
     if length not in ('hand', 'east', 'south'):
         raise ValueError('unknown evaluation match length')
+    if match_config is None and length==metadata['rl']['training'].get('config',{}).get('match_length'):
+        match_config=metadata['rl']['training'].get('config',{}).get('match_config')
+    if length!='hand':
+        match_config=MatchConfig(**match_config) if isinstance(match_config,dict) else match_config or MatchConfig(length=length)
+        if match_config.length!=length:raise ValueError('match length and config disagree')
+        match_config=asdict(match_config)
     for label, path in models.items():
         read_metadata(path, expected_rules=rules)
         config = metadata[label]['training']
         start, count = config.get('validation_seed', -99999), config.get('validation_blocks', 0)
         if max(seed, start) < min(seed + blocks, start + count):
             raise ValueError('test walls overlap checkpoint-selection walls')
-    work = [(seed + b, c, opponent, asdict(rules), backend, deterministic, length, True)
+    work = [(seed + b, c, opponent, asdict(rules), backend, deterministic, length, True,match_config)
             for opponent in opponents for c in (*models, *baselines) for b in range(blocks)]
     begin = time.perf_counter()
     if workers == 1:
         torch.set_num_threads(1)
         agents = {k: RLAgent(p, backend=backend, device=device, deterministic=deterministic) for k, p in models.items()}
         rows = [play_match(s, seat, c, o, agents=agents, rules=rules, backend=backend,
-                          deterministic=deterministic, match_length=length) for s, c, o, *_ in work for seat in range(4)]
+                          deterministic=deterministic, match_length=length,match_config=match_config) for s, c, o, *_ in work for seat in range(4)]
     else:
         with ProcessPoolExecutor(workers, mp_context=mp.get_context('spawn'), initializer=_initialize,
                                  initargs=(models, backend, deterministic)) as pool:
@@ -284,7 +292,7 @@ def evaluate_models(model, *, baseline_model=None, opponents=('greedy',), baseli
                 paired[name] = {'rl_minus_baseline': float(delta), 'ci95': np.quantile(samples, [.025, .975]).tolist()}
             comparisons[opponent][p] = paired
     return {'format': 'riichi_rl_evaluation_v1', 'variant': 'riichi', 'match_length': length,
-            'rules': asdict(rules), 'rank_rewards':list(rewards), 'models': {k: {'path': p, 'timesteps': metadata[k]['timesteps'], 'sha256': checksum(p),
+            'rules': asdict(rules), 'match_config':match_config,'rank_rewards':list(rewards), 'models': {k: {'path': p, 'timesteps': metadata[k]['timesteps'], 'sha256': checksum(p),
                 'source_sha256': metadata[k]['source_sha256']} for k, p in models.items()},
             'wall_seeds': [seed, seed + blocks - 1], 'wall_stride': 256, 'blocks': blocks, 'seat_rotations': 4,
             'interval_method': '95% paired-match-seed block bootstrap, 2000 resamples; hand ratios resample counts',

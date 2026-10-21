@@ -40,6 +40,12 @@ class RiichiMatch:
         self.final_scores = None
         self.end_reason = None
         self._resolved = False
+        self._announce_context()
+
+    def _announce_context(self):
+        self.engine._match_context = {'config': asdict(self.config),
+            'initial_dealer': self.rules.dealer, 'initial_scores': list(self.rules.initial_scores),
+            'hands_played': len(self.rounds)}
 
     def summary(self):
         return deepcopy({'length': self.config.length, 'hands_played': len(self.rounds), 'ended': self.ended,
@@ -91,6 +97,7 @@ class RiichiMatch:
                         riichi_sticks=s.riichi_sticks, initial_scores=tuple(s.scores))
         self.engine = self.engine_factory(rules, self.seed + len(self.rounds))
         self._resolved = False
+        self._announce_context()
         return self.engine
 
     def export(self):
@@ -118,6 +125,7 @@ def replay_match(data):
         if match.engine.config != engine.config or record['seed'] != match.seed + index:
             raise ValueError(f'altered match progression at hand {index}')
         match.engine = engine
+        match._announce_context()
         match.complete_hand()
         if index < len(data['rounds'])-1:
             match.next_hand()

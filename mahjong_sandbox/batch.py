@@ -10,6 +10,7 @@ from .bots import make_bot, known_counts
 from .fast import FastEngine, FastRiichiEngine, RuntimeOptions
 from .model import ActionKind, Phase, RuleConfig
 from .riichi_model import RiichiConfig
+from .public_history import MAX_PUBLIC_EVENTS, HISTORY_FIELDS, HISTORY_VERSION, RULE_FLAGS
 from .operators import numpy
 
 MAX_ACTIONS = 512  # exchange candidates <= C(14,3) = 364
@@ -30,8 +31,8 @@ def derived_seed(seed, lane, episode, stream=0):
     return int.from_bytes(hashlib.blake2b(words, digest_size=8).digest(), 'little')
 
 
-def array_specs(n):
-    return {
+def array_specs(n, *, public_history=False):
+    specs = {
         'own_counts': ((n, 34), 'uint8'),
         'known_counts': ((n, 34), 'uint8'),
         'concealed': ((n, 14), 'int16'),
@@ -56,11 +57,18 @@ def array_specs(n):
         'terminated': ((n,), 'bool'),
         'truncated': ((n,), 'bool'),
     }
+    if public_history:
+        specs.update({
+            'river_callers': ((n,4,136),'int8'), 'river_winners': ((n,4,136),'uint8'),
+            'public_history': ((n,MAX_PUBLIC_EVENTS,len(HISTORY_FIELDS)),'int32'),
+            'history_lengths': ((n,),'int16'), 'history_complete': ((n,),'bool'),
+            'match_context': ((n,12),'int64'), 'rule_options': ((n,len(RULE_FLAGS)+4),'int16')})
+    return specs
 
 
-def allocate(n):
+def allocate(n, *, public_history=False):
     np = numpy()
-    return {k: np.zeros(shape, dtype=dtype) for k, (shape, dtype) in array_specs(n).items()}
+    return {k: np.zeros(shape, dtype=dtype) for k, (shape, dtype) in array_specs(n,public_history=public_history).items()}
 
 
 def snapshot(buffers):
@@ -98,6 +106,15 @@ def encode_observation(obs, actions, b, i=0):
         b[k][i].fill(-1)
     for k in ('own_counts', 'river_flags', 'red_mask', 'action_mask'):
         b[k][i].fill(0)
+    extended='public_history' in b
+    if extended:
+        b['river_callers'][i].fill(-1)
+        b['river_winners'][i].fill(0)
+        b['public_history'][i].fill(-1)
+        b['history_lengths'][i] = 0
+        b['history_complete'][i] = False
+        b['match_context'][i].fill(0)
+        b['rule_options'][i].fill(0)
     tiles = own['concealed']
     b['concealed'][i, :len(tiles)] = tiles
     for t in tiles:
@@ -111,6 +128,9 @@ def encode_observation(obs, actions, b, i=0):
         for j, d in enumerate(hand['river']):
             b['rivers'][i, seat, j] = d['tile']
             b['river_flags'][i, seat, j] = int(d['tsumogiri']) | (int(d['called_by'] is not None) << 1) | (int(bool(d['winner_refs'])) << 2) | (int(d['tile'] == hand.get('riichi_discard')) << 3)
+            if extended:
+                b['river_callers'][i, seat, j] = d['called_by'] if d['called_by'] is not None else -1
+                b['river_winners'][i, seat, j] = sum(1 << winner for winner in d['winner_refs'])
         for j, m in enumerate(hand['melds']):
             row = b['melds'][i, seat, j]
             row[0], row[8] = MELD_KINDS.index(m['kind']), len(m['tiles'])
@@ -130,6 +150,22 @@ def encode_observation(obs, actions, b, i=0):
         indicators = obs.get(name, ())
         b[field][i, :len(indicators)] = indicators
     b['red_mask'][i, obs.get('red_fives', ())] = True
+    if extended and obs.get('public_history_version') == HISTORY_VERSION and 'match_context' in obs:
+        history = obs['public_history']
+        if len(history) > MAX_PUBLIC_EVENTS or any(len(row) != len(HISTORY_FIELDS) for row in history):
+            raise ValueError('invalid or overflowing public history')
+        b['public_history'][i, :len(history)] = history
+        b['history_lengths'][i] = len(history)
+        context = obs['match_context'];config = context['config']
+        b['match_context'][i] = [0 if config is None else ('hand','east','south').index(config['length']),
+            config['target'] if config else 0,
+            *[int(config[key]) if config else 0 for key in ('bankruptcy','agari_yame','tenpai_yame','west_extension')],
+            context['initial_dealer'], *context['initial_scores'], context['hands_played']]
+        announced = next(e['data']['rules'] for e in obs['events'] if e['kind'] == 'round_started')
+        red = announced['red_fives']
+        b['rule_options'][i] = [*[int(announced[key]) for key in RULE_FLAGS], announced['riichi_min_live'],
+            *[sum(t//4 == kind for t in red) for kind in (4,13,22)]]
+        b['history_complete'][i] = True
     if len(actions) > MAX_ACTIONS:
         raise AssertionError('action capacity exceeded')
     for j, a in enumerate(actions):
@@ -154,6 +190,8 @@ class BatchConfig:
     opponent_manifest: str | None = None
     self_play_probability: float = 0.
     match_length: str = 'hand'
+    match_config: object = None
+    public_history: bool = False
     skip_forced_actions: bool = False
 
     def __post_init__(self):
@@ -161,8 +199,16 @@ class BatchConfig:
             raise ValueError('invalid variant or seed')
         if self.match_length not in ('hand', 'east', 'south') or (self.variant != 'riichi' and self.match_length != 'hand'):
             raise ValueError('match episodes require riichi and hand/east/south length')
+        if self.match_config is not None:
+            from .riichi_match import MatchConfig
+            if isinstance(self.match_config, dict):
+                object.__setattr__(self, 'match_config', MatchConfig(**self.match_config))
+            if not isinstance(self.match_config, MatchConfig) or self.match_config.length != self.match_length:
+                raise ValueError('match config must agree with match_length')
         if type(self.skip_forced_actions) is not bool:
             raise ValueError('skip_forced_actions must be boolean')
+        if type(self.public_history) is not bool or self.public_history and self.variant!='riichi':
+            raise ValueError('public history buffers require riichi')
         if self.controlled_player is not None and (type(self.controlled_player) is not int or not 0 <= self.controlled_player < 4):
             raise ValueError('controlled_player must be a seat or None for self play')
         from .bots import POLICIES
@@ -195,7 +241,7 @@ class SyncBatchEnv:
         if type(n) is not int or n <= 0 or type(lane_offset) is not int or lane_offset < 0:
             raise ValueError('n and lane_offset must be positive/nonnegative integers')
         self.n, self.config, self.lane_offset = n, config or BatchConfig(), lane_offset
-        self.buffers = allocate(n) if buffers is None else buffers
+        self.buffers = allocate(n,public_history=self.config.public_history) if buffers is None else buffers
         self.engines = [None] * n
         self.matches = [None] * n
         self.agents = [None] * n
@@ -259,7 +305,7 @@ class SyncBatchEnv:
                 validate_every=self.config.validate_every, operator_backend=self.config.backend))
             if self.config.match_length != 'hand':
                 from .riichi_match import RiichiMatch, MatchConfig
-                self.matches[i] = RiichiMatch(MatchConfig(length=self.config.match_length),
+                self.matches[i] = RiichiMatch(self.config.match_config or MatchConfig(length=self.config.match_length),
                     self.config.rules, seed, engine_factory=factory, record=False)
                 self.engines[i] = self.matches[i].engine
             else:

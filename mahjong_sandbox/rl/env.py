@@ -12,21 +12,25 @@ from .schema import feature_module
 from .placement import DEFAULT_RANK_REWARDS, rank_rewards as validate_rank_rewards, ranking
 
 
-def observation_space(rules=None):
-    schema = feature_module(rules or RuleConfig())
-    return spaces.Dict({
+def observation_space(rules=None, feature_version=None):
+    schema = feature_module(rules or RuleConfig(),feature_version)
+    values={
         'state': spaces.Box(-np.inf, np.inf, (schema.STATE_DIM,), np.float32),
         'candidates': spaces.Box(-1, 135, (MAX_ACTIONS, 8), np.int16),
         'hints': spaces.Box(-np.inf, np.inf, (MAX_ACTIONS, schema.HINT_DIM), np.float32),
         'mask': spaces.Box(0, 1, (MAX_ACTIONS,), np.bool_),
-    })
+    }
+    for key,shape in getattr(schema,'EXTRA_SHAPES',{}).items():
+        values[key]=spaces.Box(0,1,shape,np.bool_) if key=='history_mask' else spaces.Box(-1,np.iinfo(np.int32).max,shape,np.int32)
+    return spaces.Dict(values)
 
 
 class MahjongVecEnv(VecEnv):
     def __init__(self, n=32, workers=0, *, seed=0, opponents=('greedy',),
                  backend='auto', reward_scale=32., rules=None, hints=True, rotate_seats=True,
                  opponent_manifest=None, self_play_probability=0., variant='sichuan', match_length='hand',
-                 skip_forced_actions=None, reward_mode='score', rank_rewards=DEFAULT_RANK_REWARDS):
+                 skip_forced_actions=None, reward_mode='score', rank_rewards=DEFAULT_RANK_REWARDS,
+                 feature_version=None, match_config=None):
         if type(n) is not int or n < 1 or type(workers) is not int or not 0 <= workers <= n:
             raise ValueError('positive environment count and workers in 0..N required')
         if not np.isfinite(reward_scale) or reward_scale <= 0:
@@ -37,11 +41,13 @@ class MahjongVecEnv(VecEnv):
         self.config = BatchConfig(variant=variant, seed=seed, backend=backend,
             rules=rules or (RiichiConfig() if variant == 'riichi' else RuleConfig()), rotate_seats=rotate_seats, opponent_pool=tuple(opponents),
             opponent_manifest=str(opponent_manifest) if opponent_manifest else None,
-            self_play_probability=self_play_probability, match_length=match_length,
+            self_play_probability=self_play_probability, match_length=match_length,match_config=match_config,
+            public_history=feature_version=='riichi_visible_v2',
             skip_forced_actions=(variant == 'riichi') if skip_forced_actions is None else skip_forced_actions)
         if not opponents:
             raise ValueError('at least one opponent policy required')
         self.workers, self.reward_scale, self.hints = workers, reward_scale, hints
+        self.feature_version=feature_module(self.config.rules,feature_version).FEATURE_VERSION
         self.core = self.raw = self.features = None
         self.pending = None
         self.episode_returns = np.zeros(n)
@@ -51,10 +57,11 @@ class MahjongVecEnv(VecEnv):
         self.completed_episodes = 0
         self.noninteractive_episodes_skipped = 0
         self.render_mode = None
-        super().__init__(n, observation_space(self.config.rules), spaces.Discrete(MAX_ACTIONS))
+        super().__init__(n, observation_space(self.config.rules,self.feature_version), spaces.Discrete(MAX_ACTIONS))
 
     def _encode(self, batch):
-        return encode_batch(batch, rules=self.config.rules, backend=self.config.backend, hints=self.hints)
+        return encode_batch(batch, rules=self.config.rules, backend=self.config.backend, hints=self.hints,
+                            feature_version=self.feature_version)
 
     def _skip_closed_starts(self):
         # An opponent can end a hand before this seat gets its first choice.
