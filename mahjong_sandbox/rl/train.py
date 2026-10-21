@@ -61,6 +61,10 @@ class TrainConfig:
     match_length: str = 'hand'
     match_config: object = None
     feature_version: str | None = None
+    anchor_directories: tuple[str, ...] = ()
+    anchor_coefficient: float = 0.
+    anchor_steps: int = 2
+    anchor_batch_size: int = 256
     skip_forced_actions: bool | None = None
     rules: RuleConfig | RiichiConfig | None = None
 
@@ -93,6 +97,14 @@ class TrainConfig:
                 raise ValueError('match config must agree with riichi match_length')
         if isinstance(self.opponents, list):
             object.__setattr__(self, 'opponents', tuple(self.opponents))
+        if isinstance(self.anchor_directories,list):
+            object.__setattr__(self,'anchor_directories',tuple(self.anchor_directories))
+        if (not np.isfinite(self.anchor_coefficient) or self.anchor_coefficient < 0 or
+                bool(self.anchor_directories) != bool(self.anchor_coefficient) or
+                type(self.anchor_steps) is not int or self.anchor_steps < 1 or
+                type(self.anchor_batch_size) is not int or self.anchor_batch_size < 1 or
+                (self.anchor_coefficient and self.variant != 'riichi')):
+            raise ValueError('teacher anchor requires riichi datasets, positive coefficient and batch settings')
         for key in ('total_timesteps', 'n_envs', 'rollout_steps', 'batch_size', 'epochs', 'hidden', 'torch_threads', 'checkpoint_every', 'validation_every', 'snapshot_every', 'snapshot_pool_size', 'validation_workers'):
             if type(getattr(self, key)) is not int or getattr(self, key) < 1:
                 raise ValueError(f'{key} must be a positive integer')
@@ -139,6 +151,12 @@ class TrainingCallback(BaseCallback):
         self.last_validation = -1
         self.best_score = -float('inf')
         self.stop_requested = False
+        self.anchor = None
+        if config.anchor_coefficient:
+            from .distillation import TeacherAnchor
+            self.anchor=TeacherAnchor(config.anchor_directories,feature_version=config.feature_version,
+                coefficient=config.anchor_coefficient,steps=config.anchor_steps,
+                batch_size=config.anchor_batch_size,seed=config.seed)
         if (self.output / 'best.zip').exists():
             saved = read_metadata(self.output / 'best.zip', expected_rules=config.rules)
             settings = saved['training']
@@ -177,6 +195,8 @@ class TrainingCallback(BaseCallback):
         iteration = self.rollout_updates
         stats = {'event': 'ppo_update', 'timesteps': steps, 'optimizer_epochs': self.model._n_updates,
                  'rollout_updates_this_run': self.rollout_updates}
+        if self.anchor is not None:
+            stats.update(self.anchor.update(self.model))
         for key, value in self.model.logger.name_to_value.items():
             if key.startswith('train/') and np.isscalar(value):
                 numeric = float(value)
