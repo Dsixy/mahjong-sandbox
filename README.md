@@ -1,6 +1,6 @@
 # Mahjong Sandbox
 
-可游玩、可复现的川麻血战到底与四人立直麻将游戏和 AI 沙盒。已实现规则引擎、观察与回放、浏览器牌桌、日麻番符与整场流程，以及阶段 5 的增量牌数、编译算子、批量张量接口、多进程分片、策略评测与训练接口验证。
+可游玩、可复现的川麻血战到底与四人立直麻将游戏和 AI 沙盒。已实现规则引擎、观察与回放、浏览器牌桌、日麻番符与整场流程，以及阶段 5 的增量牌数、编译算子、批量张量接口、多进程分片、策略评测，以及阶段 6 的川麻与立直 MaskablePPO 训练、模型保存/续训和独立对战评测。
 
 ![四人立直麻将浏览器牌桌](docs/screenshots/riichi-desktop.jpg)
 
@@ -15,6 +15,23 @@ python3 -m mahjong_sandbox serve
 浏览器访问 **http://127.0.0.1:8765/**。你坐庄，对阵三位 AI。先选同门三张换牌，再选择缺门；行牌时点击手牌后确认出牌，也可双击或选牌后按 Enter。碰、杠、自摸、荣和及过牌按钮由引擎当前合法动作生成。胡牌后其余玩家继续，三家胡牌或牌尽后显示结算。
 
 “新开一局”可选择川麻或日麻，以及牌效、优先胡牌或随机基线，关闭换三张或自动过牌，以及指定种子。牌效基线使用可见信息估算牌型距离与有效进张，尚未经过 RL 训练。界面支持桌面和手机，手机手牌较长时可横向滑动。
+
+川麻与立直均可选择 **高难度 · 训练 AI**，使用随包提供的各自 PPO 检查点，在 CPU 上运行。川麻沿用 6,361,088 步最佳模型，立直使用独立的 34 种牌模型。首次使用先安装 RL 依赖，再启动服务：
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install 'torch>=2.8,<3' --index-url https://download.pytorch.org/whl/cpu
+.venv/bin/python -m pip install '.[fast,rl]'
+.venv/bin/python -m mahjong_sandbox serve
+```
+
+此选项在川麻固定开启换三张，在立直固定开启赤宝牌与食断。模型按固定验证集的净分选择；“高难度”是游戏档位名称，不代表已证明稳定强于牌效基线。川麻模型和选择依据见 [模型说明](mahjong_sandbox/models/sichuan-high/README.md)，立直检查点见 [模型说明](mahjong_sandbox/models/riichi-high/README.md)，训练、整场评测和牌风分析见 [立直 RL](docs/RIICHI-RL.md)。
+
+立直另提供完整半庄的纯顺位奖励与净点数奖励对照，包含并行 CPU 训练、两个训练种子、同牌墙四座轮换评测和相同公开局面的动作诊断，见 [顺位 RL 实验](docs/PLACEMENT-RL.md)。
+
+新建立直训练现支持 `riichi_visible_v2`：完整当前手的公开事件序列、全部有序牌河、逐组副露及显式比赛终局规则。旧模型仍使用各自原有特征；新版输入与试跑方式见 [立直 RL](docs/RIICHI-RL.md)。
+
+新版输入的 greedy 蒸馏、learner 局面标注、顺位奖励与历史自博弈，以及 V1/V2 独立对照和模型验收，见 [立直训练流程](docs/RIICHI-CURRICULUM.md)。
 
 日麻支持吃、立直、一番缚、振听、宝牌/赤牌/里宝牌、番符计分及单局/东风战/半庄；和牌或流局后结束本局，整场中点击“下一局”继续。规则与 Python 接口见 [docs/RIICHI.md](docs/RIICHI.md)。
 
@@ -128,4 +145,23 @@ if __name__ == '__main__':  # spawn 进程必须保护程序入口
     main()
 ```
 
-设计、张量字段、并发边界和实测报告见 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。`training-smoke` 实际运行短程 REINFORCE，验证轨迹、奖励、合法采样与参数更新；优秀 agent 的网络、训练配方和大规模自博弈属于阶段 6。当前批量环境的 episode 是一手牌，日麻整场仍由 `RiichiMatch` 提供；CPU 上的规则状态机与 NumPy/Numba 算子已有实现，GPU 整局引擎尚未实现。
+设计、张量字段、并发边界和实测报告见 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。`training-smoke` 实际运行短程 REINFORCE，验证轨迹、奖励、合法采样与参数更新；阶段 6 的神经网络 PPO、检查点与评测已接入，见下文；更强策略及长期自博弈仍需继续实验。当前批量环境的 episode 是一手牌，日麻整场仍由 `RiichiMatch` 提供；CPU 上的规则状态机与 NumPy/Numba 算子已有实现，GPU 整局引擎尚未实现。
+
+
+## 阶段 6：川麻 RL 训练、恢复与评测
+
+```bash
+.venv/bin/python -m pip install 'torch>=2.8,<3' --index-url https://download.pytorch.org/whl/cpu
+.venv/bin/python -m pip install '.[fast,rl]'
+.venv/bin/python -m mahjong_sandbox rl-train --config configs/rl/sichuan-cpu.json --output runs/sichuan-cpu
+.venv/bin/python -m mahjong_sandbox rl-train --resume runs/sichuan-cpu/latest.zip --output runs/sichuan-cpu --timesteps 65536
+.venv/bin/python -m mahjong_sandbox rl-evaluate --model runs/sichuan-cpu/best.zip --baseline-model runs/sichuan-cpu/warmstart.zip --blocks 50 --workers 4 --output runs/sichuan-cpu/evaluation.json
+```
+
+采用现有 MaskablePPO 框架及共享候选评分网络，只使用本家可见信息；奖励为整手血战净分增量。默认可选 bot 模仿初始化后再做 PPO，保留 warmstart 用于独立对照。模型、Adam、规则、特征版本及校验和一并保存，支持 CPU/CUDA 跨设备加载。GPU/RJob 入口使用 `configs/rl/sichuan-gpu.json` 与 `scripts/train_sichuan_rl.sh`，本次先完成 CPU 验证。
+
+算法选择、状态/action/reward 定义、完整命令和实测见 [docs/RL.md](docs/RL.md)。
+
+四人立直复用同一训练与模型接口，使用独立特征和赤牌动作身份，支持单手、东风战和半庄 episode。默认东风战训练完整传递分数、本场与供托，另评测顺位、立直率、副露和面对立直的现物选择；配置见 `configs/rl/riichi-cpu.json`，完整命令见 [docs/RIICHI-RL.md](docs/RIICHI-RL.md)。
+
+V2 的 greedy 蒸馏、learner 局面补充及混合自博弈已完成首轮实验。三个种子各跑满 524,288 个决策，独立测试 8,192 场半庄，尚未证实 RL 稳定超过 greedy；检查点按实验模型保存，默认高难度 AI 不变。流程、打点/放铳/顺位曲线及配对区间见 [新版训练报告](docs/RIICHI-CURRICULUM.md)，模型和续训说明见 [实验模型目录](mahjong_sandbox/models/riichi-curriculum/README.md)。

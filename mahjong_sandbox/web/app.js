@@ -3,7 +3,7 @@ const SUITS = ['万', '筒', '条'];
 const NUMBERS = '一二三四五六七八九';
 const PHASES = {exchange: '换三张', declare_suit: '定缺', self_turn: '行牌', discard_response: '行牌', rob_kong_response: '抢杠', terminal: '结算'};
 const REASONS = {ron: '荣和', tsumo: '自摸', concealed_kong: '暗杠', open_kong: '大明杠', added_kong: '加杠', flower_pig: '查花猪', noten: '查大叫', kong_refund: '退杠分', kong_discard_transfer: '呼叫转移', riichi_deposit:'立直棒', riichi_award:'立直棒奖励', honba:'本场', nagashi_mangan:'流局满贯', pao:'包牌'};
-const POLICY_NAMES = {greedy: '牌效基线 AI', 'win-first': '胡牌优先 AI', random: '随机 AI'};
+const POLICY_NAMES = {greedy: '牌效基线 AI', high: '高难度 · 训练 AI', 'win-first': '胡牌优先 AI', random: '随机 AI'};
 let view = null, liveView = null, selected = [], selectedSuit = null;
 let busy = false, generation = 0, replayRequest = 0, replayTimer = null, playingReplay = false;
 let animations = localStorage.getItem('mahjong-animation') !== 'off';
@@ -428,7 +428,32 @@ $('sound-toggle').addEventListener('click', () => {
   }
   $('sound-toggle').textContent=`声音${sound?'开':'关'}`;$('sound-toggle').setAttribute('aria-pressed',String(sound));
 });
-$('variant-setting').addEventListener('change',()=>{const riichi=$('variant-setting').value==='riichi';$('riichi-settings').hidden=!riichi;$('exchange-field').hidden=riichi;});
+let exchangeBeforeHigh = $('exchange-setting').checked;
+let redBeforeHigh = $('red-setting').checked;
+let tanyaoBeforeHigh = $('tanyao-setting').checked;
+function fixedCheckbox(node, fixed, previous) {
+  if (fixed && !node.disabled) previous = node.checked;
+  if (fixed) node.checked = true;
+  else if (node.disabled) node.checked = previous;
+  node.disabled = fixed;
+  return previous;
+}
+function updateGameSettings() {
+  const riichi = $('variant-setting').value === 'riichi';
+  const policy = $('ai-policy'), exchange = $('exchange-setting');
+  const high = policy.value === 'high';
+  exchangeBeforeHigh = fixedCheckbox(exchange, high && !riichi, exchangeBeforeHigh);
+  redBeforeHigh = fixedCheckbox($('red-setting'), high && riichi, redBeforeHigh);
+  tanyaoBeforeHigh = fixedCheckbox($('tanyao-setting'), high && riichi, tanyaoBeforeHigh);
+  $('exchange-note').textContent = high && !riichi ? '高难度 AI 使用换三张规则' : '开局交换同一门的三张牌';
+  $('red-note').textContent = high && riichi ? '高难度 AI 使用赤宝牌规则' : '万、筒、条各一张赤五';
+  $('tanyao-note').textContent = high && riichi ? '高难度 AI 使用食断规则' : '副露后可凭断幺九和牌';
+  $('riichi-settings').hidden = !riichi;
+  $('exchange-field').hidden = riichi;
+}
+$('variant-setting').addEventListener('change', updateGameSettings);
+$('ai-policy').addEventListener('change', updateGameSettings);
+updateGameSettings();
 $('load-riichi-example').addEventListener('click',()=>loadReplay({example:'riichi'}));
 $('replay-hand').addEventListener('change',e=>seek(Number(e.target.value)));
 $('next-hand').addEventListener('click',nextHand);

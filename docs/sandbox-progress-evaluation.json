@@ -1,0 +1,340 @@
+{
+  "observed_utc": "2026-10-20T06:21:47.444299+00:00",
+  "training_completed": true,
+  "target_timesteps": 11079680,
+  "final_timesteps": 11079680,
+  "sandbox_training_additional_timesteps": 786432,
+  "sandbox_training_elapsed_seconds": 2588.9579971944913,
+  "sandbox_training_completed_hands": 16780,
+  "sandbox_training_updates": 96,
+  "self_play_probability": 0.5,
+  "models": {
+    "latest": {
+      "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/output/latest.zip",
+      "sha256": "f722da908a4384c9f20378558337eec8259c2195937c29c71c66ee731b255c83",
+      "timesteps": 11079680,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+    },
+    "selected_best": {
+      "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/output/best.zip",
+      "sha256": "6dcfdd8824771e9d9ca04181bdf7dfe6ab2267f9988c8a18ba1b3610fdcde33c",
+      "timesteps": 10555392,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+    },
+    "previous_snapshot": {
+      "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/cpu-continuation-20261020/output/checkpoints/step_10293248.zip",
+      "sha256": "d237675bbfa8d79f5ee8b1d03da8b2dae2702920cd8a01f79735e8e7ea09a41e",
+      "timesteps": 10293248,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+    },
+    "previous_best": {
+      "path": "/sandbox-data/policy-cpu-sandbox-20261020-v45bzzrg/previous-best.zip",
+      "sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+      "timesteps": 6361088,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+    }
+  },
+  "evaluation": {
+    "wall_seeds": [
+      300000,
+      300099
+    ],
+    "games_per_policy": 400,
+    "opponents": [
+      "greedy",
+      "greedy",
+      "greedy"
+    ],
+    "same_walls_as_previous": true,
+    "used_for_checkpoint_selection": false,
+    "greedy_reproduced_exactly": true,
+    "interval_method": "95% paired-wall block bootstrap, 2000 resamples; conservative exact boundary intervals",
+    "metrics": {
+      "previous_snapshot": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.565,
+        "deal_in_rate": 0.47,
+        "mean_net_score": 0.3925,
+        "ci95": {
+          "win": [
+            0.5125,
+            0.615
+          ],
+          "deal_in": [
+            0.425,
+            0.515
+          ],
+          "net_score": [
+            -0.1700625,
+            1.01
+          ]
+        }
+      },
+      "previous_best": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.59,
+        "deal_in_rate": 0.445,
+        "mean_net_score": 0.4625,
+        "ci95": {
+          "win": [
+            0.5425,
+            0.64
+          ],
+          "deal_in": [
+            0.4,
+            0.4925
+          ],
+          "net_score": [
+            -0.10506249999999999,
+            1.0825
+          ]
+        }
+      },
+      "latest": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.5025,
+        "deal_in_rate": 0.5075,
+        "mean_net_score": 0.02,
+        "ci95": {
+          "win": [
+            0.4575,
+            0.55
+          ],
+          "deal_in": [
+            0.4599375,
+            0.555
+          ],
+          "net_score": [
+            -0.4100625,
+            0.43756249999999963
+          ]
+        }
+      },
+      "selected_best": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.5325,
+        "deal_in_rate": 0.49,
+        "mean_net_score": 0.1075,
+        "ci95": {
+          "win": [
+            0.47993749999999996,
+            0.585
+          ],
+          "deal_in": [
+            0.4475,
+            0.5325624999999996
+          ],
+          "net_score": [
+            -0.41012499999999996,
+            0.6325
+          ]
+        }
+      },
+      "greedy": {
+        "games": 400,
+        "wall_blocks": 100,
+        "win_rate": 0.705,
+        "deal_in_rate": 0.3425,
+        "mean_net_score": 0.0,
+        "ci95": {
+          "win": [
+            0.6775,
+            0.7275
+          ],
+          "deal_in": [
+            0.31,
+            0.375
+          ],
+          "net_score": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "paired_comparisons": {
+      "latest_minus_previous_snapshot": {
+        "win": {
+          "difference": -0.0625,
+          "ci95": [
+            -0.115,
+            -0.01
+          ]
+        },
+        "deal_in": {
+          "difference": 0.0375,
+          "ci95": [
+            -0.005,
+            0.08
+          ]
+        },
+        "net_score": {
+          "difference": -0.3725,
+          "ci95": [
+            -0.947625,
+            0.16506249999999967
+          ]
+        }
+      },
+      "latest_minus_previous_best": {
+        "win": {
+          "difference": -0.0875,
+          "ci95": [
+            -0.145,
+            -0.035
+          ]
+        },
+        "deal_in": {
+          "difference": 0.0625,
+          "ci95": [
+            0.0125,
+            0.11
+          ]
+        },
+        "net_score": {
+          "difference": -0.4425,
+          "ci95": [
+            -0.9825625,
+            0.08
+          ]
+        }
+      },
+      "latest_minus_greedy": {
+        "win": {
+          "difference": -0.2025,
+          "ci95": [
+            -0.2525,
+            -0.15
+          ]
+        },
+        "deal_in": {
+          "difference": 0.165,
+          "ci95": [
+            0.1125,
+            0.21756249999999966
+          ]
+        },
+        "net_score": {
+          "difference": 0.02,
+          "ci95": [
+            -0.4100625,
+            0.43756249999999963
+          ]
+        }
+      },
+      "selected_best_minus_previous_snapshot": {
+        "win": {
+          "difference": -0.0325,
+          "ci95": [
+            -0.0725,
+            0.01
+          ]
+        },
+        "deal_in": {
+          "difference": 0.02,
+          "ci95": [
+            -0.0175,
+            0.0575
+          ]
+        },
+        "net_score": {
+          "difference": -0.285,
+          "ci95": [
+            -0.8951250000000001,
+            0.2850624999999996
+          ]
+        }
+      },
+      "selected_best_minus_previous_best": {
+        "win": {
+          "difference": -0.0575,
+          "ci95": [
+            -0.115,
+            -0.005
+          ]
+        },
+        "deal_in": {
+          "difference": 0.045,
+          "ci95": [
+            -0.005,
+            0.095
+          ]
+        },
+        "net_score": {
+          "difference": -0.355,
+          "ci95": [
+            -0.9075,
+            0.20506249999999965
+          ]
+        }
+      },
+      "selected_best_minus_greedy": {
+        "win": {
+          "difference": -0.1725,
+          "ci95": [
+            -0.2325,
+            -0.1125
+          ]
+        },
+        "deal_in": {
+          "difference": 0.1475,
+          "ci95": [
+            0.0975,
+            0.195
+          ]
+        },
+        "net_score": {
+          "difference": 0.1075,
+          "ci95": [
+            -0.41012499999999996,
+            0.6325
+          ]
+        }
+      }
+    }
+  },
+  "local_model_load_proof": [
+    {
+      "timesteps": 10555392,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+      "created_at_utc": "2026-10-20T03:41:31.401045+00:00",
+      "model_sha256": "6dcfdd8824771e9d9ca04181bdf7dfe6ab2267f9988c8a18ba1b3610fdcde33c",
+      "device": "cpu",
+      "optimizer_epochs": 5185,
+      "finite_parameters": true,
+      "legal_action": {
+        "kind": "exchange",
+        "tiles": [
+          3,
+          5,
+          30
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    {
+      "timesteps": 11079680,
+      "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+      "created_at_utc": "2026-10-20T04:10:03.800698+00:00",
+      "model_sha256": "f722da908a4384c9f20378558337eec8259c2195937c29c71c66ee731b255c83",
+      "device": "cpu",
+      "optimizer_epochs": 5441,
+      "finite_parameters": true,
+      "legal_action": {
+        "kind": "exchange",
+        "tiles": [
+          3,
+          5,
+          30
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    }
+  ]
+}

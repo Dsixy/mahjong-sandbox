@@ -1,0 +1,518 @@
+{
+  "format": "riichi_shared_position_probe_v1",
+  "bank_sha256": "e8c38c2d4eab78f1d2d402803ea477c0861f47199978b8d9f03b8f5cc522b33a",
+  "positions": 1977,
+  "seed_range": [
+    700000,
+    700031
+  ],
+  "selection": "reservoir per context/opportunity; overlapping positions deduplicated; diagnostic frequencies are not game frequencies",
+  "script_sha256": "bbe44405dc938ee23189ca3f3c02211fec9e1c2588c3be551855e354066f6c2d",
+  "batch_single_agent_checks_per_model": 4,
+  "probability_note": "Post-hoc diagnostic on the fixed bank: mean masked policy mass for each available action group, not match action rates.",
+  "choice_probabilities": {
+    "rank_20261": {
+      "early_call": {
+        "positions": 204,
+        "mean_probability": 0.03125832203769574
+      },
+      "early_win": {
+        "positions": 200,
+        "mean_probability": 0.9999995303153991
+      },
+      "early_riichi": {
+        "positions": 203,
+        "mean_probability": 0.9999483392156404
+      },
+      "late_middle_call": {
+        "positions": 200,
+        "mean_probability": 0.057321981951674185
+      },
+      "late_middle_win": {
+        "positions": 38,
+        "mean_probability": 0.999999441598591
+      },
+      "late_lead_call": {
+        "positions": 191,
+        "mean_probability": 0.06612384938620659
+      },
+      "late_lead_win": {
+        "positions": 13,
+        "mean_probability": 0.9999936819076538
+      },
+      "late_last_call": {
+        "positions": 200,
+        "mean_probability": 0.07470967624048493
+      },
+      "late_last_riichi": {
+        "positions": 28,
+        "mean_probability": 0.9999999978712627
+      },
+      "late_middle_riichi": {
+        "positions": 58,
+        "mean_probability": 0.9998304628092667
+      },
+      "late_lead_riichi": {
+        "positions": 24,
+        "mean_probability": 0.9999999975164732
+      },
+      "late_last_win": {
+        "positions": 12,
+        "mean_probability": 0.9999998410542806
+      }
+    },
+    "score_20261": {
+      "early_call": {
+        "positions": 204,
+        "mean_probability": 0.014223409020010742
+      },
+      "early_win": {
+        "positions": 200,
+        "mean_probability": 0.9999999105930328
+      },
+      "early_riichi": {
+        "positions": 203,
+        "mean_probability": 0.9999999985319054
+      },
+      "late_middle_call": {
+        "positions": 200,
+        "mean_probability": 0.02591488607970524
+      },
+      "late_middle_win": {
+        "positions": 38,
+        "mean_probability": 0.9999999498066149
+      },
+      "late_lead_call": {
+        "positions": 191,
+        "mean_probability": 0.03292218074710314
+      },
+      "late_lead_win": {
+        "positions": 13,
+        "mean_probability": 0.9999998899606558
+      },
+      "late_last_call": {
+        "positions": 200,
+        "mean_probability": 0.04559414826850734
+      },
+      "late_last_riichi": {
+        "positions": 28,
+        "mean_probability": 1.0000000042574746
+      },
+      "late_middle_riichi": {
+        "positions": 58,
+        "mean_probability": 0.999999992806336
+      },
+      "late_lead_riichi": {
+        "positions": 24,
+        "mean_probability": 0.9999999975164732
+      },
+      "late_last_win": {
+        "positions": 12,
+        "mean_probability": 0.9999999304612478
+      }
+    },
+    "rank_20262": {
+      "early_call": {
+        "positions": 204,
+        "mean_probability": 0.028389285525002132
+      },
+      "early_win": {
+        "positions": 200,
+        "mean_probability": 0.9999976813793182
+      },
+      "early_riichi": {
+        "positions": 203,
+        "mean_probability": 0.9999996679169791
+      },
+      "late_middle_call": {
+        "positions": 200,
+        "mean_probability": 0.05285603343498691
+      },
+      "late_middle_win": {
+        "positions": 38,
+        "mean_probability": 0.9999961162868299
+      },
+      "late_lead_call": {
+        "positions": 191,
+        "mean_probability": 0.06791272222344061
+      },
+      "late_lead_win": {
+        "positions": 13,
+        "mean_probability": 0.999972572693458
+      },
+      "late_last_call": {
+        "positions": 200,
+        "mean_probability": 0.08020064989680371
+      },
+      "late_last_riichi": {
+        "positions": 28,
+        "mean_probability": 0.9999999957425254
+      },
+      "late_middle_riichi": {
+        "positions": 58,
+        "mean_probability": 0.9999996968384447
+      },
+      "late_lead_riichi": {
+        "positions": 24,
+        "mean_probability": 0.9999999677141508
+      },
+      "late_last_win": {
+        "positions": 12,
+        "mean_probability": 0.9999986290931702
+      }
+    },
+    "score_20262": {
+      "early_call": {
+        "positions": 204,
+        "mean_probability": 0.020658212661930433
+      },
+      "early_win": {
+        "positions": 200,
+        "mean_probability": 0.9999999690055847
+      },
+      "early_riichi": {
+        "positions": 203,
+        "mean_probability": 0.9999999113270802
+      },
+      "late_middle_call": {
+        "positions": 200,
+        "mean_probability": 0.04714909772356719
+      },
+      "late_middle_win": {
+        "positions": 38,
+        "mean_probability": 0.9999999811774806
+      },
+      "late_lead_call": {
+        "positions": 191,
+        "mean_probability": 0.05659384485357152
+      },
+      "late_lead_win": {
+        "positions": 13,
+        "mean_probability": 0.9999999449803278
+      },
+      "late_last_call": {
+        "positions": 200,
+        "mean_probability": 0.062115702996156166
+      },
+      "late_last_riichi": {
+        "positions": 28,
+        "mean_probability": 0.9999999978712627
+      },
+      "late_middle_riichi": {
+        "positions": 58,
+        "mean_probability": 0.9999999876680046
+      },
+      "late_lead_riichi": {
+        "positions": 24,
+        "mean_probability": 0.9999999950329462
+      },
+      "late_last_win": {
+        "positions": 12,
+        "mean_probability": 0.999999980131785
+      }
+    }
+  },
+  "models": {
+    "rank_20261": {
+      "sha256": "4ee8adc202c81bef805c409cab3d085f71949eb323888b6523f63e4ed0ec101c",
+      "timesteps": 524288
+    },
+    "score_20261": {
+      "sha256": "a0ef28ee18d436aeb2d465b55f6aa5a27a77c2467e011e5b5274116634d1b65b",
+      "timesteps": 524288
+    },
+    "rank_20262": {
+      "sha256": "028acff6adebbc2fbcd011aae498bf53f3fe70419dbeb61feedbe82e558555c1",
+      "timesteps": 524288
+    },
+    "score_20262": {
+      "sha256": "abf723ca5fd66a489ca772a29712d91945eeb5761d81d594fa405bf31223e810",
+      "timesteps": 524288
+    }
+  },
+  "counts": {
+    "rank_20261": {
+      "early_call_opportunities": 204,
+      "early_call_choices": 5,
+      "early_win_opportunities": 200,
+      "early_win_choices": 200,
+      "early_riichi_opportunities": 203,
+      "early_riichi_choices": 203,
+      "threat_decisions": 744,
+      "safe_opportunities": 715,
+      "early_safe_opportunities": 250,
+      "safe_choices": 190,
+      "early_safe_choices": 59,
+      "late_middle_call_opportunities": 200,
+      "late_middle_call_choices": 10,
+      "late_middle_win_opportunities": 38,
+      "late_middle_win_choices": 38,
+      "late_lead_call_opportunities": 191,
+      "late_lead_call_choices": 9,
+      "late_lead_win_opportunities": 13,
+      "late_lead_win_choices": 13,
+      "late_last_call_opportunities": 200,
+      "late_last_call_choices": 13,
+      "late_last_riichi_opportunities": 28,
+      "late_last_riichi_choices": 28,
+      "late_last_safe_opportunities": 141,
+      "late_last_safe_choices": 35,
+      "late_middle_riichi_opportunities": 58,
+      "late_middle_riichi_choices": 58,
+      "late_middle_safe_opportunities": 202,
+      "late_middle_safe_choices": 59,
+      "late_lead_riichi_opportunities": 24,
+      "late_lead_riichi_choices": 24,
+      "late_lead_safe_opportunities": 122,
+      "late_lead_safe_choices": 37,
+      "late_last_win_opportunities": 12,
+      "late_last_win_choices": 12
+    },
+    "score_20261": {
+      "early_call_opportunities": 204,
+      "early_call_choices": 3,
+      "early_win_opportunities": 200,
+      "early_win_choices": 200,
+      "early_riichi_opportunities": 203,
+      "early_riichi_choices": 203,
+      "threat_decisions": 745,
+      "safe_opportunities": 716,
+      "early_safe_opportunities": 251,
+      "safe_choices": 221,
+      "early_safe_choices": 75,
+      "late_middle_call_opportunities": 200,
+      "late_middle_call_choices": 4,
+      "late_middle_win_opportunities": 38,
+      "late_middle_win_choices": 38,
+      "late_lead_call_opportunities": 191,
+      "late_lead_call_choices": 5,
+      "late_lead_win_opportunities": 13,
+      "late_lead_win_choices": 13,
+      "late_last_call_opportunities": 200,
+      "late_last_call_choices": 7,
+      "late_last_riichi_opportunities": 28,
+      "late_last_riichi_choices": 28,
+      "late_last_safe_opportunities": 141,
+      "late_last_safe_choices": 40,
+      "late_middle_riichi_opportunities": 58,
+      "late_middle_riichi_choices": 58,
+      "late_middle_safe_opportunities": 202,
+      "late_middle_safe_choices": 63,
+      "late_lead_riichi_opportunities": 24,
+      "late_lead_riichi_choices": 24,
+      "late_lead_safe_opportunities": 122,
+      "late_lead_safe_choices": 43,
+      "late_last_win_opportunities": 12,
+      "late_last_win_choices": 12
+    },
+    "rank_20262": {
+      "early_call_opportunities": 204,
+      "early_call_choices": 3,
+      "early_win_opportunities": 200,
+      "early_win_choices": 200,
+      "early_riichi_opportunities": 203,
+      "early_riichi_choices": 203,
+      "threat_decisions": 744,
+      "safe_opportunities": 715,
+      "early_safe_opportunities": 250,
+      "safe_choices": 202,
+      "early_safe_choices": 69,
+      "late_middle_call_opportunities": 200,
+      "late_middle_call_choices": 8,
+      "late_middle_win_opportunities": 38,
+      "late_middle_win_choices": 38,
+      "late_lead_call_opportunities": 191,
+      "late_lead_call_choices": 11,
+      "late_lead_win_opportunities": 13,
+      "late_lead_win_choices": 13,
+      "late_last_call_opportunities": 200,
+      "late_last_call_choices": 15,
+      "late_last_riichi_opportunities": 28,
+      "late_last_riichi_choices": 28,
+      "late_last_safe_opportunities": 141,
+      "late_last_safe_choices": 36,
+      "late_middle_riichi_opportunities": 58,
+      "late_middle_riichi_choices": 58,
+      "late_middle_safe_opportunities": 202,
+      "late_middle_safe_choices": 59,
+      "late_lead_riichi_opportunities": 24,
+      "late_lead_riichi_choices": 24,
+      "late_lead_safe_opportunities": 122,
+      "late_lead_safe_choices": 38,
+      "late_last_win_opportunities": 12,
+      "late_last_win_choices": 12
+    },
+    "score_20262": {
+      "early_call_opportunities": 204,
+      "early_call_choices": 3,
+      "early_win_opportunities": 200,
+      "early_win_choices": 200,
+      "early_riichi_opportunities": 203,
+      "early_riichi_choices": 203,
+      "threat_decisions": 744,
+      "safe_opportunities": 715,
+      "early_safe_opportunities": 250,
+      "safe_choices": 206,
+      "early_safe_choices": 66,
+      "late_middle_call_opportunities": 200,
+      "late_middle_call_choices": 7,
+      "late_middle_win_opportunities": 38,
+      "late_middle_win_choices": 38,
+      "late_lead_call_opportunities": 191,
+      "late_lead_call_choices": 9,
+      "late_lead_win_opportunities": 13,
+      "late_lead_win_choices": 13,
+      "late_last_call_opportunities": 200,
+      "late_last_call_choices": 11,
+      "late_last_riichi_opportunities": 28,
+      "late_last_riichi_choices": 28,
+      "late_last_safe_opportunities": 141,
+      "late_last_safe_choices": 36,
+      "late_middle_riichi_opportunities": 58,
+      "late_middle_riichi_choices": 58,
+      "late_middle_safe_opportunities": 202,
+      "late_middle_safe_choices": 64,
+      "late_lead_riichi_opportunities": 24,
+      "late_lead_riichi_choices": 24,
+      "late_lead_safe_opportunities": 122,
+      "late_lead_safe_choices": 40,
+      "late_last_win_opportunities": 12,
+      "late_last_win_choices": 12
+    }
+  },
+  "action_disagreement": {
+    "rank_20261 vs score_20261": {
+      "different_actions": 161,
+      "positions": 1977,
+      "by_context": {
+        "early": {
+          "different": 64,
+          "positions": 786
+        },
+        "late_last": {
+          "different": 34,
+          "positions": 372
+        },
+        "late_lead": {
+          "different": 28,
+          "positions": 342
+        },
+        "late_middle": {
+          "different": 35,
+          "positions": 477
+        }
+      }
+    },
+    "rank_20261 vs rank_20262": {
+      "different_actions": 168,
+      "positions": 1977,
+      "by_context": {
+        "early": {
+          "different": 67,
+          "positions": 786
+        },
+        "late_last": {
+          "different": 36,
+          "positions": 372
+        },
+        "late_lead": {
+          "different": 27,
+          "positions": 342
+        },
+        "late_middle": {
+          "different": 38,
+          "positions": 477
+        }
+      }
+    },
+    "rank_20261 vs score_20262": {
+      "different_actions": 154,
+      "positions": 1977,
+      "by_context": {
+        "early": {
+          "different": 57,
+          "positions": 786
+        },
+        "late_last": {
+          "different": 31,
+          "positions": 372
+        },
+        "late_lead": {
+          "different": 26,
+          "positions": 342
+        },
+        "late_middle": {
+          "different": 40,
+          "positions": 477
+        }
+      }
+    },
+    "score_20261 vs rank_20262": {
+      "different_actions": 132,
+      "positions": 1977,
+      "by_context": {
+        "early": {
+          "different": 46,
+          "positions": 786
+        },
+        "late_last": {
+          "different": 29,
+          "positions": 372
+        },
+        "late_lead": {
+          "different": 26,
+          "positions": 342
+        },
+        "late_middle": {
+          "different": 31,
+          "positions": 477
+        }
+      }
+    },
+    "score_20261 vs score_20262": {
+      "different_actions": 150,
+      "positions": 1977,
+      "by_context": {
+        "early": {
+          "different": 58,
+          "positions": 786
+        },
+        "late_last": {
+          "different": 28,
+          "positions": 372
+        },
+        "late_lead": {
+          "different": 27,
+          "positions": 342
+        },
+        "late_middle": {
+          "different": 37,
+          "positions": 477
+        }
+      }
+    },
+    "rank_20262 vs score_20262": {
+      "different_actions": 164,
+      "positions": 1977,
+      "by_context": {
+        "early": {
+          "different": 62,
+          "positions": 786
+        },
+        "late_last": {
+          "different": 33,
+          "positions": 372
+        },
+        "late_lead": {
+          "different": 27,
+          "positions": 342
+        },
+        "late_middle": {
+          "different": 42,
+          "positions": 477
+        }
+      }
+    }
+  },
+  "threat_denominator": "Only actions that discard (including riichi), not already in riichi, at least two discard kinds, and common genbutsu available. Choosing win/kan is excluded; denominators can differ even on the same bank."
+}

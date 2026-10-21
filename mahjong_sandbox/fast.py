@@ -1,7 +1,8 @@
 """Lean rule-engine runtime: incremental counts, decision caches and trace controls.
 
 The transition and scoring rules are inherited from the reference engines.
-Record mode is replay-compatible; rollout mode keeps no command/event history.
+Record mode is replay-compatible; rollout mode drops private replay/command
+history while riichi retains its compact public-information journal.
 """
 from collections import Counter
 from copy import deepcopy
@@ -67,6 +68,9 @@ class _LeanRuntime:
         self.event_counts[kind]+=1
         if kind=='round_started':self._start_event={'seq':0,'kind':kind,'data':deepcopy(data)}
         if self.runtime.record:super()._emit(kind,data,private=private,visible_to=visible_to)
+        elif isinstance(self,RiichiEngine):
+            from .public_history import remember_public
+            remember_public(self,kind,data)
 
     def legal_actions(self,player):
         if type(player) is not int or not 0<=player<4:raise ValueError('invalid player')
@@ -129,6 +133,8 @@ class _LeanRuntime:
             obs.update(variant='riichi',dealer=self.config.dealer,round_wind=self.config.round_wind,hand_number=self.config.hand_number,
                        honba=self.config.honba,riichi_sticks=state.riichi_sticks,dora_indicators=self.indicators(),red_fives=list(self.config.red_fives),
                        ura_indicators=self.indicators(True) if state.phase==Phase.TERMINAL and any(p.riichi and not p.can_act for p in state.players) else [])
+            from .public_history import observation_context
+            obs.update(deepcopy(observation_context(self)))
         else:obs.update(variant='sichuan',dealer=self.config.dealer,
                         exchange_offset=self.exchange_offset if self.event_counts['exchange_completed'] else None)
         return obs

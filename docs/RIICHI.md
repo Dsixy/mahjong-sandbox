@@ -14,7 +14,7 @@ python3 -m mahjong_sandbox replay examples/riichi.json
 python3 scripts/validate_riichi.py --games 1000
 ```
 
-`greedy` 使用本家观察中的牌效、可见牌及役牌副露计划，支持普通型、七对与国士的结构向听。它主动立直、保持赤牌并优先和牌，尚未训练；没有对手暗手或牌山输入。`random` 与 `win-first` 同样仅使用观察。以上为串行参考实现，批量并发、算子加速及 RL 属于后续阶段。
+`greedy` 使用本家观察中的牌效、可见牌及役牌副露计划，支持普通型、七对与国士的结构向听。它主动立直、保持赤牌并优先和牌，尚未训练；没有对手暗手或牌山输入。`random` 与 `win-first` 同样仅使用观察。批量并发、编译算子及 MaskablePPO 已接入；训练默认使用完整东风战，状态、赤牌动作、模型恢复及牌风评测见 [立直 RL](RIICHI-RL.md)。
 
 ## 默认规则配置
 

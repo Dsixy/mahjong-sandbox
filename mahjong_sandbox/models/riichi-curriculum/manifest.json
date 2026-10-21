@@ -1,0 +1,75 @@
+{
+  "format": "riichi_curriculum_model_bundle_v1",
+  "models": {
+    "best": {
+      "label": "v2_20261021",
+      "model_sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072",
+      "metadata_sha256": "d9af55c8e69ffb9e6fc46c71c653485706ab925f713f4fb9bf0ac7a0d499de9c",
+      "feature_version": "riichi_visible_v2",
+      "timesteps": 131072,
+      "optimizer_epochs": 32,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    },
+    "control": {
+      "label": "v1_20261021",
+      "model_sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+      "metadata_sha256": "bde4c597786b7afa155f2d81f80c89ac6fd1a1b4a5b26743a9501963a227cfcf",
+      "feature_version": "riichi_visible_v1",
+      "timesteps": 131072,
+      "optimizer_epochs": 32,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    },
+    "warmstart": {
+      "label": "v2_bc",
+      "model_sha256": "6c9fb5a4066b744b7a28eee42420563d9ee72b7977115bfc2f82372ff5483824",
+      "metadata_sha256": "2486492b7297b9ee781b92160230d6038028d908203a075de38221ae3973b775",
+      "feature_version": "riichi_visible_v2",
+      "timesteps": 0,
+      "optimizer_epochs": 0,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    },
+    "control-warmstart": {
+      "label": "v1_bc",
+      "model_sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21",
+      "metadata_sha256": "eb90b4e1aa7c56abbc3e58952541725d113755c23298f1fe38fa77d61cc7eb67",
+      "feature_version": "riichi_visible_v1",
+      "timesteps": 0,
+      "optimizer_epochs": 0,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    },
+    "replica": {
+      "label": "v2_20261022",
+      "model_sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2",
+      "metadata_sha256": "5a51c289a5f07a838cbf55aa3b935a8e9437e65c574e0e5ca7670d25bb89a0b6",
+      "feature_version": "riichi_visible_v2",
+      "timesteps": 262144,
+      "optimizer_epochs": 64,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    }
+  },
+  "v2_primary": "best.zip",
+  "validation_best_all_runs": "control.zip",
+  "validation_candidates_sha256": "fb151ace377df4e557c9d95bd5b2d7b022369e1a32bc204b0fe33029bb57d7ab",
+  "artifact_selection": {
+    "format": "riichi_validation_best_artifact_v1",
+    "label": "v1_20261021",
+    "checkpoint": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_131072.zip",
+    "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+    "timesteps": 131072,
+    "validation_rank_utility": 0.1015625,
+    "selection": "Highest validation rank utility among all fitted RL seeds; earlier listed label wins a tie.",
+    "validation_candidates_sha256": "fb151ace377df4e557c9d95bd5b2d7b022369e1a32bc204b0fe33029bb57d7ab",
+    "note": "Artifact selection only; match strength and the V2 release gate are assessed independently."
+  },
+  "test_models_manifest_sha256": "cbe8c2a01187c49e239f5e260712ab14c5ae737fc2b7165064ec8e97a7d0ba6b",
+  "note": "Selection is frozen before independent tests. Full original checkpoint bytes, including Adam, are preserved; mean test strength and release gate are reported separately.",
+  "evaluation_sha256": "b07ea05264406ad33fae794f0e5dd047aedf56311f093453ac13268b171d9417",
+  "release_gate": {
+    "passed": false,
+    "checks": {
+      "greedy": false,
+      "v2_bc": false
+    },
+    "criterion": "Independent test upper 95% CI of rank difference vs greedy and vs BC must both be below zero. A failed gate retains experimental artifacts without replacing the game model."
+  }
+}

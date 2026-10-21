@@ -1,0 +1,30 @@
+{
+  "image": {
+    "uri": "registry2-cloud.d.pjlab.org.cn/ccr-sandbox/claude-code:v1.1.1"
+  },
+  "entrypoint": [
+    "sleep",
+    "inf"
+  ],
+  "timeout": 14400,
+  "resourceRequests": {
+    "cpu": "16",
+    "memory": "32Gi"
+  },
+  "ports": [
+    {
+      "containerPort": 44772,
+      "name": "execd",
+      "protocol": "tcp",
+      "purpose": "system service"
+    }
+  ],
+  "metadata": {
+    "name": "policy-cpu-training-20261020",
+    "purpose": "bounded CPU policy training continuation"
+  },
+  "extensions": {
+    "project": "ailab-llmagent",
+    "lxcfs": "true"
+  }
+}

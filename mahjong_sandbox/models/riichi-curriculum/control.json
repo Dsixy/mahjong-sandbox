@@ -1,0 +1,254 @@
+{
+  "format": "mahjong_maskable_ppo_v1",
+  "created_at_utc": "2026-10-21T05:42:38.170074+00:00",
+  "algorithm": "sb3-contrib MaskablePPO",
+  "feature_version": "riichi_visible_v1",
+  "state_dim": 2350,
+  "hint_dim": 12,
+  "action_kinds": [
+    "exchange",
+    "declare_suit",
+    "discard",
+    "peng",
+    "open_kong",
+    "concealed_kong",
+    "added_kong",
+    "tsumo",
+    "ron",
+    "pass",
+    "chi",
+    "riichi",
+    "abort_nine"
+  ],
+  "rules": {
+    "rule_version": "riichi_4p_v1",
+    "dealer": 0,
+    "round_wind": 27,
+    "hand_number": 1,
+    "honba": 0,
+    "riichi_sticks": 0,
+    "initial_scores": [
+      25000,
+      25000,
+      25000,
+      25000
+    ],
+    "red_fives": [
+      16,
+      52,
+      88
+    ],
+    "open_tanyao": true,
+    "kuikae_forbidden": true,
+    "riichi_min_live": 4,
+    "multi_ron": true,
+    "triple_ron_abort": true,
+    "abortive_draws": true,
+    "nagashi_mangan": true,
+    "kiriage_mangan": false,
+    "counted_yakuman": true,
+    "double_yakuman": true,
+    "pao": true,
+    "delayed_open_kan_dora": true
+  },
+  "hints": true,
+  "observation_shapes": {
+    "candidates": [
+      512,
+      8
+    ],
+    "hints": [
+      512,
+      12
+    ],
+    "mask": [
+      512
+    ],
+    "state": [
+      2350
+    ]
+  },
+  "model_sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+  "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "timesteps": 131072,
+  "optimizer_updates": 32,
+  "versions": {
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "stable_baselines3": "2.9.0",
+    "sb3-contrib": "2.9.0"
+  },
+  "training": {
+    "config": {
+      "total_timesteps": 524288,
+      "n_envs": 512,
+      "workers": 12,
+      "rollout_steps": 32,
+      "batch_size": 1024,
+      "epochs": 4,
+      "learning_rate": 5e-05,
+      "gamma": 1.0,
+      "gae_lambda": 1.0,
+      "clip_range": 0.2,
+      "entropy_coef": 0.003,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 1.0,
+      "reward_mode": "rank",
+      "rank_rewards": [
+        1.5,
+        0.5,
+        -0.5,
+        -1.5
+      ],
+      "validation_workers": 8,
+      "hidden": 128,
+      "seed": 20261021,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 2,
+      "opponents": [
+        "greedy"
+      ],
+      "hints": true,
+      "bc_samples": 0,
+      "bc_epochs": 0,
+      "checkpoint_every": 4,
+      "validation_every": 8,
+      "validation_blocks": 32,
+      "validation_seed": 1500000,
+      "self_play_probability": 0.5,
+      "snapshot_every": 4,
+      "snapshot_pool_size": 8,
+      "variant": "riichi",
+      "match_length": "south",
+      "match_config": {
+        "rule_version": "riichi_match_v1",
+        "length": "south",
+        "target": 30000,
+        "bankruptcy": true,
+        "agari_yame": true,
+        "tenpai_yame": false,
+        "west_extension": true
+      },
+      "feature_version": "riichi_visible_v1",
+      "anchor_directories": [
+        "/sandbox-data/policy-lab-20261021/experiment-final/data/teacher",
+        "/sandbox-data/policy-lab-20261021/experiment-final/data/dagger_v1"
+      ],
+      "anchor_coefficient": 0.05,
+      "anchor_steps": 4,
+      "anchor_batch_size": 256,
+      "skip_forced_actions": true,
+      "rules": {
+        "rule_version": "riichi_4p_v1",
+        "dealer": 0,
+        "round_wind": 27,
+        "hand_number": 1,
+        "honba": 0,
+        "riichi_sticks": 0,
+        "initial_scores": [
+          25000,
+          25000,
+          25000,
+          25000
+        ],
+        "red_fives": [
+          16,
+          52,
+          88
+        ],
+        "open_tanyao": true,
+        "kuikae_forbidden": true,
+        "riichi_min_live": 4,
+        "multi_ron": true,
+        "triple_ron_abort": true,
+        "abortive_draws": true,
+        "nagashi_mangan": true,
+        "kiriage_mangan": false,
+        "counted_yakuman": true,
+        "double_yakuman": true,
+        "pao": true,
+        "delayed_open_kan_dora": true
+      }
+    },
+    "validation_seed": 1500000,
+    "validation_blocks": 32,
+    "env_seed": 21261024,
+    "resumed_from": "/sandbox-data/policy-lab-20261021/experiment-final/bc_v1/warmstart.zip",
+    "resumed_model_sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21",
+    "resume_restores": "model, value function, Adam; new hands, not exact in-flight state",
+    "imitation": {
+      "dataset_directories": [
+        "/sandbox-data/policy-lab-20261021/experiment/data/teacher",
+        "/sandbox-data/policy-lab-20261021/experiment-final/data/dagger_v1"
+      ],
+      "validation_directory": "/sandbox-data/policy-lab-20261021/experiment/data/validation",
+      "selection": "fewer fidelity-gate failures, smaller shortfall, higher overall teacher-set accuracy, lower overall cross entropy",
+      "selected_epoch": 7,
+      "validation": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.989990234375,
+          "sampled_action_accuracy": 0.753173828125,
+          "teacher_set_probability": 0.9757129326462746,
+          "set_cross_entropy": 0.07332696265075356
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9901639344262295,
+          "sampled_action_accuracy": 0.8021857923497268,
+          "teacher_set_probability": 0.9757233687437297,
+          "set_cross_entropy": 0.038914245301908484
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9891891891891892,
+          "sampled_action_accuracy": 0.7391891891891892,
+          "teacher_set_probability": 0.9755845250310125,
+          "set_cross_entropy": 0.21186962224341727
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9970119521912351,
+          "sampled_action_accuracy": 0.6802788844621513,
+          "teacher_set_probability": 0.9789034322913425,
+          "set_cross_entropy": 0.02502773427076707
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9724454649827784,
+          "sampled_action_accuracy": 0.9724454649827784,
+          "teacher_set_probability": 0.9708644722414072,
+          "set_cross_entropy": 0.07283278048277997
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 0.8660714285714286,
+          "teacher_set_probability": 0.992985589163644,
+          "set_cross_entropy": 0.007363636331710158
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 0.0
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.7333333333333333,
+          "sampled_action_accuracy": 0.7,
+          "teacher_set_probability": 0.6741892755031585,
+          "set_cross_entropy": 5.356720825781425
+        }
+      },
+      "seed": 20261021
+    },
+    "validation_score": 0.1015625,
+    "validation_metric": "rank_utility",
+    "global_validation_candidates_sha256": "fb151ace377df4e557c9d95bd5b2d7b022369e1a32bc204b0fe33029bb57d7ab"
+  }
+}

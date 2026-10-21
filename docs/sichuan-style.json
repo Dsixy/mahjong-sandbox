@@ -1,0 +1,38 @@
+{
+  "variant": "sichuan",
+  "model_sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+  "timesteps": 6361088,
+  "seed": [
+    300000,
+    300099
+  ],
+  "reproduced_records": 800,
+  "summary": {
+    "rl": {
+      "games": 400,
+      "wins": 236,
+      "win_rate": 0.59,
+      "deal_in_rate": 0.445,
+      "mean_net_score": 0.4625,
+      "open_rate": 0.7075,
+      "kongs_per_hand": 0.2725,
+      "self_draw_share": 0.3855932203389831,
+      "mean_win_fan": 0.9067796610169492,
+      "mean_win_income": 4.122881355932203,
+      "pure_suit_share": 0.2457627118644068
+    },
+    "greedy": {
+      "games": 400,
+      "wins": 282,
+      "win_rate": 0.705,
+      "deal_in_rate": 0.3425,
+      "mean_net_score": 0.0,
+      "open_rate": 0.3775,
+      "kongs_per_hand": 0.145,
+      "self_draw_share": 0.4078014184397163,
+      "mean_win_fan": 0.35815602836879434,
+      "mean_win_income": 2.6099290780141846,
+      "pure_suit_share": 0.0070921985815602835
+    }
+  }
+}

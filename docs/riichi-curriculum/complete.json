@@ -1,0 +1,16 @@
+{
+  "format": "riichi_curriculum_complete_v1",
+  "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "selected_label": "v2_20261021",
+  "games": 8192,
+  "hands": 81795,
+  "release_gate": {
+    "passed": false,
+    "checks": {
+      "greedy": false,
+      "v2_bc": false
+    },
+    "criterion": "Independent test upper 95% CI of rank difference vs greedy and vs BC must both be below zero. A failed gate retains experimental artifacts without replacing the game model."
+  },
+  "evaluation_sha256": "b07ea05264406ad33fae794f0e5dd047aedf56311f093453ac13268b171d9417"
+}

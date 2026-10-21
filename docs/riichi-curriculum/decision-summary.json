@@ -1,0 +1,903 @@
+{
+  "format": "riichi_shared_position_probe_v1",
+  "bank_sha256": "60f9561cc0664d4d976b7e484fec03d1729e77e80b44b1aef78a1e5ede018e21",
+  "positions": 960,
+  "seed_range": [
+    1900000,
+    1900015
+  ],
+  "selection": "reservoir per context/opportunity; overlapping positions deduplicated; diagnostic frequencies are not game frequencies",
+  "script_sha256": "dd08f708aab5a011458335ad709de0a4e36410bf23436c14d608b2f12a50e73d",
+  "batch_single_agent_checks_per_model": 4,
+  "probability_note": "Post-hoc diagnostic on the fixed bank: mean masked policy mass for each available action group, not match action rates.",
+  "choice_probabilities": {
+    "rl": {
+      "early_call": {
+        "positions": 105,
+        "mean_probability": 0.04547071704703285
+      },
+      "early_riichi": {
+        "positions": 103,
+        "mean_probability": 0.9999994242075577
+      },
+      "early_win": {
+        "positions": 100,
+        "mean_probability": 1.0
+      },
+      "late_middle_call": {
+        "positions": 100,
+        "mean_probability": 0.03586222226209095
+      },
+      "late_last_call": {
+        "positions": 81,
+        "mean_probability": 0.042961092033700764
+      },
+      "late_lead_call": {
+        "positions": 100,
+        "mean_probability": 0.04212104015173072
+      },
+      "late_lead_riichi": {
+        "positions": 13,
+        "mean_probability": 0.9999992434795086
+      },
+      "late_middle_riichi": {
+        "positions": 22,
+        "mean_probability": 0.999999691139568
+      },
+      "late_last_riichi": {
+        "positions": 12,
+        "mean_probability": 0.9999989718198776
+      },
+      "late_lead_win": {
+        "positions": 10,
+        "mean_probability": 1.0
+      },
+      "late_middle_win": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_last_win": {
+        "positions": 5,
+        "mean_probability": 1.0
+      }
+    },
+    "v1_20261021": {
+      "early_call": {
+        "positions": 105,
+        "mean_probability": 0.045183786754669164
+      },
+      "early_riichi": {
+        "positions": 103,
+        "mean_probability": 0.9999999947918271
+      },
+      "early_win": {
+        "positions": 100,
+        "mean_probability": 1.0
+      },
+      "late_middle_call": {
+        "positions": 100,
+        "mean_probability": 0.039595589288467806
+      },
+      "late_last_call": {
+        "positions": 81,
+        "mean_probability": 0.03913378237906808
+      },
+      "late_lead_call": {
+        "positions": 100,
+        "mean_probability": 0.052317560398111966
+      },
+      "late_lead_riichi": {
+        "positions": 13,
+        "mean_probability": 1.0000000045849726
+      },
+      "late_middle_riichi": {
+        "positions": 22,
+        "mean_probability": 1.0
+      },
+      "late_last_riichi": {
+        "positions": 12,
+        "mean_probability": 0.9999999900658926
+      },
+      "late_lead_win": {
+        "positions": 10,
+        "mean_probability": 1.0
+      },
+      "late_middle_win": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_last_win": {
+        "positions": 5,
+        "mean_probability": 1.0
+      }
+    },
+    "v2_20261022": {
+      "early_call": {
+        "positions": 105,
+        "mean_probability": 0.04952236575127812
+      },
+      "early_riichi": {
+        "positions": 103,
+        "mean_probability": 0.9997331378529373
+      },
+      "early_win": {
+        "positions": 100,
+        "mean_probability": 0.9999999976158143
+      },
+      "late_middle_call": {
+        "positions": 100,
+        "mean_probability": 0.03964464380543797
+      },
+      "late_last_call": {
+        "positions": 81,
+        "mean_probability": 0.04306559646179365
+      },
+      "late_lead_call": {
+        "positions": 100,
+        "mean_probability": 0.04190358230609923
+      },
+      "late_lead_riichi": {
+        "positions": 13,
+        "mean_probability": 0.9998128918501047
+      },
+      "late_middle_riichi": {
+        "positions": 22,
+        "mean_probability": 0.9999761852351102
+      },
+      "late_last_riichi": {
+        "positions": 12,
+        "mean_probability": 0.9999838074048361
+      },
+      "late_lead_win": {
+        "positions": 10,
+        "mean_probability": 1.0
+      },
+      "late_middle_win": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_last_win": {
+        "positions": 5,
+        "mean_probability": 1.0
+      }
+    },
+    "v2_bc": {
+      "early_call": {
+        "positions": 105,
+        "mean_probability": 0.043183822165704454
+      },
+      "early_riichi": {
+        "positions": 103,
+        "mean_probability": 0.9999992853229486
+      },
+      "early_win": {
+        "positions": 100,
+        "mean_probability": 1.0
+      },
+      "late_middle_call": {
+        "positions": 100,
+        "mean_probability": 0.038168635215747856
+      },
+      "late_last_call": {
+        "positions": 81,
+        "mean_probability": 0.04059481859556008
+      },
+      "late_lead_call": {
+        "positions": 100,
+        "mean_probability": 0.04276717777174503
+      },
+      "late_lead_riichi": {
+        "positions": 13,
+        "mean_probability": 0.9999990784204923
+      },
+      "late_middle_riichi": {
+        "positions": 22,
+        "mean_probability": 0.9999996044419028
+      },
+      "late_last_riichi": {
+        "positions": 12,
+        "mean_probability": 0.9999985247850418
+      },
+      "late_lead_win": {
+        "positions": 10,
+        "mean_probability": 1.0
+      },
+      "late_middle_win": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_last_win": {
+        "positions": 5,
+        "mean_probability": 1.0
+      }
+    },
+    "v1_bc": {
+      "early_call": {
+        "positions": 105,
+        "mean_probability": 0.039490258418337865
+      },
+      "early_riichi": {
+        "positions": 103,
+        "mean_probability": 0.9999999965278847
+      },
+      "early_win": {
+        "positions": 100,
+        "mean_probability": 1.0
+      },
+      "late_middle_call": {
+        "positions": 100,
+        "mean_probability": 0.03669574364555259
+      },
+      "late_last_call": {
+        "positions": 81,
+        "mean_probability": 0.04043231428913702
+      },
+      "late_lead_call": {
+        "positions": 100,
+        "mean_probability": 0.04553605414524318
+      },
+      "late_lead_riichi": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_middle_riichi": {
+        "positions": 22,
+        "mean_probability": 1.0
+      },
+      "late_last_riichi": {
+        "positions": 12,
+        "mean_probability": 1.0
+      },
+      "late_lead_win": {
+        "positions": 10,
+        "mean_probability": 1.0
+      },
+      "late_middle_win": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_last_win": {
+        "positions": 5,
+        "mean_probability": 1.0
+      }
+    },
+    "v1_published": {
+      "early_call": {
+        "positions": 105,
+        "mean_probability": 0.043978044621188865
+      },
+      "early_riichi": {
+        "positions": 103,
+        "mean_probability": 0.9999999959491989
+      },
+      "early_win": {
+        "positions": 100,
+        "mean_probability": 0.9999999988079071
+      },
+      "late_middle_call": {
+        "positions": 100,
+        "mean_probability": 0.048941654331813744
+      },
+      "late_last_call": {
+        "positions": 81,
+        "mean_probability": 0.03311651679888897
+      },
+      "late_lead_call": {
+        "positions": 100,
+        "mean_probability": 0.03515641974173488
+      },
+      "late_lead_riichi": {
+        "positions": 13,
+        "mean_probability": 0.9999999954150274
+      },
+      "late_middle_riichi": {
+        "positions": 22,
+        "mean_probability": 0.999999997290698
+      },
+      "late_last_riichi": {
+        "positions": 12,
+        "mean_probability": 0.9999999850988388
+      },
+      "late_lead_win": {
+        "positions": 10,
+        "mean_probability": 1.0
+      },
+      "late_middle_win": {
+        "positions": 13,
+        "mean_probability": 1.0
+      },
+      "late_last_win": {
+        "positions": 5,
+        "mean_probability": 1.0
+      }
+    }
+  },
+  "models": {
+    "rl": {
+      "sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072",
+      "timesteps": 131072,
+      "feature_version": "riichi_visible_v2"
+    },
+    "v1_20261021": {
+      "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+      "timesteps": 131072,
+      "feature_version": "riichi_visible_v1"
+    },
+    "v2_20261022": {
+      "sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2",
+      "timesteps": 262144,
+      "feature_version": "riichi_visible_v2"
+    },
+    "v2_bc": {
+      "sha256": "6c9fb5a4066b744b7a28eee42420563d9ee72b7977115bfc2f82372ff5483824",
+      "timesteps": 0,
+      "feature_version": "riichi_visible_v2"
+    },
+    "v1_bc": {
+      "sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21",
+      "timesteps": 0,
+      "feature_version": "riichi_visible_v1"
+    },
+    "v1_published": {
+      "sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+      "timesteps": 196608,
+      "feature_version": "riichi_visible_v1"
+    }
+  },
+  "counts": {
+    "rl": {
+      "early_call_opportunities": 105,
+      "early_call_choices": 4,
+      "early_riichi_opportunities": 103,
+      "early_riichi_choices": 103,
+      "threat_decisions": 366,
+      "safe_opportunities": 345,
+      "early_safe_opportunities": 123,
+      "safe_choices": 96,
+      "early_safe_choices": 35,
+      "early_win_opportunities": 100,
+      "early_win_choices": 100,
+      "late_middle_call_opportunities": 100,
+      "late_middle_call_choices": 3,
+      "late_last_call_opportunities": 81,
+      "late_last_call_choices": 3,
+      "late_lead_call_opportunities": 100,
+      "late_lead_call_choices": 4,
+      "late_lead_riichi_opportunities": 13,
+      "late_lead_riichi_choices": 13,
+      "late_lead_safe_opportunities": 56,
+      "late_lead_safe_choices": 9,
+      "late_middle_safe_opportunities": 96,
+      "late_middle_safe_choices": 31,
+      "late_middle_riichi_opportunities": 22,
+      "late_middle_riichi_choices": 22,
+      "late_last_safe_opportunities": 70,
+      "late_last_safe_choices": 21,
+      "late_last_riichi_opportunities": 12,
+      "late_last_riichi_choices": 12,
+      "late_lead_win_opportunities": 10,
+      "late_lead_win_choices": 10,
+      "late_middle_win_opportunities": 13,
+      "late_middle_win_choices": 13,
+      "late_last_win_opportunities": 5,
+      "late_last_win_choices": 5
+    },
+    "v1_20261021": {
+      "early_call_opportunities": 105,
+      "early_call_choices": 5,
+      "early_riichi_opportunities": 103,
+      "early_riichi_choices": 103,
+      "threat_decisions": 366,
+      "safe_opportunities": 345,
+      "early_safe_opportunities": 123,
+      "safe_choices": 86,
+      "early_safe_choices": 32,
+      "early_win_opportunities": 100,
+      "early_win_choices": 100,
+      "late_middle_call_opportunities": 100,
+      "late_middle_call_choices": 4,
+      "late_last_call_opportunities": 81,
+      "late_last_call_choices": 4,
+      "late_lead_call_opportunities": 100,
+      "late_lead_call_choices": 5,
+      "late_lead_riichi_opportunities": 13,
+      "late_lead_riichi_choices": 13,
+      "late_lead_safe_opportunities": 56,
+      "late_lead_safe_choices": 7,
+      "late_middle_safe_opportunities": 96,
+      "late_middle_safe_choices": 28,
+      "late_middle_riichi_opportunities": 22,
+      "late_middle_riichi_choices": 22,
+      "late_last_safe_opportunities": 70,
+      "late_last_safe_choices": 19,
+      "late_last_riichi_opportunities": 12,
+      "late_last_riichi_choices": 12,
+      "late_lead_win_opportunities": 10,
+      "late_lead_win_choices": 10,
+      "late_middle_win_opportunities": 13,
+      "late_middle_win_choices": 13,
+      "late_last_win_opportunities": 5,
+      "late_last_win_choices": 5
+    },
+    "v2_20261022": {
+      "early_call_opportunities": 105,
+      "early_call_choices": 5,
+      "early_riichi_opportunities": 103,
+      "early_riichi_choices": 103,
+      "threat_decisions": 366,
+      "safe_opportunities": 345,
+      "early_safe_opportunities": 123,
+      "safe_choices": 103,
+      "early_safe_choices": 36,
+      "early_win_opportunities": 100,
+      "early_win_choices": 100,
+      "late_middle_call_opportunities": 100,
+      "late_middle_call_choices": 3,
+      "late_last_call_opportunities": 81,
+      "late_last_call_choices": 3,
+      "late_lead_call_opportunities": 100,
+      "late_lead_call_choices": 4,
+      "late_lead_riichi_opportunities": 13,
+      "late_lead_riichi_choices": 13,
+      "late_lead_safe_opportunities": 56,
+      "late_lead_safe_choices": 9,
+      "late_middle_safe_opportunities": 96,
+      "late_middle_safe_choices": 32,
+      "late_middle_riichi_opportunities": 22,
+      "late_middle_riichi_choices": 22,
+      "late_last_safe_opportunities": 70,
+      "late_last_safe_choices": 26,
+      "late_last_riichi_opportunities": 12,
+      "late_last_riichi_choices": 12,
+      "late_lead_win_opportunities": 10,
+      "late_lead_win_choices": 10,
+      "late_middle_win_opportunities": 13,
+      "late_middle_win_choices": 13,
+      "late_last_win_opportunities": 5,
+      "late_last_win_choices": 5
+    },
+    "v2_bc": {
+      "early_call_opportunities": 105,
+      "early_call_choices": 4,
+      "early_riichi_opportunities": 103,
+      "early_riichi_choices": 103,
+      "threat_decisions": 366,
+      "safe_opportunities": 345,
+      "early_safe_opportunities": 123,
+      "safe_choices": 99,
+      "early_safe_choices": 36,
+      "early_win_opportunities": 100,
+      "early_win_choices": 100,
+      "late_middle_call_opportunities": 100,
+      "late_middle_call_choices": 3,
+      "late_last_call_opportunities": 81,
+      "late_last_call_choices": 3,
+      "late_lead_call_opportunities": 100,
+      "late_lead_call_choices": 4,
+      "late_lead_riichi_opportunities": 13,
+      "late_lead_riichi_choices": 13,
+      "late_lead_safe_opportunities": 56,
+      "late_lead_safe_choices": 8,
+      "late_middle_safe_opportunities": 96,
+      "late_middle_safe_choices": 32,
+      "late_middle_riichi_opportunities": 22,
+      "late_middle_riichi_choices": 22,
+      "late_last_safe_opportunities": 70,
+      "late_last_safe_choices": 23,
+      "late_last_riichi_opportunities": 12,
+      "late_last_riichi_choices": 12,
+      "late_lead_win_opportunities": 10,
+      "late_lead_win_choices": 10,
+      "late_middle_win_opportunities": 13,
+      "late_middle_win_choices": 13,
+      "late_last_win_opportunities": 5,
+      "late_last_win_choices": 5
+    },
+    "v1_bc": {
+      "early_call_opportunities": 105,
+      "early_call_choices": 3,
+      "early_riichi_opportunities": 103,
+      "early_riichi_choices": 103,
+      "threat_decisions": 366,
+      "safe_opportunities": 345,
+      "early_safe_opportunities": 123,
+      "safe_choices": 100,
+      "early_safe_choices": 35,
+      "early_win_opportunities": 100,
+      "early_win_choices": 100,
+      "late_middle_call_opportunities": 100,
+      "late_middle_call_choices": 4,
+      "late_last_call_opportunities": 81,
+      "late_last_call_choices": 3,
+      "late_lead_call_opportunities": 100,
+      "late_lead_call_choices": 5,
+      "late_lead_riichi_opportunities": 13,
+      "late_lead_riichi_choices": 13,
+      "late_lead_safe_opportunities": 56,
+      "late_lead_safe_choices": 9,
+      "late_middle_safe_opportunities": 96,
+      "late_middle_safe_choices": 32,
+      "late_middle_riichi_opportunities": 22,
+      "late_middle_riichi_choices": 22,
+      "late_last_safe_opportunities": 70,
+      "late_last_safe_choices": 24,
+      "late_last_riichi_opportunities": 12,
+      "late_last_riichi_choices": 12,
+      "late_lead_win_opportunities": 10,
+      "late_lead_win_choices": 10,
+      "late_middle_win_opportunities": 13,
+      "late_middle_win_choices": 13,
+      "late_last_win_opportunities": 5,
+      "late_last_win_choices": 5
+    },
+    "v1_published": {
+      "early_call_opportunities": 105,
+      "early_call_choices": 4,
+      "early_riichi_opportunities": 103,
+      "early_riichi_choices": 103,
+      "threat_decisions": 366,
+      "safe_opportunities": 345,
+      "early_safe_opportunities": 123,
+      "safe_choices": 96,
+      "early_safe_choices": 38,
+      "early_win_opportunities": 100,
+      "early_win_choices": 100,
+      "late_middle_call_opportunities": 100,
+      "late_middle_call_choices": 4,
+      "late_last_call_opportunities": 81,
+      "late_last_call_choices": 2,
+      "late_lead_call_opportunities": 100,
+      "late_lead_call_choices": 3,
+      "late_lead_riichi_opportunities": 13,
+      "late_lead_riichi_choices": 13,
+      "late_lead_safe_opportunities": 56,
+      "late_lead_safe_choices": 7,
+      "late_middle_safe_opportunities": 96,
+      "late_middle_safe_choices": 29,
+      "late_middle_riichi_opportunities": 22,
+      "late_middle_riichi_choices": 22,
+      "late_last_safe_opportunities": 70,
+      "late_last_safe_choices": 22,
+      "late_last_riichi_opportunities": 12,
+      "late_last_riichi_choices": 12,
+      "late_lead_win_opportunities": 10,
+      "late_lead_win_choices": 10,
+      "late_middle_win_opportunities": 13,
+      "late_middle_win_choices": 13,
+      "late_last_win_opportunities": 5,
+      "late_last_win_choices": 5
+    }
+  },
+  "action_disagreement": {
+    "rl vs v1_20261021": {
+      "different_actions": 53,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 18,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 13,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 9,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 13,
+          "positions": 226
+        }
+      }
+    },
+    "rl vs v2_20261022": {
+      "different_actions": 35,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 9,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 11,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 5,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 10,
+          "positions": 226
+        }
+      }
+    },
+    "rl vs v2_bc": {
+      "different_actions": 20,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 5,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 6,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 4,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 5,
+          "positions": 226
+        }
+      }
+    },
+    "rl vs v1_bc": {
+      "different_actions": 44,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 15,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 8,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 7,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 14,
+          "positions": 226
+        }
+      }
+    },
+    "rl vs v1_published": {
+      "different_actions": 87,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 25,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 26,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 13,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 23,
+          "positions": 226
+        }
+      }
+    },
+    "v1_20261021 vs v2_20261022": {
+      "different_actions": 53,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 15,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 18,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 4,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 16,
+          "positions": 226
+        }
+      }
+    },
+    "v1_20261021 vs v2_bc": {
+      "different_actions": 54,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 19,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 14,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 5,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 16,
+          "positions": 226
+        }
+      }
+    },
+    "v1_20261021 vs v1_bc": {
+      "different_actions": 36,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 13,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 9,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 2,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 12,
+          "positions": 226
+        }
+      }
+    },
+    "v1_20261021 vs v1_published": {
+      "different_actions": 90,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 27,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 26,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 16,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 21,
+          "positions": 226
+        }
+      }
+    },
+    "v2_20261022 vs v2_bc": {
+      "different_actions": 29,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 10,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 7,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 5,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 7,
+          "positions": 226
+        }
+      }
+    },
+    "v2_20261022 vs v1_bc": {
+      "different_actions": 45,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 16,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 11,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 2,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 16,
+          "positions": 226
+        }
+      }
+    },
+    "v2_20261022 vs v1_published": {
+      "different_actions": 100,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 28,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 27,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 16,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 29,
+          "positions": 226
+        }
+      }
+    },
+    "v2_bc vs v1_bc": {
+      "different_actions": 39,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 12,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 7,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 5,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 15,
+          "positions": 226
+        }
+      }
+    },
+    "v2_bc vs v1_published": {
+      "different_actions": 86,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 25,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 24,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 13,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 24,
+          "positions": 226
+        }
+      }
+    },
+    "v1_bc vs v1_published": {
+      "different_actions": 97,
+      "positions": 960,
+      "by_context": {
+        "early": {
+          "different": 27,
+          "positions": 395
+        },
+        "late_last": {
+          "different": 27,
+          "positions": 164
+        },
+        "late_lead": {
+          "different": 16,
+          "positions": 175
+        },
+        "late_middle": {
+          "different": 27,
+          "positions": 226
+        }
+      }
+    }
+  }
+}

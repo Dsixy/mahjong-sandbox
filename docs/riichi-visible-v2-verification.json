@@ -1,0 +1,256 @@
+{
+  "format": "riichi_visible_v2_verification_v1",
+  "date": "2026-10-21",
+  "source_sha256": "9904f5dc932f542aab6b348d54bc395a3250b5f0547713355fcbabf18db9abfe",
+  "full_suite": {
+    "tests": 170,
+    "elapsed_seconds": 160.167,
+    "passed": true
+  },
+  "feature_version": "riichi_visible_v2",
+  "observation_shapes": {
+    "candidates": [
+      512,
+      8
+    ],
+    "hints": [
+      512,
+      12
+    ],
+    "history_mask": [
+      512
+    ],
+    "mask": [
+      512
+    ],
+    "melds": [
+      4,
+      4,
+      11
+    ],
+    "public_history": [
+      512,
+      12
+    ],
+    "rivers": [
+      4,
+      136,
+      5
+    ],
+    "state": [
+      2382
+    ]
+  },
+  "cpu_smoke": {
+    "config": {
+      "total_timesteps": 64,
+      "n_envs": 4,
+      "workers": 2,
+      "rollout_steps": 8,
+      "batch_size": 16,
+      "epochs": 1,
+      "learning_rate": 0.0003,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 10000.0,
+      "reward_mode": "score",
+      "rank_rewards": [
+        1.5,
+        0.5,
+        -0.5,
+        -1.5
+      ],
+      "validation_workers": 1,
+      "hidden": 128,
+      "seed": 20261021,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 0,
+      "bc_epochs": 8,
+      "checkpoint_every": 8,
+      "validation_every": 8,
+      "validation_blocks": 0,
+      "validation_seed": 100000,
+      "self_play_probability": 0.0,
+      "snapshot_every": 8,
+      "snapshot_pool_size": 4,
+      "variant": "riichi",
+      "match_length": "south",
+      "match_config": {
+        "rule_version": "riichi_match_v1",
+        "length": "south",
+        "target": 30000,
+        "bankruptcy": true,
+        "agari_yame": true,
+        "tenpai_yame": false,
+        "west_extension": true
+      },
+      "feature_version": "riichi_visible_v2",
+      "skip_forced_actions": true,
+      "rules": {
+        "rule_version": "riichi_4p_v1",
+        "dealer": 0,
+        "round_wind": 27,
+        "hand_number": 1,
+        "honba": 0,
+        "riichi_sticks": 0,
+        "initial_scores": [
+          25000,
+          25000,
+          25000,
+          25000
+        ],
+        "red_fives": [
+          16,
+          52,
+          88
+        ],
+        "open_tanyao": true,
+        "kuikae_forbidden": true,
+        "riichi_min_live": 4,
+        "multi_ron": true,
+        "triple_ron_abort": true,
+        "abortive_draws": true,
+        "nagashi_mangan": true,
+        "kiriage_mangan": false,
+        "counted_yakuman": true,
+        "double_yakuman": true,
+        "pao": true,
+        "delayed_open_kan_dora": true
+      }
+    },
+    "final_timesteps": 64,
+    "actual_device": "cpu",
+    "optimizer_epochs": 2,
+    "illegal_actions": 0,
+    "interrupted": false,
+    "elapsed_seconds": 15.247512433998054
+  },
+  "smoke_checkpoint_sha256": "f8d64307934d2fe40021cb7e9c3b8f4b6c14114cd565c23817f828481ba542b7",
+  "compatibility": {
+    "format": "riichi_visible_v2_audit_v1",
+    "source_sha256": "9904f5dc932f542aab6b348d54bc395a3250b5f0547713355fcbabf18db9abfe",
+    "legacy_reference_commit": "7c0458e856fcc2ec2a5bec4736d81c809138a50d",
+    "v1_all_feature_tensors_bitwise_equal_on_decisions": 140,
+    "hands_sampled": 3,
+    "legacy_batch_layout_unchanged": true,
+    "raw_shared_bytes_512_v1": 5821952,
+    "raw_shared_bytes_512_v2": 17979392,
+    "published_models": {
+      "sichuan-high": {
+        "sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+        "feature_version": "sichuan_visible_v1"
+      },
+      "riichi-high": {
+        "sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+        "feature_version": "riichi_visible_v1"
+      },
+      "riichi-rank": {
+        "sha256": "01aa8063c16b872a08a5ca5ef2783ca3f917d516417960d048cfcf261e675427",
+        "feature_version": "riichi_visible_v1"
+      }
+    }
+  },
+  "wheel": {
+    "format": "riichi_visible_v2_wheel_v1",
+    "wheel_sha256": "92f04e3036b61ee378346ddfb89942af61470299c8117c9edde8a848ddae6c07",
+    "models": {
+      "sichuan-high": {
+        "feature_version": "sichuan_visible_v1",
+        "sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+        "legal_action": {
+          "kind": "exchange",
+          "tiles": [
+            36,
+            41,
+            66
+          ],
+          "suit": null,
+          "meld_index": null
+        }
+      },
+      "riichi-high": {
+        "feature_version": "riichi_visible_v1",
+        "sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+        "legal_action": {
+          "kind": "discard",
+          "tiles": [
+            38
+          ],
+          "suit": null,
+          "meld_index": null
+        }
+      },
+      "riichi-rank": {
+        "feature_version": "riichi_visible_v1",
+        "sha256": "01aa8063c16b872a08a5ca5ef2783ca3f917d516417960d048cfcf261e675427",
+        "legal_action": {
+          "kind": "discard",
+          "tiles": [
+            116
+          ],
+          "suit": null,
+          "meld_index": null
+        }
+      },
+      "v2_smoke": {
+        "feature_version": "riichi_visible_v2",
+        "legal_action": {
+          "kind": "discard",
+          "tiles": [
+            54
+          ],
+          "suit": null,
+          "meld_index": null
+        }
+      }
+    },
+    "source_sha256": "9904f5dc932f542aab6b348d54bc395a3250b5f0547713355fcbabf18db9abfe"
+  },
+  "mixed_version_evaluation": {
+    "games": 8,
+    "hands": 63,
+    "workers": 2,
+    "match_length": "south",
+    "match_config": {
+      "rule_version": "riichi_match_v1",
+      "length": "south",
+      "target": 30000,
+      "bankruptcy": true,
+      "agari_yame": true,
+      "tenpai_yame": false,
+      "west_extension": true
+    },
+    "elapsed_seconds": 19.57108111999696
+  },
+  "mixed_version_probe": {
+    "positions": 16,
+    "batch_single_agent_checks_per_model": 4,
+    "models": {
+      "v2": {
+        "sha256": "f8d64307934d2fe40021cb7e9c3b8f4b6c14114cd565c23817f828481ba542b7",
+        "timesteps": 64,
+        "feature_version": "riichi_visible_v2"
+      },
+      "v1": {
+        "sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+        "timesteps": 196608,
+        "feature_version": "riichi_visible_v1"
+      }
+    },
+    "script_sha256": "ec33f5198f3febf4cb62e3ee54e6786e38948af7a723868002bf955a5ffd89ed"
+  },
+  "scope": "Interface and information-boundary verification only. No new competitive training or strength claim; existing published weights remain unchanged."
+}

@@ -1,0 +1,8 @@
+{
+  "signal_exit": 75,
+  "resumed_start": 69664,
+  "final_timesteps": 70144,
+  "bounded_target": 70144,
+  "self_play_probability": 0.5,
+  "workers": 1
+}

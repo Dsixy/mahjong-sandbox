@@ -1,0 +1,69 @@
+{
+  "format": "riichi_teacher_policy_audit_v1",
+  "dataset_manifest_sha256": "40ebd294cab84ce1b174b99474cffac1ebc73ab269ce5dbaec264e464b1254a8",
+  "models": {
+    "published": {
+      "model_sha256": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+      "feature_version": "riichi_visible_v1",
+      "timesteps": 196608,
+      "audit": {
+        "all": {
+          "samples": 4096,
+          "teacher_set_accuracy": 0.96435546875,
+          "sampled_action_accuracy": 0.734375,
+          "teacher_set_probability": 0.924404077231884,
+          "set_cross_entropy": 0.1724484907463193
+        },
+        "threat": {
+          "samples": 915,
+          "teacher_set_accuracy": 0.9573770491803278,
+          "sampled_action_accuracy": 0.780327868852459,
+          "teacher_set_probability": 0.923666173382535,
+          "set_cross_entropy": 0.16406176389892244
+        },
+        "late": {
+          "samples": 740,
+          "teacher_set_accuracy": 0.9662162162162162,
+          "sampled_action_accuracy": 0.7148648648648649,
+          "teacher_set_probability": 0.9246914734711518,
+          "set_cross_entropy": 0.2849571054046218
+        },
+        "discard": {
+          "samples": 3012,
+          "teacher_set_accuracy": 0.9677954847277557,
+          "sampled_action_accuracy": 0.6600265604249668,
+          "teacher_set_probability": 0.9168549951804111,
+          "set_cross_entropy": 0.12873293077486603
+        },
+        "call": {
+          "samples": 871,
+          "teacher_set_accuracy": 0.9563719862227325,
+          "sampled_action_accuracy": 0.9563719862227325,
+          "teacher_set_probability": 0.9467951339914386,
+          "set_cross_entropy": 0.16534409703671865
+        },
+        "riichi": {
+          "samples": 112,
+          "teacher_set_accuracy": 0.9910714285714286,
+          "sampled_action_accuracy": 0.8839285714285714,
+          "teacher_set_probability": 0.9732193606240409,
+          "set_cross_entropy": 0.030331566865373003
+        },
+        "win": {
+          "samples": 71,
+          "teacher_set_accuracy": 1.0,
+          "sampled_action_accuracy": 1.0,
+          "teacher_set_probability": 1.0,
+          "set_cross_entropy": 1.679004278332901e-09
+        },
+        "kong": {
+          "samples": 30,
+          "teacher_set_accuracy": 0.6666666666666666,
+          "sampled_action_accuracy": 0.5666666666666667,
+          "teacher_set_probability": 0.6710893956113997,
+          "set_cross_entropy": 5.70645262007262
+        }
+      }
+    }
+  }
+}

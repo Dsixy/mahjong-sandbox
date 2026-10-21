@@ -58,7 +58,73 @@ def main(argv=None) -> int:
     batches.add_argument('--self-play', action='store_true')
     for item in (evaluation, performance, training, batches):
         item.add_argument('--output', type=Path)
+    rl_train = subparsers.add_parser('rl-train', help='train/resume Mahjong MaskablePPO on CPU or CUDA')
+    rl_train.add_argument('--output', type=Path, required=True)
+    rl_train.add_argument('--config', type=Path)
+    rl_train.add_argument('--resume', type=Path)
+    rl_train.add_argument('--variant', choices=('sichuan', 'riichi'))
+    rl_train.add_argument('--match-length', choices=('hand', 'east', 'south'))
+    rl_train.add_argument('--feature-version', choices=('sichuan_visible_v1','riichi_visible_v1','riichi_visible_v2'))
+    for flag, dest in (('timesteps', 'total_timesteps'), ('boards', 'n_envs'), ('workers', 'workers'),
+                       ('rollout-steps', 'rollout_steps'), ('batch-size', 'batch_size'), ('epochs', 'epochs'),
+                       ('seed', 'seed'), ('torch-threads', 'torch_threads'), ('hidden', 'hidden'),
+                       ('bc-samples', 'bc_samples'), ('bc-epochs', 'bc_epochs'),
+                       ('checkpoint-every', 'checkpoint_every'), ('eval-every', 'validation_every'),
+                       ('eval-blocks', 'validation_blocks'), ('eval-seed', 'validation_seed'),
+                       ('snapshot-every', 'snapshot_every'), ('snapshot-pool-size', 'snapshot_pool_size')):
+        rl_train.add_argument('--' + flag, dest=dest, type=int)
+    for flag, dest in (('learning-rate', 'learning_rate'), ('gamma', 'gamma'),
+                       ('gae-lambda', 'gae_lambda'), ('entropy-coef', 'entropy_coef'),
+                       ('reward-scale', 'reward_scale'), ('self-play-probability', 'self_play_probability')):
+        rl_train.add_argument('--' + flag, dest=dest, type=float)
+    rl_train.add_argument('--opponents', nargs='+', choices=('random', 'win-first', 'greedy', 'defensive', 'value'))
+    rl_train.add_argument('--reward-mode', choices=('score', 'rank'))
+    rl_train.add_argument('--rank-rewards', nargs=4, type=float)
+    rl_train.add_argument('--validation-workers', type=int)
+    rl_train.add_argument('--device')
+    rl_train.add_argument('--backend', choices=('auto', 'python', 'numba'))
+    rl_train.add_argument('--no-hints', dest='hints', action='store_false', default=None)
+    rl_eval = subparsers.add_parser('rl-evaluate', help='compare a saved Mahjong model with observation-only bots')
+    rl_eval.add_argument('--model', type=Path, required=True)
+    rl_eval.add_argument('--baseline-model', type=Path)
+    rl_eval.add_argument('--opponents', nargs='+', default=('greedy',), choices=('random', 'win-first', 'greedy', 'defensive', 'value'))
+    rl_eval.add_argument('--baselines', nargs='*', default=('random', 'win-first', 'greedy', 'defensive', 'value'), choices=('random', 'win-first', 'greedy', 'defensive', 'value'))
+    rl_eval.add_argument('--blocks', type=int, default=50)
+    rl_eval.add_argument('--seed', type=int, default=200000)
+    rl_eval.add_argument('--workers', type=int, default=4)
+    rl_eval.add_argument('--backend', default='auto', choices=('auto', 'python', 'numba'))
+    rl_eval.add_argument('--device', default='cpu')
+    rl_eval.add_argument('--stochastic', action='store_true')
+    rl_eval.add_argument('--no-games', action='store_true')
+    rl_eval.add_argument('--output', type=Path)
     args = parser.parse_args(argv)
+    if args.command == 'rl-train':
+        from dataclasses import fields
+        from .rl.train import TrainConfig, train
+        values = {}
+        if args.resume:
+            from .rl.checkpoint import read_metadata
+            values.update(read_metadata(args.resume)['training'].get('config', {}))
+        if args.config:
+            values.update(json.loads(args.config.read_text()))
+        for field in fields(TrainConfig):
+            value = getattr(args, field.name, None)
+            if value is not None:
+                values[field.name] = value
+        result = train(args.output, TrainConfig(**values), resume=args.resume)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+    if args.command == 'rl-evaluate':
+        from .rl.evaluate import evaluate_models
+        result = evaluate_models(args.model, baseline_model=args.baseline_model, opponents=args.opponents,
+            baselines=args.baselines, blocks=args.blocks, seed=args.seed, workers=args.workers,
+            backend=args.backend, device=args.device, deterministic=not args.stochastic, include_games=not args.no_games)
+        text = json.dumps(result, ensure_ascii=False, indent=2)
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(text + '\n')
+        print(text)
+        return 0
     if args.command in ('evaluate', 'benchmark', 'training-smoke', 'batch-smoke'):
         if args.command == 'evaluate':
             from .evaluation import evaluate

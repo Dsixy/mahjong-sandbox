@@ -1,0 +1,35 @@
+{
+  "python": "3.12.14",
+  "torch": "2.14.1+cpu",
+  "device": "cpu",
+  "models": {
+    "v1": {
+      "sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21",
+      "feature_version": "riichi_visible_v1",
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          121
+        ],
+        "suit": null,
+        "meld_index": null
+      },
+      "finite_parameters": true,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    },
+    "v2": {
+      "sha256": "6c9fb5a4066b744b7a28eee42420563d9ee72b7977115bfc2f82372ff5483824",
+      "feature_version": "riichi_visible_v2",
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          121
+        ],
+        "suit": null,
+        "meld_index": null
+      },
+      "finite_parameters": true,
+      "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec"
+    }
+  }
+}

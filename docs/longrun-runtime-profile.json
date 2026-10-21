@@ -1,0 +1,359 @@
+{
+  "observed_utc": "2026-10-19T11:40:02.834047+00:00",
+  "method": "Sequential CPU/CUDA comparison in the existing 16 CPU / 1 H200 allocation, while the production learner continued. Same checkpoint, frozen opponent pool, seed, image and hyperparameters; 3 updates each, exclude first update; not an exclusive-node benchmark. PPO actions are stochastic and CPU/CUDA RNG streams need not produce identical trajectories. Timings exclude startup, validation and checkpoint publication. CUDA synchronized at boundaries.",
+  "image": "registry.h.pjlab.org.cn/ailab-llmagent-llmagent_cpu_task/mls_task@sha256:490b9dd1687b15d6da83fbd5f2344e683e72e3548266709014de6a15f6b6372d",
+  "production_job": {
+    "name": "policy-optimization-20261019-main",
+    "uid": "a8d0884f-a857-4e6d-8a4b-8236e910521b",
+    "phase": "Running"
+  },
+  "cancelled_unallocated_cpu_diagnostic": {
+    "name": "policy-runtime-profile-20261019",
+    "uid": "baaf101e-7d5b-47da-aabf-037f45daef1e",
+    "phase": "Stopped"
+  },
+  "cpu": {
+    "observed_utc": "2026-10-19T11:34:50.475530+00:00",
+    "torch": "2.8.0+cu128",
+    "python": "3.12.12",
+    "hostname": "rjob-497a9d27002e9227-f61eb500bddbbf61-0",
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8558",
+    "cpu_affinity_count": 16,
+    "opponent_manifest": {
+      "version": 1,
+      "snapshots": [
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_69632_36c9e088.zip",
+          "timesteps": 69632,
+          "sha256": "a5bf2d8a5514ef5a8504fe8a90bcf07a2c44d34c441f6c6f5b39166b188f6c3c"
+        },
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_135168_de2c63eb.zip",
+          "timesteps": 135168,
+          "sha256": "1ee09963a0a37d6f9590ddce34e7a65596ba7d9216124487c8ba45de669b60c7"
+        },
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_200704_135f07fd.zip",
+          "timesteps": 200704,
+          "sha256": "6c0c05b201a0ef28cb163d53f2adc662f32cf8ddceac8e4ea09d0d20b4ad8468"
+        },
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_266240_07ced251.zip",
+          "timesteps": 266240,
+          "sha256": "10407a87d329cb6dc5c85ecf71e2a0309db085cbb859424bfa05dda2ff78b764"
+        }
+      ]
+    },
+    "notes": [
+      "No checkpoint, validation, or snapshot publication during timings.",
+      "First update excluded from steady-state summaries.",
+      "Environment step includes feature encoding; do not add these overlapping counters.",
+      "CUDA boundaries synchronized; instrumentation can add overhead."
+    ],
+    "profiles": [
+      {
+        "config": {
+          "total_timesteps": 10000000,
+          "n_envs": 128,
+          "workers": 8,
+          "rollout_steps": 64,
+          "batch_size": 1024,
+          "epochs": 4,
+          "learning_rate": 0.0001,
+          "gamma": 1.0,
+          "gae_lambda": 0.95,
+          "clip_range": 0.2,
+          "entropy_coef": 0.01,
+          "value_coef": 0.5,
+          "max_grad_norm": 0.5,
+          "target_kl": 0.03,
+          "reward_scale": 32.0,
+          "hidden": 128,
+          "seed": 42,
+          "backend": "numba",
+          "device": "cpu",
+          "torch_threads": 1,
+          "opponents": [
+            "greedy",
+            "defensive",
+            "value"
+          ],
+          "hints": true,
+          "bc_samples": 0,
+          "bc_epochs": 8,
+          "checkpoint_every": 1,
+          "validation_every": 32,
+          "validation_blocks": 16,
+          "validation_seed": 100000,
+          "self_play_probability": 0.5,
+          "snapshot_every": 8,
+          "snapshot_pool_size": 4,
+          "rules": {
+            "rule_version": "sichuan_xuezhan_v1",
+            "exchange_three": true,
+            "base_points": 1,
+            "fan_cap": 5,
+            "self_draw_bonus": "base",
+            "seven_pairs_quads": true,
+            "passed_ron_lock": true,
+            "last_tile_bonus": true,
+            "force_win_last_four": false,
+            "kong_discard_transfer": false,
+            "check_flower_pigs": true,
+            "check_noten": true,
+            "refund_noten_kongs": true,
+            "dealer": 0
+          }
+        },
+        "checkpoint": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/checkpoints/step_307200.zip",
+        "checkpoint_sha256": "b9ea72274336ae5215e8c92f25cbc66f2705155d32f205b58ed9af1ca7b7d181",
+        "parameters": 231234,
+        "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+        "env_seed": 1307245,
+        "elapsed_seconds_including_startup": 145.04142131004483,
+        "completed_episodes": 584,
+        "updates": [
+          {
+            "learner_forward_seconds": 0.5219185389578342,
+            "feature_seconds": 18.619120269082487,
+            "environment_step_seconds": 36.72555357962847,
+            "rollout_seconds": 37.44157019816339,
+            "update": 1,
+            "ppo_update_seconds": 5.116306954063475,
+            "optimizer_epochs": 4,
+            "decisions": 8192,
+            "total_seconds": 42.557877152226865,
+            "decisions_per_second": 192.49080424518658,
+            "environment_nonencode_seconds": 18.10643331054598
+          },
+          {
+            "learner_forward_seconds": 0.5566474935039878,
+            "feature_seconds": 20.717139969579875,
+            "environment_step_seconds": 39.807857361622155,
+            "rollout_seconds": 40.56544870976359,
+            "update": 2,
+            "ppo_update_seconds": 5.425910588353872,
+            "optimizer_epochs": 4,
+            "decisions": 8192,
+            "total_seconds": 45.99135929811746,
+            "decisions_per_second": 178.1204149000945,
+            "environment_nonencode_seconds": 19.09071739204228
+          },
+          {
+            "learner_forward_seconds": 0.5280179064720869,
+            "feature_seconds": 18.04274936951697,
+            "environment_step_seconds": 37.326279336586595,
+            "rollout_seconds": 38.03195867501199,
+            "update": 3,
+            "ppo_update_seconds": 5.099188953638077,
+            "optimizer_epochs": 4,
+            "decisions": 8192,
+            "total_seconds": 43.13114762865007,
+            "decisions_per_second": 189.93234472987743,
+            "environment_nonencode_seconds": 19.283529967069626
+          }
+        ],
+        "steady_decisions_per_second": 183.83683948054588,
+        "steady_rollout_fraction": 0.8819030129993932,
+        "steady_update_fraction": 0.11809698700060674,
+        "actual_device": "cpu"
+      }
+    ]
+  },
+  "cuda": {
+    "observed_utc": "2026-10-19T11:37:17.973771+00:00",
+    "torch": "2.8.0+cu128",
+    "python": "3.12.12",
+    "hostname": "rjob-497a9d27002e9227-f61eb500bddbbf61-0",
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8558",
+    "cpu_affinity_count": 16,
+    "opponent_manifest": {
+      "version": 1,
+      "snapshots": [
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_69632_36c9e088.zip",
+          "timesteps": 69632,
+          "sha256": "a5bf2d8a5514ef5a8504fe8a90bcf07a2c44d34c441f6c6f5b39166b188f6c3c"
+        },
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_135168_de2c63eb.zip",
+          "timesteps": 135168,
+          "sha256": "1ee09963a0a37d6f9590ddce34e7a65596ba7d9216124487c8ba45de669b60c7"
+        },
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_200704_135f07fd.zip",
+          "timesteps": 200704,
+          "sha256": "6c0c05b201a0ef28cb163d53f2adc662f32cf8ddceac8e4ea09d0d20b4ad8468"
+        },
+        {
+          "path": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/selfplay/step_266240_07ced251.zip",
+          "timesteps": 266240,
+          "sha256": "10407a87d329cb6dc5c85ecf71e2a0309db085cbb859424bfa05dda2ff78b764"
+        }
+      ]
+    },
+    "notes": [
+      "No checkpoint, validation, or snapshot publication during timings.",
+      "First update excluded from steady-state summaries.",
+      "Environment step includes feature encoding; do not add these overlapping counters.",
+      "CUDA boundaries synchronized; instrumentation can add overhead."
+    ],
+    "profiles": [
+      {
+        "config": {
+          "total_timesteps": 10000000,
+          "n_envs": 128,
+          "workers": 8,
+          "rollout_steps": 64,
+          "batch_size": 1024,
+          "epochs": 4,
+          "learning_rate": 0.0001,
+          "gamma": 1.0,
+          "gae_lambda": 0.95,
+          "clip_range": 0.2,
+          "entropy_coef": 0.01,
+          "value_coef": 0.5,
+          "max_grad_norm": 0.5,
+          "target_kl": 0.03,
+          "reward_scale": 32.0,
+          "hidden": 128,
+          "seed": 42,
+          "backend": "numba",
+          "device": "cuda",
+          "torch_threads": 1,
+          "opponents": [
+            "greedy",
+            "defensive",
+            "value"
+          ],
+          "hints": true,
+          "bc_samples": 0,
+          "bc_epochs": 8,
+          "checkpoint_every": 1,
+          "validation_every": 32,
+          "validation_blocks": 16,
+          "validation_seed": 100000,
+          "self_play_probability": 0.5,
+          "snapshot_every": 8,
+          "snapshot_pool_size": 4,
+          "rules": {
+            "rule_version": "sichuan_xuezhan_v1",
+            "exchange_three": true,
+            "base_points": 1,
+            "fan_cap": 5,
+            "self_draw_bonus": "base",
+            "seven_pairs_quads": true,
+            "passed_ron_lock": true,
+            "last_tile_bonus": true,
+            "force_win_last_four": false,
+            "kong_discard_transfer": false,
+            "check_flower_pigs": true,
+            "check_noten": true,
+            "refund_noten_kongs": true,
+            "dealer": 0
+          }
+        },
+        "checkpoint": "/mnt/shared-storage-gpfs2/gpfs2-agent-multimodel/user/dongyi/projects/policy-optimization-20261019/output/checkpoints/step_307200.zip",
+        "checkpoint_sha256": "b9ea72274336ae5215e8c92f25cbc66f2705155d32f205b58ed9af1ca7b7d181",
+        "parameters": 231234,
+        "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513",
+        "env_seed": 1307245,
+        "elapsed_seconds_including_startup": 130.75057066231966,
+        "completed_episodes": 576,
+        "updates": [
+          {
+            "learner_forward_seconds": 0.40866218879818916,
+            "feature_seconds": 18.832469943910837,
+            "environment_step_seconds": 37.240275889635086,
+            "rollout_seconds": 37.85358685255051,
+            "update": 1,
+            "ppo_update_seconds": 0.45164857245981693,
+            "optimizer_epochs": 4,
+            "decisions": 8192,
+            "total_seconds": 38.30523542501032,
+            "decisions_per_second": 213.86110564539865,
+            "environment_nonencode_seconds": 18.40780594572425
+          },
+          {
+            "learner_forward_seconds": 0.10139303281903267,
+            "feature_seconds": 20.615817092359066,
+            "environment_step_seconds": 39.72018669452518,
+            "rollout_seconds": 40.05110059864819,
+            "update": 2,
+            "ppo_update_seconds": 0.3380659846588969,
+            "optimizer_epochs": 4,
+            "decisions": 8192,
+            "total_seconds": 40.38916658330709,
+            "decisions_per_second": 202.82666598487742,
+            "environment_nonencode_seconds": 19.104369602166116
+          },
+          {
+            "learner_forward_seconds": 0.09899737406522036,
+            "feature_seconds": 18.94896226748824,
+            "environment_step_seconds": 37.571024811826646,
+            "rollout_seconds": 37.8905537026003,
+            "update": 3,
+            "ppo_update_seconds": 0.32706607785075903,
+            "optimizer_epochs": 4,
+            "decisions": 8192,
+            "total_seconds": 38.21761978045106,
+            "decisions_per_second": 214.3513920296612,
+            "environment_nonencode_seconds": 18.622062544338405
+          }
+        ],
+        "steady_decisions_per_second": 208.42984121220715,
+        "steady_rollout_fraction": 0.9915384905899637,
+        "steady_update_fraction": 0.008461509410036342,
+        "actual_device": "cuda"
+      }
+    ]
+  },
+  "summary": {
+    "cpu": {
+      "rollout_seconds": 39.29870369238779,
+      "feature_seconds": 19.379944669548422,
+      "environment_nonencode_seconds": 19.187123679555953,
+      "learner_forward_seconds": 0.5423326999880373,
+      "ppo_update_seconds": 5.2625497709959745,
+      "total_seconds": 44.561253463383764,
+      "decisions_per_second": 183.83683948054588,
+      "rollout_fraction": 0.8819030129993932,
+      "ppo_update_fraction": 0.11809698700060674,
+      "measured_updates": 2
+    },
+    "cuda": {
+      "rollout_seconds": 38.970827150624245,
+      "feature_seconds": 19.782389679923654,
+      "environment_nonencode_seconds": 18.86321607325226,
+      "learner_forward_seconds": 0.10019520344212651,
+      "ppo_update_seconds": 0.332566031254828,
+      "total_seconds": 39.30339318187907,
+      "decisions_per_second": 208.42984121220715,
+      "rollout_fraction": 0.9915384905899637,
+      "ppo_update_fraction": 0.008461509410036342,
+      "measured_updates": 2
+    },
+    "cuda_speedup": 1.1337762431140128
+  },
+  "pre_profile_resource_sample": {
+    "elapsed_seconds": 13.933265635743737,
+    "learner_cpu_cores_busy": 0.5031124923088289,
+    "eight_actor_workers_cpu_cores_busy": 1.8703440156302527,
+    "gpu_utilization_percent_samples": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "gpu_memory_mib": 1505,
+    "note": "Short sample before diagnostic started; may miss update bursts."
+  }
+}

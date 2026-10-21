@@ -1,0 +1,143 @@
+{
+  "plan": {
+    "format": "riichi_distillation_dataset_v1",
+    "samples": 4096,
+    "seed": 1200000,
+    "shard_size": 1024,
+    "reserved_matches_per_shard": 256,
+    "rules": {
+      "rule_version": "riichi_4p_v1",
+      "dealer": 0,
+      "round_wind": 27,
+      "hand_number": 1,
+      "honba": 0,
+      "riichi_sticks": 0,
+      "initial_scores": [
+        25000,
+        25000,
+        25000,
+        25000
+      ],
+      "red_fives": [
+        16,
+        52,
+        88
+      ],
+      "open_tanyao": true,
+      "kuikae_forbidden": true,
+      "riichi_min_live": 4,
+      "multi_ron": true,
+      "triple_ron_abort": true,
+      "abortive_draws": true,
+      "nagashi_mangan": true,
+      "kiriage_mangan": false,
+      "counted_yakuman": true,
+      "double_yakuman": true,
+      "pao": true,
+      "delayed_open_kan_dora": true
+    },
+    "match_config": {
+      "rule_version": "riichi_match_v1",
+      "length": "south",
+      "target": 30000,
+      "bankruptcy": true,
+      "agari_yame": true,
+      "tenpai_yame": false,
+      "west_extension": true
+    },
+    "source_sha256": "86e85e6e9579072221685a3d2c99ea481adc822319a7c8e0ee446b28a6564f02",
+    "learner_sha256": null,
+    "teacher_mix": 0.0,
+    "backend": "numba"
+  },
+  "shards": [
+    {
+      "path": "shard_00000.npz",
+      "sha256": "5320e8612c03e5946f6d921e0c8636f059829017a567b45565d42ec936cc96a2",
+      "samples": 1024,
+      "match_ids": [
+        1200000,
+        1200001,
+        1200002
+      ],
+      "hands": 19,
+      "commands": 3378,
+      "groups": {
+        "discard": 748,
+        "call": 228,
+        "riichi": 28,
+        "win": 18,
+        "kong": 2
+      },
+      "threat": 263,
+      "late": 225,
+      "elapsed_seconds": 19.38783186674118
+    },
+    {
+      "path": "shard_00001.npz",
+      "sha256": "f4b1160103b9b65cf3ebbbbee9dd70f96c6869d6ff2536799a2468c4843e6f2d",
+      "samples": 1024,
+      "match_ids": [
+        1200256,
+        1200257,
+        1200258
+      ],
+      "hands": 19,
+      "commands": 3443,
+      "groups": {
+        "discard": 767,
+        "call": 210,
+        "riichi": 28,
+        "win": 18,
+        "kong": 1
+      },
+      "threat": 214,
+      "late": 117,
+      "elapsed_seconds": 22.42520522326231
+    },
+    {
+      "path": "shard_00002.npz",
+      "sha256": "47e163abe16f465898ab6bd560fea78f87fa1156f13bfa2017d541babf007c60",
+      "samples": 1024,
+      "match_ids": [
+        1200512,
+        1200513
+      ],
+      "hands": 17,
+      "commands": 3385,
+      "groups": {
+        "discard": 753,
+        "call": 211,
+        "riichi": 22,
+        "win": 16,
+        "kong": 22
+      },
+      "threat": 182,
+      "late": 189,
+      "elapsed_seconds": 21.830024169757962
+    },
+    {
+      "path": "shard_00003.npz",
+      "sha256": "ebfa7c59f022456197c0d9820a1e79ae396a76d8cdb38f7cb5ec1089bd39b9e0",
+      "samples": 1024,
+      "match_ids": [
+        1200768,
+        1200769,
+        1200770
+      ],
+      "hands": 20,
+      "commands": 3423,
+      "groups": {
+        "discard": 744,
+        "call": 222,
+        "riichi": 34,
+        "win": 19,
+        "kong": 5
+      },
+      "threat": 256,
+      "late": 209,
+      "elapsed_seconds": 21.819488069973886
+    }
+  ],
+  "elapsed_seconds": 22.731588404625654
+}

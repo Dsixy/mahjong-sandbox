@@ -1,0 +1,275 @@
+{
+  "plan": {
+    "format": "riichi_distillation_dataset_v1",
+    "samples": 8192,
+    "seed": 1310000,
+    "shard_size": 1024,
+    "reserved_matches_per_shard": 256,
+    "rules": {
+      "rule_version": "riichi_4p_v1",
+      "dealer": 0,
+      "round_wind": 27,
+      "hand_number": 1,
+      "honba": 0,
+      "riichi_sticks": 0,
+      "initial_scores": [
+        25000,
+        25000,
+        25000,
+        25000
+      ],
+      "red_fives": [
+        16,
+        52,
+        88
+      ],
+      "open_tanyao": true,
+      "kuikae_forbidden": true,
+      "riichi_min_live": 4,
+      "multi_ron": true,
+      "triple_ron_abort": true,
+      "abortive_draws": true,
+      "nagashi_mangan": true,
+      "kiriage_mangan": false,
+      "counted_yakuman": true,
+      "double_yakuman": true,
+      "pao": true,
+      "delayed_open_kan_dora": true
+    },
+    "match_config": {
+      "rule_version": "riichi_match_v1",
+      "length": "south",
+      "target": 30000,
+      "bankruptcy": true,
+      "agari_yame": true,
+      "tenpai_yame": false,
+      "west_extension": true
+    },
+    "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+    "learner_sha256": "2dd3409f7b0383b8e2adf98c26d426d3f223efe9e8cb201d21cee5d1d114b9e2",
+    "teacher_mix": 0.25,
+    "backend": "numba"
+  },
+  "shards": [
+    {
+      "path": "shard_00000.npz",
+      "sha256": "1f89301a135acdd8a2709e81096d104baeb3a87b76f2e98e6502d9b7876c30c4",
+      "samples": 1024,
+      "match_ids": [
+        1310000,
+        1310001,
+        1310002,
+        1310003,
+        1310004,
+        1310005,
+        1310006
+      ],
+      "hands": 71,
+      "commands": 13567,
+      "groups": {
+        "discard": 757,
+        "call": 236,
+        "riichi": 22,
+        "win": 8,
+        "kong": 1
+      },
+      "threat": 235,
+      "late": 210,
+      "elapsed_seconds": 47.09845567122102
+    },
+    {
+      "path": "shard_00001.npz",
+      "sha256": "e58be46a0e274710fdd4fd3b5b0e627d5fe73bfc8e3d05ac4adc56c8f336a01b",
+      "samples": 1024,
+      "match_ids": [
+        1310256,
+        1310257,
+        1310258,
+        1310259,
+        1310260,
+        1310261,
+        1310262,
+        1310263,
+        1310264
+      ],
+      "hands": 77,
+      "commands": 13864,
+      "groups": {
+        "discard": 763,
+        "call": 215,
+        "riichi": 24,
+        "win": 18,
+        "kong": 4
+      },
+      "threat": 216,
+      "late": 197,
+      "elapsed_seconds": 43.41283495165408
+    },
+    {
+      "path": "shard_00002.npz",
+      "sha256": "1f20a783623822fac06d79fbe678caef5ff407079ed6613e07e367444ac5451f",
+      "samples": 1024,
+      "match_ids": [
+        1310512,
+        1310513,
+        1310514,
+        1310515,
+        1310516,
+        1310517,
+        1310518,
+        1310519,
+        1310520
+      ],
+      "hands": 80,
+      "commands": 13798,
+      "groups": {
+        "discard": 759,
+        "call": 211,
+        "riichi": 32,
+        "win": 20,
+        "kong": 2
+      },
+      "threat": 197,
+      "late": 234,
+      "elapsed_seconds": 44.940275077708066
+    },
+    {
+      "path": "shard_00003.npz",
+      "sha256": "69cc613d3a0420d473d1a6c01ebfb5e56c99ed7f5b718a66d7b35f3b51f7096a",
+      "samples": 1024,
+      "match_ids": [
+        1310768,
+        1310769,
+        1310770,
+        1310771,
+        1310772,
+        1310773,
+        1310774,
+        1310775,
+        1310776
+      ],
+      "hands": 69,
+      "commands": 13384,
+      "groups": {
+        "discard": 756,
+        "call": 235,
+        "riichi": 23,
+        "win": 9,
+        "kong": 1
+      },
+      "threat": 291,
+      "late": 123,
+      "elapsed_seconds": 44.74458831176162
+    },
+    {
+      "path": "shard_00004.npz",
+      "sha256": "db3f36c00bd7d493ea26ba2800dc4e9246e35e35435395cf0da6e4f98348c2c0",
+      "samples": 1024,
+      "match_ids": [
+        1311024,
+        1311025,
+        1311026,
+        1311027,
+        1311028,
+        1311029,
+        1311030,
+        1311031
+      ],
+      "hands": 79,
+      "commands": 13967,
+      "groups": {
+        "discard": 747,
+        "call": 225,
+        "riichi": 32,
+        "win": 18,
+        "kong": 2
+      },
+      "threat": 199,
+      "late": 230,
+      "elapsed_seconds": 45.76527146715671
+    },
+    {
+      "path": "shard_00005.npz",
+      "sha256": "583fe9d447e08a3e13fa3545e3316fe4c90df36f39d9c91572c49c26880560de",
+      "samples": 1024,
+      "match_ids": [
+        1311280,
+        1311281,
+        1311282,
+        1311283,
+        1311284,
+        1311285,
+        1311286,
+        1311287,
+        1311288
+      ],
+      "hands": 75,
+      "commands": 13127,
+      "groups": {
+        "discard": 748,
+        "call": 234,
+        "riichi": 23,
+        "win": 18,
+        "kong": 1
+      },
+      "threat": 199,
+      "late": 210,
+      "elapsed_seconds": 41.1299092117697
+    },
+    {
+      "path": "shard_00006.npz",
+      "sha256": "9cb57fd9cc8337289a0d8111a7e7ac9823c77a739c0a4bdf43a3fce27ececca3",
+      "samples": 1024,
+      "match_ids": [
+        1311536,
+        1311537,
+        1311538,
+        1311539,
+        1311540,
+        1311541,
+        1311542,
+        1311543
+      ],
+      "hands": 75,
+      "commands": 13356,
+      "groups": {
+        "discard": 766,
+        "call": 225,
+        "riichi": 23,
+        "win": 10,
+        "kong": 0
+      },
+      "threat": 292,
+      "late": 100,
+      "elapsed_seconds": 42.29491171706468
+    },
+    {
+      "path": "shard_00007.npz",
+      "sha256": "cc6ff4497a7b828be3cb57884d60789b78a33c6782e0e858a149cf6ac11c2e13",
+      "samples": 1024,
+      "match_ids": [
+        1311792,
+        1311793,
+        1311794,
+        1311795,
+        1311796,
+        1311797,
+        1311798,
+        1311799
+      ],
+      "hands": 73,
+      "commands": 13443,
+      "groups": {
+        "discard": 758,
+        "call": 221,
+        "riichi": 28,
+        "win": 16,
+        "kong": 1
+      },
+      "threat": 268,
+      "late": 147,
+      "elapsed_seconds": 44.33711410872638
+    }
+  ],
+  "elapsed_seconds": 50.81597797572613
+}

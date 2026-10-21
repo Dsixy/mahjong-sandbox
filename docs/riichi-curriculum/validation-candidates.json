@@ -1,0 +1,74 @@
+{
+  "format": "riichi_global_validation_candidates_v1",
+  "validation_seed": 1500000,
+  "validation_blocks": 32,
+  "runs": {
+    "v1_20261021": [
+      {
+        "step": 131072,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_131072.zip",
+        "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455"
+      },
+      {
+        "step": 262144,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_262144.zip",
+        "sha256": "d93468e84a887a591e650e45cb02686234f23a615505483f840602c0ce6e1509"
+      },
+      {
+        "step": 393216,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_393216.zip",
+        "sha256": "8b6b781260b14876d339277e7c04e41ddc562705762f28f14a7e8f081f881830"
+      },
+      {
+        "step": 524288,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_524288.zip",
+        "sha256": "94fc75a3bb687d8fb0ef235233647b164c503acf946ff3a35c3ce3dd67403c17"
+      }
+    ],
+    "v2_20261021": [
+      {
+        "step": 131072,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_131072.zip",
+        "sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072"
+      },
+      {
+        "step": 262144,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_262144.zip",
+        "sha256": "6fa4364cd17186fb75780eda27ca97ca8c43dde5de7fd716509259063d357d4a"
+      },
+      {
+        "step": 393216,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_393216.zip",
+        "sha256": "f28a7cde22693391ccce1efcff3bb14a934aca88da06e9ea06835634ada22710"
+      },
+      {
+        "step": 524288,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261021/checkpoints/step_524288.zip",
+        "sha256": "aef79ba4e843dc5e71238eb354dc4df3e4014985e12e4827e06596f4e57831fb"
+      }
+    ],
+    "v2_20261022": [
+      {
+        "step": 131072,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_131072.zip",
+        "sha256": "dd48d2b3179065025af0213c853f111230132ff154eda58b28b758592f3437dc"
+      },
+      {
+        "step": 262144,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_262144.zip",
+        "sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2"
+      },
+      {
+        "step": 393216,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_393216.zip",
+        "sha256": "997ae6551aa87ec8056b2deecbde15bdd4e4dfc0731c61aaf10638a2b37ce762"
+      },
+      {
+        "step": 524288,
+        "path": "/sandbox-data/policy-lab-20261021/experiment-final/v2_20261022/checkpoints/step_524288.zip",
+        "sha256": "bd46968b4cf2ff7758c39f08791278f44e9e323c31be8360d54e332dc47309d5"
+      }
+    ]
+  },
+  "criterion": "same predeclared global steps for every seed; maximize rank utility; earlier global step wins a tie"
+}

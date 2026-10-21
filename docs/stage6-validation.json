@@ -1,0 +1,111 @@
+{
+  "created_at_utc": "2026-10-19T09:45:56.874449+00:00",
+  "code_revision": "04ede70244984ecc0f5a076f457f90c3c7ca8b55",
+  "branch": "stage6-sichuan-rl",
+  "source_sha256": "baf08d25082aed96e4d9532f381a9044816700aad2d48c91d4fc60d20ac0b0c2",
+  "hardware": {
+    "python": "3.12.14",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "logical_cpus": 16,
+    "affinity_cpus": 16,
+    "numpy": "2.3.5",
+    "numba": "0.68.0",
+    "llvmlite": "0.50.0"
+  },
+  "regression": [
+    {
+      "environment": "optional-rl-native",
+      "tests": 130,
+      "seconds": 221.38,
+      "skipped": 0,
+      "passed": true,
+      "log_sha256": "8d02c6f4ea149470255e4f5e743a636f7737213276792b97af85742316df2b4c"
+    },
+    {
+      "environment": "standard-library",
+      "tests": 130,
+      "seconds": 104.82,
+      "skipped": 24,
+      "passed": true,
+      "log_sha256": "3c1a5b72bd5094780ce963c5a8fb3923907ab731a474d38558aa14e2a5b543cf"
+    }
+  ],
+  "installed_wheel": {
+    "package": "/tmp/mahjong-stage6-package-final/mahjong_sandbox/__init__.py",
+    "wheel_sha256": "0c2f78e383c45c810ec0c9726539a7abd5e7b4ab11df9064066b2f61f53cce91",
+    "public_model_inference_and_legal_submit": true,
+    "torch": "2.14.1+cpu",
+    "device": "cpu"
+  },
+  "checks": {
+    "model_parameters_finite": true,
+    "adam_state_present": true,
+    "saved_model_schema_checksum": true,
+    "package_source_matches_checkout": true,
+    "evaluation_recomputed_from_all_game_records": true,
+    "all_evaluation_score_vectors_zero_sum": true,
+    "training_and_resume_timesteps_verified": true,
+    "held_out_evaluation_games": 1900
+  },
+  "trained_model": {
+    "path": "models/sichuan-ppo-demo/best.zip",
+    "sha256": "ccb8e879c76a4b1b951cfbabdc5f0d3c7e7b89b80c45264941f1dce4fcb1c98b",
+    "timesteps": 69632,
+    "parameters": 231234
+  },
+  "training": {
+    "total_timesteps": 69632,
+    "completed_hands": 1730,
+    "imitation_samples": 8000,
+    "ppo_rollout_updates": 17
+  },
+  "reports": {
+    "stage6-cpu-profile.json": {
+      "sha256": "11451a1b90f6f0e36eac7f18f03fd505887ad376d3cdc561a786bf02982fbf91",
+      "bytes": 1816
+    },
+    "stage6-dev-validation.json": {
+      "sha256": "668c9d7abc612ba55b2f7ea72cbab8b47650961fcf7ad758a97b3a3223801c69",
+      "bytes": 35444
+    },
+    "stage6-evaluation.json": {
+      "sha256": "da37bfd39c74d408e8a83c41574d23ec317c01e7c33849caf20221cc24857c40",
+      "bytes": 421715
+    },
+    "stage6-matchups.json": {
+      "sha256": "632b0ecfcc988cb186338214e2768a66f28bb989c364c3db08faeb94c2d36435",
+      "bytes": 149918
+    },
+    "stage6-metrics.jsonl": {
+      "sha256": "a888baaaaaa9f85f4026b40d77374873fb57982c7400c54abba8779ddd8d7d0b",
+      "bytes": 13528
+    },
+    "stage6-training.json": {
+      "sha256": "3a6a7a987d6cb861a62e603ba0ba789207c52a83dfb21ef0e44d16250ad46159",
+      "bytes": 8101
+    },
+    "stage6-model-portability.json": {
+      "sha256": "0272ca7886a5c20ead5c00772951e4e4045783d83c2f187d66c05a7e9f3c89a2",
+      "bytes": 568
+    }
+  },
+  "gpu": {
+    "interface": "--device cuda / configs/rl/sichuan-gpu.json",
+    "hardware_tested": false,
+    "rjob_submitted": false
+  },
+  "cross_machine_saved_model_validation": {
+    "git_revision": "78a0d91f9fdde8eefe68f572696a4bbe349a5a48",
+    "project": "/workspace/mahjong-sandbox-stage6",
+    "python": "3.13.5",
+    "torch": "2.14.1+cpu",
+    "checkpoint_sha256": "ccb8e879c76a4b1b951cfbabdc5f0d3c7e7b89b80c45264941f1dce4fcb1c98b",
+    "source_sha256": "baf08d25082aed96e4d9532f381a9044816700aad2d48c91d4fc60d20ac0b0c2",
+    "checkpoint_source_matches_current_code": true,
+    "trained_timesteps": 69632,
+    "cross_machine_model_load_and_legal_submit": true,
+    "cpu_training_python": "3.12.14",
+    "inference_device": "cpu",
+    "gpu_job_submitted": false
+  }
+}

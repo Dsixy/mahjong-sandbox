@@ -8,19 +8,19 @@ from .batch import BatchConfig, SyncBatchEnv, array_specs, snapshot, validate_ac
 from .operators import numpy
 
 
-def _layout(n):
+def _layout(n, public_history=False):
     np = numpy()
     fields, offset = {}, 0
-    for k, (shape, dtype) in array_specs(n).items():
+    for k, (shape, dtype) in array_specs(n,public_history=public_history).items():
         offset = (offset + 63) // 64 * 64
         fields[k] = (shape, dtype, offset)
         offset += int(np.prod(shape)) * np.dtype(dtype).itemsize
     return fields, offset
 
 
-def _map(path, n):
+def _map(path, n, public_history=False):
     np = numpy()
-    layout, size = _layout(n)
+    layout, size = _layout(n,public_history)
     memory = np.memmap(path, mode='r+', dtype='uint8', shape=(size,))
     arrays = {k: np.ndarray(shape, dtype=dtype, buffer=memory, offset=offset)
               for k, (shape, dtype, offset) in layout.items()}
@@ -28,7 +28,7 @@ def _map(path, n):
 
 
 def _worker(connection, path, total, start, end, config):
-    memory, arrays = _map(path, total)
+    memory, arrays = _map(path, total,config.public_history)
     env = None
     try:
         env = SyncBatchEnv(end - start, config, lane_offset=start,
@@ -78,10 +78,10 @@ class ProcessBatchEnv:
         self.processes, self.connections, self.ranges = [], [], []
         self._temporary = tempfile.TemporaryDirectory(prefix='mahjong-batch-')
         self.path = str(Path(self._temporary.name) / 'buffers.bin')
-        _, size = _layout(n)
+        _, size = _layout(n,self.config.public_history)
         with open(self.path, 'wb') as f:
             f.truncate(size)
-        self.memory, self.buffers = _map(self.path, n)
+        self.memory, self.buffers = _map(self.path, n,self.config.public_history)
         self.shared_bytes = size
         try:
             ctx = mp.get_context('spawn')

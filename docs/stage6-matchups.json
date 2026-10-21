@@ -1,0 +1,8672 @@
+{
+  "format": "sichuan_rl_evaluation_v1",
+  "variant": "sichuan",
+  "rules": {
+    "rule_version": "sichuan_xuezhan_v1",
+    "exchange_three": true,
+    "base_points": 1,
+    "fan_cap": 5,
+    "self_draw_bonus": "base",
+    "seven_pairs_quads": true,
+    "passed_ron_lock": true,
+    "last_tile_bonus": true,
+    "force_win_last_four": false,
+    "kong_discard_transfer": false,
+    "check_flower_pigs": true,
+    "check_noten": true,
+    "refund_noten_kongs": true,
+    "dealer": 0
+  },
+  "models": {
+    "rl": {
+      "path": "/home/doney/Workspace/Mahjong/models/sichuan-ppo-demo/best.zip",
+      "sha256": "ccb8e879c76a4b1b951cfbabdc5f0d3c7e7b89b80c45264941f1dce4fcb1c98b",
+      "timesteps": 69632,
+      "source_sha256": "baf08d25082aed96e4d9532f381a9044816700aad2d48c91d4fc60d20ac0b0c2"
+    }
+  },
+  "wall_seeds": [
+    300000,
+    300024
+  ],
+  "blocks": 25,
+  "seat_rotations": 4,
+  "interval_method": "95% paired-wall block bootstrap, 2000 resamples; conservative exact boundary intervals",
+  "deterministic_policy": true,
+  "workers": 4,
+  "device": "cpu",
+  "games": 500,
+  "elapsed_seconds": 125.3099944620626,
+  "games_per_second": 3.9901047170772492,
+  "commands": 91964,
+  "end_reasons": {
+    "wall_exhausted": 257,
+    "three_winners": 243
+  },
+  "matchups": {
+    "random": {
+      "rl": {
+        "games": 100,
+        "wall_blocks": 25,
+        "win_rate": 0.75,
+        "deal_in_rate": 0.0,
+        "mean_net_score": 3.46,
+        "ci95": {
+          "win": [
+            0.66,
+            0.83
+          ],
+          "deal_in": [
+            0.0,
+            0.13718517153071252
+          ],
+          "net_score": [
+            2.57,
+            4.530249999999999
+          ]
+        }
+      }
+    },
+    "win-first": {
+      "rl": {
+        "games": 100,
+        "wall_blocks": 25,
+        "win_rate": 0.76,
+        "deal_in_rate": 0.0,
+        "mean_net_score": 3.5,
+        "ci95": {
+          "win": [
+            0.67,
+            0.85
+          ],
+          "deal_in": [
+            0.0,
+            0.13718517153071252
+          ],
+          "net_score": [
+            2.6,
+            4.58
+          ]
+        }
+      }
+    },
+    "greedy": {
+      "rl": {
+        "games": 100,
+        "wall_blocks": 25,
+        "win_rate": 0.75,
+        "deal_in_rate": 0.32,
+        "mean_net_score": 0.32,
+        "ci95": {
+          "win": [
+            0.66,
+            0.84
+          ],
+          "deal_in": [
+            0.24,
+            0.41
+          ],
+          "net_score": [
+            -0.38025,
+            1.1002499999999986
+          ]
+        }
+      }
+    },
+    "defensive": {
+      "rl": {
+        "games": 100,
+        "wall_blocks": 25,
+        "win_rate": 0.74,
+        "deal_in_rate": 0.31,
+        "mean_net_score": 0.85,
+        "ci95": {
+          "win": [
+            0.66,
+            0.82
+          ],
+          "deal_in": [
+            0.21,
+            0.41
+          ],
+          "net_score": [
+            -0.15,
+            1.84
+          ]
+        }
+      }
+    },
+    "value": {
+      "rl": {
+        "games": 100,
+        "wall_blocks": 25,
+        "win_rate": 0.79,
+        "deal_in_rate": 0.27,
+        "mean_net_score": 2.04,
+        "ci95": {
+          "win": [
+            0.72,
+            0.8602499999999986
+          ],
+          "deal_in": [
+            0.2,
+            0.34
+          ],
+          "net_score": [
+            1.19,
+            2.93
+          ]
+        }
+      }
+    }
+  },
+  "paired_comparisons": {
+    "random": {},
+    "win-first": {},
+    "greedy": {},
+    "defensive": {},
+    "value": {}
+  },
+  "game_records": [
+    {
+      "seed": 300000,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        -1,
+        1,
+        -2
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        6,
+        -2,
+        -2
+      ],
+      "commands": 199,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -5,
+        -3,
+        11,
+        -3
+      ],
+      "commands": 205,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "commands": 239,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 194,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 217,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        -1,
+        3
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        11,
+        -1,
+        -4,
+        -6
+      ],
+      "commands": 225,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        4,
+        -6,
+        -2
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -2,
+        -4,
+        8,
+        -2
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -1,
+        -1,
+        -3,
+        5
+      ],
+      "commands": 227,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -2,
+        -2,
+        -2
+      ],
+      "commands": 207,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 10,
+      "scores": [
+        -2,
+        -2,
+        10,
+        -6
+      ],
+      "commands": 237,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        -2,
+        6
+      ],
+      "commands": 227,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        3,
+        -1,
+        -1
+      ],
+      "commands": 244,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 244,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        -1,
+        0
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -2,
+        0,
+        2,
+        0
+      ],
+      "commands": 260,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 12,
+      "scores": [
+        -4,
+        -4,
+        -4,
+        12
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        0,
+        0
+      ],
+      "commands": 162,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -2,
+        8,
+        -4,
+        -2
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 222,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "commands": 213,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        0,
+        -4,
+        0
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 230,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        3,
+        -1
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "commands": 206,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -2,
+        -2,
+        -2
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 225,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        -2,
+        4,
+        -2
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 195,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 211,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 231,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        -1,
+        1
+      ],
+      "commands": 185,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        9,
+        1,
+        -5,
+        -5
+      ],
+      "commands": 223,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -2,
+        8,
+        -2,
+        -4
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        -2,
+        6
+      ],
+      "commands": 222,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        -1,
+        0
+      ],
+      "commands": 224,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        -2,
+        4,
+        0
+      ],
+      "commands": 242,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 199,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 9,
+      "scores": [
+        9,
+        -3,
+        -3,
+        -3
+      ],
+      "commands": 248,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 9,
+      "scores": [
+        -3,
+        9,
+        -3,
+        -3
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 205,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 223,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -4,
+        0,
+        -2
+      ],
+      "commands": 194,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -1,
+        5,
+        -1,
+        -3
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 218,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        0,
+        0
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -3,
+        11,
+        -3,
+        -5
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 195,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        -1,
+        3
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        4,
+        0,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        -1,
+        3
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 185,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        0,
+        -1
+      ],
+      "commands": 187,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        3,
+        -1
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 219,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 260,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 226,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        -1,
+        1
+      ],
+      "commands": 246,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 12,
+      "scores": [
+        12,
+        -4,
+        -4,
+        -4
+      ],
+      "commands": 237,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -3,
+        5,
+        -1,
+        -1
+      ],
+      "commands": 251,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 15,
+      "scores": [
+        15,
+        -5,
+        -5,
+        -5
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        6,
+        -2,
+        -2
+      ],
+      "commands": 227,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        3,
+        -1
+      ],
+      "commands": 248,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 27,
+      "scores": [
+        -9,
+        -9,
+        -9,
+        27
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "commands": 248,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 234,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        2,
+        -2,
+        1
+      ],
+      "commands": 239,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 201,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 219,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 211,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        0,
+        -2,
+        0
+      ],
+      "commands": 204,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        4,
+        -4,
+        0
+      ],
+      "commands": 221,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -5,
+        -3,
+        -3,
+        11
+      ],
+      "commands": 197,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -2,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "random",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 224,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        -5,
+        6,
+        -5
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        6,
+        -2,
+        -2
+      ],
+      "commands": 199,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -5,
+        -3,
+        11,
+        -3
+      ],
+      "commands": 205,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "commands": 239,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 194,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 217,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        -1,
+        3
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        11,
+        -1,
+        -4,
+        -6
+      ],
+      "commands": 225,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        4,
+        -6,
+        -2
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -2,
+        -4,
+        8,
+        -2
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -1,
+        -1,
+        -3,
+        5
+      ],
+      "commands": 227,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -2,
+        -2,
+        -2
+      ],
+      "commands": 207,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 10,
+      "scores": [
+        -2,
+        -2,
+        10,
+        -6
+      ],
+      "commands": 237,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        -2,
+        6
+      ],
+      "commands": 227,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        3,
+        -1,
+        -1
+      ],
+      "commands": 244,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 244,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "commands": 194,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -2,
+        0,
+        2,
+        0
+      ],
+      "commands": 260,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 12,
+      "scores": [
+        -4,
+        -4,
+        -4,
+        12
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        0,
+        0
+      ],
+      "commands": 162,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -2,
+        8,
+        -4,
+        -2
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 222,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "commands": 213,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        0,
+        -4,
+        0
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 230,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        3,
+        -1
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "commands": 206,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -2,
+        -2,
+        -2
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 225,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        -2,
+        4,
+        -2
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 195,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -2,
+        -2,
+        3
+      ],
+      "commands": 186,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 231,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        -1,
+        1
+      ],
+      "commands": 185,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        9,
+        1,
+        -5,
+        -5
+      ],
+      "commands": 223,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -2,
+        8,
+        -2,
+        -4
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        -2,
+        6
+      ],
+      "commands": 222,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        -1,
+        0
+      ],
+      "commands": 224,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        -2,
+        4,
+        0
+      ],
+      "commands": 242,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 199,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 9,
+      "scores": [
+        9,
+        -3,
+        -3,
+        -3
+      ],
+      "commands": 248,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 9,
+      "scores": [
+        -3,
+        9,
+        -3,
+        -3
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 205,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300013,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 223,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -4,
+        0,
+        -2
+      ],
+      "commands": 194,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -1,
+        5,
+        -1,
+        -3
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 218,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        0,
+        0
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -3,
+        11,
+        -3,
+        -5
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 195,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        -1,
+        3
+      ],
+      "commands": 236,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 212,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        4,
+        0,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        -1,
+        3
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 185,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        0,
+        -1
+      ],
+      "commands": 187,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        3,
+        -1
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 219,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 260,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 226,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        -1,
+        1
+      ],
+      "commands": 246,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 12,
+      "scores": [
+        12,
+        -4,
+        -4,
+        -4
+      ],
+      "commands": 237,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -3,
+        5,
+        -1,
+        -1
+      ],
+      "commands": 251,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 15,
+      "scores": [
+        15,
+        -5,
+        -5,
+        -5
+      ],
+      "commands": 229,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        6,
+        -2,
+        -2
+      ],
+      "commands": 227,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        -1,
+        -1,
+        3,
+        -1
+      ],
+      "commands": 248,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 27,
+      "scores": [
+        -9,
+        -9,
+        -9,
+        27
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 3,
+      "scores": [
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "commands": 248,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        1,
+        0
+      ],
+      "commands": 234,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        2,
+        -2,
+        1
+      ],
+      "commands": 239,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 201,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        -1,
+        0
+      ],
+      "commands": 219,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 211,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        0,
+        -2,
+        0
+      ],
+      "commands": 204,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        4,
+        -4,
+        0
+      ],
+      "commands": 221,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300023,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -5,
+        -3,
+        -3,
+        11
+      ],
+      "commands": 197,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "commands": 232,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        0,
+        1,
+        -1
+      ],
+      "commands": 231,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        6,
+        -2
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "win-first",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "commands": 224,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -3,
+      "scores": [
+        -3,
+        6,
+        2,
+        -5
+      ],
+      "commands": 137,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -5,
+        6,
+        2,
+        -3
+      ],
+      "commands": 123,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -9,
+        6,
+        1,
+        2
+      ],
+      "commands": 125,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        -5,
+        6,
+        2,
+        -3
+      ],
+      "commands": 123,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300001,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -3,
+      "scores": [
+        -3,
+        -1,
+        0,
+        4
+      ],
+      "commands": 221,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        1,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        8,
+        -3,
+        -2,
+        -3
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -3,
+        -1,
+        0,
+        4
+      ],
+      "commands": 221,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -2,
+      "scores": [
+        -2,
+        1,
+        1,
+        0
+      ],
+      "commands": 200,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300002,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        4,
+        1,
+        0,
+        -5
+      ],
+      "commands": 204,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300002,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -5,
+        2,
+        1,
+        2
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300002,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        -4,
+        3,
+        1,
+        0
+      ],
+      "commands": 179,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -4,
+        11,
+        -8,
+        1
+      ],
+      "commands": 154,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 12,
+      "scores": [
+        4,
+        12,
+        -8,
+        -8
+      ],
+      "commands": 135,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -7,
+      "scores": [
+        -1,
+        11,
+        -7,
+        -3
+      ],
+      "commands": 180,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        5,
+        3,
+        -4,
+        -4
+      ],
+      "commands": 190,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        6,
+        -9,
+        -1
+      ],
+      "commands": 153,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -1,
+        6,
+        -1,
+        -4
+      ],
+      "commands": 101,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        4,
+        1,
+        -2,
+        -3
+      ],
+      "commands": 150,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -6,
+      "scores": [
+        2,
+        6,
+        -2,
+        -6
+      ],
+      "commands": 138,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 4,
+      "scores": [
+        4,
+        -1,
+        0,
+        -3
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        3,
+        -1,
+        2,
+        -4
+      ],
+      "commands": 129,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        4,
+        1,
+        -4,
+        -1
+      ],
+      "commands": 120,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        3,
+        -1,
+        2,
+        -4
+      ],
+      "commands": 129,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -4,
+        2,
+        -4
+      ],
+      "commands": 158,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 113,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 113,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        -1,
+        4,
+        1
+      ],
+      "commands": 175,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        -6,
+        -1,
+        -1,
+        8
+      ],
+      "commands": 182,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 2,
+      "scores": [
+        4,
+        2,
+        -2,
+        -4
+      ],
+      "commands": 111,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -17,
+        -3,
+        -1,
+        21
+      ],
+      "commands": 200,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        1,
+        -5,
+        4
+      ],
+      "commands": 159,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        -3,
+        6,
+        -1,
+        -2
+      ],
+      "commands": 139,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        0,
+        6,
+        2,
+        -8
+      ],
+      "commands": 164,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -2,
+      "scores": [
+        4,
+        -3,
+        -2,
+        1
+      ],
+      "commands": 109,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -8,
+      "scores": [
+        0,
+        6,
+        2,
+        -8
+      ],
+      "commands": 164,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        3,
+        1,
+        0,
+        -4
+      ],
+      "commands": 173,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -7,
+        6,
+        -7,
+        8
+      ],
+      "commands": 182,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        1,
+        4,
+        -5
+      ],
+      "commands": 204,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -1,
+      "scores": [
+        -4,
+        6,
+        -1,
+        -1
+      ],
+      "commands": 167,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 7,
+      "scores": [
+        7,
+        -3,
+        -1,
+        -3
+      ],
+      "commands": 159,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        1,
+        -1,
+        4
+      ],
+      "commands": 112,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -1,
+        -4,
+        11,
+        -6
+      ],
+      "commands": 177,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -5,
+        4,
+        -1,
+        2
+      ],
+      "commands": 111,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        -4,
+        4
+      ],
+      "commands": 114,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        3,
+        -4
+      ],
+      "commands": 156,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        -5,
+        4,
+        0
+      ],
+      "commands": 135,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        -1,
+        -4,
+        4
+      ],
+      "commands": 114,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -4,
+        -1,
+        4,
+        1
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        -2,
+        1
+      ],
+      "commands": 143,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        -2,
+        1,
+        0,
+        1
+      ],
+      "commands": 184,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        -1,
+        4,
+        1
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        -6,
+        6,
+        2,
+        -2
+      ],
+      "commands": 141,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 74,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 58,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 74,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        2,
+        -7,
+        4
+      ],
+      "commands": 148,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        4,
+        -5,
+        0
+      ],
+      "commands": 140,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        12,
+        -4,
+        -5,
+        -3
+      ],
+      "commands": 171,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -5,
+        4,
+        1
+      ],
+      "commands": 72,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "commands": 226,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        -1,
+        -2,
+        4,
+        -1
+      ],
+      "commands": 145,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        -5,
+        1,
+        0,
+        4
+      ],
+      "commands": 179,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        -3,
+        -1,
+        6,
+        -2
+      ],
+      "commands": 178,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        0,
+        -2
+      ],
+      "commands": 160,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        2,
+        -3
+      ],
+      "commands": 176,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        0,
+        1,
+        -6,
+        5
+      ],
+      "commands": 138,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        1,
+        1,
+        2,
+        -4
+      ],
+      "commands": 159,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        4,
+        -4,
+        -1
+      ],
+      "commands": 137,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        1,
+        -2,
+        0,
+        1
+      ],
+      "commands": 156,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        1,
+        4,
+        -4,
+        -1
+      ],
+      "commands": 133,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 1,
+      "scores": [
+        1,
+        -2,
+        0,
+        1
+      ],
+      "commands": 128,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -2,
+        1,
+        0
+      ],
+      "commands": 173,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -6,
+      "scores": [
+        2,
+        -6,
+        -2,
+        6
+      ],
+      "commands": 147,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -1,
+      "scores": [
+        0,
+        -4,
+        -1,
+        5
+      ],
+      "commands": 165,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -4,
+        2,
+        1
+      ],
+      "commands": 110,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -3,
+        -1,
+        3
+      ],
+      "commands": 178,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        1,
+        2,
+        -4,
+        1
+      ],
+      "commands": 165,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        -1,
+        2,
+        -3
+      ],
+      "commands": 226,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        2,
+        1,
+        -4,
+        1
+      ],
+      "commands": 185,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        3,
+        -4
+      ],
+      "commands": 106,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        4,
+        -5
+      ],
+      "commands": 107,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        0,
+        4,
+        -5
+      ],
+      "commands": 107,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        1,
+        0,
+        4,
+        -5
+      ],
+      "commands": 107,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -5,
+        -2,
+        1
+      ],
+      "commands": 199,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -3,
+      "scores": [
+        -5,
+        -3,
+        4,
+        4
+      ],
+      "commands": 133,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 4,
+      "scores": [
+        -5,
+        -3,
+        4,
+        4
+      ],
+      "commands": 133,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        -6,
+        4,
+        4
+      ],
+      "commands": 135,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -5,
+      "scores": [
+        -5,
+        -9,
+        15,
+        -1
+      ],
+      "commands": 121,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -9,
+      "scores": [
+        -5,
+        -9,
+        15,
+        -1
+      ],
+      "commands": 121,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -10,
+        4,
+        6,
+        0
+      ],
+      "commands": 133,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -5,
+        -9,
+        15,
+        -1
+      ],
+      "commands": 121,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        1,
+        -7,
+        4
+      ],
+      "commands": 126,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        -6,
+        3,
+        2,
+        1
+      ],
+      "commands": 139,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        2,
+        -7,
+        -1,
+        6
+      ],
+      "commands": 142,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -5,
+        1,
+        2,
+        2
+      ],
+      "commands": 171,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        2,
+        -2,
+        -2
+      ],
+      "commands": 145,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        4,
+        1,
+        -3
+      ],
+      "commands": 127,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        -1,
+        4,
+        -1
+      ],
+      "commands": 181,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "greedy",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        1,
+        -3,
+        -1,
+        3
+      ],
+      "commands": 210,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -3,
+      "scores": [
+        -3,
+        6,
+        2,
+        -5
+      ],
+      "commands": 137,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -5,
+        6,
+        2,
+        -3
+      ],
+      "commands": 123,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -6,
+        6,
+        4,
+        -4
+      ],
+      "commands": 185,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        -5,
+        6,
+        2,
+        -3
+      ],
+      "commands": 123,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300001,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        8,
+        -4,
+        4,
+        -8
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        1,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -4,
+        12,
+        -4,
+        -4
+      ],
+      "commands": 240,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300001,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -5,
+        -6,
+        12,
+        -1
+      ],
+      "commands": 218,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        4,
+        8,
+        -13
+      ],
+      "commands": 238,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -2,
+        2,
+        2,
+        -2
+      ],
+      "commands": 252,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -6,
+        2,
+        1,
+        3
+      ],
+      "commands": 167,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300002,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -2,
+        -2,
+        6
+      ],
+      "commands": 241,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -4,
+        11,
+        -8,
+        1
+      ],
+      "commands": 154,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 12,
+      "scores": [
+        4,
+        12,
+        -8,
+        -8
+      ],
+      "commands": 135,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -7,
+      "scores": [
+        -1,
+        11,
+        -7,
+        -3
+      ],
+      "commands": 180,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 13,
+      "scores": [
+        -10,
+        3,
+        -6,
+        13
+      ],
+      "commands": 218,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300004,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        6,
+        -9,
+        -1
+      ],
+      "commands": 153,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -1,
+        6,
+        -1,
+        -4
+      ],
+      "commands": 101,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        4,
+        1,
+        -2,
+        -3
+      ],
+      "commands": 150,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -6,
+      "scores": [
+        2,
+        6,
+        -2,
+        -6
+      ],
+      "commands": 138,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 4,
+      "scores": [
+        4,
+        -1,
+        0,
+        -3
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        3,
+        -1,
+        2,
+        -4
+      ],
+      "commands": 129,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        4,
+        1,
+        -4,
+        -1
+      ],
+      "commands": 120,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        3,
+        -1,
+        2,
+        -4
+      ],
+      "commands": 129,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -4,
+        2,
+        -4
+      ],
+      "commands": 158,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300006,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 113,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -1,
+        1,
+        0
+      ],
+      "commands": 113,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        -1,
+        4,
+        1
+      ],
+      "commands": 175,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        -6,
+        -1,
+        -1,
+        8
+      ],
+      "commands": 182,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -1,
+      "scores": [
+        4,
+        -1,
+        -3,
+        0
+      ],
+      "commands": 137,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        0,
+        0,
+        -1,
+        1
+      ],
+      "commands": 206,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300007,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -13,
+      "scores": [
+        6,
+        12,
+        -5,
+        -13
+      ],
+      "commands": 199,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        -3,
+        6,
+        -1,
+        -2
+      ],
+      "commands": 139,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        0,
+        6,
+        2,
+        -8
+      ],
+      "commands": 164,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -2,
+      "scores": [
+        4,
+        -3,
+        -2,
+        1
+      ],
+      "commands": 109,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -8,
+      "scores": [
+        0,
+        6,
+        2,
+        -8
+      ],
+      "commands": 164,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        3,
+        1,
+        -4,
+        0
+      ],
+      "commands": 175,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -7,
+        6,
+        -7,
+        8
+      ],
+      "commands": 182,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        0,
+        1,
+        4,
+        -5
+      ],
+      "commands": 204,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -1,
+      "scores": [
+        -4,
+        6,
+        -1,
+        -1
+      ],
+      "commands": 167,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -6,
+        2,
+        -2
+      ],
+      "commands": 247,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        1,
+        -1,
+        4
+      ],
+      "commands": 112,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -4,
+        -4,
+        11,
+        -3
+      ],
+      "commands": 182,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -5,
+        4,
+        -1,
+        2
+      ],
+      "commands": 111,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        -4,
+        4
+      ],
+      "commands": 114,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        3,
+        -4
+      ],
+      "commands": 156,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        -5,
+        4,
+        0
+      ],
+      "commands": 135,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        -1,
+        -4,
+        4
+      ],
+      "commands": 114,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -4,
+        -1,
+        4,
+        1
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        -2,
+        1
+      ],
+      "commands": 143,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        -2,
+        1,
+        0,
+        1
+      ],
+      "commands": 184,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        -1,
+        4,
+        1
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        -6,
+        6,
+        2,
+        -2
+      ],
+      "commands": 141,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 74,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 58,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 74,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 24,
+      "scores": [
+        24,
+        -11,
+        -11,
+        -2
+      ],
+      "commands": 245,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        4,
+        -5,
+        0
+      ],
+      "commands": 140,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        12,
+        -4,
+        -5,
+        -3
+      ],
+      "commands": 176,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -5,
+        4,
+        1
+      ],
+      "commands": 72,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "commands": 226,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        -1,
+        -2,
+        4,
+        -1
+      ],
+      "commands": 145,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        -5,
+        1,
+        0,
+        4
+      ],
+      "commands": 179,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        2,
+        -4,
+        1
+      ],
+      "commands": 158,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        3,
+        -5
+      ],
+      "commands": 167,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        2,
+        -3
+      ],
+      "commands": 176,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        0,
+        1,
+        -6,
+        5
+      ],
+      "commands": 138,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        1,
+        1,
+        2,
+        -4
+      ],
+      "commands": 159,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        4,
+        -4,
+        -1
+      ],
+      "commands": 137,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        1,
+        -2,
+        0,
+        1
+      ],
+      "commands": 156,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        1,
+        4,
+        -4,
+        -1
+      ],
+      "commands": 133,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 1,
+      "scores": [
+        1,
+        -2,
+        0,
+        1
+      ],
+      "commands": 128,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -2,
+        1,
+        0
+      ],
+      "commands": 173,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        -3,
+        -5,
+        2,
+        6
+      ],
+      "commands": 175,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -1,
+      "scores": [
+        0,
+        -4,
+        -1,
+        5
+      ],
+      "commands": 165,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -5,
+        3,
+        1
+      ],
+      "commands": 167,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -4,
+        0,
+        3
+      ],
+      "commands": 159,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        1,
+        2,
+        -4,
+        1
+      ],
+      "commands": 165,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -3,
+        6,
+        -9
+      ],
+      "commands": 235,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        2,
+        1,
+        -4,
+        1
+      ],
+      "commands": 185,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        3,
+        -4
+      ],
+      "commands": 106,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        4,
+        -5
+      ],
+      "commands": 107,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        0,
+        4,
+        -5
+      ],
+      "commands": 107,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        1,
+        0,
+        4,
+        -5
+      ],
+      "commands": 107,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        -7,
+        2,
+        1
+      ],
+      "commands": 206,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -3,
+      "scores": [
+        -9,
+        -3,
+        8,
+        4
+      ],
+      "commands": 157,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -9,
+        -3,
+        8,
+        4
+      ],
+      "commands": 157,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        -6,
+        4,
+        4
+      ],
+      "commands": 135,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -6,
+      "scores": [
+        -6,
+        -5,
+        12,
+        -1
+      ],
+      "commands": 120,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        -6,
+        -5,
+        12,
+        -1
+      ],
+      "commands": 108,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -9,
+        -5,
+        8,
+        6
+      ],
+      "commands": 207,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300022,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -8,
+        -6,
+        15,
+        -1
+      ],
+      "commands": 122,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        1,
+        -7,
+        4
+      ],
+      "commands": 126,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        -6,
+        3,
+        2,
+        1
+      ],
+      "commands": 139,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        2,
+        -7,
+        -1,
+        6
+      ],
+      "commands": 142,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -3,
+        1,
+        -2,
+        4
+      ],
+      "commands": 154,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        2,
+        -2,
+        -2
+      ],
+      "commands": 145,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        4,
+        1,
+        -3
+      ],
+      "commands": 127,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        -1,
+        4,
+        -1
+      ],
+      "commands": 181,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "defensive",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        1,
+        -3,
+        -1,
+        3
+      ],
+      "commands": 210,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300000,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -8,
+      "scores": [
+        -8,
+        6,
+        0,
+        2
+      ],
+      "commands": 116,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        0,
+        6,
+        -3,
+        -3
+      ],
+      "commands": 114,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -9,
+        6,
+        1,
+        2
+      ],
+      "commands": 125,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300000,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -9,
+        6,
+        1,
+        2
+      ],
+      "commands": 125,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300001,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -1,
+        0,
+        0
+      ],
+      "commands": 169,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300001,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -5,
+        4,
+        1,
+        0
+      ],
+      "commands": 186,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300001,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -3,
+        1,
+        1
+      ],
+      "commands": 175,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300001,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        -1,
+        0,
+        0
+      ],
+      "commands": 204,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        1,
+        -7,
+        2
+      ],
+      "commands": 206,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300002,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        -3,
+        1
+      ],
+      "commands": 218,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300002,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 10,
+      "scores": [
+        4,
+        -6,
+        10,
+        -8
+      ],
+      "commands": 216,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300002,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        -3,
+        1,
+        -1,
+        3
+      ],
+      "commands": 221,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300003,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        6,
+        -1,
+        -5
+      ],
+      "commands": 136,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -4,
+        6,
+        0,
+        -2
+      ],
+      "commands": 172,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": 2,
+      "scores": [
+        -1,
+        2,
+        2,
+        -3
+      ],
+      "commands": 189,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300003,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -2,
+        4,
+        -6,
+        4
+      ],
+      "commands": 150,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -1,
+        6,
+        -8,
+        3
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -1,
+        6,
+        0,
+        -5
+      ],
+      "commands": 100,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -4,
+        1,
+        4,
+        -1
+      ],
+      "commands": 142,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300004,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 2,
+      "scores": [
+        -1,
+        6,
+        -7,
+        2
+      ],
+      "commands": 145,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 11,
+      "scores": [
+        11,
+        1,
+        -11,
+        -1
+      ],
+      "commands": 166,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -4,
+        1,
+        -1,
+        4
+      ],
+      "commands": 195,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300005,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -4,
+      "scores": [
+        4,
+        1,
+        -4,
+        -1
+      ],
+      "commands": 150,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300005,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -5,
+      "scores": [
+        6,
+        1,
+        -2,
+        -5
+      ],
+      "commands": 169,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -5,
+        -3,
+        2
+      ],
+      "commands": 180,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        0,
+        -3,
+        2,
+        1
+      ],
+      "commands": 113,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        -2,
+        1,
+        1
+      ],
+      "commands": 100,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300006,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        6,
+        -2,
+        -3,
+        -1
+      ],
+      "commands": 155,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -3,
+      "scores": [
+        -3,
+        3,
+        -1,
+        1
+      ],
+      "commands": 117,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        3,
+        -3,
+        -1,
+        1
+      ],
+      "commands": 123,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        2,
+        1,
+        -1,
+        -2
+      ],
+      "commands": 190,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300007,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        -1,
+        2,
+        1,
+        -2
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        -2,
+        1,
+        1,
+        0
+      ],
+      "commands": 183,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        2,
+        6,
+        -5,
+        -3
+      ],
+      "commands": 197,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300008,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        -3,
+        -5,
+        2,
+        6
+      ],
+      "commands": 188,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300008,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -4,
+        6,
+        -1,
+        -1
+      ],
+      "commands": 155,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        6,
+        -5,
+        -1
+      ],
+      "commands": 211,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300009,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -3,
+        6,
+        -2,
+        -1
+      ],
+      "commands": 189,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        -1,
+        1,
+        0,
+        0
+      ],
+      "commands": 188,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300009,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 7,
+      "scores": [
+        -3,
+        -1,
+        -3,
+        7
+      ],
+      "commands": 206,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300010,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 7,
+      "scores": [
+        7,
+        -4,
+        -1,
+        -2
+      ],
+      "commands": 168,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -3,
+        6,
+        -2,
+        -1
+      ],
+      "commands": 188,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 11,
+      "scores": [
+        -2,
+        -7,
+        11,
+        -2
+      ],
+      "commands": 203,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300010,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        1,
+        4,
+        -7,
+        2
+      ],
+      "commands": 138,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -2,
+        4,
+        -3
+      ],
+      "commands": 140,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        1,
+        2,
+        -4,
+        1
+      ],
+      "commands": 220,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300011,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        -2,
+        0,
+        1
+      ],
+      "commands": 131,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300011,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -2,
+      "scores": [
+        6,
+        -2,
+        -2,
+        -2
+      ],
+      "commands": 222,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300012,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        -2,
+        1
+      ],
+      "commands": 134,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        2,
+        0,
+        -3,
+        1
+      ],
+      "commands": 157,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        -2,
+        1,
+        0,
+        1
+      ],
+      "commands": 184,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300012,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        2,
+        0,
+        -3,
+        1
+      ],
+      "commands": 168,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -4,
+        6,
+        2,
+        -4
+      ],
+      "commands": 113,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 75,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        1,
+        0,
+        -2
+      ],
+      "commands": 82,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300013,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -3,
+      "scores": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "commands": 75,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 13,
+      "scores": [
+        13,
+        3,
+        -13,
+        -3
+      ],
+      "commands": 175,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        4,
+        -2,
+        -3
+      ],
+      "commands": 129,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300014,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        4,
+        -2,
+        4,
+        -6
+      ],
+      "commands": 206,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300014,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        -3,
+        1,
+        1
+      ],
+      "commands": 143,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -1,
+        1,
+        -4,
+        4
+      ],
+      "commands": 156,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        4,
+        -4,
+        6,
+        -6
+      ],
+      "commands": 209,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300015,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        -5,
+        4,
+        0,
+        1
+      ],
+      "commands": 174,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300015,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 1,
+      "scores": [
+        -3,
+        1,
+        1,
+        1
+      ],
+      "commands": 163,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        -7,
+        5
+      ],
+      "commands": 218,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300016,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        0,
+        -5,
+        4
+      ],
+      "commands": 179,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        1,
+        -4,
+        4,
+        -1
+      ],
+      "commands": 200,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300016,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 1,
+      "net_score": -2,
+      "scores": [
+        1,
+        1,
+        0,
+        -2
+      ],
+      "commands": 190,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        1,
+        0,
+        -2
+      ],
+      "commands": 165,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        0,
+        1,
+        0,
+        -1
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300017,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -2,
+        -1,
+        6,
+        -3
+      ],
+      "commands": 160,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300017,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": -1,
+      "scores": [
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "commands": 162,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        2,
+        -4,
+        1
+      ],
+      "commands": 140,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        -1,
+        -4,
+        -1,
+        6
+      ],
+      "commands": 230,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300018,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -5,
+        0,
+        4,
+        1
+      ],
+      "commands": 149,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300018,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        -1,
+        -4,
+        4,
+        1
+      ],
+      "commands": 179,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -2,
+        -1,
+        -3
+      ],
+      "commands": 187,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300019,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        0,
+        6,
+        -4,
+        -2
+      ],
+      "commands": 215,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        2,
+        -1,
+        6,
+        -7
+      ],
+      "commands": 226,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300019,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        1,
+        -3,
+        0,
+        2
+      ],
+      "commands": 221,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300020,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        3,
+        -5,
+        1
+      ],
+      "commands": 183,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 5,
+      "scores": [
+        -5,
+        5,
+        0,
+        0
+      ],
+      "commands": 199,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -2,
+      "scores": [
+        4,
+        2,
+        -2,
+        -4
+      ],
+      "commands": 162,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300020,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 1,
+      "scores": [
+        1,
+        0,
+        -2,
+        1
+      ],
+      "commands": 160,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 0,
+      "scores": [
+        0,
+        -4,
+        4,
+        0
+      ],
+      "commands": 233,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        -1,
+        0,
+        3,
+        -2
+      ],
+      "commands": 189,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300021,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 8,
+      "scores": [
+        -1,
+        -4,
+        8,
+        -3
+      ],
+      "commands": 189,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300021,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 4,
+      "scores": [
+        -6,
+        -2,
+        4,
+        4
+      ],
+      "commands": 144,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        6,
+        -6,
+        2,
+        -2
+      ],
+      "commands": 142,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        -3,
+        6,
+        2,
+        -5
+      ],
+      "commands": 150,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 15,
+      "scores": [
+        -5,
+        -7,
+        15,
+        -3
+      ],
+      "commands": 153,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300022,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 0,
+      "scores": [
+        1,
+        -2,
+        1,
+        0
+      ],
+      "commands": 102,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 13,
+      "scores": [
+        13,
+        -13,
+        -3,
+        3
+      ],
+      "commands": 164,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 3,
+      "scores": [
+        0,
+        3,
+        -4,
+        1
+      ],
+      "commands": 130,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -4,
+      "scores": [
+        13,
+        -9,
+        -4,
+        0
+      ],
+      "commands": 133,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300023,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 1,
+      "net_score": 6,
+      "scores": [
+        0,
+        -5,
+        -1,
+        6
+      ],
+      "commands": 130,
+      "end_reason": "three_winners"
+    },
+    {
+      "seed": 300024,
+      "seat": 0,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": 2,
+      "scores": [
+        2,
+        1,
+        0,
+        -3
+      ],
+      "commands": 177,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 1,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": 6,
+      "scores": [
+        1,
+        6,
+        -2,
+        -5
+      ],
+      "commands": 192,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 2,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 0,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        -1,
+        -4,
+        -1,
+        6
+      ],
+      "commands": 209,
+      "end_reason": "wall_exhausted"
+    },
+    {
+      "seed": 300024,
+      "seat": 3,
+      "policy": "rl",
+      "opponent": "value",
+      "win": 1,
+      "deal_in": 0,
+      "net_score": -1,
+      "scores": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "commands": 163,
+      "end_reason": "three_winners"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "format": "riichi_validation_best_artifact_v1",
+  "label": "v1_20261021",
+  "checkpoint": "/sandbox-data/policy-lab-20261021/experiment-final/v1_20261021/checkpoints/step_131072.zip",
+  "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+  "timesteps": 131072,
+  "validation_rank_utility": 0.1015625,
+  "selection": "Highest validation rank utility among all fitted RL seeds; earlier listed label wins a tie.",
+  "validation_candidates_sha256": "fb151ace377df4e557c9d95bd5b2d7b022369e1a32bc204b0fe33029bb57d7ab",
+  "note": "Artifact selection only; match strength and the V2 release gate are assessed independently."
+}

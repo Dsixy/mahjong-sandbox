@@ -1,0 +1,1582 @@
+{
+  "host": "pjlab",
+  "project": "/workspace/mahjong-sandbox-stage6",
+  "git_revision": "15e9350af9c7e783d1a238463856973e77b01fff",
+  "python": "3.13.5",
+  "visible_cpus": 7,
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "numpy": "2.3.5",
+    "numba": "0.68.0",
+    "stable_baselines3": "2.9.0",
+    "sb3_contrib": "2.9.0"
+  },
+  "cuda_available": false,
+  "gpu_job_submitted": false,
+  "rl_tests": {
+    "tests": 9,
+    "passed": true
+  },
+  "initial_training": {
+    "algorithm": "sb3-contrib MaskablePPO",
+    "config": {
+      "total_timesteps": 1024,
+      "n_envs": 8,
+      "workers": 2,
+      "rollout_steps": 32,
+      "batch_size": 32,
+      "epochs": 2,
+      "learning_rate": 0.0003,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 32.0,
+      "hidden": 128,
+      "seed": 42,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 64,
+      "bc_epochs": 2,
+      "checkpoint_every": 8,
+      "validation_every": 8,
+      "validation_blocks": 2,
+      "validation_seed": 100000,
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      }
+    },
+    "actual_device": "cpu",
+    "start_timesteps": 0,
+    "final_timesteps": 1024,
+    "additional_timesteps": 1024,
+    "optimizer_epochs": 8,
+    "completed_episodes_this_run": 17,
+    "elapsed_seconds": 44.35748915601289,
+    "imitation": {
+      "teacher": "greedy",
+      "samples": 64,
+      "hands_started": 2,
+      "commands": 213,
+      "phase_counts": {
+        "exchange": 8,
+        "declare_suit": 8,
+        "self_turn": 40,
+        "discard_response": 8
+      },
+      "seed": 1276,
+      "epochs": 2,
+      "training_cross_entropy": [
+        1.9104901552200317,
+        1.688705563545227
+      ],
+      "training_accuracy": [
+        0.25,
+        0.625
+      ],
+      "ppo_timesteps": 0
+    },
+    "initial_validation": {
+      "games": 8,
+      "wall_blocks": 2,
+      "win_rate": 0.375,
+      "deal_in_rate": 0.5,
+      "mean_net_score": -1.125,
+      "ci95": {
+        "win": [
+          0.25,
+          0.5
+        ],
+        "deal_in": [
+          0.25,
+          0.75
+        ],
+        "net_score": [
+          -4.25,
+          2.0
+        ]
+      }
+    },
+    "validations": [
+      {
+        "elapsed_seconds": 24.763749603996985,
+        "event": "validation",
+        "timesteps": 1024,
+        "games": 8,
+        "wall_blocks": 2,
+        "win_rate": 0.5,
+        "deal_in_rate": 0.25,
+        "mean_net_score": -1.25,
+        "ci95": {
+          "win": [
+            0.25,
+            0.75
+          ],
+          "deal_in": [
+            0.25,
+            0.25
+          ],
+          "net_score": [
+            -2.25,
+            -0.25
+          ]
+        }
+      }
+    ],
+    "latest_model_sha256": "5ac54eeec952b38465854d8a64591685ad04cfeb9237d1b28b3dc48f95750163",
+    "source_sha256": "410aa4613903c5305c765503df74d5a8187cc59ec43d3a266c90ba0d1f1fb41a",
+    "latest": "runs/cpu-verification/latest.zip",
+    "best": "runs/cpu-verification/best.zip",
+    "resume": "model, value function, Adam; new hands, not exact in-flight state",
+    "illegal_actions": 0
+  },
+  "resumed_training": {
+    "algorithm": "sb3-contrib MaskablePPO",
+    "config": {
+      "total_timesteps": 256,
+      "n_envs": 8,
+      "workers": 2,
+      "rollout_steps": 32,
+      "batch_size": 32,
+      "epochs": 2,
+      "learning_rate": 0.0003,
+      "gamma": 1.0,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "target_kl": 0.03,
+      "reward_scale": 32.0,
+      "hidden": 128,
+      "seed": 42,
+      "backend": "numba",
+      "device": "cpu",
+      "torch_threads": 1,
+      "opponents": [
+        "greedy",
+        "defensive",
+        "value"
+      ],
+      "hints": true,
+      "bc_samples": 64,
+      "bc_epochs": 2,
+      "checkpoint_every": 8,
+      "validation_every": 8,
+      "validation_blocks": 2,
+      "validation_seed": 100000,
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      }
+    },
+    "actual_device": "cpu",
+    "start_timesteps": 1024,
+    "final_timesteps": 1280,
+    "additional_timesteps": 256,
+    "optimizer_epochs": 10,
+    "completed_episodes_this_run": 1,
+    "elapsed_seconds": 33.57851445698179,
+    "imitation": {
+      "teacher": "greedy",
+      "samples": 64,
+      "hands_started": 2,
+      "commands": 213,
+      "phase_counts": {
+        "exchange": 8,
+        "declare_suit": 8,
+        "self_turn": 40,
+        "discard_response": 8
+      },
+      "seed": 1276,
+      "epochs": 2,
+      "training_cross_entropy": [
+        1.9104901552200317,
+        1.688705563545227
+      ],
+      "training_accuracy": [
+        0.25,
+        0.625
+      ],
+      "ppo_timesteps": 0
+    },
+    "initial_validation": {
+      "games": 8,
+      "wall_blocks": 2,
+      "win_rate": 0.5,
+      "deal_in_rate": 0.25,
+      "mean_net_score": -1.25,
+      "ci95": {
+        "win": [
+          0.25,
+          0.75
+        ],
+        "deal_in": [
+          0.25,
+          0.25
+        ],
+        "net_score": [
+          -2.25,
+          -0.25
+        ]
+      }
+    },
+    "validations": [
+      {
+        "elapsed_seconds": 17.52702403801959,
+        "event": "validation",
+        "timesteps": 1280,
+        "games": 8,
+        "wall_blocks": 2,
+        "win_rate": 0.75,
+        "deal_in_rate": 0.375,
+        "mean_net_score": -1.125,
+        "ci95": {
+          "win": [
+            0.5,
+            1.0
+          ],
+          "deal_in": [
+            0.25,
+            0.5
+          ],
+          "net_score": [
+            -1.5,
+            -0.75
+          ]
+        }
+      }
+    ],
+    "latest_model_sha256": "1598f3efd79197131eb9ba01d55b4bda1df2bba8dbcc56b96e060008c575a227",
+    "source_sha256": "410aa4613903c5305c765503df74d5a8187cc59ec43d3a266c90ba0d1f1fb41a",
+    "latest": "runs/cpu-verification/latest.zip",
+    "best": "runs/cpu-verification/best.zip",
+    "resume": "model, value function, Adam; new hands, not exact in-flight state",
+    "illegal_actions": 0
+  },
+  "evaluation": {
+    "format": "sichuan_rl_evaluation_v1",
+    "variant": "sichuan",
+    "rules": {
+      "rule_version": "sichuan_xuezhan_v1",
+      "exchange_three": true,
+      "base_points": 1,
+      "fan_cap": 5,
+      "self_draw_bonus": "base",
+      "seven_pairs_quads": true,
+      "passed_ron_lock": true,
+      "last_tile_bonus": true,
+      "force_win_last_four": false,
+      "kong_discard_transfer": false,
+      "check_flower_pigs": true,
+      "check_noten": true,
+      "refund_noten_kongs": true,
+      "dealer": 0
+    },
+    "models": {
+      "rl": {
+        "path": "/workspace/mahjong-sandbox-stage6/runs/cpu-verification/latest.zip",
+        "sha256": "1598f3efd79197131eb9ba01d55b4bda1df2bba8dbcc56b96e060008c575a227",
+        "timesteps": 1280,
+        "source_sha256": "410aa4613903c5305c765503df74d5a8187cc59ec43d3a266c90ba0d1f1fb41a"
+      }
+    },
+    "wall_seeds": [
+      200000,
+      200001
+    ],
+    "blocks": 2,
+    "seat_rotations": 4,
+    "interval_method": "95% paired-wall block bootstrap, 2000 resamples; conservative exact boundary intervals",
+    "deterministic_policy": true,
+    "workers": 2,
+    "device": "cpu",
+    "games": 24,
+    "elapsed_seconds": 19.299463259987533,
+    "games_per_second": 1.2435578998592058,
+    "commands": 3530,
+    "end_reasons": {
+      "three_winners": 21,
+      "wall_exhausted": 3
+    },
+    "matchups": {
+      "greedy": {
+        "rl": {
+          "games": 8,
+          "wall_blocks": 2,
+          "win_rate": 0.625,
+          "deal_in_rate": 0.625,
+          "mean_net_score": -2.5,
+          "ci95": {
+            "win": [
+              0.5,
+              0.75
+            ],
+            "deal_in": [
+              0.25,
+              1.0
+            ],
+            "net_score": [
+              -2.75,
+              -2.25
+            ]
+          }
+        },
+        "win-first": {
+          "games": 8,
+          "wall_blocks": 2,
+          "win_rate": 0.125,
+          "deal_in_rate": 0.375,
+          "mean_net_score": -3.375,
+          "ci95": {
+            "win": [
+              0.0,
+              0.25
+            ],
+            "deal_in": [
+              0.25,
+              0.5
+            ],
+            "net_score": [
+              -4.75,
+              -2.0
+            ]
+          }
+        },
+        "greedy": {
+          "games": 8,
+          "wall_blocks": 2,
+          "win_rate": 0.75,
+          "deal_in_rate": 0.5,
+          "mean_net_score": 0.0,
+          "ci95": {
+            "win": [
+              0.75,
+              0.75
+            ],
+            "deal_in": [
+              0.5,
+              0.5
+            ],
+            "net_score": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    "paired_comparisons": {
+      "greedy": {
+        "win-first": {
+          "win": {
+            "rl_minus_baseline": 0.5,
+            "ci95": [
+              0.25,
+              0.75
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": 0.25,
+            "ci95": [
+              -0.25,
+              0.75
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": 0.875,
+            "ci95": [
+              -0.75,
+              2.5
+            ]
+          }
+        },
+        "greedy": {
+          "win": {
+            "rl_minus_baseline": -0.125,
+            "ci95": [
+              -0.25,
+              0.0
+            ]
+          },
+          "deal_in": {
+            "rl_minus_baseline": 0.125,
+            "ci95": [
+              -0.25,
+              0.5
+            ]
+          },
+          "net_score": {
+            "rl_minus_baseline": -2.5,
+            "ci95": [
+              -2.75,
+              -2.25
+            ]
+          }
+        }
+      }
+    },
+    "game_records": [
+      {
+        "seed": 200000,
+        "seat": 0,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 1,
+        "net_score": 0,
+        "scores": [
+          0,
+          -1,
+          2,
+          -1
+        ],
+        "commands": 160,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 1,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -1,
+        "scores": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "commands": 120,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 2,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 1,
+        "net_score": -1,
+        "scores": [
+          1,
+          0,
+          -1,
+          0
+        ],
+        "commands": 215,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 3,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -7,
+        "scores": [
+          1,
+          4,
+          2,
+          -7
+        ],
+        "commands": 125,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 0,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 0,
+        "net_score": -12,
+        "scores": [
+          -12,
+          1,
+          12,
+          -1
+        ],
+        "commands": 186,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 1,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 1,
+        "net_score": 0,
+        "scores": [
+          1,
+          0,
+          -2,
+          1
+        ],
+        "commands": 103,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 2,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 0,
+        "scores": [
+          1,
+          -3,
+          0,
+          2
+        ],
+        "commands": 184,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 3,
+        "policy": "rl",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 1,
+        "scores": [
+          1,
+          -2,
+          0,
+          1
+        ],
+        "commands": 146,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 0,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 1,
+        "scores": [
+          1,
+          -2,
+          3,
+          -2
+        ],
+        "commands": 139,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 1,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 0,
+        "net_score": -3,
+        "scores": [
+          1,
+          -3,
+          2,
+          0
+        ],
+        "commands": 112,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 2,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -10,
+        "scores": [
+          1,
+          3,
+          -10,
+          6
+        ],
+        "commands": 241,
+        "end_reason": "wall_exhausted"
+      },
+      {
+        "seed": 200000,
+        "seat": 3,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 0,
+        "net_score": -7,
+        "scores": [
+          1,
+          9,
+          -3,
+          -7
+        ],
+        "commands": 150,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 0,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 0,
+        "net_score": -2,
+        "scores": [
+          -2,
+          7,
+          -4,
+          -1
+        ],
+        "commands": 167,
+        "end_reason": "wall_exhausted"
+      },
+      {
+        "seed": 200001,
+        "seat": 1,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -4,
+        "scores": [
+          1,
+          -4,
+          2,
+          1
+        ],
+        "commands": 180,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 2,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -2,
+        "scores": [
+          1,
+          0,
+          -2,
+          1
+        ],
+        "commands": 145,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 3,
+        "policy": "win-first",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 0,
+        "net_score": 0,
+        "scores": [
+          1,
+          -1,
+          0,
+          0
+        ],
+        "commands": 201,
+        "end_reason": "wall_exhausted"
+      },
+      {
+        "seed": 200000,
+        "seat": 0,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 1,
+        "scores": [
+          1,
+          0,
+          1,
+          -2
+        ],
+        "commands": 125,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 1,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 1,
+        "net_score": 0,
+        "scores": [
+          1,
+          0,
+          1,
+          -2
+        ],
+        "commands": 125,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 2,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 1,
+        "scores": [
+          1,
+          0,
+          1,
+          -2
+        ],
+        "commands": 125,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200000,
+        "seat": 3,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -2,
+        "scores": [
+          1,
+          0,
+          1,
+          -2
+        ],
+        "commands": 125,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 0,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 1,
+        "scores": [
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "commands": 114,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 1,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 1,
+        "net_score": -1,
+        "scores": [
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "commands": 114,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 2,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 0,
+        "deal_in": 1,
+        "net_score": -1,
+        "scores": [
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "commands": 114,
+        "end_reason": "three_winners"
+      },
+      {
+        "seed": 200001,
+        "seat": 3,
+        "policy": "greedy",
+        "opponent": "greedy",
+        "win": 1,
+        "deal_in": 0,
+        "net_score": 1,
+        "scores": [
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "commands": 114,
+        "end_reason": "three_winners"
+      }
+    ]
+  },
+  "final_verification": {
+    "git_revision": "04ede70244984ecc0f5a076f457f90c3c7ca8b55",
+    "rl_tests": {
+      "tests": 10,
+      "passed": true
+    },
+    "resumed_training": {
+      "algorithm": "sb3-contrib MaskablePPO",
+      "config": {
+        "total_timesteps": 256,
+        "n_envs": 8,
+        "workers": 2,
+        "rollout_steps": 32,
+        "batch_size": 32,
+        "epochs": 2,
+        "learning_rate": 0.0003,
+        "gamma": 1.0,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "target_kl": 0.03,
+        "reward_scale": 32.0,
+        "hidden": 128,
+        "seed": 42,
+        "backend": "numba",
+        "device": "cpu",
+        "torch_threads": 1,
+        "opponents": [
+          "greedy",
+          "defensive",
+          "value"
+        ],
+        "hints": true,
+        "bc_samples": 64,
+        "bc_epochs": 2,
+        "checkpoint_every": 8,
+        "validation_every": 8,
+        "validation_blocks": 2,
+        "validation_seed": 100000,
+        "rules": {
+          "rule_version": "sichuan_xuezhan_v1",
+          "exchange_three": true,
+          "base_points": 1,
+          "fan_cap": 5,
+          "self_draw_bonus": "base",
+          "seven_pairs_quads": true,
+          "passed_ron_lock": true,
+          "last_tile_bonus": true,
+          "force_win_last_four": false,
+          "kong_discard_transfer": false,
+          "check_flower_pigs": true,
+          "check_noten": true,
+          "refund_noten_kongs": true,
+          "dealer": 0
+        }
+      },
+      "actual_device": "cpu",
+      "start_timesteps": 1280,
+      "final_timesteps": 1536,
+      "additional_timesteps": 256,
+      "optimizer_epochs": 12,
+      "rollout_updates_this_run": 1,
+      "completed_episodes_this_run": 1,
+      "elapsed_seconds": 34.75131570902886,
+      "imitation": {
+        "teacher": "greedy",
+        "samples": 64,
+        "hands_started": 2,
+        "commands": 213,
+        "phase_counts": {
+          "exchange": 8,
+          "declare_suit": 8,
+          "self_turn": 40,
+          "discard_response": 8
+        },
+        "seed": 1276,
+        "epochs": 2,
+        "training_cross_entropy": [
+          1.9104901552200317,
+          1.688705563545227
+        ],
+        "training_accuracy": [
+          0.25,
+          0.625
+        ],
+        "ppo_timesteps": 0
+      },
+      "initial_validation": {
+        "games": 8,
+        "wall_blocks": 2,
+        "win_rate": 0.75,
+        "deal_in_rate": 0.375,
+        "mean_net_score": -1.125,
+        "ci95": {
+          "win": [
+            0.5,
+            1.0
+          ],
+          "deal_in": [
+            0.25,
+            0.5
+          ],
+          "net_score": [
+            -1.5,
+            -0.75
+          ]
+        }
+      },
+      "validations": [
+        {
+          "elapsed_seconds": 19.08663691295078,
+          "event": "validation",
+          "timesteps": 1536,
+          "games": 8,
+          "wall_blocks": 2,
+          "win_rate": 0.5,
+          "deal_in_rate": 0.375,
+          "mean_net_score": -3.125,
+          "ci95": {
+            "win": [
+              0.5,
+              0.5
+            ],
+            "deal_in": [
+              0.25,
+              0.5
+            ],
+            "net_score": [
+              -5.5,
+              -0.75
+            ]
+          }
+        }
+      ],
+      "latest_model_sha256": "ff4aae726e94616a0f9dcb4319f638099a1d657c4400b71bd44e3299f21f48f7",
+      "source_sha256": "baf08d25082aed96e4d9532f381a9044816700aad2d48c91d4fc60d20ac0b0c2",
+      "latest": "runs/cpu-verification/latest.zip",
+      "best": "runs/cpu-verification/best.zip",
+      "resume": "model, value function, Adam; new hands, not exact in-flight state",
+      "illegal_actions": 0
+    },
+    "evaluation": {
+      "format": "sichuan_rl_evaluation_v1",
+      "variant": "sichuan",
+      "rules": {
+        "rule_version": "sichuan_xuezhan_v1",
+        "exchange_three": true,
+        "base_points": 1,
+        "fan_cap": 5,
+        "self_draw_bonus": "base",
+        "seven_pairs_quads": true,
+        "passed_ron_lock": true,
+        "last_tile_bonus": true,
+        "force_win_last_four": false,
+        "kong_discard_transfer": false,
+        "check_flower_pigs": true,
+        "check_noten": true,
+        "refund_noten_kongs": true,
+        "dealer": 0
+      },
+      "models": {
+        "rl": {
+          "path": "/workspace/mahjong-sandbox-stage6/runs/cpu-verification/latest.zip",
+          "sha256": "ff4aae726e94616a0f9dcb4319f638099a1d657c4400b71bd44e3299f21f48f7",
+          "timesteps": 1536,
+          "source_sha256": "baf08d25082aed96e4d9532f381a9044816700aad2d48c91d4fc60d20ac0b0c2"
+        }
+      },
+      "wall_seeds": [
+        200000,
+        200001
+      ],
+      "blocks": 2,
+      "seat_rotations": 4,
+      "interval_method": "95% paired-wall block bootstrap, 2000 resamples; conservative exact boundary intervals",
+      "deterministic_policy": true,
+      "workers": 2,
+      "device": "cpu",
+      "games": 24,
+      "elapsed_seconds": 19.95268287899671,
+      "games_per_second": 1.2028457599185178,
+      "commands": 3438,
+      "end_reasons": {
+        "three_winners": 21,
+        "wall_exhausted": 3
+      },
+      "matchups": {
+        "greedy": {
+          "rl": {
+            "games": 8,
+            "wall_blocks": 2,
+            "win_rate": 0.625,
+            "deal_in_rate": 0.625,
+            "mean_net_score": -2.25,
+            "ci95": {
+              "win": [
+                0.5,
+                0.75
+              ],
+              "deal_in": [
+                0.25,
+                1.0
+              ],
+              "net_score": [
+                -2.75,
+                -1.75
+              ]
+            }
+          },
+          "win-first": {
+            "games": 8,
+            "wall_blocks": 2,
+            "win_rate": 0.125,
+            "deal_in_rate": 0.375,
+            "mean_net_score": -3.375,
+            "ci95": {
+              "win": [
+                0.0,
+                0.25
+              ],
+              "deal_in": [
+                0.25,
+                0.5
+              ],
+              "net_score": [
+                -4.75,
+                -2.0
+              ]
+            }
+          },
+          "greedy": {
+            "games": 8,
+            "wall_blocks": 2,
+            "win_rate": 0.75,
+            "deal_in_rate": 0.5,
+            "mean_net_score": 0.0,
+            "ci95": {
+              "win": [
+                0.75,
+                0.75
+              ],
+              "deal_in": [
+                0.5,
+                0.5
+              ],
+              "net_score": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "greedy": {
+          "win-first": {
+            "win": {
+              "rl_minus_baseline": 0.5,
+              "ci95": [
+                0.25,
+                0.75
+              ]
+            },
+            "deal_in": {
+              "rl_minus_baseline": 0.25,
+              "ci95": [
+                -0.25,
+                0.75
+              ]
+            },
+            "net_score": {
+              "rl_minus_baseline": 1.125,
+              "ci95": [
+                0.25,
+                2.0
+              ]
+            }
+          },
+          "greedy": {
+            "win": {
+              "rl_minus_baseline": -0.125,
+              "ci95": [
+                -0.25,
+                0.0
+              ]
+            },
+            "deal_in": {
+              "rl_minus_baseline": 0.125,
+              "ci95": [
+                -0.25,
+                0.5
+              ]
+            },
+            "net_score": {
+              "rl_minus_baseline": -2.25,
+              "ci95": [
+                -2.75,
+                -1.75
+              ]
+            }
+          }
+        }
+      },
+      "game_records": [
+        {
+          "seed": 200000,
+          "seat": 0,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 1,
+          "net_score": 0,
+          "scores": [
+            0,
+            -1,
+            2,
+            -1
+          ],
+          "commands": 160,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 1,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -3,
+          "scores": [
+            1,
+            -3,
+            -1,
+            3
+          ],
+          "commands": 94,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 2,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 1,
+          "net_score": -1,
+          "scores": [
+            1,
+            0,
+            -1,
+            0
+          ],
+          "commands": 215,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 3,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -7,
+          "scores": [
+            1,
+            4,
+            2,
+            -7
+          ],
+          "commands": 125,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 0,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 0,
+          "net_score": -8,
+          "scores": [
+            -8,
+            6,
+            -2,
+            4
+          ],
+          "commands": 120,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 1,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 1,
+          "net_score": 0,
+          "scores": [
+            1,
+            0,
+            -2,
+            1
+          ],
+          "commands": 103,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 2,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 0,
+          "scores": [
+            1,
+            -3,
+            0,
+            2
+          ],
+          "commands": 184,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 3,
+          "policy": "rl",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 1,
+          "scores": [
+            1,
+            -2,
+            0,
+            1
+          ],
+          "commands": 146,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 0,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 1,
+          "scores": [
+            1,
+            -2,
+            3,
+            -2
+          ],
+          "commands": 139,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 1,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 0,
+          "net_score": -3,
+          "scores": [
+            1,
+            -3,
+            2,
+            0
+          ],
+          "commands": 112,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 2,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -10,
+          "scores": [
+            1,
+            3,
+            -10,
+            6
+          ],
+          "commands": 241,
+          "end_reason": "wall_exhausted"
+        },
+        {
+          "seed": 200000,
+          "seat": 3,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 0,
+          "net_score": -7,
+          "scores": [
+            1,
+            9,
+            -3,
+            -7
+          ],
+          "commands": 150,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 0,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 0,
+          "net_score": -2,
+          "scores": [
+            -2,
+            7,
+            -4,
+            -1
+          ],
+          "commands": 167,
+          "end_reason": "wall_exhausted"
+        },
+        {
+          "seed": 200001,
+          "seat": 1,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -4,
+          "scores": [
+            1,
+            -4,
+            2,
+            1
+          ],
+          "commands": 180,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 2,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -2,
+          "scores": [
+            1,
+            0,
+            -2,
+            1
+          ],
+          "commands": 145,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 3,
+          "policy": "win-first",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 0,
+          "net_score": 0,
+          "scores": [
+            1,
+            -1,
+            0,
+            0
+          ],
+          "commands": 201,
+          "end_reason": "wall_exhausted"
+        },
+        {
+          "seed": 200000,
+          "seat": 0,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 1,
+          "scores": [
+            1,
+            0,
+            1,
+            -2
+          ],
+          "commands": 125,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 1,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 1,
+          "net_score": 0,
+          "scores": [
+            1,
+            0,
+            1,
+            -2
+          ],
+          "commands": 125,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 2,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 1,
+          "scores": [
+            1,
+            0,
+            1,
+            -2
+          ],
+          "commands": 125,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200000,
+          "seat": 3,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -2,
+          "scores": [
+            1,
+            0,
+            1,
+            -2
+          ],
+          "commands": 125,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 0,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 1,
+          "scores": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "commands": 114,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 1,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 1,
+          "net_score": -1,
+          "scores": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "commands": 114,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 2,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 0,
+          "deal_in": 1,
+          "net_score": -1,
+          "scores": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "commands": 114,
+          "end_reason": "three_winners"
+        },
+        {
+          "seed": 200001,
+          "seat": 3,
+          "policy": "greedy",
+          "opponent": "greedy",
+          "win": 1,
+          "deal_in": 0,
+          "net_score": 1,
+          "scores": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "commands": 114,
+          "end_reason": "three_winners"
+        }
+      ]
+    }
+  }
+}

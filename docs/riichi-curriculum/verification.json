@@ -1,0 +1,66 @@
+{
+  "full_suite": {
+    "tests": 181,
+    "passed": true,
+    "elapsed_seconds": 170.269
+  },
+  "post_commit_selection_cache_regressions": {
+    "tests": 6,
+    "passed": true,
+    "elapsed_seconds": 10.103
+  },
+  "runtime_note": "Training Python3.12.3/Torch2.8.0+cpu; local Python3.12.14/Torch2.14.1+cpu. Final CPU resume and installed-wheel evidence are recorded separately.",
+  "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "training_implementation_commit": "8d54130fe1a0eaa3ef3f066249100a3c978cce4e",
+  "operations_base_commit": "c978db4",
+  "operational_files_sha256": {
+    "scripts/riichi_evaluation.py": "c8a277eba9c6a36383696a718299ea4341120f8cdaa3d45342ca225b21025a4f",
+    "scripts/riichi_runtime.py": "e8f90c6f7ebfbd179e45209d02df0dc9815584c3bc612caac7b5d2d31ea35788",
+    "scripts/select_riichi_checkpoints.py": "2bac89d4d7a512324307661e8c5a1b3d0a0e870194cd99c3d94e179625e3ca0b",
+    "scripts/run_riichi_curriculum.py": "e7038cb85d22cc6de81b864f387bef879eed441c8ea91f7403d06557c44c1fc2",
+    "scripts/run_riichi_curriculum_pipeline.py": "2b8d6bf9e384983f7dd2dbc2666999e6b23ca1bb44e50967dda04f191d21d6a4",
+    "scripts/audit_riichi_teacher.py": "eeab3f442623d5a4d9cd0e5b2ae21663712d02c8bfd2341b28105807a93084f3",
+    "scripts/placement_decision_probe.py": "dd08f708aab5a011458335ad709de0a4e36410bf23436c14d608b2f12a50e73d",
+    "scripts/verify_placement_release.py": "ddee895cc27faa05d3fe0daa44431e5535a6beaa4a30511332624805c6bd1675"
+  },
+  "complete_experiment": {
+    "format": "riichi_curriculum_complete_v1",
+    "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+    "selected_label": "v2_20261021",
+    "games": 8192,
+    "hands": 81795,
+    "release_gate": {
+      "passed": false,
+      "checks": {
+        "greedy": false,
+        "v2_bc": false
+      },
+      "criterion": "Independent test upper 95% CI of rank difference vs greedy and vs BC must both be below zero. A failed gate retains experimental artifacts without replacing the game model."
+    },
+    "evaluation_sha256": "b07ea05264406ad33fae794f0e5dd047aedf56311f093453ac13268b171d9417"
+  },
+  "installed_wheel_proof_sha256": "34e30dd330e4bcca4f78c3326adbc152d1c4dfc70bb8809dd7c83cec00623530",
+  "installed_wheel": {
+    "format": "riichi_curriculum_installed_wheel_v1",
+    "wheel_sha256": "8f77a0f61da5681deea91c1059bc273ca0e4ac50911612275f949535f011c854",
+    "python": "3.12.14",
+    "torch": "2.14.1+cpu",
+    "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+    "loaded_from_unpacked_wheel": true,
+    "legacy_models": {
+      "sichuan-high": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+      "riichi-high": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+      "riichi-rank": "01aa8063c16b872a08a5ca5ef2783ca3f917d516417960d048cfcf261e675427"
+    },
+    "primary_release_gate": {
+      "passed": false,
+      "checks": {
+        "greedy": false,
+        "v2_bc": false
+      },
+      "criterion": "Independent test upper 95% CI of rank difference vs greedy and vs BC must both be below zero. A failed gate retains experimental artifacts without replacing the game model."
+    },
+    "source_sha256_matches_training": true
+  },
+  "operations_commit": "6ce961866bf2f8d6e902cc97ca198be0adee85d6"
+}

@@ -1,0 +1,48 @@
+{
+  "format": "sichuan_promoted_opponent_v1",
+  "checkpoint": {
+    "timesteps": 6361088,
+    "model_sha256": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+    "source_sha256": "189975bd9843123bb59149c16c560432cea2924e019c02dcaa739cbee6abf513"
+  },
+  "selection": {
+    "criterion": "fixed validation mean net score",
+    "wall_seeds": [
+      100000,
+      100015
+    ],
+    "games": 64,
+    "mean_net_score": 1.078125
+  },
+  "monitor": {
+    "wall_seeds": [
+      300000,
+      300099
+    ],
+    "games": 400,
+    "opponent": "greedy",
+    "metrics": {
+      "games": 400,
+      "wall_blocks": 100,
+      "win_rate": 0.59,
+      "deal_in_rate": 0.445,
+      "mean_net_score": 0.4625,
+      "ci95": {
+        "win": [
+          0.5425,
+          0.64
+        ],
+        "deal_in": [
+          0.4,
+          0.4925
+        ],
+        "net_score": [
+          -0.10506249999999999,
+          1.0825
+        ]
+      }
+    },
+    "used_for_selection": false
+  },
+  "comparison_report": "docs/sandbox-progress-evaluation.json"
+}

@@ -1,0 +1,108 @@
+{
+  "format": "riichi_curriculum_installed_wheel_v1",
+  "wheel_sha256": "8f77a0f61da5681deea91c1059bc273ca0e4ac50911612275f949535f011c854",
+  "python": "3.12.14",
+  "torch": "2.14.1+cpu",
+  "source_sha256": "309f385b9b5bbdeb52c304b533a626c6e585c1a06aba8a874e21010a49d275ec",
+  "loaded_from_unpacked_wheel": true,
+  "models": {
+    "best": {
+      "sha256": "277e62f925bcfcb4179a1c55dd631d960263b11b93ceff6af604bf408d4bc072",
+      "timesteps": 131072,
+      "feature_version": "riichi_visible_v2",
+      "finite_parameters_and_adam": true,
+      "adam_tensors": 99,
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          120
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    "control": {
+      "sha256": "2477afc0fc6e5a5ff88acaf92d67eb696aaf9b5bdcd35591388fce62e9aac455",
+      "timesteps": 131072,
+      "feature_version": "riichi_visible_v1",
+      "finite_parameters_and_adam": true,
+      "adam_tensors": 42,
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          120
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    "warmstart": {
+      "sha256": "6c9fb5a4066b744b7a28eee42420563d9ee72b7977115bfc2f82372ff5483824",
+      "timesteps": 0,
+      "feature_version": "riichi_visible_v2",
+      "finite_parameters_and_adam": true,
+      "adam_tensors": 0,
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          120
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    "control-warmstart": {
+      "sha256": "53f0ba9addefd3af663694ebbf1c3d9b6bfba6f6e8609746272bfa4ccde87b21",
+      "timesteps": 0,
+      "feature_version": "riichi_visible_v1",
+      "finite_parameters_and_adam": true,
+      "adam_tensors": 0,
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          120
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    },
+    "replica": {
+      "sha256": "e1f086a8deef96c17dad2dd8711a5ab2ab0568842ed6fbee6339266c46bca6b2",
+      "timesteps": 262144,
+      "feature_version": "riichi_visible_v2",
+      "finite_parameters_and_adam": true,
+      "adam_tensors": 99,
+      "legal_action": {
+        "kind": "discard",
+        "tiles": [
+          120
+        ],
+        "suit": null,
+        "meld_index": null
+      }
+    }
+  },
+  "legacy_models": {
+    "sichuan-high": "3daa6cf1262373af425d379d6710b289e54bc70e6b562aac4fbc353d997b0241",
+    "riichi-high": "ba1cca88138fa89091b334e63bdf0fb00f622f2c80e0ebce796a616e5151866e",
+    "riichi-rank": "01aa8063c16b872a08a5ca5ef2783ca3f917d516417960d048cfcf261e675427"
+  },
+  "full_south_match": {
+    "seed": 2400000,
+    "seat": 0,
+    "hands": 10,
+    "rank": 4,
+    "net_score": -29900,
+    "commands": 1970,
+    "end_reason": "bankruptcy"
+  },
+  "primary_release_gate": {
+    "passed": false,
+    "checks": {
+      "greedy": false,
+      "v2_bc": false
+    },
+    "criterion": "Independent test upper 95% CI of rank difference vs greedy and vs BC must both be below zero. A failed gate retains experimental artifacts without replacing the game model."
+  },
+  "source_sha256_matches_training": true
+}

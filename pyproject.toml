@@ -12,6 +12,7 @@ dependencies = []
 [project.optional-dependencies]
 batch = ["numpy>=2.2,<2.5"]
 fast = ["numpy>=2.2,<2.5", "numba>=0.68,<0.69"]
+rl = ["numpy>=2.2,<2.5", "torch>=2.8,<3", "gymnasium>=1.0,<2", "stable-baselines3>=2.9,<2.10", "sb3-contrib>=2.9,<2.10"]
 
 [project.scripts]
 mahjong-sandbox = "mahjong_sandbox.cli:main"
@@ -20,4 +21,4 @@ mahjong-sandbox = "mahjong_sandbox.cli:main"
 include = ["mahjong_sandbox*"]
 
 [tool.setuptools.package-data]
-mahjong_sandbox = ["web/*.html", "web/*.css", "web/*.js", "web/assets/*.svg", "web/assets/*.json", "web/assets/tiles/*.svg"]
+mahjong_sandbox = ["web/*.html", "web/*.css", "web/*.js", "web/assets/*.svg", "web/assets/*.json", "web/assets/tiles/*.svg", "models/sichuan-high/*", "models/riichi-high/*", "models/riichi-rank/*", "models/riichi-curriculum/*"]
